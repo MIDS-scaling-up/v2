@@ -7,6 +7,9 @@ Refer to https://docs.nvidia.com/jetpack-l4t/index.html#jetpack/3.2.1/install.ht
 
 ### Host (Computer) Installation
 
+To reiterate, to complete this step you will need a machine running Ubuntu 16.04 or Ubuntu 18.04.  If you do not have one, you will need to create a VM or a docker container.  To do that, follow addditional instructions here (Bryan to create the4se instrunctions for Mac and Windows)  . Make sure that X is started on the mac and / or windows -- please test this and explain it -- we may also need to explain how to install docker on the Mac and on Windows.
+
+
 Open a terminal window and create a new directory to store installation packages. Now download the latest version of Jetpack from the Nvidia webiste (you need to make a Nvidia Developer's account first). The download is a Linux executable file (.run file type). Move the file into the directory you just made, then cd into that directory. Add exec permission for this Jetpack file (replace the <> with the name of the file):
 ```
 chmod +x <Jetpack file name>
@@ -17,7 +20,7 @@ Run the file (remember to replace the <>):
 ```
 The install wizard window should open, click "next". The next window displays the installation locations, which should already be the directory you are currently in. Next window, select the correct Jetson version (TX2 as of now, maybe Jetson Xavier?). 
 
-The next window is the components manager, where you can see what actions will be performed to the host and target. You can troubleshoot here for errors if needed. For now, click "next" at the bottom right and then check "accept all" in the following terms and conditions popup. You'll be taken back to the components manager and everything will begin to download. There may be an error message during download; just dismiss it and click "next" again. A message will prompt you to monitor the computer during installation, and click "ok" to begin installation. After installation is done, the wizard will now do target hardware setup (the Jetson). 
+The next window is the components manager, where you can see what actions will be performed to the host and target. You can troubleshoot here for errors if needed. For now, click "next" at the bottom right and then check "accept all" in the following terms and conditions popup. You'll be taken back to the components manager and everything will begin to download. There may be an error message during download; just dismiss it and click "next" again. A message will prompt you to monitor the computer during installation, and click "ok" to begin cross-compilation. After the cross-compilation is done and the OS image for the Jetson is created, the wizard will now do target hardware setup (the Jetson). 
 
 ### Target (Jetson) Installation
 
@@ -33,7 +36,7 @@ Follow the instructions on the new window to put the Jetson into Force USB Recov
 ```
 lsusb
 ```
-You should see "NVidia Corp" in the list of devices. Go back to the window with instructions and press "enter" to begin flashing the OS on the Jetson. 
+You should see "NVidia Corp" in the list of devices. Go back to the window with instructions and press "enter" to begin flashing the OS on the Jetson's internal storage. 
 
 After flashing, the host computer will install Jetpack modules onto the Jetson via ssh. If the host computer can't find the IP address of the Jetson, it will give you options to try again or enter the IP address manually. Keep trying again, but if this keeps failing then check the Jetson's IP address and enter it manually. When installation on the Jetson is done, close the window as prompted and you're done.
 
@@ -79,6 +82,9 @@ Create a symbolic link between the Docker directory you just moved onto on the e
 sudo ln -s /media/nvidia/<drivename>/docker /var/lib/docker
 ```
 Now your Docker work will automatically be stored on this external drive. The new "docker" directory in /var/lib is a softlink: every time Docker calls on that, it'll actually be pulling from the original "docker" directory in the external drive. Just remember to hook it up when working with Docker.
+  
+### Creating a base CUDA docker image for the Jetson
+Follow instructions from Chris Dye to complete this step
 
 
 
