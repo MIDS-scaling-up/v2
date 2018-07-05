@@ -1,9 +1,9 @@
 # HW 1: Installing Jetpack and Docker 
 
-## 1. Jetpack
+## 1. Jetpack 3.2.1
 Jetpack is a SDK that basically contains everything needed for deep learning and AI applications in a handy package for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 All of the following must be done in an Ubuntu OS. If a command is ever permission denied, try adding "sudo" at the beginning.
-Refer to https://docs.nvidia.com/jetpack-l4t/index.html#jetpack/3.2.1/install.htm for more detailed installation.
+Refer to https://docs.nvidia.com/jetpack-l4t/index.html#jetpack/3.2.1/install.htm for more detailed instructions.
 
 ### Host (Computer) Installation
 
