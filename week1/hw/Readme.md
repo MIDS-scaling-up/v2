@@ -86,11 +86,11 @@ Now your Docker work will automatically be stored on this external drive. The ne
   
 ### Creating a base CUDA Docker Image for the Jetson
 Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase2.0 file on Github in week1/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
-'''
+```
 docker build -t cudabase .
-'''
+```
 After a while, the image is created. List the current images to see if it worked:
-'''
+```
 docker images
-'''
+```
 We'll cover Docker in the lab in more detail.
