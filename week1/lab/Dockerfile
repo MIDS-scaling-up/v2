@@ -4,18 +4,9 @@ FROM cudabase
 # Install package dependencies
 RUN apt-get update && apt-get install -y git pkg-config wget
 RUN apt-get install -y libgtk2.0-dev pkg-config build-essential cmake libcanberra-gtk-module libcanberra-gtk3-module
-# RUN apt-get install -y libgstreamer-plugins-base1.0-0 libgstreamer1.0 libgstreamer-plugins-good1.0-0 libgstreamer-plugins-good1.0-dev
 
-#Install OpenCV. The first commented line is an older version
-# RUN apt-get install -y libopencv-dev
-WORKDIR /
-RUN git clone https://github.com/AlexanderRobles21/OpenCVTX2
-WORKDIR /OpenCVTX2
-RUN sed -i '72i -D WITH_LIBV4L=ON \\' buildOpenCV.sh
-RUN sh buildOpenCV.sh
-WORKDIR /root/opencv/build
-RUN make 
-RUN sudo make install
+# Install OpenCV
+ RUN apt-get install -y libopencv-dev
 
 # Install Darknet and Yolo
 WORKDIR /
