@@ -51,7 +51,7 @@ cd NVIDIA_CUDA-<version>_Samples/bin/aarch64/linux/release/
 ./oceanFTT
 ```
 
-##2. Docker 
+## 2. Docker 
 Docker is a platform that allows you to create, deploy, and run applications in containers. The application and all its dependecies are packaged into one container that is easy to ship out and uses the same Linux kernel as the system it's running on, unlike a virtual machine. This makes it especially useful for compact platforms such as the Jetson.
 
 ### Downloading Docker onto the Jetson
