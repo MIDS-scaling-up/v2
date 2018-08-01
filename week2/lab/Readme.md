@@ -49,7 +49,7 @@ docker build -t digits -f Dockerfile.digits .
 ```
 Run the DIGITS container, ported out to 5001:
 ```
-docker run --priveleged -p -i 50001:5001 -d digits
+docker run --privileged -i -p 50001:5001 -d digits
 ```
 Open a browser window and go to 0.0.0.0:5001 to access DIGITS running on the Jetson. Note that DIGITS is accessed through "0.0.0.0" instead of the IP address of the VS since it's running on the Jetson.
 
