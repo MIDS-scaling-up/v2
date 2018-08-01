@@ -147,4 +147,10 @@ After training, observe the graphs. At which epochs do the accuracy rates (top g
 
 We'll save this trained model for future use on the Jetson (this is called transfer learning). Save the model by clicking the "Download Model" button.
 
+## Setting Up the Jetson for DIGITS
 
+To prepare for the lab, we'll create a container with Caffe on the Jetson. Download the Dockerfile.caffebase file and build the image:
+```
+docker build -t caffe -f Dockerfile.caffebase .
+```
+The DIGITS container in the week 2 lab will be based off of this Caffe container.
