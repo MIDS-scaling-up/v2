@@ -43,11 +43,7 @@ This will run inference on the bird_0.jpg picture and print the results to the o
 We'll run DIGITS in a Docker container on the Jetson similar to the VS provisioned in the cloud. Because of this, DIGITS will be accessed on the browser locally instead of through an IP address. 
 
 ### Running a DIGITS container on the Jetson
-First, create a new directory to store all DIGITS-related Docker content. Download the Dockerfile.caffebase and mutex.patch files, then build the caffebase image:
-```
-docker build -t caffe -f Dockerfile.caffebase .
-```
-Now download the Dockerfile.digits file and build the DIGITS image:
+First, create a new directory to store all DIGITS-related Docker content. Ensure you already have the Caffe image built in the hw. Now download the Dockerfile.digits file and build the DIGITS image:
 ```
 docker build -t digits -f Dockerfile.digits .
 ```
