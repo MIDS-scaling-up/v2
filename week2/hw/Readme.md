@@ -149,7 +149,7 @@ We'll save this trained model for future use on the Jetson (this is called trans
 
 ## Setting Up the Jetson for DIGITS
 
-To prepare for the lab, we'll create a container with Caffe on the Jetson. Download the Dockerfile.caffebase file and build the image:
+To prepare for the lab, we'll create a container with Caffe on the Jetson. Download the Dockerfile.caffebase and mutex.patch files and build the image:
 ```
 docker build -t caffe -f Dockerfile.caffebase .
 ```
