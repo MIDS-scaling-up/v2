@@ -1,0 +1,21 @@
+FROM cudabase
+
+WORKDIR /tmp
+
+ARG URL=https://developer.download.nvidia.com/devzone/devcenter/mobile/jetpack_l4t/3.2.1/m8u2ki/JetPackL4T_321_b23/
+
+# GIE = TensorRT
+RUN curl $URL/nv-tensorrt-repo-ubuntu1604-ga-cuda9.0-trt3.0.4-20180208_1-1_arm64.deb -so /tmp/nv-tensorrt-repo-ubuntu1604-ga-cuda9.0-trt3.0.4-20180208_1-1_arm64.deb
+RUN dpkg -i /tmp/nv-tensorrt-repo-ubuntu1604-ga-cuda9.0-trt3.0.4-20180208_1-1_arm64.deb
+RUN apt-get update && apt-get install -y tensorrt
+
+# TODO: figure out the source of these libs, they're on the fs prepped by jetpack but not in downloadable sample root fs
+#RUN rm /usr/lib/aarch64-linux-gnu/libcuda.so* /usr/lib/aarch64-linux-gnu/tegra/libcuda.so*
+#RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libcuda.so.1.1 /usr/lib/aarch64-linux-gnu/tegra/libcuda.so
+#RUN curl -sL http://1dd40.http.tor01.cdn.softlayer.net/nvidia-media/JetPack-L4T-3.2-linux-x64_b157-rootfs-extracts.tar.gz | tar xfz - -C /
+
+# Dev
+RUN apt-get install -y vim
+
+# Clean up
+RUN rm -fr /tmp/* /var/cache/apt/* && apt-get clean
