@@ -9,6 +9,7 @@ Enable X, enter the docker container, and navigate to `/jetson-reinforcement/bui
 python gym-RL.py --env=LunarLander-v2 --render
 ```
 After a while of loading, the following screen should pop up. The terminal will also begin displaying information for each episode run: 
+
 <img src="https://raw.githubusercontent.com/dusty-nv/jetson-reinforcement/master/docs/images/LunarLander.png">
 
 ## Interpreting the Results
