@@ -120,7 +120,7 @@ docker login nvcr.io
 ```
 You'll be prompted for credentials. The username is always "$oauthtoken" and enter your own API key. Finally, pull the DIGITS image from NGC and run it:
 ```
-nvidia-docker run -shm-size=1g --ulimit memlock=-1 --name digits -d -p 8888:5000 -v /data:/data -v /data/digits-jobs:/workspace/jobs nvcr.io/nvidia/digits:18.06
+nvidia-docker run --shm-size=1g --ulimit memlock=-1 --name digits -d -p 8888:5000 -v /data:/data -v /data/digits-jobs:/workspace/jobs nvcr.io/nvidia/digits:18.06
 ```
 DIGITS is now running on your VS! To access it, make note of the public IP address of your VS and connect to it in a web browser window by typing the following into the address bar (replace <> with your VS IP address): `<ip-address>:8888`
 
