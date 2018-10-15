@@ -13,10 +13,13 @@ Download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) and the e
 
 NOTE: if you are on Windows and are not seeing the 64-bit option for VMs, please look [here](https://forums.virtualbox.org/viewtopic.php?f=1&t=62339).  Unfortunately, Docker on Windows does not currently support USB. Therefore, you can't use it, which leads you to having to install VirtualBox and disabling HyperV, per the instructions, if it was previously enabled.
 
-With the VM now created, highlight it in the menu and select "Settings" in the upper right. In Network > Adapter 1, change "Attached to" to "Bridged Adapter". In Ports > USB, ensure "Enable USB Controller" is under "USB 3.0 (xHCI) Controller". Now select "Start" in the upper right. When prompted to select a start-up disk, browse and select the Ubuntu image you downloaded. Follow the rest of the instructions to complete setting up the Ubuntu VM. Afterwards, enter the Virtualbox Preferences menu and go to the "Extensions" section. Find and enable the Extension Pack. 
+With the VM now created, highlight it in the menu and select "Settings" in the upper right. In Network > Adapter 1, change "Attached to" to "Bridged Adapter". In Ports > USB, ensure "Enable USB Controller" is under "USB 3.0 (xHCI) Controller". In System > Processor, enable 2 CPU cores.
 
-**Note: if you are using a VM, you need to ensure the VM can see the Jetson by placing the Jetson into force recovery mode. First ensure the Jetson is completely off and connected to the host computer via USB cable. Press the power button once to power on the Jetson and then hold the FORCE RECOVERY button. While holding this button, press the RESET button once. Hold the FORCE RECOVERY button for 2 more seconds, then release. Tip: the FORCE RECOVERY button is the button next to the power button, and the RESET button is the button on the opposite end of the row. 
-Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible. Click the USB shaped button in the bottom right and select "NVIDIA Corp. APX".**
+Now select "Start" in the upper right. When prompted to select a start-up disk, browse and select the Ubuntu image you downloaded. Follow the rest of the instructions to complete setting up the Ubuntu VM. Afterwards, enter the Virtualbox Preferences menu and go to the "Extensions" section. Find and enable the Extension Pack. 
+
+**Note: if you are using a VM, you need to ensure the VM can see the Jetson by placing the Jetson into force recovery mode. First ensure the Jetson is completely off and connected to the host computer via USB cable. Press the power button once to power on the Jetson and then hold the FORCE RECOVERY button. While holding this button, press the RESET button once. Hold the FORCE RECOVERY button for 2 more seconds, then release. Tip: the FORCE RECOVERY button is the button next to the power button, and the RESET button is the button on the opposite end of the row. ***
+
+***Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible. Click the USB shaped button in the bottom right and select "NVIDIA Corp. APX".**
 
 #### Installation on Ubuntu
 Open a terminal window and create a new directory to store installation packages. Now download the latest version of Jetpack from the Nvidia webiste (you need to make a Nvidia Developer's account first). The download is a Linux executable file (.run file type). Move the file into the directory you just made, then cd into that directory. Add exec permission for this Jetpack file (replace the <> with the name of the file):
@@ -32,7 +35,6 @@ The install wizard window should open, click "next". The next window displays th
 The next window is the components manager, where you can see what actions will be performed to the host and target. You can troubleshoot here for errors if needed. For now, click "next" at the bottom right and then check "accept all" in the following terms and conditions popup. You'll be taken back to the components manager and everything will begin to download. There may be an error message during download; just dismiss it and click "next" again. A message will prompt you to monitor the computer during installation, and click "ok" to begin cross-compilation. After the cross-compilation is done and the OS image for the Jetson is created, the wizard will now do target hardware setup (the Jetson). 
 
 ### Target (Jetson) Installation
-Boot up the Jetson and ensure it is connected to the internet through the same router as the host computer. Both the Jetson and host computer must be running at the same time.
 
 On the host computer, select the "Device accesses Internet via router/switch" option. The next window prompts you to select the correct network interface corresponding to the router that the Jetson is also connected to. To view these, open up another terminal window and bring up a list of the interfaces with this command:
 ```
@@ -48,7 +50,9 @@ lsusb
 ```
 You should see "NVidia Corp" in the list of devices. Go back to the window with instructions and press "enter" to begin flashing the OS on the Jetson's internal storage. 
 
-After flashing, the host computer will install Jetpack modules onto the Jetson via ssh. If the host computer can't find the IP address of the Jetson, it will give you options to try again or enter the IP address manually. Keep trying again, but if this keeps failing then check the Jetson's IP address and enter it manually. When installation on the Jetson is done, close the window as prompted and you're done.
+After flashing, the host computer will install Jetpack modules onto the Jetson via ssh. If the host computer can't find the IP address of the Jetson, it will give you options to try again or enter the IP address manually. Keep trying again, but if this keeps failing then check the Jetson's IP address and enter it manually. ***If using a VM and the process freezes at "Determining IP address, exit the installer and run it again. This time, change the "Flash OS Image to Target" option to "No Action" in the components manager". When prompted to enter IP address, User Name, and Password, boot up the Jetson and connect it to a monitor. Ensure it is connected to the same router as the host computer. Now check its IP address by clicking the WiFi symbol in the upper right corner of the home screen and choosing the "Connection Information" option." The password and user name are both "nvidia".***
+
+When installation on the Jetson is done, close the window as prompted and you're done.
 
 ### Testing Jetpack on the Jetson
 Ensure the Jetson is on and running Ubuntu. Use ls to check the directory name where the CUDA samples are (it looks likes "NVIDIA_CUDA-<version>" replacing the <> with the CUDA version you have). Then cd into it and run the oceanFTT sample:
