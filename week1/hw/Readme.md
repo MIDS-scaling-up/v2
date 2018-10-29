@@ -1,9 +1,9 @@
 # HW 1: Installing Jetpack and Docker 
 
-## 1. Jetpack 3.2.1
+## 1. Nvidia Jetpack SDK
 Jetpack is a SDK that basically contains everything needed for deep learning and AI applications in a handy package for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 All of the following must be done in an Ubuntu OS. If a command is ever permission denied, try adding "sudo" at the beginning.
-Refer to https://docs.nvidia.com/jetpack-l4t/index.html#jetpack/3.2.1/install.htm for more detailed instructions.
+Refer to https://docs.nvidia.com/jetson/archives/jetpack-archived/jetpack-33/index.html for more detailed instructions (these are for Jetpack 3.3 on the Jetson TX2).
 
 ### Host (Computer) Installation
 To reiterate, you will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
@@ -30,7 +30,7 @@ Run the file (remember to replace the <>):
 ```
 ./<Jetpack file name>
 ```
-The install wizard window should open, click "next". The next window displays the installation locations, which should already be the directory you are currently in. Next window, select the correct Jetson version (TX2 as of now, maybe Jetson Xavier?). 
+The install wizard window should open, click "next". The next window displays the installation locations, which should already be the directory you are currently in. Next window, select the correct Jetson version (TX2 as of now, maybe Jetson Xavier). 
 
 The next window is the components manager, where you can see what actions will be performed to the host and target. You can troubleshoot here for errors if needed. For now, click "next" at the bottom right and then check "accept all" in the following terms and conditions popup. You'll be taken back to the components manager and everything will begin to download. There may be an error message during download; just dismiss it and click "next" again. A message will prompt you to monitor the computer during installation, and click "ok" to begin cross-compilation. After the cross-compilation is done and the OS image for the Jetson is created, the wizard will now do target hardware setup (the Jetson). 
 
