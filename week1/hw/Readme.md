@@ -60,7 +60,7 @@ When installation on the Jetson is done, close the window as prompted and you're
 Ensure the Jetson is on and running Ubuntu. Use ls to check the directory name where the CUDA samples are (it looks likes "NVIDIA_CUDA-<version>" replacing the <> with the CUDA version you have). Then cd into it and run the oceanFTT sample:
 ```
 cd NVIDIA_CUDA-<version>_Samples/bin/aarch64/linux/release/
-./oceanFTT
+./oceanFFT
 ```
 
 ## 2. Docker 
