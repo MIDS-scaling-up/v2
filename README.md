@@ -3,9 +3,9 @@
 The revised class is focused on Deep Learning and Big Data at the Edge and in the Cloud.
 ### Recommended equipment:
 
-## 1. Nvidia Jetson TX2 dev kit ($299 + tax with educational discount). To get the discount, you'll need a code, which you can get from [Nvidia directly] (https://www.nvidia.com/object/jetsontx2-edu-discount.html) or by signing up for the class or contacting your instructor(s).
+#### 1. Nvidia Jetson TX2 dev kit ($299 + tax with educational discount). To get the discount, you'll need a code, which you can get from [Nvidia directly] (https://www.nvidia.com/object/jetsontx2-edu-discount.html) or by signing up for the class or contacting your instructor(s).
 
-## 2. Additional storage.  The Jetson TX2 System on a Chip (SoC) has only 16G, which is tight for developer.  A slot for an SD card and it could be the cheapest (albeit, a somewhat slow) option.  The class will take advantage of Docker which in turn drive up storage needs.  We recommend at least 128 GB, for instance:
+#### 2. Additional storage.  The Jetson TX2 System on a Chip (SoC) has only 16G, which is tight for developer.  A slot for an SD card and it could be the cheapest (albeit, a somewhat slow) option.  The class will take advantage of Docker which in turn drive up storage needs.  We recommend at least 128 GB, for instance:
 
 
 ## 1. Nvidia Jetpack SDK
