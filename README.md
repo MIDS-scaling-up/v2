@@ -1,7 +1,7 @@
 # W251 reloaded (Spring 2019)
 
 The revised class is focused on Deep Learning and Big Data at the Edge and in the Cloud.
-### Recommended equipment:
+### Required equipment:
 
 1. Nvidia Jetson TX2 dev kit ($299 + tax with educational discount). To get the discount, you'll need a code, which you can get from [Nvidia directly](https://www.nvidia.com/object/jetsontx2-edu-discount.html) or by signing up for the class or contacting your instructor(s).  We are currently testing [Nvidia Xavier](https://developer.nvidia.com/embedded/buy/jetson-xavier-devkit) and you're welcome to give it a shot, but it's expensive ($1,299 AFTER the educational discount) and jetpacks for it are not yet GA.  You've been warned. 
 
