@@ -9,7 +9,7 @@ docker build -t cudabase -f Dockerfile.cudabase .
 ### Running
 We are not installing the drivers inside the container to save space.  So, to run the container, you will need to pass the driver directory:
 ```
-docker run --rm --privileged -v /usr/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu -ti cuda bash
+docker run --rm --privileged -v /usr/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu -ti cudabase bash
 ```
 
 ### Building the dev container
