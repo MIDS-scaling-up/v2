@@ -47,11 +47,16 @@ First, create a new directory to store all DIGITS-related Docker content. Ensure
 ```
 docker build -t digits -f Dockerfile.digits .
 ```
-Run the DIGITS container, ported out to 5001:
+When you run DIGITS, you likely want to pass your data directory through so you won't be copying enormous data sets back and forth.  If you recall, we asked you to add a larger storage device to your Jetson.  Assuming it's mounted to /data, do something like this:
 ```
-docker run --privileged -i -p 5001:5001 -d digits
+mkdir -m 777 /data/digits-data
 ```
-Open a browser window and go to 0.0.0.0:5001 to access DIGITS running on the Jetson. Note that DIGITS is accessed through "0.0.0.0" instead of the IP address of the VS since it's running on the Jetson.
+
+Now, run the DIGITS container, passing your data dir as /data and using host port 5001:
+```
+docker run --privileged -v /data/digits-data:/data -p 5001:5001 -d digits
+```
+Open a browser window and go to 0.0.0.0:5001 to access DIGITS running on the Jetson. Note that DIGITS is accessed through "0.0.0.0" instead of the IP address of the VS since it's running on the Jetson. If you need to add large files, copy them to /data/digits-data on the host and they will be visible under /data on the Jetson.
 
 ### Uploading a Pretrained Model to DIGITS
 Pretrained models are often reused for another task that is related to the original task the model was trained on, which cuts down on time and resources. This is called transfer learning, which will be discussed in more detail during the next week's homework and lab. For now, we will set up the transfer learning procedure on the Jetson by importing the model trained on the VS
