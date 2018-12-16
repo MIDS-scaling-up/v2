@@ -20,41 +20,9 @@ docker ps -a
 There should be a container with "arm64/hello-world" listed under the "IMAGE" column, based off the hello-world image we just saw. Containers also have IDs as well as names (different from an image's tag) that are randomly generated if not specified.
 
 ### Creating a Docker Image with a Dockerfile
-A Dockerfile is a text file with all the commands one would run to create an image. Docker can then execute all these commands and create an image. Create a new directory to store your Yolo Dockerfile, create a new text file within it named "Dockerfile" (this is the convention), then copy and paste the following into it:
+This Dockerfile downloads yolo as well as tiny-yolo, which is a condensed version of Yolo that runs faster but is less accurate. cd into the directory with this Dockerfile, download the Makefile on Github in the week1/lab directory, and place it in here. Build the image:
 ```
-# Original: FROM openhorizon/aarch64-tx2-cudabase
-FROM cudabase
-
-# Install package dependencies
-RUN apt-get update && apt-get install -y git pkg-config wget
-RUN apt-get install -y libgtk2.0-dev pkg-config build-essential cmake libcanberra-gtk-module libcanberra-gtk3-module
-# RUN apt-get install -y libgstreamer-plugins-base1.0-0 libgstreamer1.0 libgstreamer-plugins-good1.0-0 libgstreamer-plugins-good1.0-dev
-
-#Install OpenCV. The first commented line is an older version
-# RUN apt-get install -y libopencv-dev
-WORKDIR /
-RUN git clone https://github.com/AlexanderRobles21/OpenCVTX2
-WORKDIR /OpenCVTX2
-RUN sed -i '72i -D WITH_LIBV4L=ON \\' buildOpenCV.sh
-RUN sh buildOpenCV.sh
-WORKDIR /root/opencv/build
-RUN make 
-RUN sudo make install
-
-# Install Darknet and Yolo
-WORKDIR /
-RUN git clone https://github.com/pjreddie/darknet.git
-WORKDIR /darknet
-COPY Makefile /darknet/
-ENV PATH $PATH:/usr/local/cuda-9.0/bin
-RUN make -j4 
-RUN wget  https://pjreddie.com/media/files/yolov3.weights 
-# this to get tiny-yolov3
-RUN wget https://pjreddie.com/media/files/yolov3-tiny.weights
-```
-This Dockerfile is also on Github. "#" denotes a comment. This Dockerfile also downloads tiny-yolo, which is a condensed version of Yolo that runs faster but is less accurate. cd into the directory with this Dockerfile, download the Makefile on Github in the week1/lab directory, and place it in here. Build the image:
-```
-docker build -t yolo .
+docker build -t yolo -f Dockerfile.yolo .
 ```
 Wait for the process to finish, then list the Docker images to see if it worked. You should see a new image with the label "yolo" under the repository column.
 
