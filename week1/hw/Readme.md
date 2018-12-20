@@ -88,13 +88,15 @@ docker run arm64v8/hello-world
 ```
 
 ### Linking Docker to an External Drive (recommended)
-The Jetson has limited storage, so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is reccommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
+The Jetson has limited storage, so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is reccommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
 ```
+sudo service docker stop
 mv /var/lib/docker /media/nvidia/<drivename>
 ```
 Create a symbolic link between the Docker directory you just moved onto on the external drive to a new softlink that Docker on the Jetson will refer to when pulling files:
 ```
 sudo ln -s /media/nvidia/<drivename>/docker /var/lib/docker
+sudo service docker start
 ```
 Now your Docker work will automatically be stored on this external drive. The new "docker" directory in /var/lib is a softlink: every time Docker calls on that, it'll actually be pulling from the original "docker" directory in the external drive. Just remember to hook it up when working with Docker.
   
