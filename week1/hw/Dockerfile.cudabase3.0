@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y apt-utils bzip2 curl sudo unp && apt-ge
 WORKDIR /tmp
 
 # Install drivers first
-RUN curl -sL https://developer.nvidia.com/embedded/dlc/tx2-driver-package-r2821 | tar xvfj -
+#RUN curl -sL https://developer.nvidia.com/embedded/dlc/tx2-driver-package-r2821 | tar jxvf -
+RUN curl -sL http://developer.nvidia.com/embedded/dlc/l4t-jetson-tx2-driver-package-28-2 | tar xvfj -
 RUN chown root /etc/passwd /etc/sudoers /usr/lib/sudo/sudoers.so /etc/sudoers.d/README
 RUN /tmp/Linux_for_Tegra/apply_binaries.sh -r / && rm -fr /tmp/*
 
