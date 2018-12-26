@@ -1,4 +1,4 @@
-# Labs 2: The Cloud
+# Labs 3: IoT
 
 TBD
 
