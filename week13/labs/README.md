@@ -1,4 +1,4 @@
-# Labs 2: The Cloud
+# Labs 13: Genomics
 
 TBD
 
