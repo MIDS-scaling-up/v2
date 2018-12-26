@@ -1,6 +1,6 @@
-# Lecture 2: The Cloud
+# Lecture 7: DL 201: Object Detection Networks and RNNs
 
-In this lecture, we will talked about Clouds in general and the Cloud that we will be using, the IBM Softlayer Cloud, in particular
+In this lecture, TBD
 
 ## Reading:
 
