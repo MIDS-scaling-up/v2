@@ -1,4 +1,4 @@
-# Labs 2: The Cloud
+# Labs 4: DL 101
 
 TBD
 
