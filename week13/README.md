@@ -1,6 +1,6 @@
-# Lecture 2: The Cloud
+# Lecture 13: Industry use cases
 
-In this lecture, we will talked about Clouds in general and the Cloud that we will be using, the IBM Softlayer Cloud, in particular
+In this lecture, we will talk about Industry use cases and genomics in particular
 
 ## Reading:
 
