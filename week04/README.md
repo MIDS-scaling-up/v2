@@ -1,6 +1,6 @@
-# Lecture 2: The Cloud
+# Lecture 4: DL 101
 
-In this lecture, we will talked about Clouds in general and the Cloud that we will be using, the IBM Softlayer Cloud, in particular
+In this lecture, we will talk about the basics of DL
 
 ## Reading:
 
