@@ -1,6 +1,6 @@
-# Lecture 2: The Cloud
+# Lecture 9: High Performance Computing and Distributed Model training
 
-In this lecture, we will talked about Clouds in general and the Cloud that we will be using, the IBM Softlayer Cloud, in particular
+In this lecture, we will talk about HPC and distributed training along with a few use cases
 
 ## Reading:
 
