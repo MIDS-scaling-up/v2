@@ -2,6 +2,8 @@
 
 Cloud computing. Big Data. Artificial intelligence. Deep learning frameworks and hardware. Datasets. Edge computing. Course project overview and sample.
 
+It is very important that you have all the required equipment ready before the first sync session.
+
 ## Reading:
 * Nvidia Jetson family overview
 https://www.nvidia.com/en-us/autonomous-machines/embedded-systems-dev-kits-modules/
