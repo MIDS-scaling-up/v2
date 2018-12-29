@@ -12,9 +12,11 @@ RUN apt-get install -y libgtk2.0-dev pkg-config build-essential cmake libcanberr
 WORKDIR /
 RUN git clone https://github.com/pjreddie/darknet.git
 WORKDIR /darknet
-COPY Makefile /darknet/
+# Fix Makefile, make, and fix .cfg files
+RUN sed -i "s/^GPU=0/GPU=1/g" Makefile && sed -i "s/^CUDNN=0/CUDNN=1/g" Makefile && sed -i "s/^OPENCV=0/OPENCV=1/g" Makefile
 ENV PATH $PATH:/usr/local/cuda-9.0/bin
-RUN make -j4 
+RUN make -j6
+RUN sed -i "s/^batch=64/batch=1/g" /darknet/cfg/yolov3.cfg && sed -i "s/^subdivisions=16/subdivisions=1/g" /darknet/cfg/yolov3.cfg
 RUN wget  https://pjreddie.com/media/files/yolov3.weights 
 # this to get tiny-yolov3
 RUN wget https://pjreddie.com/media/files/yolov3-tiny.weights
