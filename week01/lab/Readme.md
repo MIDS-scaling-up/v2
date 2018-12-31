@@ -34,11 +34,11 @@ xhost local:root
 Now create and run a container with Yolo, starting with regular Yolo first:
 ```
 xhost local:root
-docker run -e DISPLAY=$DISPLAY --rm  --privileged -v /tmp:/tmp yolo ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights -c 1
+docker run -e DISPLAY=$DISPLAY --privileged -v /tmp:/tmp --rm --env QT_X11_NO_MITSHM=1 yolo ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights -c 1
 ```
 A new window should open with live video feed from the webcam. The terminal window displays FPS and objects detected with percentage of how sure Yolo thinks it's right. What FPS do you get? Try running tiny-yolo:
 ```
-docker run -e DISPLAY=$DISPLAY --rm  --privileged -v /tmp:/tmp yolo ./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg yolov3-tiny.weights -c 1
+docker run -e DISPLAY=$DISPLAY --privileged -v /tmp:/tmp --rm --env QT_X11_NO_MITSHM=1 yolo ./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg yolov3-tiny.weights -c 1
 ```
 What is the FPS now?
 These containers automatically delete themselves after you exit due to the "--rm" flag. Containers tend to pile up if you don't manage them well. If you want to look inside the running container, omit the command that automatically opens Yolo upon running the container and add the flag "-ti" to enter interactive mode:
