@@ -1,5 +1,5 @@
 FROM caffe
-
+# AUTHOR chenbryanchen@gmail.com
 
 WORKDIR /
 RUN apt-get update
