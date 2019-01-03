@@ -1,8 +1,7 @@
 # FROM openhorizon/aarch64-tx2-cudabase:JetPack3.2-RC
 FROM cudabase
 
-#AUTHOR bmwshop@gmail.com
-MAINTAINER nuculur@gmail.com
+#AUTHOR chenbryanchen@gmail.com
 
 ENV ARCH=aarch64
 
