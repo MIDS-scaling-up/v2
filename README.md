@@ -17,3 +17,5 @@ To follow the class, you'll a Mac or a PC (Windows or Linux) with an ability to 
 
 6. While we have not had any issues, [an ant-static wrist strap](https://www.amazon.ca/Anti-Static-Wrist-Straps-Anti-Static/dp/B017164JHA) is never a bad idea.
 
+### Homeworks:
+A homework is due before each class.  There are two types of homeworks: graded and credit only.  As this class is currently in furios development, we will be adding homeworks as the class proceeds. Here is the link to [class 1](week01) - be sure to complete the setup of your Jetson as described in [homework 1](week01/hw)
