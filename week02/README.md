@@ -20,4 +20,9 @@ Introduction to Cloud Computing and Cloud AI—Defining the cloud. How clouds ar
 * http://knowledgelayer.softlayer.com/gettingstarted/how-to
 * http://knowledgelayer.softlayer.com/gettingstarted/how-to/set-up-your-account
 
+### Vision as a Service demo:
+* https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/
+* https://www.ibm.com/watson/services/visual-recognition/demo/#demo
+* https://cloud.google.com/vision/ (look for try API)
+
 
