@@ -1,9 +1,8 @@
 # Homework 3: Digits in a separate VM in Softlayer
-
-Unfortunately, this remains a little bit involved but ultimately, worth it!
+We can use GPUS to train neural networks, but the Jetson's GPU is too weak for regular jobs. We'll instead use IBM's SoftLayer service in the cloud to provision a VS with Tesla P100s. Then we'll set up DIGITS on the VS and train the GoogLeNet neural network on the ImageNet dataset. Unfortunately, this remains a little bit involved, but very much worth it!
 
 ### Provision the VM 
-We are using two P-100 GPUs for this VM, the fastest currently available in SoftLayer.  We are using Ubuntu 16 as the OS as of right now, since SL does not yet support 18.04 with GPUs.
+We are using two P-100 GPUs for this VM, the fastest currently available in SoftLayer that we tested (Note that the faster V-100s have just been released there as well).  We are using Ubuntu 16 as the OS as of right now, since SL does not yet support 18.04 with GPUs.
 
 Notice that we are getting two disks; the larger one will be used for dataset storage later on.
 ```
