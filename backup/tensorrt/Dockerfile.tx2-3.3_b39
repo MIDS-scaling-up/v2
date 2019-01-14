@@ -1,4 +1,4 @@
-FROM cudabase
+FROM w251/cuda:tx2-3.3_b39
 #AUTHOR chenbryanchen@gmail.com
 
 WORKDIR /tmp
