@@ -112,3 +112,6 @@ After a while, the image is created. List the current images to see if it worked
 docker images
 ```
 We'll cover Docker in the lab in more detail.
+
+# To turn in
+Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
