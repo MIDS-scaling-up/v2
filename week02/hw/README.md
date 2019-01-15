@@ -7,6 +7,10 @@
  - Navigate to Devices -> Manage -> SSH Keys
  - Use the "Add" link to add your public ssh key to the portal
 
+## Enable VLAN spanning
+ - Navigate to Network -> IP Management -> VLANs
+ - Click on the "Span" tab
+ - Turn `VLAN Spanning` On
 
 ## Create a VSI using the gui (make sure ssh key is used)
  - Navigate to https://cloud.ibm.com/classic/devices
@@ -24,7 +28,7 @@
  - Navigate to https://cloud.ibm.com/classic/devices to monitor your VM creation
 
 ## Harden the VSI, ensure ssh still works with the key
- - SSH into the VSI using your SSH Key
+ - SSH into the VSI using your SSH Key and the `root` ID
  - Edit /etc/ssh/sshd_config and make the following changes to prevent brute force attacks
 
 ```
@@ -50,7 +54,7 @@ curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 
 Log into IBM Cloud using `ibmcloud login`
 
-Enable the IBM Cloud Infrastructure component using `ibmcloud sl init`
+Enable the IBM Cloud Infrastructure component using `ibmcloud sl init` (accept the default endpoint)
 
 Test the CLI using the command `ibmcloud sl vs list` to see a list of VSIs in your account
 
