@@ -36,7 +36,7 @@ RUN apt-get install -y doxygen
 
 ENV OPENCV_VERSION='3.4.0'
 WORKDIR /tmp
-RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && unzip ${OPENCV_VERSION}.zip && rm ${OPENCV_VERSION}.zip && mv opencv-${OPENCV_VERSION} OpenCV
+RUN wget --quiet https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && unzip ${OPENCV_VERSION}.zip && rm ${OPENCV_VERSION}.zip && mv opencv-${OPENCV_VERSION} OpenCV
 RUN cd OpenCV &&  mkdir build && cd build && cmake -D WITH_GSTREAMER=ON -DWITH_CUDA=ON DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON -DENABLE_PRECOMPILED_HEADERS=OFF .. && make -j6 && make install
 RUN ldconfig
 
@@ -50,7 +50,7 @@ RUN sed -i "s/^GPU=0/GPU=1/g" Makefile && sed -i "s/^CUDNN=0/CUDNN=1/g" Makefile
 ENV PATH $PATH:/usr/local/cuda-9.0/bin
 RUN make -j6
 RUN sed -i "s/^batch=64/batch=1/g" /darknet/cfg/yolov3.cfg && sed -i "s/^subdivisions=16/subdivisions=1/g" /darknet/cfg/yolov3.cfg 
-RUN wget  https://pjreddie.com/media/files/yolov3.weights 
+RUN wget --quiet https://pjreddie.com/media/files/yolov3.weights 
 # this to get tiny-yolov3
-RUN wget https://pjreddie.com/media/files/yolov3-tiny.weights
+RUN wget --quiet https://pjreddie.com/media/files/yolov3-tiny.weights
 #NOTE: run container with "docker run -e DISPLAY=$DISPLAY --privileged -v /tmp:/tmp --rm --env QT_X11_NO_MITSHM=1 yolo ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights -c 1"
