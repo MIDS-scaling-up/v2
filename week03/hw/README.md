@@ -158,4 +158,5 @@ docker build -t caffe -f Dockerfile.caffebase .
 ```
 The DIGITS container that we will use in future labs will be based off of this Caffe container.
 	
-
+## Submission
+Please submit screenshots of your trained GoogLeNet in Digits (the plot of loss vs epoch) along with the top 1 and top 5 final accuracy. Also please submit the command line output of the docker build of the caffe container on the TX2
