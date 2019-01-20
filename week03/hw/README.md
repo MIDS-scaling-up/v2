@@ -7,10 +7,10 @@ We are using two P-100 GPUs for this VM, the fastest currently available in Soft
 Notice that we are getting two disks; the larger one will be used for dataset storage later on.
 ```
 # replace the things in <> with your own values
-slcli vs create --datacenter=dal13 --hostname=<hostname> --domain=<domain> --os=UBUNTU_16_64 --flavor AC1_16X120X25 --billing=hourly --san --disk=25 --disk=2000 --network 1000 --key=<your SL key>
+ibmcloud sl vs create --datacenter=dal13 --hostname=<hostname> --domain=<domain> --os=UBUNTU_16_64 --flavor AC1_16X120X25 --billing=hourly --san --disk=25 --disk=2000 --network 1000 --key=<your SL key>
 
 # for instance, this is what I did:
-slcli vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=UBUNTU_16_64 --flavor AC1_16X120X25 --billing=hourly --san --disk=25 --disk=2000 --network 1000 --key=p305
+ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=UBUNTU_16_64 --flavor AC1_16X120X25 --billing=hourly --san --disk=25 --disk=2000 --network 1000 --key=p305
 ``` 
 ### Install cuda
 As of right now, 10 is the latest version.  Check https://developer.nvidia.com/cuda-toolkit  for the latest..
