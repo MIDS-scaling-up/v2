@@ -59,7 +59,7 @@ Enable the IBM Cloud Infrastructure component using `ibmcloud sl init` (accept t
 Test the CLI using the command `ibmcloud sl vs list` to see a list of VSIs in your account
 
 
-## Create a VSI using slcli with private network only
+## Create a VSI using the CLI with private network only
 
 Create a new ssh key on your VSI using `ssh-keygen`
 
