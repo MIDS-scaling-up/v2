@@ -149,7 +149,7 @@ Return to the DIGITS home screen and select the "Models" tab. Once again, select
 After training, observe the graphs. At which epochs do the accuracy rates (top graph) noticeably go up? How does the rate at which accuracy goes up change over epochs? At which epochs does the learning rate (botton graph) go down, and how much does it differ by each time? What were the final accuracy rates for Top 1 and Top 5? You can hover your mouse over lines for more details. You can also go to the "Trained Models" section to test images.
 
 ### Saving the Model
-We'll save this trained model for future use on the Jetson (this is called transfer learning). Save the model by clicking the "Download Model" button. *This is very important!*
+We'll save this trained model for future use on the Jetson (this is called transfer learning). Save the model *to your Jetson* by clicking the "Download Model" button. *This is very important!*
 
 ## Setting Up the Jetson for DIGITS
 
@@ -160,4 +160,4 @@ docker build -t caffe -f Dockerfile.caffebase .
 The DIGITS container that we will use in future labs will be based off of this Caffe container.
 	
 ## Submission
-Please submit screenshots of your trained GoogLeNet in Digits (the plot of loss vs epoch) along with the top 1 and top 5 final accuracy. Also please submit the command line output of the docker build of the caffe container on the TX2
+Please submit screenshots of your trained GoogLeNet in Digits (the plot of loss vs epoch) along with the top 1 and top 5 final accuracy. Please submit the file name and size of the trained and downloaded model file. Also please submit the command line output of the docker build of the caffe container on the TX2
