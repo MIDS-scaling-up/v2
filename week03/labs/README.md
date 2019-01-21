@@ -20,6 +20,11 @@ Familiarize yourself with the Dockefile.digits container.  Note the FROM clause 
 ```
 docker build -t digits -f Dockerfile.digits .
 ```
+Once again, if something goes terribly wrong, you can use our pre-built container instead:
+```
+docker pull w251/digits:tx2-3.3_b39
+```
+
 When you run DIGITS, you likely want to pass your data directory through so you won't be copying enormous data sets back and forth.  If you recall, we asked you to add a larger storage device to your Jetson.  Assuming it's mounted to /data, do something like this:
 ```
 mkdir -m 777 /data/digits-data
@@ -29,5 +34,5 @@ Now, run the DIGITS container, passing your data dir as /data and using host por
 ```
 docker run --privileged -v /data/digits-data:/data -p 5001:5001 -d digits
 ```
-Open a browser window and go to localhost:5001 to access DIGITS running on the Jetson. Note that DIGITS is accessed through localhost instead of the IP address of the VS since it's actually running on the Jetson. If you need to add large files (such as pre-trained models or datasets), copy them to /data/digits-data on the host and they will be visible under /data on the Jetson.
+Open a browser window and go to localhost:5001 to access DIGITS running on the Jetson. If you need to add large files (such as pre-trained models or datasets), copy them to /data/digits-data on the host and they will be visible under /data on the Jetson.
 
