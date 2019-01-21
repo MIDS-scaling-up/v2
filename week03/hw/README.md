@@ -148,7 +148,8 @@ Return to the DIGITS home screen and select the "Models" tab. Once again, select
 
 After training, observe the graphs. At which epochs do the accuracy rates (top graph) noticeably go up? How does the rate at which accuracy goes up change over epochs? At which epochs does the learning rate (botton graph) go down, and how much does it differ by each time? What were the final accuracy rates for Top 1 and Top 5? You can hover your mouse over lines for more details. You can also go to the "Trained Models" section to test images.
 
-We'll save this trained model for future use on the Jetson (this is called transfer learning). Save the model by clicking the "Download Model" button.
+### Saving the Model
+We'll save this trained model for future use on the Jetson (this is called transfer learning). Save the model by clicking the "Download Model" button. *This is very important!*
 
 ## Setting Up the Jetson for DIGITS
 
