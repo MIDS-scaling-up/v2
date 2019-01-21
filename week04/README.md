@@ -4,11 +4,11 @@ In this lecture, we will talk about the basics of DL. The definition: how is it 
 
 ## Reading:
 
-●	ImageNet: http://image-net.org/about-overview
-●	Microsoft Coco: http://cocodataset.org/#home
-●	Pascal VOC: http://host.robots.ox.ac.uk/pascal/VOC/index.html
-●	Nvidia DIGITS: https://developer.nvidia.com/digits
-●	Mozilla Deep Speech: https://github.com/mozilla/DeepSpeech
-●	ConvNetJs: https://cs.stanford.edu/people/karpathy/convnetjs/
+* ImageNet: http://image-net.org/about-overview
+* Microsoft Coco: http://cocodataset.org/#home
+* Pascal VOC: http://host.robots.ox.ac.uk/pascal/VOC/index.html
+* Nvidia DIGITS: https://developer.nvidia.com/digits
+* Mozilla Deep Speech: https://github.com/mozilla/DeepSpeech
+* ConvNetJs: https://cs.stanford.edu/people/karpathy/convnetjs/
 
 
