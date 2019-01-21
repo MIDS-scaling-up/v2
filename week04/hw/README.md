@@ -20,7 +20,7 @@ The MNIST data set consists of 28x28 black and white images of hand written digi
 * Remove the pooling layers.  Does it impact the accuracy?
 * Add one more conv layer.  Does it help with accuracy?
 * Increase the batch size.  What impact does it have?
-* What is the best accuracy you can achieve?
+* What is the best accuracy you can achieve? Are you over 99%? 99.5%?
 
 
 #### Submission:
