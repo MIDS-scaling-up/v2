@@ -9,9 +9,11 @@ WORKDIR /
 
 # Install opencv dev package libraries
 RUN apt-get update --fix-missing
+RUN apt-get update
 RUN apt-get install -y libopencv-dev
 
 # Install dependencies
+RUN apt-get update --fix-missing
 RUN apt-get install -y --no-install-recommends build-essential cmake git gfortran libatlas-base-dev libboost-filesystem-dev libboost-python-dev libboost-system-dev libboost-thread-dev libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libleveldb-dev liblmdb-dev libsnappy-dev python-all-dev python-dev python-h5py python-matplotlib python-numpy python-opencv python-pil python-pip python-scipy python-skimage python-sklearn python-setuptools autoconf automake libtool 
 
 # Install newer protobuf
