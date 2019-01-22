@@ -8,8 +8,7 @@ ENV ARCH=aarch64
 WORKDIR /
 
 # Install opencv dev package libraries
-RUN apt-get update 
-RUN apt-get install --fix-missing
+RUN apt-get update --fix-missing
 RUN apt-get install -y libopencv-dev
 
 # Install dependencies
