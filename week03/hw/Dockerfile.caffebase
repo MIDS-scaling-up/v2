@@ -9,7 +9,7 @@ WORKDIR /
 
 # Install opencv dev package libraries
 RUN apt-get update 
-RUN apt-get --fix-missing
+RUN apt-get install --fix-missing
 RUN apt-get install -y libopencv-dev
 
 # Install dependencies
