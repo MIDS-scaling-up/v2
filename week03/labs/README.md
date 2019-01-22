@@ -4,7 +4,7 @@ Digits is an [Open Source](https://github.com/NVIDIA/DIGITS) project by Nvidia, 
 
 ## Setting Up the Jetson for DIGITS (Optional)
 
-If you haven't done this already, go to the directory where you cloned homework3 (e.g. v2/week03/hw ) and examine Dockerfile.caffebase, the docker file for Nvidia Caffe.  Once you are done looking it over, build the docker image:
+If you haven't done this already, on your TX2, go to the directory where you cloned homework3 (e.g. v2/week03/hw ) and examine Dockerfile.caffebase, the docker file for Nvidia Caffe.  Once you are done looking it over, build the docker image:
 ```
 docker build -t caffe -f Dockerfile.caffebase .
 ```
