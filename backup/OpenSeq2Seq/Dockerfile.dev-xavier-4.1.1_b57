@@ -83,6 +83,9 @@ RUN pip3 install librosa==0.6.1
 RUN rm -rf /tmp/llvmlite
 RUN rm -rf /tmp/llvm-7.0.1.src
 RUN rm -rf /tmp/llvm-7.0.1.src.tar.xz
+RUN apt install -y sox libffi-dev
+RUN pip3 install sox
+# RUN pip3 install horovod
 
 WORKDIR /
 
