@@ -23,7 +23,8 @@ Complete the [Tensorflow for Poets lab](https://codelabs.developers.google.com/c
 * to start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti tensorflow bash`.  When you type `exit`, this container will be removed from your TX2.
 * In the command above, 6006 is the port number that Tensorboard uses.  Once you start training, will be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
 * Once you are inside the container, install git by typing `apt install -y git` , then you can proceed to clone the TF for poets repository and with the rest of the lab
-* Our little GPU packs a punch; make sure you run training for 4000 steps
+* The Jetson packs a punch; make sure you run training for 4000 steps
+* To make sure the container does not see the GPU, run it as `docker run --rm -p 6006:6006 -ti tensorflow bash`, with no privileged flag
 
 
 
@@ -35,7 +36,7 @@ Complete the [Tensorflow for Poets lab](https://codelabs.developers.google.com/c
 3. How does a low `--learning_rate` (step 7) value (like 0.005) affect the precision? How much longer does training take?
 4. How about a `--learning_rate` (step 7) of 1.0? Is the precision still good enough to produce a usable graph?
 5. For section 8, you can use any images you like. Pictures of food, people, or animals work well. You can even find images at ImageNet. How accurate was your model? Were you able to train it using a few images, or did you need a lot?
-6. Uninstall `tensorflow-gpu` (using `pip uninstall -y tensorflow-gpu`) and install `tensorflow` (follow the instructions at the beginning of the homework, changing the name of the package). How does the training time compare to the default network training (section 4)?
+6. Run the script on the CPU (see instructions above) How does the training time compare to the default network training (section 4)?
 
 
 ### To turn in:
