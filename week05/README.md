@@ -6,7 +6,7 @@ What is a Deep Learning Framework? Why are there so many different ones? Which o
 
 * Caffe / Caffe2:  https://caffe2.ai/docs/caffe-migration.html
 * PyTorch: https://pytorch.org
-* https://caffe2.ai/blog/2018/05/02/Caffe2_PyTorch_1_0.html
+* Caffe2 and PyTorch evolution plans: https://caffe2.ai/blog/2018/05/02/Caffe2_PyTorch_1_0.html
 * Keras: https://keras.io/
 * Tensorflow: https://www.tensorflow.org
 * Tensorflow community roadmap: https://www.tensorflow.org/community/roadmap
