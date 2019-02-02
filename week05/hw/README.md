@@ -4,7 +4,18 @@
 
 For this homework, you need to install Tensorflow on your TX2.
 
-Use the instructions [here](https://docs.nvidia.com/deeplearning/dgx/install-tf-jetsontx2/index.html) to do the install.
+Build the docker container for tensorrt using the Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorrt)
+```
+# cd to the correct directory after git cloning the class repo
+docker build -t tensorrt -f Dockerfile.tx2-3.3_b39
+```
+
+Now build the docker container for tensorflow using the python2 Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorflow).
+```
+# cd to the correct directory after git cloning the class repo
+docker build -t tensorflow -f Dockerfile.tx2-3.3_b39-py2 .
+```
+
 
 Complete the [Tensorflow for Poets lab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) at the Google CodeLabs. Make sure you do all of the optional sections (except section 9).
 
