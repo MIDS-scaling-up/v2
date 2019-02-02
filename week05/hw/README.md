@@ -33,7 +33,7 @@ RAM 2586/7846MB (lfb 1x1MB) CPU [49%@806,10%@345,0%@345,46%@806,34%@959,26%@960]
 
 ```
 GPU utilization cab be deduced from the value of the GR3D_FREQ variable: the higher the value, the higher the GPU utilization.
-
+* If you experience OOM (out of memory) errors, they could be related to the fact that the current port of Tensorflow does not appreciate the fact that the GPU memory that it sees is actually the same as the system memory and could be used for buffering.  Run the `flush_caches.sh` script in this repo to help clear them out and re-run your tensorflow script.
 
 
 ### Questions:
