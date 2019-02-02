@@ -19,6 +19,15 @@ docker build -t tensorflow -f Dockerfile.tx2-3.3_b39-py2 .
 
 Complete the [Tensorflow for Poets lab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) at the Google CodeLabs. Make sure you do all of the optional sections (except section 9).
 
+### Notes specific to our Jetson setup:
+* to start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti tensorflow bash`.  When you type `exit`, this container will be removed from your TX2.
+* In the command above, 6006 is the port number that Tensorboard uses.  Once you start training, will be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
+* Once you are inside the container, install git by typing `apt install -y git` , then you can proceed to clone the TF for poets repository and with the rest of the lab
+* Our little GPU packs a punch; make sure you run training for 4000 steps
+
+
+
+
 ### Questions:
 
 1. In your own words, what is a **bottleneck**?
