@@ -34,6 +34,35 @@ RAM 2586/7846MB (lfb 1x1MB) CPU [49%@806,10%@345,0%@345,46%@806,34%@959,26%@960]
 ```
 GPU utilization cab be deduced from the value of the GR3D_FREQ variable: the higher the value, the higher the GPU utilization.
 * If you experience OOM (out of memory) errors, they could be related to the fact that the current port of Tensorflow does not appreciate the fact that the GPU memory that it sees is actually the same as the system memory and could be used for buffering.  Run the `flush_buffers.sh` script in this repo to help clear them out and re-run your tensorflow script.
+* Another way to resolve the above is to add this to the calling script:
+```
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+
+session = tf.Session(config=config, ...)
+```
+In the current version of the TF for poets lab, check out line 124 of [label_image.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/label_image.py)  This is where you'd need to make the change, e.g. add something like:
+```
+  # W251 insert
+  config = tf.ConfigProto()
+  config.gpu_options.allow_growth = True
+
+#  with tf.Session(graph=graph) as sess:
+  with tf.Session(graph=graph, config=config) as sess:
+```
+* The Google lab has another tiny bug if you use the Inception model, because the [retrain.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/retrain.py), line 870, states:
+```
+resized_input_tensor_name = 'Mul:0'
+```
+whereas when MobileNet is used, line 912, we have
+```
+resized_input_tensor_name = 'input:0'
+```
+Also note lines 867 and 868 of [retrain.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/retrain.py)
+```
+input_width = 299
+input_height = 299
+```
 
 
 ### Questions:
@@ -45,6 +74,10 @@ GPU utilization cab be deduced from the value of the GR3D_FREQ variable: the hig
 5. For section 8, you can use any images you like. Pictures of food, people, or animals work well. You can even find images at ImageNet. How accurate was your model? Were you able to train it using a few images, or did you need a lot?
 6. Run the script on the CPU (see instructions above) How does the training time compare to the default network training (section 4)?
 7. Try the training again, but this time do `export ARCHITECTURE="inception_v3"` Do you notice the CPU vs GPU difference now?
+8. Given the hints under the notes section, if we trained Inception_v3, what do we need to pass to replace ??? below to the label_image script?  Can we also glean the answer from examining TensorBoard?
+```
+python -m scripts.label_image --input_layer=??? --input_height=??? --input_width=???  --graph=tf_files/retrained_graph.pb --image=tf_files/flower_photos/daisy/21652746_cc379e0eea_m.jpg
+```
 
 
 ### To turn in:
