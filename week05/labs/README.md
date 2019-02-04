@@ -1,4 +1,4 @@
-# Labs 2: The Cloud
+# Labs 5: Tensorflow and Digits
 
-TBD
+There will be two labs for class 5: TensorFlow and Digits.
 
