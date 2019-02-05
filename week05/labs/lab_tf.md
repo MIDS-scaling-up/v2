@@ -21,6 +21,8 @@ python3 mnist.py
 * What is our batch size?
 * What happens if we double the learning rate?
 * Does the model overfit?
+* Can you examine the training results in Tensorboard?
 * Can you repeat the lab on the GPU?
+
 ```
 
