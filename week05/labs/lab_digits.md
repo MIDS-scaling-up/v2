@@ -2,7 +2,20 @@
 
 #### Intro
 
-This assumes that you completed lab 3, have started the digits container and have it running on port 5001.  In this lab, we are using the Jetson as a tiny inexensive desktop computer with a GPU. It really wasn't meant to be used for model training, but as you will see, it is quite possible.
+This assumes that you completed lab 3, have started the digits container and have it running on port 5001.  If you recall, we did something like this:
+```
+docker run --privileged -v /data/digits-data:/data -p 5001:5001 -d digits
+```
+Where /data/digits-data resides on your external SD card or a hard drive and has plenty of space.  Let's download a pre-trained googlenet model:
+```
+# on the Jetson
+mkdir /data/digits-data/models
+cd /data/digits-data/models
+wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel
+# Now, the model should be visible from inside the digits container as /data/models/bvlc_googlenet.caffemodel
+```
+
+In this lab, we are using the Jetson as a tiny inexensive desktop computer with a GPU. It really wasn't meant to be used for model training, but as you will see, it is quite possible.
 
 #### The training set
 
@@ -18,14 +31,8 @@ Select your new data set from the home page and click Explore training DB.  Take
 
 #### Training a GoogleNet-based model using transfer learning 
 Click on the Models tab and choose New model - > classification. Choose your newly created data set on the left. Select the "custom network" tab. You will need to download the pre-trained model, e.g.
-```
-wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel
-# and then, push it into the docker container with digits, e.g.
-docker ps
-# note the names of your container with digits
-docker cp bvlc_googlenet.caffemodel <your container name>/tmp
-```
-At the bottom, in the pre-trained network field, type "/tmp/bvlc_googlenet.caffemodel". Leave the number of GPUs used at 1. Use the same group name as you used previously for your data set and select a name for your model. In the Custom Network field paste the model from [this link](googlenet_fixed.txt). This is a model with fixed lower layers. Please peruse the file.  Can you tell which layers are frozen? Which layers are unfrozen? Review GoogLeNet arhitecture [in the cs231n slides](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf).  Also, Click visualize in Digits.  Once you done looking at the architecture, Click OK to close the visialization window. Click Create. How long does it take for the model to exceed 90% accuracy?
+
+At the bottom, in the pre-trained network field, type "/data/models/bvlc_googlenet.caffemodel". Leave the number of GPUs used at 1. Use the same group name as you used previously for your data set and select a name for your model. In the Custom Network field paste the model from [this link](googlenet_fixed.txt). This is a model with fixed lower layers. Please peruse the file.  Can you tell which layers are frozen? Which layers are unfrozen? Review GoogLeNet arhitecture [in the cs231n slides](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf).  Also, Click visualize in Digits.  Once you done looking at the architecture, Click OK to close the visialization window. Click Create. How long does it take for the model to exceed 90% accuracy?
 
 #### Training a GoogleNet-based model using transfer learning with unfixed lower layer weights 
 Let us repeat the previous steps, but now let us use a network from [this link](googlenet_unfixed.txt). The only difference is that we unfixed the lower layers. Please examine the file and note the differences with the previous one. Now, how long does it take for the model to reach 90% accuracy? 
