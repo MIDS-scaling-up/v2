@@ -20,15 +20,17 @@ Click on the Models tab and choose New model - > classification. Choose your new
 ```
 wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel
 # and then, push it into the docker container with digits, e.g.
-docker cp bvlc_googlenet.caffemodel /tmp
+docker ps
+# note the names of your container with digits
+docker cp bvlc_googlenet.caffemodel <your container name>/tmp
 ```
-At the bottom, in the pre-trained network field, type "/tmp/bvlc_googlenet.caffemodel". Leave the number of GPUs used at 1. Use the same group name as you used previously for your data set and select a name for your model. In the Custom Network field paste the model from [this link](googlenet_fixed.txt). This is a model with fixed lower layers. Click Create. How long does it take for the model to exceed 90% accuracy?
+At the bottom, in the pre-trained network field, type "/tmp/bvlc_googlenet.caffemodel". Leave the number of GPUs used at 1. Use the same group name as you used previously for your data set and select a name for your model. In the Custom Network field paste the model from [this link](googlenet_fixed.txt). This is a model with fixed lower layers. Please peruse the file.  Can you tell which layers are frozen? Which layers are unfrozen? Click Create. How long does it take for the model to exceed 90% accuracy?
 
 #### Training a GoogleNet-based model using transfer learning with unfixed lower layer weights 
-Let us repeat the previous steps, but now let us use a network from [this link](googlenet_unfixed.txt). the only difference is that we unfixed the lower layers. Now, how long does it take for the model to reach 90% accuracy? 
+Let us repeat the previous steps, but now let us use a network from [this link](googlenet_unfixed.txt). The only difference is that we unfixed the lower layers. Please examine the file and note the differences with the previous one. Now, how long does it take for the model to reach 90% accuracy? 
 
 #### Training a GoogleNet-based model from random weights. 
-Let's repeat the previous step using the same custom model but this time, let us clear out the "pre-trained model" field. Now, how long does it take for the model to reach 90% accuracy?
+Let's repeat the previous step using the same custom model but this time, let us clear out the "pre-trained model" field. Now, how long does it take for the model to reach 90% accuracy (trick question alert)?
 
 #### Applying the model to classification 
-From the DIGITS homepage, select one of your trained models. At the bottom of the page, under Test a Single Image, pick an image -- e.g. from a path beginning with /data/eye/classes/ (the system will pre-fill / show names of existing dirs and files). Feel free to upload your own file. Check the "show visualizations and statistics" checkbox and click "Classify One"
+From the DIGITS homepage, select one of your trained models. At the bottom of the page, under Test a Single Image, pick an image --- feel free to upload your own file. Check the "show visualizations and statistics" checkbox and click "Classify One"
