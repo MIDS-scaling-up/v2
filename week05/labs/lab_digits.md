@@ -10,13 +10,19 @@ We prepared an image dataset, it is located here: http://169.44.201.108:7002/tse
 This particular training set is generated via this GUI: http://169.44.201.108:7002/index7.html?c=11071917_foo&date=2017/02/12 This is an experimental project around the surveillance use case. If motion is detected, a simple algorithm localizes it in the frame (draws a bounding box around it) and sends it over to the cloud for manual annotation. Once you have annotated the bounding box, it is added to the training set.
 
 #### Importing the training set into DIGITS 
-Access DIGITS 5.1 at http://localhost:5000/
+Access DIGITS at http://localhost:5000/
 Make sure you are on the DataSets tab. Click on the new data set icon on the right, choose Images -> Classification. Choose Fill as your resize transformation. Select a name for your group name and data set. Set minimum samples per class to 10. Set the URL for the training images to http://169.44.201.108:7002/tset/ and click Create at the bottom.  
 
 Select your new data set from the home page and click Explore training DB.  Take a look at classes and images in them.
 
 #### Training a GoogleNet-based model using transfer learning 
-Click on the Models tab and choose New model - > classification. Choose your newly created data set on the left. Select the "custom network" tab. At the bottom, in the pre-trained network field, type "/data/bvlc_googlenet.caffemodel". Leave the number of GPUs used at 1. Use the same group name as you used previously for your data set and select a name for your model. In the Custom Network field paste the model from [this link](googlenet_fixed.txt). This is a model with fixed lower layers. Click Create. How long does it take for the model to exceed 90% accuracy?
+Click on the Models tab and choose New model - > classification. Choose your newly created data set on the left. Select the "custom network" tab. You will need to download the pre-trained model, e.g.
+```
+wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel
+# and then, push it into the docker container with digits, e.g.
+docker cp bvlc_googlenet.caffemodel /tmp
+```
+At the bottom, in the pre-trained network field, type "/tmp/bvlc_googlenet.caffemodel". Leave the number of GPUs used at 1. Use the same group name as you used previously for your data set and select a name for your model. In the Custom Network field paste the model from [this link](googlenet_fixed.txt). This is a model with fixed lower layers. Click Create. How long does it take for the model to exceed 90% accuracy?
 
 #### Training a GoogleNet-based model using transfer learning with unfixed lower layer weights 
 Let us repeat the previous steps, but now let us use a network from [this link](googlenet_unfixed.txt). the only difference is that we unfixed the lower layers. Now, how long does it take for the model to reach 90% accuracy? 
