@@ -10,7 +10,7 @@ We prepared an image dataset, it is located here: http://169.44.201.108:7002/tse
 This particular training set is generated via this GUI: http://169.44.201.108:7002/index7.html?c=11071917_foo&date=2017/02/12 This is an experimental project around the surveillance use case. If motion is detected, a simple algorithm localizes it in the frame (draws a bounding box around it) and sends it over to the cloud for manual annotation. Once you have annotated the bounding box, it is added to the training set.
 
 #### Importing the training set into DIGITS 
-Access DIGITS at http://localhost:5000/
+Access DIGITS at http://ip_of_jetson:5001/
 Make sure you are on the DataSets tab. Click on the new data set icon on the right, choose Images -> Classification. Choose Fill as your resize transformation. Select a name for your group name and data set. Set minimum samples per class to 10. Set the URL for the training images to http://169.44.201.108:7002/tset/ and click Create at the bottom.  
 
 Select your new data set from the home page and click Explore training DB.  Take a look at classes and images in them.
