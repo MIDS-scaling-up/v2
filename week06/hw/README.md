@@ -1,4 +1,4 @@
-## Make sure that you complete lab 5 - DIGITS and transfer learning.
+## Make sure that you complete [lab 5 - DIGITS and transfer learning](../../week05/labs/lab_digits.md).
 
 # Homework 6: The TPUs (and BERT!)
 
