@@ -1,3 +1,5 @@
+## Make sure that you complete lab 5 - DIGITS and transfer learning.
+
 # Homework 6: The TPUs (and BERT!)
 
 * Read the Google Cloud Product Overview on the [TPUs](https://cloud.google.com/tpu/)
