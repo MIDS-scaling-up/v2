@@ -2,7 +2,7 @@
 
 #### Intro
 
-This assumes that you completed homework 3, have started the digits container and have it running on port 5001.
+This assumes that you completed lab 3, have started the digits container and have it running on port 5001.  In this lab, we are using the Jetson as a tiny inexensive desktop computer with a GPU.
 #### The training set
 
 We prepared an image dataset, it is located here: http://169.44.201.108:7002/tset/ Please take a few minutes to aquaint yourself with it. As you can see, the structure is simple: there is a bunch of directories which correspond to class names, with images underneath that correspond to that class. Note that some directories are empty, and that's OK. Many public data sets share the same structure.
