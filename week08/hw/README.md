@@ -75,7 +75,7 @@ For part 2, you will need to install docker in a VM or your local workstation.
 
 1. Run the command:
 ```bash
-        docker run -d -P 8888:8888 <docker image>
+       docker run -d -P 8888:8888 ryandejana/hw8augmentation
 ```
 2. If using a VM, open your browser to ```http://<<yourPublicIP>>:8888/notebooks/augmentation.ipynb``` or if local, ```http://127.0.0.1:8888/notebooks/augmentation.ipynb``` and login with the password ```root```.
 3. Run the notebook.
