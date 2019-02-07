@@ -1,12 +1,14 @@
 # Homework 6: 
-## Part 1.  Image Annotation
+## Part 1: Image Annotation
 For this homework, you will be annotating the Millennium Falcon and TIE Fighters in images from Star Wars: The Force Awakens.  
 
 The Millennium Falcon
+
 ![Image of the Millennium Falcon](./falcon.jpg)
 
 
 Three TIE Fighters
+
 ![Image of the Millennium Falcon](./fighters.jpg)
 
 
@@ -68,7 +70,7 @@ Questions:
 3.	Based on this experience,  how would you handle the annotation of large image data set?
 4.	Think about image augmentation?  How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations?
 
-## Part 2 Image Augmentation
+## Part 2: Image Augmentation
 For part 2, you will need to install docker in a VM or your local workstation.  
 
 1. Run the command:
@@ -89,7 +91,7 @@ Questions:
 -	Translation
 -	Noise
 
-### Audio Annoation
+## Part 3: Audio Annoation
 Take a look at and explore the audio annotation tool CrowdCurio (https://github.com/CrowdCurio/audio-annotator
 
 Questions:
