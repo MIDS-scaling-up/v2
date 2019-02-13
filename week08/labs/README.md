@@ -41,11 +41,9 @@ What's different?  What happens if you change r?
 Finally, we'll extract all the images with the command
 ```bash ffmpeg -i sherbrooke_video.avi data/ffmepg/test3/extract%04d.jpg```
 
-How long did it take?  
-
-How many images did you get?  
-
-Which is the "best" approach?
+- How long did it take?  
+- How many images did you get?  
+- Which is the "best" approach?
 
 ## Part 2a: Downloading images from Google
 
@@ -55,9 +53,8 @@ Run a simple example that will search for Polar bears and Brown Bears.
 
 ```bash googleimagesdownload --keywords "Polar bears, Brown bears" --limit 100 -o /images/data/google/test1 -f jpg```
 
-How long did it take to download the roughly 200 images (you may get some errors)?
-
-Review the images.  How accurate are they? 
+- How long did it take to download the roughly 200 images (you may get some errors)?
+- Review the images.  How accurate are they? 
 
 Not all images on the web are licensed for you to reuse as you see fit.  This tool provides the ablity to search with different usage rights.  (see the repository for the options).  Run the command 
 ```bash googleimagesdownload --keywords "Polar bears, Brown bears" --limit 100 -o /images/data/google/test2 -f jpg
