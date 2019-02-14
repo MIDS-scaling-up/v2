@@ -92,7 +92,7 @@ Questions:
 -	Noise
 
 ## Part 3: Audio Annoation
-Take a look at and explore the audio annotation tool CrowdCurio (https://github.com/CrowdCurio/audio-annotator)
+Take a look at and explore the audio annotation tool CrowdCurio https://github.com/CrowdCurio/audio-annotator)
 
 Questions:
 1.	Image annotations require the coordinates of the objects and their classes; in your option, what is needed for an audio annotation? 
