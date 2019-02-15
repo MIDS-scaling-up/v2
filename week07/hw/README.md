@@ -61,5 +61,8 @@ Do give this some thought. This is the essential idea behind transfer learning.
 
 Note that this homework is GRADED
 
+Please submit screenshots of your training runs and the instructions where to find it (if you ran it on the shared instructor's server)
+Note that the shared server that we have has a finite capacity and does not have scheduling capabilities.  As a result, you will need to effectively take turns running there.
+
 
 
