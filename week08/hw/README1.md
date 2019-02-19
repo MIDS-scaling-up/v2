@@ -47,6 +47,10 @@ For example, an image with two TIE Fighters will have an annotation similar to:
 ```
 Spending no more than 3 hours, annotate images, identifying the Millennium Falcon and TIE Fighters.   You will want to use an image tool such as labelImg (https://github.com/tzutalin/labelImg) or RectLabel (macOS only, available in the App Store) and export the annotations in the PASCAL VOC format.  As this requires the user of a user interface, it is recommended that your normal workstation be used.
 
+G> Using the labelImg tool
+Requires pipenv
+https://github.com/pypa/pipenv
+
 Images should be annotated with the following rules:
 
 * Rule 1: Include all visible part and draw as tightly as possible.
