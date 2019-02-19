@@ -1,8 +1,10 @@
-# Lecture 2: The Cloud
+# Lecture 10: Real time and streams processing
 
-In this lecture, we will talked about Clouds in general and the Cloud that we will be using, the IBM Softlayer Cloud, in particular
+Scalable Streams Processing. Concepts on Stream processing, Apache Spark as a distributed system, Running Deep learning workloads on distributed systems with Caffe, TensorFlow and other examples.
 
 ## Reading:
 
-TBD
+* Deep learning on Databricks: https://databricks.com/blog/2016/12/21/deep-learning-on-databricks.html
+* TensorFlow on Spark: https://conferences.oreilly.com/strata/strata-eu-2018/public/schedule/detail/65059
+
 

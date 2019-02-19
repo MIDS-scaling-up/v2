@@ -1,4 +1,5 @@
 # Remember to change the username and API key values in the <> to your own values!
+# AUTHOR chenbryanchen@gmail.com
 FROM ubuntu:16.04
 
 RUN apt-get update 

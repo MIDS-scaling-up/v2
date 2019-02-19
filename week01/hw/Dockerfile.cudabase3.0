@@ -1,5 +1,6 @@
 #FROM aarch64/ubuntu
-FROM arm64v8/ubuntu:xenial-20180123
+# FROM arm64v8/ubuntu:xenial-20180123
+FROM arm64v8/ubuntu:xenial
 
 #AUTHOR chenbryanchen@gmail.com
 # This is the base container for the Jetson TX2 board with drivers (with cuda) for the Scaling Up class (original Dockerfile at https://github.com/open-horizon/cogwerx-jetson-tx2/blob/master/Dockerfile.cudabase)

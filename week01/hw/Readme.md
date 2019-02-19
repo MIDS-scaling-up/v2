@@ -88,7 +88,7 @@ docker run arm64v8/hello-world
 ```
 
 ### Linking Docker to an External Drive (recommended)
-The Jetson has limited storage, so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is reccommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
+The Jetson has limited storage, so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is recommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
 ```
 sudo service docker stop
 mv /var/lib/docker /media/nvidia/<drivename>
@@ -99,14 +99,19 @@ sudo ln -s /media/nvidia/<drivename>/docker /var/lib/docker
 sudo service docker start
 ```
 Now your Docker work will automatically be stored on this external drive. The new "docker" directory in /var/lib is a softlink: every time Docker calls on that, it'll actually be pulling from the original "docker" directory in the external drive. Just remember to hook it up when working with Docker.
+
+**NOTE: You'll have to manually mount your external drive and start Docker every time you reboot the Jetson if you use the external drive this way. You might want to have Ubuntu mount your external drive automatically every time you reboot by adding a line to the /etc/fstab file ([See here for more info on how to mount with the fstab file](https://help.ubuntu.com/community/Fstab)).**
   
 ### Creating a base CUDA Docker Image for the Jetson
-Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase2.0 file on Github in week1/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
+Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase3.0 file on Github in week1/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
 ```
-docker build -t cudabase -f Dockerfile.cudabase2.0 .
+docker build -t cudabase -f Dockerfile.cudabase3.0 .
 ```
 After a while, the image is created. List the current images to see if it worked:
 ```
 docker images
 ```
 We'll cover Docker in the lab in more detail.
+
+# To turn in
+Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
