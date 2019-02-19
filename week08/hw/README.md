@@ -91,7 +91,7 @@ Questions:
 -	Translation
 -	Noise
 
-## Part 3: Audio Annoation
+## Part 3: Audio Annotation
 Take a look at and explore the audio annotation tool CrowdCurio https://github.com/CrowdCurio/audio-annotator)
 
 Questions:
