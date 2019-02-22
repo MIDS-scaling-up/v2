@@ -51,6 +51,29 @@ G> Using the labelImg tool
 Requires pipenv
 https://github.com/pypa/pipenv
 
+Installed labelImg using the following after downloading the repo
+ls
+  452  brew install libxml2
+  453  brew install libxml2
+  454  ls
+  455  make qt5py3
+  456  mkdir /tmp/labelImgSetup
+  457  cd /tmp/labelImgSetup/
+  458  ls
+  459  curl https://codeload.github.com/tzutalin/labelImg/zip/master --output labelImg.zip
+
+Python 3 + Qt5 (Works on macOS High Sierra)
+
+brew install qt  # will install qt-5.x.x
+brew install libxml2
+make qt5py3
+python3 labelImg.py
+python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
+
+As a side note, if mssing pyrcc5 or lxml, try
+pip3 install pyqt5 lxml
+
+
 Images should be annotated with the following rules:
 
 * Rule 1: Include all visible part and draw as tightly as possible.
