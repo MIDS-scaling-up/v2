@@ -41,9 +41,11 @@ sudo add-apt-repository \
 
 apt-get update
 
-# apt-get install docker-ce
+
 # Dima validated on 01/13/19 that this below is still required; sigh
-apt-get install docker-ce=5:18.09.0~3-0~ubuntu-xenial
+# apt-get install docker-ce=5:18.09.0~3-0~ubuntu-xenial
+# As of 2/24/19 this works now
+apt-get install docker-ce
 
 # verify
 
