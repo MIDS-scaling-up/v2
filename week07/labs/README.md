@@ -37,6 +37,10 @@ overfitting
 * batch size (cell 11) -  a larger number can reduce the training time but is also somewhat less accurate
 * number of epochs (full passes over the data set) -- when do you stop?
 
+#### 1D Convnets
+Bonus question: can you look up convnets 1D and plug them in.  
+Do they perform better than RNNs?
+
 #### Auto-stopping
 In cell 11, you should see a number of commented out lines related to callbacks, patience, and early stopping.  The idea here is to 
 calculate validation loss at the end of each epoch pass and to stop if it no longer goes down.  Note that we are not training on the 
