@@ -93,9 +93,14 @@ Steps (Assuming labelImg):
 
 Questions: 
 1.	In the time allowed, how many images did you annotate?  
+>>>>300 Images
 2.	Home many instances of the Millennium Falcon did you annotate?  How many TIE Fighters?
+>>>>I did not precisely count
 3.	Based on this experience,  how would you handle the annotation of large image data set?
+>>>>using a service such as Mechanical Turk or kids trying to earn some cash. In each case it'll be good to spread the work among a group of people (to avoid fatigue) and also have someone doing quality control in a randomized fashion
 4.	Think about image augmentation?  How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations?
+>>>>The images belongting to the 2 categories are very distinct. Augmentations would not change the annotation. May be translation would a little
+
 
 ## Part 2: Image Augmentation
 For part 2, you will need to install docker in a VM or your local workstation.  
