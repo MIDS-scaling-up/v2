@@ -10,7 +10,7 @@ You'll be using a docker image for this lab and it is recommended that you run t
 
 1. Create a data directory for the images.
 2. Start the docker image
-```docker run -ti -v <pathToYourDataDiretory>:/images/data ryandejana/lab8:v1```
+```docker run -ti -v <pathToYourDataDiretory>:/images/data ryandejana/lab8:v1 bash```
 
 ## Part 1: FFMPEG and Video
 In the first part of this lab, you'll work with a video from https://www.jpjodoin.com/urbantracker/dataset.html and you'll be extracting images from it.
