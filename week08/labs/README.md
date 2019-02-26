@@ -10,7 +10,7 @@ You'll be using a docker image for this lab and it is recommended that you run t
 
 1. Create a data directory for the images.
 2. Start the docker image
-```bash docker run -ti -v <pathToYourDataDiretory>:/images/data ryandejana/lab8:v1 bash ```
+```docker run -ti -v <pathToYourDataDiretory>:/images/data ryandejana/lab8:v1```
 
 ## Part 1: FFMPEG and Video
 In the first part of this lab, you'll work with a video from https://www.jpjodoin.com/urbantracker/dataset.html and you'll be extracting images from it.
@@ -19,14 +19,14 @@ In the directory /images, you'll find the file sherbrooke_video.avi.  This is a 
 
 The first step is to extract a single image from the video.
 
-```bash ffmpeg -i sherbrooke_video.avi -frames:v 1 data/ffmepg/test1/extracted.jpg```
+```ffmpeg -i sherbrooke_video.avi -frames:v 1 data/ffmepg/test1/extracted.jpg```
 
 the option ```-frames:v``` specifies the number of frames to extract and ```data/ffmepg/test1/extracted.jpg``` is the output file.  
 
 When complete, browser your data directory from your workstation and open up ```data/ffmepg/test1/extracted.jpg``` and confirm that extract.
 
 Now you wille extract 100 images from the file using the command 
-```bash ffmpeg -i sherbrooke_video.avi -frames:v 100 data/ffmepg/test2/extract%04d.jpg```
+```ffmpeg -i sherbrooke_video.avi -frames:v 100 data/ffmepg/test2/extract%04d.jpg```
 
 With this command, ```%04d``` tells ffmpeg to name the extracted images with the serices with a 4 digit pattern, extract0001.jpg, extract0002.jpg, etc. Other numbers may be used, e.g. to use 2 numbers, the pattern would be ```%02d```.
 
@@ -34,12 +34,12 @@ Review the images.  How much did the scence change?
 
 Now we'll adjust the frames per second used with the -r option, in this case with 1 frame per second.
 
-```bash ffmpeg -i sherbrooke_video.avi -frames:v 100 -r 1 data/ffmepg/test2/extract%04d.jpg```
+```ffmpeg -i sherbrooke_video.avi -frames:v 100 -r 1 data/ffmepg/test2/extract%04d.jpg```
 
 What's different?  What happens if you change r?
 
 Finally, we'll extract all the images with the command
-```bash ffmpeg -i sherbrooke_video.avi data/ffmepg/test3/extract%04d.jpg```
+```ffmpeg -i sherbrooke_video.avi data/ffmepg/test3/extract%04d.jpg```
 
 - How long did it take?  
 - How many images did you get?  
@@ -51,13 +51,13 @@ This this part of the lab, you'll be using a tool called google-images-download 
 
 Run a simple example that will search for Polar bears and Brown Bears. 
 
-```bash googleimagesdownload --keywords "Polar bears, Brown bears" --limit 100 -o /images/data/google/test1 -f jpg```
+```googleimagesdownload --keywords "Polar bears, Brown bears" --limit 100 -o /images/data/google/test1 -f jpg```
 
 - How long did it take to download the roughly 200 images (you may get some errors)?
 - Review the images.  How accurate are they? 
 
 Not all images on the web are licensed for you to reuse as you see fit.  This tool provides the ablity to search with different usage rights.  (see the repository for the options).  Run the command 
-```bash googleimagesdownload --keywords "Polar bears, Brown bears" --limit 100 -o /images/data/google/test2 -f jpg
+```googleimagesdownload --keywords "Polar bears, Brown bears" --limit 100 -o /images/data/google/test2 -f jpg
  -r labeled-for-nocommercial-reuse
 ```
 
@@ -111,7 +111,7 @@ API_SECRET = yourSecret
 
 Change to the directory /images/datr and run the following command:
 
-```bash python datr.py --num_images 100 --search_tags cat --license 9 --num_threads 20 --path /images/data/datr/test1```
+```python datr.py --num_images 100 --search_tags cat --license 9 --num_threads 20 --path /images/data/datr/test1```
 
 - How long did it take to download the 100 images?  
 - How accurate are the results?  
@@ -119,13 +119,13 @@ Change to the directory /images/datr and run the following command:
 
 Now run the command with only 1 thread.
 
-```bash python datr.py --num_images 100 --search_tags cat --license 9 --num_threads 1 --path /images/data/datr/test2```
+```python datr.py --num_images 100 --search_tags cat --license 9 --num_threads 1 --path /images/data/datr/test2```
 
 - Did this take any longer? If so, how much?
 
 This tool also supports the ability to select difference usage/license options.  
 
-```bash python datr.py --num_images 100 --search_tags cat --license 0 --num_threads 20 --path /images/data/datr/test3```
+```python datr.py --num_images 100 --search_tags cat --license 0 --num_threads 20 --path /images/data/datr/test3```
 
 - Did are the results any different?
 
