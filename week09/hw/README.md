@@ -24,3 +24,6 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
     1. Start training -- **on one VM only:** ```nohup mpirun --allow-run-as-root -n 4 -H <vm1 private ip address>:2,<vm2 private ip address>:2 -bind-to none -map-by slot --mca btl_tcp_if_include eth0  -x NCCL_SOCKET_IFNAME=eth0 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH  python run.py --config_file=/data/en-de-nmt-small.py --use_horovod=True --mode=train_eval & ```
     1. Monitor training progress: ``` tail -f nohup,out ```
 
+### Submission
+
+Please submit the nohup.out file.
