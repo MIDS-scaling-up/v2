@@ -27,6 +27,7 @@ You'll need to create the test directories ahead of time.
 
 ```mkdir data/ffmepg/test3```
 
+If you get errors in the following steps, you can extract to data/ and change the extracted image name pattern.
 
 The first step is to extract a single image from the video.
 
