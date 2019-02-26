@@ -18,9 +18,13 @@ In the first part of this lab, you'll work with a video from https://www.jpjodoi
 In the directory /images, you'll find the file sherbrooke_video.avi.  This is a 2 min and 13 second video filmed from a traffic camera located at at the Sherbrooke/Amherst intersection in Montreal.
 
 You'll need to create the test directories ahead of time.  
+
 ```mkdir data/ffmepg```
+
 ```mkdir data/ffmepg/test1```
+
 ```mkdir data/ffmepg/test2```
+
 ```mkdir data/ffmepg/test3```
 
 
