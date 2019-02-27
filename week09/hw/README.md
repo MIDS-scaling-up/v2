@@ -1,7 +1,7 @@
 # Homework 9: Distributed Training
 
 ### Read up on OpenSeq2Seq
-Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for sequence to sequence tasks such as Automatic Speech Recognition (ASR) and Natural Language Processing (NLP), written in Python and TensorFlow. Many of these tasks take a very long to train, hence the need to train on more than one machine.  In this week's lab, we'll be training a [Transformer-based Machine Translation network](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation/transformer.html) on small English to German WMT corpus.
+Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for sequence to sequence tasks such as Automatic Speech Recognition (ASR) and Natural Language Processing (NLP), written in Python and TensorFlow. Many of these tasks take a very long to train, hence the need to train on more than one machine.  In this week's lab, we'll be training a [Transformer-based Machine Translation network](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation/transformer.html) on a small English to German WMT corpus.
 
 ### Get a pair of GPU VMs in Softlayer
 Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/master/week03/hw) to get a pair of 2*P100 VMs in Softlayer.  Call them, for instance, p100a and p100b.  Install cuda, docker , nvidia-docker, format the 2TB disk and mount it to /data on each VM.  Once you are finished with the setup, you will have a micro-cluster consisting of 2 nodes and 4 P-100 GPUs total.
@@ -15,7 +15,7 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
 1. Use the files on [docker directory](docker) to create an openseq2seq image 
 1. Copy the created docker image to the other VM (or repeat the same steps on the other VM) 
 1. Create containers on both VMs: ``` docker run --runtime=nvidia -d --name openseq2seq --net=host -e SSH_PORT=4444 -v /data:/data -p 6006:6006 openseq2seq ```
-1. On each VM, create an interactive bash sesion inside the container: ``` docker exec -ti openseq2seq bash ``` and run the follwoing commands in the container shell:
+1. On each VM, create an interactive bash sesion inside the container: ``` docker exec -ti openseq2seq bash ``` and run the following commands in the container shell:
     1. Test mpi: ``` mpirun -n 2 -H <vm1 private ip address>,<vm2 private ip address> --allow-run-as-root hostname ``` 
     1. Pull data to be used in neural machine tranlsation training ([more info](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)):  
     ``` 
@@ -31,4 +31,4 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
 
 ### Submission
 
-Please submit the nohup.out file.
+Please submit the nohup.out file along with screenshots of your Tensorboard indicating training progress (Blue score, eval loss) over time.
