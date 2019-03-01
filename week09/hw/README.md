@@ -6,7 +6,7 @@ Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for 
 ### Get a pair of GPU VMs in Softlayer
 Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/master/week03/hw) to get a pair of 2*P100 VMs in Softlayer.  Call them, for instance, p100a and p100b.  Install cuda, docker , nvidia-docker, format the 2TB disk and mount it to /data on each VM.  Once you are finished with the setup, you will have a micro-cluster consisting of 2 nodes and 4 P-100 GPUs total.
 
-### Create containers for openseq2seq
+### Create cloud containers for openseq2seq and distributed training
 
 1. Create account at https://ngc.nvidia.com/
 1. Follow [these instructions](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html#generating-api-key) to create an Nvidia Cloud docker registry API Key, unless you already have one.
@@ -28,7 +28,14 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
     1. Monitor training progress: ``` tail -f nohup.out ```
     1. Start tensorboard on the same machine where you started training, e.g. ```nohup tensorboard --logdir=/data/en-de-transformer``` You should be able to monitor your progress by putting http://public_ip_of_your_vm1:6006 !
  
+### Create the tx2 container for openseq2seq 
+Let us create a tx2 compatible container for OpenSeq2Seq.  We probably won't be able to use it for training, but it could be useful for inference.
+
 
 ### Submission
 
-Please submit the nohup.out file along with screenshots of your Tensorboard indicating training progress (Blue score, eval loss) over time.
+Please submit the nohup.out file along with screenshots of your Tensorboard indicating training progress (Blue score, eval loss) over time.  Also, answer the following (simple) questions:
+* How long does it take to complete the training run?
+* Do you think your model is fully trained?
+* Were your GPUs fully utilized?
+* Did you monitor network traffic? Was network the bottleneck?
