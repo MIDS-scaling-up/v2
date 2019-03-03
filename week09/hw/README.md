@@ -28,6 +28,7 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
     1. Monitor training progress: ``` tail -f nohup.out ```
     1. Start tensorboard on the same machine where you started training, e.g. ```nohup tensorboard --logdir=/data/en-de-transformer``` You should be able to monitor your progress by putting http://public_ip_of_your_vm1:6006 !
     1. If you are concerned about the costs of your VM, feel free to kill them after 100,000 steps (the config file will make the model run for 300,000 steps unless you change the max_steps parameter or kill training by hand)
+    1. After your training is done, download your best model to your jetson tx2.  [Hint: it will be located in /data/en-de-transformer]
  
 ### Create the tx2 container for openseq2seq 
 Let us create a tx2 compatible container for OpenSeq2Seq.  We probably won't be able to use it for training, but it could be useful for inference.  Make sure that you have a local TF container in your TX2 that we created when we completed during [HW 5](https://github.com/MIDS-scaling-up/v2/tree/master/week05/hw) Then, use [this Dockerfile](https://github.com/MIDS-scaling-up/v2/blob/master/week09/hw/docker/arm64/Dockerfile.tx2-3.3_b39). We will need this container for our in-class lab.
