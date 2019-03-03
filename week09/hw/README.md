@@ -22,7 +22,7 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
     cd /opt/OpenSeq2seq 
     scripts/get_en_de.sh /data/wmt16_de_en
     ```
-    1. Copy configuration file to /data directory: ``` cp example_configs/text2text/en-de/transformer-base.py /data ``
+    1. Copy configuration file to /data directory: ``` cp example_configs/text2text/en-de/transformer-base.py /data ```
     1. Edit /data/transformer-base.py: replace ```[REPLACE THIS TO THE PATH WITH YOUR WMT DATA]``` with ```/data/wmt16_de_en/```,  in base_parms section replace ```"logdir": "nmt-small-en-de",``` with ```"logdir": "/data/en-de-transformer/",```  and make "batch_size_per_gpu": 128, in eval_params section set "repeat: to True. 
     1. Start training -- **on the first VM only:** ```nohup mpirun --allow-run-as-root -n 4 -H <vm1 private ip address>:2,<vm2 private ip address>:2 -bind-to none -map-by slot --mca btl_tcp_if_include eth0  -x NCCL_SOCKET_IFNAME=eth0 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH  python run.py --config_file=/data/transformer-base.py --use_horovod=True --mode=train_eval & ```
     1. Monitor training progress: ``` tail -f nohup.out ```
