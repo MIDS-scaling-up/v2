@@ -39,4 +39,4 @@ Please submit the nohup.out file along with screenshots of your Tensorboard indi
 * How long does it take to complete the training run? (hint: this session is on distributed training, so it will take a while)
 * Do you think your model is fully trained?
 * Were your GPUs fully utilized?
-* Did you monitor network traffic (hint: use nmon) ? Was network the bottleneck?
+* Did you monitor network traffic (hint: '''apt install nmon''') ? Was network the bottleneck?
