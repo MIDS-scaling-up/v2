@@ -27,17 +27,17 @@ Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/m
     1. Start training -- **on the first VM only:** ```nohup mpirun --allow-run-as-root -n 4 -H <vm1 private ip address>:2,<vm2 private ip address>:2 -bind-to none -map-by slot --mca btl_tcp_if_include eth0  -x NCCL_SOCKET_IFNAME=eth0 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH  python run.py --config_file=/data/transformer-base.py --use_horovod=True --mode=train_eval & ```
     1. Monitor training progress: ``` tail -f nohup.out ```
     1. Start tensorboard on the same machine where you started training, e.g. ```nohup tensorboard --logdir=/data/en-de-transformer``` You should be able to monitor your progress by putting http://public_ip_of_your_vm1:6006 !
-    1. If you are concerned about the costs of your VM, feel free to kill them after 100,000 steps (the config file will make the model run for 300,000 steps unless you change the max_steps parameter or kill training by hand)
-    1. After your training is done, download your best model to your jetson tx2.  [Hint: it will be located in /data/en-de-transformer on the first VM]
+    1. If you are concerned about the costs of your VMs, feel free to kill them after 100,000 steps (the config file will make the model run for 300,000 steps unless you change the max_steps parameter or kill training by hand)
+    1. After your training is done, download your best model to your jetson tx2.  [Hint: it will be located in /data/en-de-transformer on the first VM]  Alternatively, you could always download a checkpoint from Nvidia [here](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)
  
 ### Create the tx2 container for openseq2seq 
-Let us create a tx2 compatible container for OpenSeq2Seq.  We probably won't be able to use it for training, but it could be useful for inference.  Make sure that you have a local TF container in your TX2 that we created when we completed during [HW 5](https://github.com/MIDS-scaling-up/v2/tree/master/week05/hw) Then, use [this Dockerfile](https://github.com/MIDS-scaling-up/v2/blob/master/week09/hw/docker/arm64/Dockerfile.tx2-3.3_b39). We will need this container for our in-class lab.  Put your downloaded best trained model someplace onto the external hard drive -- e.g. /data/en-de-transformer
+Let us create a tx2 compatible container for OpenSeq2Seq.  We probably won't be able to use it for training, but it could be useful for inference.  Make sure that you have a local TF container in your TX2 that we created when we completed during [HW 5](https://github.com/MIDS-scaling-up/v2/tree/master/week05/hw) We also have all TF containers posted [in the W251 docker hub](https://cloud.docker.com/u/w251/repository/docker/w251/tensorflow) Then, use [this Dockerfile](https://github.com/MIDS-scaling-up/v2/blob/master/week09/hw/docker/arm64/Dockerfile.tx2-3.3_b39). We will need this container for our in-class lab.  Put your downloaded best trained model someplace onto the external hard drive -- e.g. /data/en-de-transformer
 
 
 ### Submission
 
 Please submit the nohup.out file along with screenshots of your Tensorboard indicating training progress (Blue score, eval loss) over time.  Also, answer the following (simple) questions:
 * How long does it take to complete the training run? (hint: this session is on distributed training, so it will take a while)
-* Do you think your model is fully trained?
+* Do you think your model is fully trained? How can you tell?
 * Were your GPUs fully utilized?
 * Did you monitor network traffic (hint:  ```apt install nmon ```) ? Was network the bottleneck?
