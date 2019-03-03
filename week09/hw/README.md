@@ -39,6 +39,7 @@ Let us create a tx2 compatible container for OpenSeq2Seq.  We probably won't be 
 Please submit the nohup.out file along with screenshots of your Tensorboard indicating training progress (Blue score, eval loss) over time.  Also, answer the following (simple) questions:
 * How long does it take to complete the training run? (hint: this session is on distributed training, so it will take a while)
 * Do you think your model is fully trained? How can you tell?
+* Are you overfitting?
 * Were your GPUs fully utilized?
 * Did you monitor network traffic (hint:  ```apt install nmon ```) ? Was network the bottleneck?
 * Take a look at the plot of the learning rate and then check the config file.  Can you explan this setting?
