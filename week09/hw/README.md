@@ -43,3 +43,6 @@ Please submit the nohup.out file along with screenshots of your Tensorboard indi
 * Were your GPUs fully utilized?
 * Did you monitor network traffic (hint:  ```apt install nmon ```) ? Was network the bottleneck?
 * Take a look at the plot of the learning rate and then check the config file.  Can you explan this setting?
+* How big is the resulting model checkpoint?
+* How big was your training set (mb)? How many training lines did it contain?
+
