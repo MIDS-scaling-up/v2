@@ -1,4 +1,4 @@
-# Homework 6: 
+# Homework 8: 
 ## Part 1: Image Annotation
 For this homework, you will be annotating the Millennium Falcon and TIE Fighters in images from Star Wars: The Force Awakens.  
 
