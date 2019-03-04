@@ -1,4 +1,4 @@
-# Lecture 8: The Datasets for Deep Learning
+# Lecture 8: Datasets for Deep Learning
 
 Dataset Collection and Preparation.  Image Classification and and the importance of data.  Data Preparation.  Data Augmentation.  Sample Datasets. 
 
@@ -10,6 +10,9 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 *   http://www.image-net.org/papers/ImageNet_2010.pdf
 * MS Coco: http://cocodataset.org/#home
 * LibriSpeech: http://www.openslr.org/12/
+* Machine Translation datasets: http://www.statmt.org/
+* Kitti Vision dataset: http://www.cvlibs.net/datasets/kitti/
+* Pascal VOC datasets: http://host.robots.ox.ac.uk/pascal/VOC/
 * Data Augmentation
 *  https://ai.googleblog.com/2018/06/improving-deep-learning-performance.html
 *  https://arxiv.org/pdf/1708.06020.pdf
