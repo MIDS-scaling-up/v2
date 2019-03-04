@@ -15,6 +15,7 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 * Machine Translation datasets: http://www.statmt.org/
 * Kitti Vision dataset: http://www.cvlibs.net/datasets/kitti/
 * Pascal VOC datasets: http://host.robots.ox.ac.uk/pascal/VOC/
+* WikiText: https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/
 
 ### Data Augmentation
 *  https://ai.googleblog.com/2018/06/improving-deep-learning-performance.html
