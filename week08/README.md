@@ -12,6 +12,7 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 ### Other notable data sets
 * MS Coco: http://cocodataset.org/#home
 * LibriSpeech: http://www.openslr.org/12/
+* LDF Fisher phone speech (commercial): https://catalog.ldc.upenn.edu/LDC2004T19
 * Machine Translation datasets: http://www.statmt.org/
 * Kitti Vision dataset: http://www.cvlibs.net/datasets/kitti/
 * Pascal VOC datasets: http://host.robots.ox.ac.uk/pascal/VOC/
@@ -24,4 +25,6 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 
 ### Tools
 * Lazy NLP: https://github.com/chiphuyen/lazynlp
-* 
+* Nvidia Transfer Learning Toolkit: https://ngc.nvidia.com/containers/nvtltea:iva:tlt-streamanalytics
+* Dima's annotation tool: http://169.44.201.108:7002/index7.html?c=11071917_foo&date=2017/02/12
+* Coloring book for adults: https://commaai.blogspot.com/2016/07/comma-coloring-book.html
