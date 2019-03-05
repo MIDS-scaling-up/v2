@@ -29,3 +29,4 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 * Dima's annotation tool: http://169.44.201.108:7002/index7.html?c=11071917_foo&date=2017/02/12
 * Coloring book for adults: https://commaai.blogspot.com/2016/07/comma-coloring-book.html
 * OpenSeq2Seq: https://nvidia.github.io/OpenSeq2Seq/html/index.html
+* Gentle: https://github.com/lowerquality/gentle
