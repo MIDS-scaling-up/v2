@@ -22,4 +22,6 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 *  https://arxiv.org/pdf/1708.06020.pdf
 *  https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f
 
-
+### Tools
+* Lazy NLP: https://github.com/chiphuyen/lazynlp
+* 
