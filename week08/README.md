@@ -12,6 +12,7 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 ### Other notable data sets
 * MS Coco: http://cocodataset.org/#home
 * LibriSpeech: http://www.openslr.org/12/
+* Mozilla Common Voice: http://voice.mozilla.org/en/datasets
 * LDF Fisher phone speech (commercial): https://catalog.ldc.upenn.edu/LDC2004T19
 * Machine Translation datasets: http://www.statmt.org/
 * Kitti Vision dataset: http://www.cvlibs.net/datasets/kitti/
