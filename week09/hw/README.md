@@ -49,5 +49,7 @@ Please submit the nohup.out file along with screenshots of your Tensorboard indi
 * Remember the definition of a "step". How long did an average step take?
 * How does that correlate with the observed network utilization between nodes?
 
-
+### Hint
+Your BLEU TB plot should look something like this:
+![Training BLEU curve](bleu2.jpg)
 
