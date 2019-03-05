@@ -15,7 +15,16 @@ As of 3/5/2019, we still need to patch file open statements in  tokenizer_wrappe
 # all occurrences, both 'r' and 'w', add encoding="utf-8", e.g.
 with open(input_file1, 'r', encoding="utf-8")
 ```
-While you are at it, similarly patch  /OpenSeq2Seq/open_seq2seq/utils/utils.py  (sigh)
+While you are at it, similarly patch (sigh):
+```
+# there is just one occurrence of open() here:
+/OpenSeq2Seq/open_seq2seq/data/text2text/text2text.py
+
+/OpenSeq2Seq/open_seq2seq/utils/utils.py 
+# in deco_print()
+# replace in  else:
+# print((start + " " * offset + line).encode('utf-8'), end=end)
+```
 
 If you like completeless, you can now download the entire en-de corpus.  Hint: it will take a while:
 ```
