@@ -8,7 +8,7 @@ Provision three Centos 7 VSes in SoftLayer with 2 CPUs, 4GB RAM and a 100GB loca
 
 ## Configure connectivity between machines
 
-Configure spark1 such that it can SSH to spark1, spark2, and spark3 without passwords using SSH keys, and by name. To do this, you'll need to configure /etc/hosts, generate SSH keys using ssh-keygen, and write the content of the public key to each box to the file /root/.ssh/authorized_keys (ssh-copy-id helps with key distribution; if you need assistance with these parts of the process, consult earlier homework assignments).
+Configure spark1 such that it can SSH to spark1, spark2, and spark3 without passwords using SSH keys, and by name. To do this, you'll need to configure /etc/hosts, generate SSH keys using ssh-keygen, and write the content of the public key to each box to the file /root/.ssh/authorized_keys (ssh-copy-id helps with key distribution).
 
 ## Install Java, SBT, and Spark on all nodes
 
