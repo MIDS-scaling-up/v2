@@ -1,6 +1,6 @@
 # Apache Spark Introduction
 
-There are numerous ways to run Apache Spark, even multiple cluster options. In this guide you'll use the simplest clustered configuration, Spark in a standalone cluster. Other options include Spark on a YARN cluster (we used YARN in /week5/hw/hadoop_yarn_sort) and Spark on a Mesos cluster. If you're interested in learning about these other clustered options, please ask about them in class.
+There are numerous ways to run Apache Spark, even multiple cluster options. In this guide you'll use the simplest clustered configuration, Spark in a standalone cluster. Other options include Spark on a YARN cluster and Spark on a Mesos cluster. If you're interested in learning about these other clustered options, please ask about them in class.
 
 ## Provision machines
 
