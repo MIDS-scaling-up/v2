@@ -170,25 +170,18 @@ Now run the file using moby10b.txt as the input and an output directory of your 
 
 Assumptions: job is run against the cluster
 
-In this part, you will submit a spark job to your cluster.  In addition, you will need a HDFS cluster to act as a shared file system.  You may install HDFS on one or more nodes or resuse your HDFS cluster from the previous homework.  You will need to copy moby10b.txt into HDFS.
+In this part, you will submit a spark job to your cluster. Normally, you would have HDFS as the shared file system, but let's not worry about it for now.  Just copy moby10b.txt to the same location in each node.
 
-If you run into any issues with file permissions in HDFS, one solution is to update the hdfs-site.xml config file on each of your HDFS nodes to include the following:
-```
-<property>
-  <name>dfs.permissions</name>
-  <value>false</value>
-</property>
-```
 
 To run a job against the cluster, you'll need to package your job as a jar file.  Using SparkJava8Example as an example, you may create a jar using the following:
 ```
    jar cvf job.jar spark/*.class
 ```
 
-To submit a job to a spark cluster, you will need to use the $SPARK_HOME/bin/spark-submit command.  See https://spark.apache.org/docs/latest/submitting-applications.html for details.  For your SparkJava8Example example, now using HDFS, the command would be:
+To submit a job to a spark cluster, you will need to use the $SPARK_HOME/bin/spark-submit command.  See https://spark.apache.org/docs/latest/submitting-applications.html for details.  For your SparkJava8Example example, the command would be:
 
 ```
-$SPARK_HOME/bin/spark-submit --master spark://spark1:7077 --class spark.SparkJava8Example job.jar hdfs://<yourNameNodeIP>:9000/home/data/moby10b.txt hdfs://<yourNameNodeIP>:9000/home/data/output
+$SPARK_HOME/bin/spark-submit --master spark://spark1:7077 --class spark.SparkJava8Example job.jar /home/data/moby10b.txt /home/data/output
 ```
 You will need to adjust your path, IPs and ports as needed.  You may find that your HDFS is using port 9000 or 8000, depending on your config.
 
