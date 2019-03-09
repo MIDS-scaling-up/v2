@@ -4,7 +4,7 @@ There are numerous ways to run Apache Spark, even multiple cluster options. In t
 
 ## Provision machines
 
-Provision three Centos 7 VSes in SoftLayer with 2 CPUs, 4GB RAM and a 100GB local hard drive. Name them spark1, spark2, and spark3.
+Provision three Centos 7 VSes in SoftLayer with 2 CPUs, 4GB RAM and a 100GB local hard drive. Name them spark1, spark2, and spark3.  We recommend that you select VMs without external network interfaces - to be absolutely safe - or if request normal VMs, shut external interfaces down.  This makes it very simple: when assembling the cluster, please use internal IP addresses.
 
 ## Configure connectivity between machines
 
