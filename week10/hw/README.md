@@ -46,7 +46,7 @@ On __spark1__, create the new file `$SPARK_HOME/conf/slaves` and content:
     spark2
     spark3
 
-From here on out, all commands you execute should be done on __spark1__ only. You may log in to the other boxes to investigate job failures, but you can control the entire cluster from the master. If you plan to use the Spark UI, it's convenient to modify your workstation's `hosts` file so that Spark-generated URLs for investigating nodes resolve properly.  Also, review /etc/hosts on spark1 and see if you have the 127.0.0.1 spark1 line as the first one mentioning your node name.  If that is the case, comment it out and replace it with <ip_address spark1> where the ip address is either the internal or external ip address of your node.  If you leave it as is, your slave nodes may not be able to connect to the master node when the cluster comes up.
+From here on out, all commands you execute should be done on __spark1__ only. You may log in to the other boxes to investigate job failures, but you can control the entire cluster from the master. If you plan to use the Spark UI, it's convenient to modify your workstation's `hosts` file so that Spark-generated URLs for investigating nodes resolve properly.  Also, review /etc/hosts on spark1 and see if you have the 127.0.0.1 spark1 line as the first one mentioning your node name.  If that is the case, comment it out and replace it with <ip_address spark1> where the ip address is the internal ip address of your node.  If you leave it as is, your slave nodes may not be able to connect to the master node when the cluster comes up.
 
 ## Start Spark from master
 
