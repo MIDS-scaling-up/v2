@@ -63,7 +63,7 @@ From here on out, all commands you execute should be done on spark1 only. You ma
 
 ## Copy files to master
 
-From spark1, clone the homework repo into /root.  Locate and note the directory containing the file moby10b.txt and the directory src; they should be in the directory /root/coursework/week6/hw/apache_spark_introduction.
+From spark1, clone the homework repo into /root.  Locate and note the directory containing the file moby10b.txt and the directory src; they should be in the directory /root/coursework/week10/hw/
 
 
 ## Start Spark from master
@@ -160,7 +160,7 @@ From within the source directory, complile SparkJava8Example
 
 Now run the file using moby10b.txt as the input and an output directory of your choice.
 ```
-    java -cp .:$SPARK_HOME/jars/* spark.SparkJava8Example /root/coursework/week6/hw/apache_spark_introduction/moby10b.txt /<yourOutputDirectory>
+    java -cp .:$SPARK_HOME/jars/* spark.SparkJava8Example /root/coursework/week10/moby10b.txt /<yourOutputDirectory>
 ```
 *Question 5:* How many output files (ignore _SUCCESS file) does Spark write when the file RDD 
 (file.saveAsTextFile( outputDirectory)) is written to the output directory?
@@ -187,21 +187,9 @@ To run a job against the cluster, you'll need to package your job as a jar file.
 To submit a job to a spark cluster, you will need to use the $SPARK_HOME/bin/spark-submit command.  See https://spark.apache.org/docs/latest/submitting-applications.html for details.  For your SparkJava8Example example, the command would be:
 
 ```
-$SPARK_HOME/bin/spark-submit --master spark://spark1:7077 --class spark.SparkJava8Example job.jar /root/coursework/week6/hw/apache_spark_introduction/moby10b.txt /root/output
+$SPARK_HOME/bin/spark-submit --master spark://spark1:7077 --class spark.SparkJava8Example job.jar /root/coursework/week10/moby10b.txt /root/output
 ```
 
 
-For the following problems, you may create a single job or a series of jobs
-
-*Question 6:* The text file moby10b.txt is the The Project Gutenberg Etext of Moby Dick.  This file contains a Gutenberg    preamble. Write a job that removes or filters out all the lines until the text "MOBY DICK; OR THE WHALE" and write this new RDD to disk.  How many lines does our filtered file have?
-
-*Question 7:* Using your filtered RDD, count the number of words.  Non-letter characters (only a-z should be included) should be removed.
-
-*Question 8:* Find the number of times each letter is used.  The results should be sorted alphabetically, from a to z. 
-
-*Question 9:* Find the number of times each letter is used.  The results should be sorted from most frequent to least frequent.
-
-*Question 10:* Rewrite the filtered file such that each line is mirrored or reversed. What are the first 20 lines of the mirrored RDD?
-
 ## Submission
-Submit a document with your answers to the problems, the access information to your spark cluster, and the steps to run your job(s) for questions 6 - 10.
+Submit a document with your answers to the problems, the access information to your spark cluster, and the steps to run your job(s) for questions 1-5.
