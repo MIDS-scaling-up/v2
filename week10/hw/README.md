@@ -183,7 +183,7 @@ To submit a job to a spark cluster, you will need to use the $SPARK_HOME/bin/spa
 ```
 $SPARK_HOME/bin/spark-submit --master spark://spark1:7077 --class spark.SparkJava8Example job.jar /root/coursework/week6/hw/apache_spark_introduction/moby10b.txt /root/output
 ```
-You will need to adjust your path, IPs and ports as needed.  You may find that your HDFS is using port 9000 or 8000, depending on your config.
+
 
 For the following problems, you may create a single job or a series of jobs
 
