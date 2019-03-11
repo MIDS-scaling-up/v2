@@ -95,11 +95,13 @@ spark2: starting org.apache.spark.deploy.worker.Worker, logging to /usr/local/sp
 ```
 
 ### secure the VSI with Firewall
+```
 service firewalld start
 firewall-cmd --permanent --zone=public --add-port=6066/tcp
 firewall-cmd --permanent --zone=public --add-port=7077/tcp
 firewall-cmd --permanent --zone=public --add-port=8080-8081/tcp
 firewall-cmd --reload
+```
 ## Assignment
 ### Calculating Pi
 
