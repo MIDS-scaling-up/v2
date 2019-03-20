@@ -21,7 +21,9 @@ Assignment: Create a quadruped robot in Gazebo that consists of torso with four 
 
 Then create a new robot vehicle which has six wheels and a scoop front loading mechanism.
 
-Gazebo reference:  http://gazebosim.org/tutorials?cat=build_robot
+Gazebo reference:  
+http://gazebosim.org/tutorials?cat=build_robot
+https://bitbucket.org/osrf/gazebo_models/src
 
 ## To Turn In
 Turn in screen recordings of your two robots in action
