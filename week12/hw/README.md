@@ -34,7 +34,7 @@ Create a nodefile.  Edit /root/nodefile and add the names of your nodes.  This i
 
 C. __Install and configure GPFS FPO on each node:__
 
-Download the installation package from [wget https://dal05.objectstorage.softlayer.net/v1/AUTH_c93299cb-85f8-4361-b654-67c868bcb6f6/gpfs/Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz]
+Use the command wget (terminal) to download the installation package from [GPFS installer] (wget https://dal05.objectstorage.softlayer.net/v1/AUTH_c93299cb-85f8-4361-b654-67c868bcb6f6/gpfs/Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz)
 
 As root on your node, download this tarball into /root, then unpack and install:
 ```
