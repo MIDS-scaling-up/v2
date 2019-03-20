@@ -7,7 +7,7 @@ These instructions are a subset of the official instructions linked to from here
 
 We will install GPFS FPO with no replication (replication=1) and local write affinity.  This means that if you are on one of the nodes and are writing a file in GPFS, the file will end up on your local node unless your local node is out of space.
 
-A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, UBUNTU\_16\_64, __two local disks__ 25G each, in San Jose. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
+A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, UBUNTU\_16\_64, __two local disks__ 25G and 100G each, in San Jose. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
 B. __Set up each one of your nodes as follows:__
 
@@ -88,19 +88,19 @@ Now we need to define our disks. Do this to print the paths and sizes of disks o
 
     fdisk -l
 
-Note the names of your 25G disks. Here's what I see:
+Note the names of your 100G disks. Here's what I see:
 
     [root@gpfs1 ras]# fdisk -l |grep Disk |grep bytes
-    Disk /dev/xvdc: 26.8 GB, 26843545600 bytes
-    Disk /dev/xvda: 26.8 GB, 26843545600 bytes
-    Disk /dev/xvdb: 2147 MB, 2147483648 bytes
+    Disk /dev/xvdc: 100 GiB, 107374182400 bytes, 209715200 sectors
+    Disk /dev/xvdb: 2 GiB, 2147483648 bytes, 4194304 sectors
+    Disk /dev/xvda: 25 GiB, 26843701248 bytes, 52429104 sectors
 
 Now inspect the mount location of the root filesystem on your boxes:
 
     [root@gpfs1 ras]# mount | grep ' \/ '
     /dev/xvda2 on / type ext3 (rw,noatime)
 
-Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my second 25 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo`:
+Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo`:
 
     %pool:
     pool=system
@@ -152,11 +152,11 @@ All done.  Now you should be able to go to the mounted FS:
 
     cd /gpfs/gpfsfpo
 
-.. and see that there's 75 G there:
+.. and see that there's 300 G there:
 
     [root@gpfs1 gpfsfpo]# df -h .
     Filesystem      Size  Used Avail Use% Mounted on
-    /dev/gpfsfpo     75G  678M   75G   1% /gpfs/gpfsfpo
+    /dev/gpfsfpo     300G  678M   300G   1% /gpfs/gpfsfpo
 
 Make sure you can write, e.g.
 
