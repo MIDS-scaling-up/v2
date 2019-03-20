@@ -78,7 +78,7 @@ All nodes should be up ("GPFS state" column shows "active"):
 
     mmgetstate -a
 
-Nodes may reflect "arbitrating" state briefly before "active".  If one or more nodes are down, you will need to go back and see what you might have missed.  The main GPFS log file is `/var/adm/ras/mmfs.log.latest`; look for errors there.
+Nodes may reflect "arbitrating" state briefly before "active".  If one or more nodes are down, you will need to go back and see what you might have missed. If some node shows a DOWN state, log into the node and run the command  mmstartup. The main GPFS log file is `/var/adm/ras/mmfs.log.latest`; look for errors there.
 
 You could get more details on your cluster:
 
