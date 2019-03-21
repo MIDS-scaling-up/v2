@@ -12,4 +12,11 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
   * pip3 install -r requirements.txt
   * pip3 install .
   
-2. Once the library is installed it could be used out of the Python bindings  
+2. Once the library is installed it could be used out of the Python bindings, more on that later.
+
+3. Download the [The WikiText language modeling dataset](https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/)
+  * wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip
+  * apt install unzip
+  * unzip wikitext-103-v1.zip
+  * rm -rf wikitext-103-v1.zip
+  * 
