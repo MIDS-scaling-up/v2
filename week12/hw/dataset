@@ -20,5 +20,3 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
   * unzip wikitext-103-v1.zip
   * rm -rf wikitext-103-v1.zip
   * 
-  
-  [IBM Spectrum Scale Resources - GPFS](https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.1/com.ibm.spectrum.scale.v5r01.doc/bl1ins_manuallyinstallingonlinux_packages.htm).
