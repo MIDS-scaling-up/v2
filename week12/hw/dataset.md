@@ -19,4 +19,13 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
   * apt install unzip
   * unzip wikitext-103-v1.zip
   * rm -rf wikitext-103-v1.zip
-  * 
+  
+4. Let's use the library to crawl a medium size dataset, the approach we are going to use is getting dumps of URL's that have been deduplicated, we will just clean them and prepare for processing.
+  * pip install gdown
+  * gdown https://drive.google.com/uc?id=1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51
+  * unzip reddit_urls.zip
+  
+5.   
+  
+
+
