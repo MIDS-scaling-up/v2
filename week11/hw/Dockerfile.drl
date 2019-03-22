@@ -1,0 +1,21 @@
+FROM w251/cuda:tx2-3.3_b39
+
+RUN apt update
+RUN apt install -y git cmake
+
+WORKDIR /
+RUN git clone http://github.com/dusty-nv/jetson-reinforcement
+WORKDIR /jetson-reinforcement
+RUN git submodule update --init
+# RUN mkdir build
+# WORKDIR /jetson-reinforcement/build
+
+RUN sed -i -e 's/apt-get install -y/apt-get install/g' CMakePreBuild.sh && sed -i -e 's/apt-get install/apt-get install -y/g' CMakePreBuild.sh
+RUN sed -i '32,39d' CMakePreBuild.sh && sed -i '32i sudo apt-get install -y gazebo7 libgazebo7-dev' CMakePreBuild.sh
+RUN sed -i '68,75d' CMakePreBuild.sh && sed -i '68i sudo apt-get install -y ipython ipython-notebook; sudo pip install jupyter' CMakePreBuild.sh
+
+# Build
+RUN mkdir build
+WORKDIR build
+RUN cmake ../
+RUN make
