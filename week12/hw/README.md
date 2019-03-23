@@ -11,9 +11,11 @@ A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, UBUNTU\_16\_64, _
 
 B. __Set up each one of your nodes as follows:__
 
-Add to /root/.bash\_profile the following line in the end:
+Add to /root/.profile the following line in the end:
 
     export PATH=$PATH:/usr/lpp/mmfs/bin
+    
+Then execute the command `source ~/.profile` to commit the extra path to your `$PATH` variable.
 
 Make sure the nodes can talk to each other without a password.  When you created the VMs, you specified a keypair.  Copy it to /root/.ssh/id\_rsa (copy paste or scp works).  Set its permissions:
 
