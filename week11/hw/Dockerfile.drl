@@ -18,4 +18,10 @@ RUN sed -i '68,75d' CMakePreBuild.sh && sed -i '68i sudo apt-get install -y ipyt
 RUN mkdir build
 WORKDIR build
 RUN cmake ../
-RUN make
+RUN make -j6
+
+# locale madness
+RUN apt install -y locales locales-all gnome-terminal
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
