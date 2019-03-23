@@ -86,6 +86,12 @@ You could get more details on your cluster:
 
     mmlscluster
 
+If a node doesn't appear for some reason (for example, if there was a connection issue when the cluster was initially created), you can manually the node in with the command `mmaddnode`:
+    
+    mmaddnode -N gpfs3
+
+Where `gpfs3` is the name of the missing node.
+
 Now we need to define our disks. Do this to print the paths and sizes of disks on your machine:
 
     fdisk -l
