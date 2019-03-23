@@ -108,7 +108,7 @@ Now inspect the mount location of the root filesystem on your boxes:
     [root@gpfs1 ras]# mount | grep ' \/ '
     /dev/xvda2 on / type ext3 (rw,noatime)
 
-Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo`:
+Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo` on gpfs1:
 
     %pool:
     pool=system
