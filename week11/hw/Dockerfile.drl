@@ -1,5 +1,9 @@
 FROM w251/cuda:tx2-3.3_b39
 
+# validated on 3/24/2019
+# to run this:
+# docker run --rm -v /tmp:/tmp -v /dev:/dev --ipc=host --net=host --privileged -e DISPLAY=$DISPLAY -ti drl sh -c "cd /jetson-reinforcement/build/aarch64/bin && ./gazebo-arm.sh"
+
 RUN apt update
 RUN apt install -y git cmake
 
