@@ -118,7 +118,7 @@ You will need to have a keyboard, mouse, and monitor attached to your Jetson; bu
 
 1.  Get a screen sharing client.  If you are on a Mac, you should all set; it's located under System Preferences / Sharing.  If you are on Windows, you can install [TightVNC](https://www.tightvnc.com/) or another VNC client of your choice. On Linux, you can use [Remmina](https://remmina.org/), which you likely already have installed.
 2. Configure your Jetson for remote screen sharing.
-* Launch the desktop sharing utility
+* Launch the ![desktop sharing utility](launch-vino-config-450x197.jpg)
 * Allow other users to view / control your desktop, requre the user to enter password
 * Disable security if you are coming in through windows:
 ```
