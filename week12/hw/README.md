@@ -168,4 +168,5 @@ If the file was created, you are all set:
     ssh gpfs2 'ls -l /gpfs/gpfsfpo'
     ssh gpfs3 'ls -l /gpfs/gpfsfpo'
 
-We will be posting part 2 shortly.
+
+# Part 2 - The dataset [Crawler library](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/dataset.md)
