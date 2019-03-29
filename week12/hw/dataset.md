@@ -28,7 +28,14 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
   * gdown https://drive.google.com/uc?id=1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51
   * unzip reddit_urls.zip
   ```
-5.   
-  
+5. In step 4 a urls.txt file was downloaded, use it as a base with the contents of [crawler code](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/crawler.py)
+
+6. Use the following URL dumps:
+ ```
+ * https://drive.google.com/file/d/1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51/view
+ * https://drive.google.com/file/d/1zIVaRaVqGP8VNBUT4eKAzW3gYWxNk728/view?usp=sharing
+ * https://drive.google.com/file/d/1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC/view?usp=sharing
+ * https://dumps.wikimedia.org/enwiktionary/20190301/enwiktionary-20190301-pages-articles-multistream.xml.bz2 (notice this is not a url.txt file but a text file)
+  ```
 
 
