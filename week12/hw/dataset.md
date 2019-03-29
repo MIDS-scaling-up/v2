@@ -28,7 +28,7 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
   * gdown https://drive.google.com/uc?id=1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51
   * unzip reddit_urls.zip
   ```
-5. In step 4 a urls.txt file was downloaded, use it as a base with the contents of [crawler code](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/crawler.py)
+5. In step 4 a urls.txt file was downloaded, use it as a base with the contents of [crawler code](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/crawler.py), main idea is to use the function lazynlp.download_pages()
 
 6. Use the following URL dumps:
  ```
@@ -37,5 +37,8 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
  * https://drive.google.com/file/d/1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC/view?usp=sharing
  * https://dumps.wikimedia.org/enwiktionary/20190301/enwiktionary-20190301-pages-articles-multistream.xml.bz2 (notice this is not a url.txt file but a text file)
   ```
+7. Be creative with the crawler (multithread, run in background no up &) and put the data into the distributed storage, we will use for the class lab;
+
+8. Feel free to suggest improvements and try to collect as much data as possible.
 
 
