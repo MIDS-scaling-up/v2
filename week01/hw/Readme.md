@@ -113,5 +113,17 @@ docker images
 ```
 We'll cover Docker in the lab in more detail.
 
+### Setting up screen sharing for the Jetson
+You will need to have a keyboard, mouse, and monitor attached to your Jetson; but it is also extremely convenient to set up screen sharing, so you can see the Jetson desktop remotely. This is needed, for instance, when you want to show Jetson's screen over a web conference - plus it's a lot easier than switching between monitors all the time.
+
+1.  Get a screen sharing client.  If you are on a Mac, you should all set; it's located under System Preferences / Sharing.  If you are on Windows, you can install [TightVNC](https://www.tightvnc.com/) or another VNC client of your choice. On Linux, you can use [Remmina](https://remmina.org/), which you likely already have installed.
+2. Configure your Jetson for remote screen sharing.
+* Launch the desktop sharing utility
+* Allow other users to view / control your desktop, requre the user to enter password
+* Disable security if you are coming in through windows:
+```
+dconf write /org/gnome/desktop/remote-access/require-encryption false 
+```
+* Then, launch your client, type in the IP address of your jetson and port 5900.  You should now be able to connect!
 # To turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
