@@ -17,7 +17,7 @@
  - Select the blue "Order Devices" button at the top right
  - Select "Virtual Server" from the list, then "Public Virtual Server"
  - Accept the default for Quantity (1) and Billing (Hourly)
- - Choose a hostname and domain. You can literally use any domain name you choose, it will not be registered in DNS
+ - Choose a hostname and domain. You can literally use any domain name you choose, it will not be registered in DNS.The host name is the given to the endpoint(or the machine itself), while the domain is the name given to the network. It is written as `hostname.domain.com`. 
  - Choose a location near you
  - Select the Compute C1.1x1 profile (1 CPU, 1GB of RAM)
  - Select your SSH Key from the dropdown list
