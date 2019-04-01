@@ -36,10 +36,22 @@ Follow the prompts
 ```
 C. __Install Docker CE:__
 ```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add 
-sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common
-sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+    
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
 sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io
@@ -50,20 +62,20 @@ sudo docker run hello-world
 
 C. __Install NVIDIA docker 2 and run the Tensorflow container:__
 ```
-sudo apt-get install -y nvidia-docker2=2.0.3+docker18.09.1-1 nvidia-container-runtime=2.0.0+docker18.08.1-1
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey |   sudo apt-key add - distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list |   sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 sudo apt-get update
 
-sudo apt-get install -y nvidia-docker2
+sudo apt-get install nvidia-docker2
+sudo pkill -SIGHUP dockerd
 
- sudo pkill -SIGHUP dockerd
+#Test it
+docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
  
- docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
- 
- docker pull nvcr.io/nvidia/tensorflow:19.03-py3
+docker pull nvcr.io/nvidia/tensorflow:19.03-py3
  
  nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nvcr.io/nvidia/tensorflow:18.12-py3
 ```
