@@ -17,7 +17,7 @@ fast, simple-to-use, Horovod-based distributed training and data parallelism, su
 
 
 ### Get a pair of GPU VMs in Softlayer
-Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/master/week03/hw) to get a pair of 2*P100 VMs in Softlayer.  Call them, for instance, p100a and p100b.
+Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/master/week03/hw) to get 1 P100 VM in Softlayer.  
 
 Virtual servers middleware installation:
 
