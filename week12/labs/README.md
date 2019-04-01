@@ -1,4 +1,4 @@
-# Homework: Part 1 - Installing GPFS FPO
+# Lab: LSTM Language model with OpenSeq2Seq
 
 ## Overview OpenSeq2Seq
 
@@ -68,3 +68,22 @@ sudo apt-get install -y nvidia-docker2
  nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nvcr.io/nvidia/tensorflow:18.12-py3
 ```
 
+## Tensorflow operations
+
+A. __Data collection:__
+In this first iteration we will work the model with the dataset wikitext-2-v1, which is a small subset, feel free to expand the lab and share your experiences using the dataset that was collected with LazyNLP.
+```
+git clone https://github.com/NVIDIA/OpenSeq2Seq
+cd OpenSeq2Seq
+pip install -r requirements.txt
+wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-2-v1.zip
+unzip wikitext-2-v1.zip
+cd example_configs/lm
+Edit the file lstm-wkt2-fp32.py and setup the appropiate path for the train, validation and test.
+Make a copy of the data to fit the expected format, i.e.(your path might look different)
+cp /workspace/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/OpenSeq2Seq/wikitext-2/train.txt
+python run.py --config_file=example_configs/lm/lstm-wkt2-fp32.py --mode=train_eval --enable_logs
+```
+
+C. __Exploration (optional):__
+Review the official documentation and try different combinations of settings and hyperparameters, share your experiences with the class (OpenSeq2Seq)[https://nvidia.github.io/OpenSeq2Seq/html/index.html]
