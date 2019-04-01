@@ -16,7 +16,7 @@ ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=
 As of right now, 10 is the latest version.  Check https://developer.nvidia.com/cuda-toolkit  for the latest..
 ```
 wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
-dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
+dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 
 # the key
 apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 # install it!
@@ -70,7 +70,7 @@ pkill -SIGHUP dockerd
 ```
 Test nvidia-smi with the latest official CUDA image
 ```
-docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+docker run --runtime=nvidia --rm nvidia/cuda:10.0-base nvidia-smi
 ```
 Hopefully, you will see your GPUs.  
 ### Prepare the second disk
@@ -94,7 +94,7 @@ mkfs.ext4 /dev/xvdc
 
 Add to /etc/fstab
 ```
-# edit /etc/fstab and all this line:
+# edit /etc/fstab and add this line:
 /dev/xvdc /data                   ext4    defaults,noatime        0 0
 ```
 Mount the disk
