@@ -17,7 +17,7 @@
  - Select the blue "Order Devices" button at the top right
  - Select "Virtual Server" from the list, then "Public Virtual Server"
  - Accept the default for Quantity (1) and Billing (Hourly)
- - Choose a hostname and domain. You can literally use any domain name you choose, it will not be registered in DNS
+ - Choose a hostname and domain. You can literally use any domain name you choose, it will not be registered in DNS. The host name is the given to the endpoint (or the machine itself), while the domain is the name given to the network. It is written as `hostname.domain.com`. 
  - Choose a location near you
  - Select the Compute C1.1x1 profile (1 CPU, 1GB of RAM)
  - Select your SSH Key from the dropdown list
@@ -28,14 +28,14 @@
  - Navigate to https://cloud.ibm.com/classic/devices to monitor your VM creation
 
 ## Harden the VSI, ensure ssh still works with the key
- - SSH into the VSI using your SSH Key and the `root` ID
+ - SSH into the VSI using your SSH Key and the `root` ID. Here you use the public IP seen on the Virtual Machine on Softlayer, for example `ssh root@158.176.113.253`. It may take a minute for the server to power up before you can SSH in. 
  - Edit /etc/ssh/sshd_config and make the following changes to prevent brute force attacks
 
 ```
 PermitRootLogin prohibit-password
 PasswordAuthentication no
 ```
- - Restart the ssh daemon: `service sshd restart`
+ - Restart the ssh daemon: `service sshd restart`. On MacOS this command was not available so you can try the commands seen here http://vivo.pub/2409
  - Ensure that you can only login with a ssh key and that password authentication is properly disabled:
 
 ```
@@ -51,6 +51,7 @@ Copy and paste the following command to a terminal of your Linux OS and run it:
 ```
 curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 ```
+For Windows or Mac, and installer is needed. Search in a browser for 'Install IBM Cloud CLI on the VSI', and you will get to the installers in Bluemix. 
 
 Log into IBM Cloud using `ibmcloud login`
 
