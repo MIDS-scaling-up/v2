@@ -4,11 +4,11 @@
 
 OpenSeq2Seq is a TensorFlow-based toolkit for training sequence-to-sequence models:
 
-machine translation (GNMT, Transformer, ConvS2S, …)
-speech recognition (DeepSpeech2, Wave2Letter, Jasper, …)
-speech synthesis (Tacotron2, …)
-language model (LSTM, …)
-sentiment analysis (SST, IMDB, …)
+* machine translation (GNMT, Transformer, ConvS2S, …)
+* speech recognition (DeepSpeech2, Wave2Letter, Jasper, …)
+* speech synthesis (Tacotron2, …)
+* language model (LSTM, …)
+* sentiment analysis (SST, IMDB, …)
 
 ## Main features:
 modular architecture that allows assembling of new models from available components
