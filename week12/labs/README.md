@@ -86,4 +86,4 @@ python run.py --config_file=example_configs/lm/lstm-wkt2-fp32.py --mode=train_ev
 ```
 
 C. __Exploration (optional):__
-Review the official documentation and try different combinations of settings and hyperparameters, share your experiences with the class (OpenSeq2Seq)[https://nvidia.github.io/OpenSeq2Seq/html/index.html]
+Review the official documentation and try different combinations of settings and hyperparameters, share your experiences with the class [OpenSeq2Seq](https://nvidia.github.io/OpenSeq2Seq/html/index.html)
