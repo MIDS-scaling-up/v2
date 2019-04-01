@@ -48,7 +48,7 @@ sudo docker run hello-world
 
 ```
 
-C. __Install NVIDIA docker 2:__
+C. __Install NVIDIA docker 2 and run the Tensorflow container:__
 ```
 sudo apt-get install -y nvidia-docker2=2.0.3+docker18.09.1-1 nvidia-container-runtime=2.0.0+docker18.08.1-1
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey |   sudo apt-key add - distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
