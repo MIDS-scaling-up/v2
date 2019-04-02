@@ -8,4 +8,5 @@ The TLT is a convenience framework that's supposed to help speed up the developm
 
 Note its model pruning capabilities.  
 At the moment, the TLT is still early release, and you need to apply for access. 
+We have contacted Nvidia and passed on your email addresses with which you registered for the class - with the idea that you could use the same email address to register for the NGC and then get access to the TLT.  More on this shortly.
 
