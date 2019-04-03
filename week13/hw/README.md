@@ -5,6 +5,7 @@ The TLT is a convenience framework that's supposed to help speed up the developm
 * https://developer.nvidia.com/transfer-learning-toolkit
 * https://devblogs.nvidia.com/accelerating-video-analytics-tlt/
 * https://devblogs.nvidia.com/transfer-learning-toolkit-pruning-intelligent-video-analytics/
+* The [Getting Started Guide](https://github.com/MIDS-scaling-up/v2/blob/master/week13/hw/Transfer-Learning-Toolkit-Getting-Started-Guide-IVAOpenBeta.pdf)
 
 Note its model pruning capabilities.  
 At the moment, the TLT is still early release, and you need to apply for access. 
