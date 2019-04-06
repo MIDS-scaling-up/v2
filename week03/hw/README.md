@@ -15,8 +15,13 @@ ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=
 ### Install cuda
 As of right now, 10 is the latest version.  Check https://developer.nvidia.com/cuda-toolkit  for the latest..
 ```
-wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
-dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
+# wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
+# dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
+
+wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
+
+
 # the key
 apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 # install it!
