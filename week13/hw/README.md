@@ -20,12 +20,12 @@ docker pull nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py2
 ```
 Assuming this completed ok, you should now be able to run the TLT container. You will need to have a mountpoint or disk with some space available (let's say, 20G) - in the example below, /data is my mountpoint , and pass it through to the container.  Notice that we are also setting up a port passthrough:
 ```
-nvidia-docker run --rm -v /data:/data -p 9888:8888 -it  nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py3 /bin/bash
+nvidia-docker run --rm -v /data:/data -p 9888:8888 -it  nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py2 /bin/bash
 ```
 Validate that your TLT command line is working by trying to list the available models:
 ```
 root@34eda020fe6a:/workspace# tlt-pull -k $YOUR_KEY  --list_models -o nvtltea -t iva
-# the output should look likethis:
+# the output should look like this:
 +-----------------------------------+-------------+----------------+----------------+-----------+-----------+-------------------------+
 | Name                              | Org/Team    | Latest Version | Application    | Framework | Precision | Last Modified           |
 +-----------------------------------+-------------+----------------+----------------+-----------+-----------+-------------------------+
