@@ -23,7 +23,8 @@ dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
 
 
 # the key
-apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
+apt-key add /var/cuda-repo-10-1-local-10.1.105-418.39/7fa2af80.pub
+
 # install it!
 apt-get update
 apt-get install cuda
