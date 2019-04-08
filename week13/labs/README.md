@@ -15,6 +15,11 @@ cd aarch64/bin
 * Run the frame classification demo, e.g. ```./imagenet-camera```.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
 * Run the object detection demo, e.g. ```./detectnet-camera```. What is the framerate now?  Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-camera-2.md)
 * Try to image segmentation demo as well: ```./segnet-camera``` Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console.md)
-* [Earlier in the class](https://github.com/MIDS-scaling-up/v2/tree/master/week07/hw), we trained a DetectNet model on the Kitti dataset.  Follow [these](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-snapshot.md) and [these](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-custom.md) instructions to use it for inference with the detectnet camera demo
+* [Earlier in the class](https://github.com/MIDS-scaling-up/v2/tree/master/week07/hw), we trained a DetectNet model on the Kitti dataset.  Follow [these](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-snapshot.md) and [these](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-custom.md) instructions to use it for inference with the detectnet camera demo. Here's my command line, after downloading one of our student's [model](http://169.44.201.108:5000/models/20190216-223354-6fb5/download):
+```
+# make sure you move the tgz archive to /jetson-inference/data/networks/kitti/ , decompress, and remove the last layer out of the deploy.prototxt
+NET=networks/kitti
+./detectnet-camera --prototxt=$NET/deploy.prototxt --model=$NET/snapshot_iter_19140.caffemodel --labels=$NET/labels.txt --input_blob=data 
+```
 
 
