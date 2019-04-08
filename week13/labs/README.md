@@ -1,4 +1,4 @@
-# Labs 13: Inference
+# Labs 13: Inference and End to End
 
 1. DeepStream SDK
 * The [documentation](https://developer.nvidia.com/deepstream-sdk)
