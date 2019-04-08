@@ -1,6 +1,10 @@
 # Labs 13: Inference
 
 1. DeepStream SDK
+* The [documentation](https://developer.nvidia.com/deepstream-sdk)
+* The [Smart Parking Application](https://github.com/NVIDIA-AI-IOT/deepstream_360_d_smart_parking_application/tree/master/perception_docker)
+* The [blog post](https://devblogs.nvidia.com/multi-camera-large-scale-iva-deepstream-sdk/) on multi-camera applications
+* The [docker containeer](https://ngc.nvidia.com/catalog/containers/nvidia:deepstream)
 
 2. Deep Learning SDK (by Dustin Franklin)
 * Review the [github repo](https://github.com/dusty-nv/jetson-inference)
