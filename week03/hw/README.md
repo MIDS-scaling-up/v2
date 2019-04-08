@@ -21,8 +21,10 @@ As of right now, 10.1 is the latest version.  Check https://developer.nvidia.com
 wget https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
 dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
 
+# the cuda 10.0 key
+# apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 
-# the key
+# the cuda 10.1 key
 apt-key add /var/cuda-repo-10-1-local-10.1.105-418.39/7fa2af80.pub
 
 # install it!
