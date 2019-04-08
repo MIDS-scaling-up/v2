@@ -4,7 +4,7 @@
 
 2. Deep Learning SDK (by Dustin Franklin)
 * Review the [github repo](https://github.com/dusty-nv/jetson-inference)
-* Review the docker file required the build the container
+* Review the [docker file])(Dockerfile.inf) required the build the container
 * Start the container in interactive mode, e.g.
 ```
 docker run --rm --privileged -v /tmp:/tmp -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:tx2-3.3_b39 bash
