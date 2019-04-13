@@ -10,7 +10,7 @@ FROM w251/cuda:tx2-3.3_b39
 # ./segnet-camera
 
 RUN apt update
-RUN apt install -y git cmake wget
+RUN apt install -y git cmake wget gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-base
 WORKDIR /tmp
 RUN rm *.deb
 ARG URL=https://developer.download.nvidia.com/devzone/devcenter/mobile/jetpack_l4t/3.3/lw.xd42/JetPackL4T_33_b39/
