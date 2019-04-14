@@ -12,9 +12,24 @@
 * Try building on the TX2, e.g. ``` docker build -t inf -f Dockerfile.inf .``` This may take a while and provided for reference only, so you could modify it in the future. You can complete this in your own free time; kill it before continuing to the next step
 * Start the container in interactive mode, e.g.
 ```
+xhost +
 docker run --rm --privileged -v /tmp:/tmp -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:tx2-3.3_b39 bash
-cd aarch64/bin
 ```
+Note: this demo will, by default, use the on-board camera.  If you wish to use the external USB camera, you will need to edit the corresponding source -- e.g. /jetson-inference/detectnet-camera/detectnet-camera.cpp or imagenet-camera/imagenet-camera.cpp and change the DEFAULT_CAMERA variable to the index of your USB camera.  For instance, the first USB camera should be /dev/video1 (the /dev/video0 camera should be the built in one), so DEFAULT_CAMERA should be set to 1 
+
+Also, some USB cameras do not support the default resolution for this code, which is set to 1280x720 in utils/camera/gstCamera.h:
+```
+	static const uint32_t DefaultWidth  = 1280;
+	static const uint32_t DefaultHeight = 720;
+```
+Tweak these (640x480 is a safe bet) if you see related errors while trying to run.  
+
+Once you change the source, you need to recompile:
+```
+cd /jetson-inference/build
+make install
+```
+
 * Run the camera demo, e.g. ```./gst-camera``` . Close the window to exit the program.
 * Run the frame classification demo, e.g. ```./imagenet-camera```.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
 * Run the object detection demo, e.g. ```./detectnet-camera```. What is the framerate now?  Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-camera-2.md)
