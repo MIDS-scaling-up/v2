@@ -12,12 +12,22 @@ At the moment, the TLT is still early release, and you need to apply for access.
 We have contacted Nvidia and passed on your email addresses with which you registered for the class - with the idea that you could use the same email address to register for the NGC and then get access to the TLT.  
 
 You will need a virtual machine with a GPU.  Please obtain and set up one (including docker and nvidia docker) in Softlayer as per instructions in earlier homeworks.
-Once that is done, log into the NGC with your credentials and pull the latest TLT container, e.g.
+Once that is done, log into the NGC with your credentials and pull the latest TLT container. For the docker login, follow the instructions from Nvidia at https://ngc.nvidia.com/setup/api-key:
+
+For the username, enter '$oauthtoken' exactly as shown. It is a special authentication token for all users.
 ```
-docker login
-# make sure you enter the credentials that allow you access to the TLT
+docker login nvcr.io
+
+Username: $oauthtoken
+Password: <Your Key>
+```
+
+Make sure you enter the credentials that allow you access to the TLT from your developer account. Then to install the TLT:
+
+```
 docker pull nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py2
 ```
+
 Assuming this completed ok, you should now be able to run the TLT container. You will need to have a mountpoint or disk with some space available (let's say, 20G) - in the example below, /data is my mountpoint , and pass it through to the container.  Notice that we are also setting up a port passthrough:
 ```
 nvidia-docker run --rm -v /data:/data -p 9888:8888 -it  nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py2 /bin/bash
