@@ -1,6 +1,6 @@
 # Labs 13: Inference and End to End
 
-1. DeepStream SDK
+### DeepStream SDK (the official one)
 * The [documentation](https://developer.nvidia.com/deepstream-sdk)
 * The [Smart Parking Application](https://github.com/NVIDIA-AI-IOT/deepstream_360_d_smart_parking_application/tree/master/perception_docker)
 * The [blog post](https://devblogs.nvidia.com/multi-camera-large-scale-iva-deepstream-sdk/) on multi-camera applications
@@ -58,7 +58,7 @@ deepstream-app -c configs/deepstream-app/source4_720p_dec_infer-resnet_tracker_s
 
 ```
 
-2. Deep Learning SDK (by Dustin Franklin)
+### Deep Learning SDK (the unofficial one, by Dustin Franklin)
 * Review the [github repo](https://github.com/dusty-nv/jetson-inference)
 * Review the Docker file (Dockerfile.inf) required the build the container
 * Try building on the TX2, e.g. ``` docker build -t inf -f Dockerfile.inf .``` This may take a while and provided for reference only, so you could modify it in the future. You can complete this in your own free time; kill it before continuing to the next step
