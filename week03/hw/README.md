@@ -13,16 +13,11 @@ ibmcloud sl vs create --datacenter=dal13 --hostname=<hostname> --domain=<domain>
 ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=UBUNTU_16_64 --flavor AC1_16X120X25 --billing=hourly --san --disk=25 --disk=2000 --network 1000 --key=p305
 ``` 
 ### Install cuda
-As of right now, 10.1 is the latest version.  Check https://developer.nvidia.com/cuda-toolkit  for the latest..
+As of right now, 10.1 is the latest version.  Check https://developer.nvidia.com/cuda-toolkit  for the latest.
 ```
-# wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
-# dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
-
 wget https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
 dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
 
-# the cuda 10.0 key
-# apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 
 # the cuda 10.1 key
 apt-key add /var/cuda-repo-10-1-local-10.1.105-418.39/7fa2af80.pub
@@ -31,6 +26,18 @@ apt-key add /var/cuda-repo-10-1-local-10.1.105-418.39/7fa2af80.pub
 apt-get update
 apt-get install -y cuda
 ```
+If you have a dependency on cuda 10.0 (e.g. DeepStreamSDK), you will have to install these instead:
+```
+wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
+
+# the cuda 10.0 key
+apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
+
+# install it!
+apt-get update
+apt-get install -y cuda
+```
+
 ### Install docker
 Validate these at https://docs.docker.com/install/linux/docker-ce/ubuntu/
 ```
