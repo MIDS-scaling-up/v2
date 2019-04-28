@@ -28,7 +28,8 @@ apt-get install -y cuda
 ```
 If you have a dependency on cuda 10.0 (e.g. DeepStreamSDK), you will have to install these instead:
 ```
-wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
+wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
+dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
 
 # the cuda 10.0 key
 apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
