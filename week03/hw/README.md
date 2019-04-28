@@ -29,12 +29,12 @@ apt-key add /var/cuda-repo-10-1-local-10.1.105-418.39/7fa2af80.pub
 
 # install it!
 apt-get update
-apt-get install cuda
+apt-get install -y cuda
 ```
 ### Install docker
 Validate these at https://docs.docker.com/install/linux/docker-ce/ubuntu/
 ```
-apt-get install \
+apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -53,7 +53,7 @@ apt-get update
 # Dima validated on 01/13/19 that this below is still required; sigh
 # apt-get install docker-ce=5:18.09.0~3-0~ubuntu-xenial
 # As of 2/24/19 this works now
-apt-get install docker-ce
+apt-get install -y docker-ce
 
 # verify
 
