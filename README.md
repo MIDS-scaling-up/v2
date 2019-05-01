@@ -18,4 +18,9 @@ To follow the class, you'll a Mac or a PC (Windows or Linux) with an ability to 
 6. While we have not had any issues, [an ant-static wrist strap](https://www.amazon.ca/Anti-Static-Wrist-Straps-Anti-Static/dp/B017164JHA) is never a bad idea.
 
 ### Homeworks:
-A homework is due before each class.  There are two types of homeworks: graded and credit only.  As this class is currently in furios development, we will be adding homeworks as the class proceeds. Here is the link to [class 1](week01) - be sure to complete the setup of your Jetson as described in [homework 1](week01/hw)
+A homework is due before each class.  There are two types of homeworks: graded and credit only. Here is the link to [class 1](week01) - be sure to complete the setup of your Jetson as described in [homework 1](week01/hw)
+
+### Graded homeworks
+The graded homeworks are week 3, week 5, week 9, week 11; please notice that those are the slots that are available on the ISVC website except there are labeled as Homework 1, 2, 3 and 4 (we are working on getting this changed but in the meantime submit matching the graded homework week with it's slot i.e week 3 uploaded to Homework 1).
+
+
