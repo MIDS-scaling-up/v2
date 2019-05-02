@@ -1,11 +1,9 @@
 # HW 1: Installing Jetpack and Docker 
 
-
 ## 1. Nvidia Jetpack SDK
 Jetpack is a SDK that basically contains everything needed for deep learning and AI applications in a handy package for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 All of the following must be done in an Ubuntu OS. If a command is ever permission denied, try adding "sudo" at the beginning.
-
-Please note that starting from the Summer semester of 2019 we are moving from Jetpack3.3 to the latest [Jetpack4.2](https://developer.nvidia.com/embedded/jetpack) .  We see no reason to use 3.3 anymore, but if you do have such a reason, please follow the [3.3 instructions](Readme.jetpack3.3.md)
+Refer to https://docs.nvidia.com/jetson/archives/jetpack-archived/jetpack-33/index.html for more detailed instructions (these are for Jetpack 3.3 on the Jetson TX2).
 
 ### Host (Computer) Installation
 To reiterate, you will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
@@ -24,17 +22,39 @@ Now select "Start" in the upper right. When prompted to select a start-up disk, 
 **Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible.**
 
 #### Installation on Ubuntu
-Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it and then open the freshly installed application. 
+Open a terminal window and create a new directory to store installation packages. Now download the latest version of Jetpack from the Nvidia webiste (you need to make a Nvidia Developer's account first). The download is a Linux executable file (.run file type). Move the file into the directory you just made, then cd into that directory. Add exec permission for this Jetpack file (replace the <> with the name of the file):
+```
+chmod +x <Jetpack file name>
+```
+Run the file (remember to replace the <>):
+```
+./<Jetpack file name>
+```
+The install wizard window should open, click "next". The next window displays the installation locations, which should already be the directory you are currently in. Next window, select the correct Jetson version (TX2 as of now, maybe Jetson Xavier). 
 
-You will need to stick to the default settings except:
-* Select Jetson TX2 (NOT the less powerful TX2i) as the target device
-* Select "Manual" and place your TX2 into the recovery mode as mentioned above.
+The next window is the components manager, where you can see what actions will be performed to the host and target. You can troubleshoot here for errors if needed. For now, click "next" at the bottom right and then check "accept all" in the following terms and conditions popup. You'll be taken back to the components manager and everything will begin to download. There may be an error message during download; just dismiss it and click "next" again. A message will prompt you to monitor the computer during installation, and click "ok" to begin cross-compilation. After the cross-compilation is done and the OS image for the Jetson is created, the wizard will now do target hardware setup (the Jetson). 
 
-The process of fetching the software, installing and cross-compiling it will take some time, depending on the speed of your workstation and your internet connection. It took me 30 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  Once the OS image is built and flashed to the Jetson, you will need to complete the OS set up ON THE JETSON; specifically, create the userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point.
+### Target (Jetson) Installation
+
+On the host computer, select the "Device accesses Internet via router/switch" option. The next window prompts you to select the correct network interface corresponding to the router that the Jetson is also connected to. To view these, open up another terminal window and bring up a list of the interfaces with this command:
+```
+ifconfig
+```
+Find the one which points to the router. It usually has "inet addr: 192.168.<somenumbers>" in the second line of the description and the name often looks like "wlp<somenumbers>". Select that interface from the drop-down menu in the install wizard. The next window displays the actions the install will take, click "next". 
+
+Follow the instructions on the new window to put the Jetson into Force USB Recovery Mode. The FORCE RECOVERY button is the button next to the power button, and the RESET button is the button on the opposite end of the row. 
+**Note: if you are using a VM, open the VM settings, go to Ports > USB, and make sure "NVIDIA Corp. APX" is on the list and checked.**
+Afterwards, check if the Jetson is on Force USB Recovery Mode by listing the USB buses in the host computer:
+```
+lsusb
+```
+You should see "NVidia Corp" in the list of devices. Go back to the window with instructions and press "enter" to begin flashing the OS on the Jetson's internal storage. 
+
+After flashing, the host computer will install Jetpack modules onto the Jetson via ssh. If the host computer can't find the IP address of the Jetson, it will give you options to try again or enter the IP address manually. Keep trying again, but if this keeps failing then check the Jetson's IP address and enter it manually. 
 
 **If using a VM and the process freezes at "Determining IP address", exit the installer and run it again via terminal. This time, change the "Flash OS Image to Target" option to "No Action" in the components manager. When prompted to enter IP address, User Name, and Password, boot up the Jetson and connect it to a monitor. Ensure it is connected to the same router as the host computer. Now check its IP address by clicking the WiFi symbol in the upper right corner of the home screen and choosing the "Connection Information" option." The password and user name are both "nvidia".**
 
-When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
+When installation on the Jetson is done, close the window as prompted and you're done.
 
 ### Testing Jetpack on the Jetson
 Ensure the Jetson is on and running Ubuntu. Use ls to check the directory name where the CUDA samples are (it looks likes "NVIDIA_CUDA-<version>" replacing the <> with the CUDA version you have). Then cd into it and run the oceanFTT sample:
@@ -48,9 +68,21 @@ The Jetson SoCs has a number of different power modes described in some detail h
 ## 2. Docker 
 Docker is a platform that allows you to create, deploy, and run applications in containers. The application and all its dependecies are packaged into one container that is easy to ship out and uses the same Linux kernel as the system it's running on, unlike a virtual machine. This makes it especially useful for compact platforms such as the Jetson.
 
-Jetpack 4.2 has Docker pre-installed.
-
-Let's test it to see if it can run containers. Since the Jetson doesn't have the image below yet, Docker will automatically pull it online from the official repository:
+### Downloading Docker onto the Jetson
+Navigate to the /etc/apt directory. There should be a executable file there called "sources.list". Open it and add the following to the bottom:
+```
+deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+```
+If the file is read-only (it won't let you save changes), open a terminal and give yourself permission to edit the file:
+```
+sudo chmod a+rwx sources.list
+```
+Now update the package lists and install Docker. If Docker is already on the Jetson, a message in the terminal will tell you it's "already installed".
+```
+sudo apt-get update
+sudo apt-get install docker.io
+```
+Let's test Docker to see if it can run containers. Since the Jetson doesn't have the image yet, Docker will automatically pull it online from the official repository:
 ```
 docker run arm64v8/hello-world
 ```
@@ -73,18 +105,13 @@ Now your Docker work will automatically be stored on this external drive. The ne
 ### Creating a base CUDA Docker Image for the Jetson
 Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase3.0 file on Github in week1/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
 ```
-docker build -t cudabase -f Dockerfile.cudabase .
+docker build -t cudabase -f Dockerfile.cudabase3.0 .
 ```
 After a while, the image is created. List the current images to see if it worked:
 ```
 docker images
-
-Now let's buil the cudabase:dev image:
 ```
-docker build -t cudabase:dev -f Dockerfile.cudabase.dev .
-```
-
-We'll cover Docker during the in-class lab in more detail.
+We'll cover Docker in the lab in more detail.
 
 ### Setting up screen sharing for the Jetson
 You will need to have a keyboard, mouse, and monitor attached to your Jetson; but it is also extremely convenient to set up screen sharing, so you can see the Jetson desktop remotely. This is needed, for instance, when you want to show Jetson's screen over a web conference - plus it's a lot easier than switching between monitors all the time.
