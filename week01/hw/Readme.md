@@ -11,7 +11,7 @@ Please note that starting from the Summer semester of 2019 we are moving from Je
 To reiterate, you will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
 
 #### VM Installation (if needed)
-Download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) and the extension to give VMs access to your USB hubs [here](https://download.virtualbox.org/virtualbox/6.0.6/Oracle_VM_VirtualBox_Extension_Pack-6.0.6.vbox-extpack). First download the Ubuntu 16.04 iso image [here](http://releases.ubuntu.com/16.04/ubuntu-16.04.5-desktop-amd64.iso). Open Virtual Box and select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. The size of the disk should be 55GB absolutely minimum.  
+Download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) and the extension to give VMs access to your USB hubs [here](https://download.virtualbox.org/virtualbox/6.0.6/Oracle_VM_VirtualBox_Extension_Pack-6.0.6.vbox-extpack). First download the Ubuntu 16.04 iso image [here](http://releases.ubuntu.com/16.04/ubuntu-16.04.5-desktop-amd64.iso). Open Virtual Box and select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. The size of the disk should be 55GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
 
 NOTE: if you are on Windows and are not seeing the 64-bit option for VMs, please look [here](https://forums.virtualbox.org/viewtopic.php?f=1&t=62339).  Unfortunately, Docker on Windows does not currently support USB. Therefore, you can't use it, which leads you to having to install VirtualBox and disabling HyperV, per the instructions, if it was previously enabled.
 
@@ -27,7 +27,7 @@ Now select "Start" in the upper right. When prompted to select a start-up disk, 
 Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it and then open the freshly installed application. 
 
 You will need to stick to the default settings except:
-* Select Jetson TX2 (NOT the less powerful TX2i) as the target device
+* Select "Jetson TX2" (NOT the less powerful TX2i) as the target device
 * Select "Manual" and place your TX2 into the recovery mode as mentioned above.
 
 The process of fetching the software, installing and cross-compiling it will take some time, depending on the speed of your workstation and your internet connection. It took me 30 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  Once the OS image is built and flashed to the Jetson, you will need to complete the OS set up ON THE JETSON; specifically, create the userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point.
@@ -53,8 +53,8 @@ Let's test it to see if it can run containers. Since the Jetson doesn't have the
 docker run arm64v8/hello-world
 ```
 
-### Linking Docker to an External Drive (recommended)
-The Jetson has limited storage, so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is recommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
+### Linking Docker to an External Drive (strongly recommended)
+The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is recommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
 ```
 sudo service docker stop
 mv /var/lib/docker /media/nvidia/<drivename>
@@ -82,6 +82,8 @@ Now let's buil the cudabase:dev image:
 ```
 docker build -t cudabase:dev -f Dockerfile.cudabase.dev .
 ```
+
+Note for future reference that these Docker images are also available in the docker hub as w251/cuda:tx2-4.2_b158 and w251/cuda:dev-tx2-4.2_b158. In the docker hub you will find other versions of these containers as well. 
 
 We'll cover Docker during the in-class lab in more detail.
 
