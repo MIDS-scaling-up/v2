@@ -83,7 +83,7 @@ Now let's buil the cudabase:dev image:
 docker build -t cudabase:dev -f Dockerfile.cudabase.dev .
 ```
 
-Note for future reference that these Docker images are also available in the docker hub as w251/cuda:tx2-4.2_b158 and w251/cuda:dev-tx2-4.2_b158. In the docker hub you will find other versions of these containers as well. 
+Note for future reference that these Docker images are also available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
 
 We'll cover Docker during the in-class lab in more detail.
 
@@ -98,10 +98,26 @@ You will need to have a keyboard, mouse, and monitor attached to your Jetson; bu
 * Allow other users to view / control your desktop, requre the user to enter password:
 
 ![config](enable-vino-server-450x354.jpg)
-* Disable security if you are coming in through windows:
+
+* Has the desktop sharing utility **still** crashed for you? We would imagine this will be fixed at some point. Here is the workaround:
 ```
-dconf write /org/gnome/desktop/remote-access/require-encryption false 
+mkdir ~/.config/autostart
 ```
+* Now, edit ```~/.config/autostart/vino-server.desktop``` and insert the following:
+```
+[Desktop Entry]
+Type=Application
+Name=Vino VNC server
+Exec=/usr/lib/vino/vino-server
+NoDisplay=true
+```
+
+* Disable security:
+```
+gsettings set org.gnome.Vino prompt-enabled false
+gsettings set org.gnome.Vino require-encryption false
+```
+* Reboot your Jetson
 * Then, launch your client, type in the IP address of your jetson and port 5900.  You should now be able to connect!
 # To turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
