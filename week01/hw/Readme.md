@@ -32,8 +32,6 @@ You will need to stick to the default settings except:
 
 The process of fetching the software, installing and cross-compiling it will take some time, depending on the speed of your workstation and your internet connection. It took me 30 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  Once the OS image is built and flashed to the Jetson, you will need to complete the OS set up ON THE JETSON; specifically, create the userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point.
 
-**If using a VM and the process freezes at "Determining IP address", exit the installer and run it again via terminal. This time, change the "Flash OS Image to Target" option to "No Action" in the components manager. When prompted to enter IP address, User Name, and Password, boot up the Jetson and connect it to a monitor. Ensure it is connected to the same router as the host computer. Now check its IP address by clicking the WiFi symbol in the upper right corner of the home screen and choosing the "Connection Information" option." The password and user name are both "nvidia".**
-
 When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
 
 ### Testing Jetpack on the Jetson
