@@ -76,6 +76,7 @@ docker build -t cudabase -f Dockerfile.cudabase .
 After a while, the image is created. List the current images to see if it worked:
 ```
 docker images
+```
 
 Now let's buil the cudabase:dev image:
 ```
