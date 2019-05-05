@@ -1,4 +1,4 @@
-FROM w251/cuda:dev-tx2-4.2_b158
+FROM w251/cuda:tx2-3.3_b39
 
 # validated on 3/24/2019
 # to run a quick test demo without building the container:
@@ -6,7 +6,7 @@ FROM w251/cuda:dev-tx2-4.2_b158
 # xhost + 
 # then
 # docker run --rm -v /tmp:/tmp -v /dev:/dev --ipc=host --net=host --privileged -e DISPLAY=$DISPLAY w251/drl:tx2-3.3_b39
-#  sh -c "cd /jetson-reinforcement/build/aarch64/bin && ./gazebo-arm.sh"
+ sh -c "cd /jetson-reinforcement/build/aarch64/bin && ./gazebo-arm.sh"
 # It will take some time to start
 
 # to start an interactive shell:
@@ -31,14 +31,11 @@ RUN sed -i '32,39d' CMakePreBuild.sh && sed -i '32i sudo apt-get install -y gaze
 RUN sed -i '68,75d' CMakePreBuild.sh && sed -i '68i sudo apt-get install -y ipython ipython-notebook; sudo pip install jupyter' CMakePreBuild.sh
 
 # Build
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt install -y tzdata libboost-all-dev qt4-default
 RUN mkdir build
 WORKDIR build
 RUN cmake ../
 RUN make -j6
 
-# ENV DEBIAN_FRONTEND=noninteractive
 # locale madness
 RUN apt install -y locales locales-all gnome-terminal
 ENV LC_ALL en_US.UTF-8

@@ -1,16 +1,23 @@
-FROM w251/cuda:dev-tx2-4.2_b158
+# FROM openhorizon/aarch64-tx2-cudabase:JetPack3.2-RC
+FROM w251/cuda:tx2-4.2_b158
 
-MAINTAINER bmwshop@gmail.com
+
+#AUTHOR chenbryanchen@gmail.com
 
 ENV ARCH=aarch64
 
+ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /
 
 ENV DEBIAN_FRONTEND=noninteractive
+
 # Install opencv dev package libraries
-RUN apt-get update && apt-get install -y libopencv-dev
+RUN apt-get update --fix-missing
+RUN apt-get update
+RUN apt-get install -y libopencv-dev
 
 # Install dependencies
+RUN apt-get update --fix-missing
 RUN apt-get install -y --no-install-recommends build-essential cmake git gfortran libatlas-base-dev libboost-filesystem-dev libboost-python-dev libboost-system-dev libboost-thread-dev libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libleveldb-dev liblmdb-dev libsnappy-dev python-all-dev python-dev python-h5py python-matplotlib python-numpy python-opencv python-pil python-pip python-scipy python-skimage python-sklearn python-setuptools autoconf automake libtool 
 
 # Install newer protobuf
@@ -27,6 +34,7 @@ RUN rm -fr /protobuf
 RUN pip install --upgrade pip 
 RUN pip install protobuf==3.6.0
 RUN git clone http://github.com/NVIDIA/caffe -b 'caffe-0.15'
+# RUN git clone http://github.com/NVIDIA/caffe -b 'caffe-0.17'
 
 # patch caffe for aarch64
 COPY mutex.patch /tmp/mutex.patch
@@ -38,31 +46,7 @@ RUN for req in $(cat requirements.txt); do pip install $req; done
 WORKDIR /caffe
 RUN mkdir build
 WORKDIR /caffe/build
-
-# RUN apt install -y libatlas-base-dev libopenblas-dev
-# RUN cmake ../ -DCUDA_ARCH_NAME="Manual" -DCUDA_ARCH_BIN="52 60" -DCUDA_ARCH_PTX="60"
-
-# RUN env
-# ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/targets/aarch64-linux/lib
-# RUN ldconfig
-
-# need to get the latst version of cmake, sigh
-RUN apt purge -y --auto-remove cmake
-RUN apt install -y wget
-WORKDIR /tmp
-ENV version=3.14
-ENV build=3
-RUN wget https://cmake.org/files/v$version/cmake-$version.$build.tar.gz
-RUN tar -xzvf cmake-$version.$build.tar.gz
-WORKDIR /tmp/cmake-$version.$build/
-RUN ./bootstrap
-RUN make -j6
-RUN make install
-RUN cmake --version
-
-WORKDIR /caffe/build
-RUN cmake ../ -DCUDA_ARCH_NAME="Manual" -DCUDA_ARCH_BIN="62" -DCUDA_ARCH_PTX="62"
-
+RUN cmake ../ -DCUDA_ARCH_NAME="Manual" -DCUDA_ARCH_BIN="52 60" -DCUDA_ARCH_PTX="60"
 
 # Fix cmake_cxx_flags 
 WORKDIR /caffe/src/caffe
