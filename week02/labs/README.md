@@ -201,3 +201,70 @@ docker logs jupyter
 Now, point your browser to http://my_vm_ip:8800  and use the token to log in.
 
 Once you are all done, remove the VM to avoid extra charges!
+
+
+Part 2 (Optional)
+In this section, we’ll expand upon the private network concept we explored in HW2.
+First, you’ll need to upload your private key to the jumpbox VM created in HW2.  
+For example:
+	sftp root@<jumpboxVM>
+             mput ~/.ssh/id_rsa
+
+Then ssh back to the jump box move the key to the .ssh directory and update the permission:
+	mv id_rsa ~/.ssh
+             chmod 600 ~/.ssh/id_rsa
+
+Next, create a VM with a private only network in the same datacenter has your jumpbox.  For example (ensuring to replace the key ID with your SSH Key ID):
+
+ibmcloud sl vs create --hostname=test --private --domain=you.cloud --cpu=2 --memory=2048 --datacenter=ams03 --os=UBUNTU_16_64 --san --disk=100 --key=123456
+
+
+Wait for the VM to be create, then SSH into it.  
+Update the VM and install curl
+
+	apt-get update
+	apt-get install curl
+
+Now try to connect to www.gooogle.com
+	curl https://www.google.com
+
+What happens?  Your connection should timeout.  This is because private network only systems do not have a connection to the internet.  We will now install an HTTP proxy on the jumpbox that will allow private network systems to reach the internet.  Exit out of the VM so that you are back on the jumpbox.
+
+On the jumpbox, install docker (see the first part of the lab).  Once installed, copy squid.conf to the jumbox.  Then create the folder /root/proxy and move the squid.conf into it.
+	
+mkdir /root/proxy             
+mv squid.conf /root/proxy/
+
+We’ll need your VM’s private IP.  If you need to get it, you can run the command
+
+ipconfig etho0
+
+We’ll now start the proxy (for more details see https://github.com/sameersbn/docker-squid).
+
+docker run --name squid -d --restart=always \
+  --publish <privateIP>:3128:3128 \
+  --volume /root/proxy/squid.conf:/etc/squid/squid.conf \
+  sameersbn/squid:3.5.27-1
+
+Relogin to your private VM.
+Set the following environmental variables
+
+export http_proxy=http://<jumpboxPrivateIP>:3128
+export https_proxy= http://<jumpboxPrivateIP>:3128
+
+Now try to connect to www.gooogle.com again
+	curl https://www.google.com
+
+And this time you should be able to connect.
+
+
+Install and Setting up docker
+Follow sets on install docker from part 1.
+
+
+Follow steps here to configure…
+https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
+(and containers…link)
+https://docs.docker.com/network/proxy/
+
+
