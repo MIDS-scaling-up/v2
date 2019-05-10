@@ -133,23 +133,23 @@ service docker start
 
 	
 ## Image creation
-Access the IBM® Cloud infrastructure customer portal [portal](https://control.softlayer.com/) by using your unique credentials.
-1- From the Devices menu, select Device List.
-2- Click the virtual server that you want to use to create an image template.
-3- Check the Passwords tab of the Device Details page. Ensure that any passwords listed on the Device Details page match the actual operating system passwords and any other software add-on passwords. If passwords do not match, virtual servers that are created from this image template fail.
-4- From the Actions menu, select Create Image Template.
-5- Enter the new name for the image in the Image Name field.
-6- Enter any necessary notes for the image in the Note field.
-7- Select the Agree check box when all information is entered.
-8- Click Create Template to create the image template.
+Access the IBM® Cloud infrastructure [customer portal](https://control.softlayer.com/) by using your unique credentials.
+1. From the Devices menu, select Device List.
+2. Click the virtual server that you want to use to create an image template.
+3. Check the Passwords tab of the Device Details page. Ensure that any passwords listed on the Device Details page match the actual operating system passwords and any other software add-on passwords. If passwords do not match, virtual servers that are created from this image template fail.
+4. From the Actions menu, select Create Image Template.
+5. Enter the new name for the image in the Image Name field.
+6. Enter any necessary notes for the image in the Note field.
+7. Select the Agree check box when all information is entered.
+8. Click Create Template to create the image template.
 
 ## Ordering an instance from an image template
-Access the IBM® Cloud infrastructure customer portal [portal](https://control.softlayer.com/) by using your unique credentials.
-1- access the Image Templates page by selecting Devices > Manage > Images.
-2- Click the Actions menu for the image template that you want to use and select the type of virtual server that you want to order.
-3- On the Configure your Cloud Server page, complete all of the relevant information.
-4- Click the Add to Order button to continue.
-5- On the Checkout page, complete any advanced system configuration.
-6- Click the Cloud Service terms and the Third-Party Service Agreement check boxes.
-7- Confirm or enter your payment information and click Submit Order. You are redirected to a screen with your provisioning order number. You can print the screen because it's also your provisioning order receipt.
+Access the IBM® Cloud infrastructure [customer portal](https://control.softlayer.com/) by using your unique credentials.
+1. access the Image Templates page by selecting Devices > Manage > Images.
+2. Click the Actions menu for the image template that you want to use and select the type of virtual server that you want to order.
+3. On the Configure your Cloud Server page, complete all of the relevant information.
+4. Click the Add to Order button to continue.
+5. On the Checkout page, complete any advanced system configuration.
+6. Click the Cloud Service terms and the Third-Party Service Agreement check boxes.
+7. Confirm or enter your payment information and click Submit Order. You are redirected to a screen with your provisioning order number. You can print the screen because it's also your provisioning order receipt.
 
