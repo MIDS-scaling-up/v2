@@ -133,7 +133,7 @@ service docker start
 
 	
 ## Image creation
-Access the IBM® Cloud infrastructure customer portal ()[https://control.softlayer.com/] by using your unique credentials.
+Access the IBM® Cloud infrastructure customer portal [portal](https://control.softlayer.com/) by using your unique credentials.
 1- From the Devices menu, select Device List.
 2- Click the virtual server that you want to use to create an image template.
 3- Check the Passwords tab of the Device Details page. Ensure that any passwords listed on the Device Details page match the actual operating system passwords and any other software add-on passwords. If passwords do not match, virtual servers that are created from this image template fail.
@@ -144,7 +144,7 @@ Access the IBM® Cloud infrastructure customer portal ()[https://control.softlay
 8- Click Create Template to create the image template.
 
 ## Ordering an instance from an image template
-Access the IBM® Cloud infrastructure customer portal ()[https://control.softlayer.com/] by using your unique credentials.
+Access the IBM® Cloud infrastructure customer portal [portal](https://control.softlayer.com/) by using your unique credentials.
 1- access the Image Templates page by selecting Devices > Manage > Images.
 2- Click the Actions menu for the image template that you want to use and select the type of virtual server that you want to order.
 3- On the Configure your Cloud Server page, complete all of the relevant information.
