@@ -39,13 +39,17 @@ Login like `ssh -i /home/darragh/.ssh/id_rsa 158.176.93.70 -l root` or `ssh root
 Once logged into the VM as `root` user, **Install docker**:
 ```
 # Validate these at https://docs.docker.com/install/linux/docker-ce/ubuntu/
+apt-get update
 apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
+    gnupg-agent \
     software-properties-common
 	
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+apt-get update
 
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
