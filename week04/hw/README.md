@@ -64,7 +64,7 @@ docker run hello-world
 
 Now we pull the image and start our jupyter notebook. 
 ```
-docker run --rm -it -p 8888:8888 w251/tensorflow_hw04:jasper_mlp_01
+docker run --rm -it -p 8888:8888 w251/tensorflow_hw04:latest
 ```
 
 You will have an output of the location of the book running line below
