@@ -29,11 +29,11 @@ Kaggle are currently hosting their [second competition](https://www.kaggle.com/c
 
 We shall be using this dataset to benchmark a number of ML models. 
 
-First set up a CPU based to run your models. I set it up like below.
+First set up a CPU based VW to run your models. CPU is better suited to sparse tables we use here. I set it up like below.
 ```
 ibmcloud sl vs create --datacenter=lon06 --hostname=hw04cpu --domain=darragh.com --os=UBUNTU_16_64 --flavor C1_8Xbilling=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
 ```
-As before check the VM created with `ibmcloud sl vs list`
+As before check the VM created with `ibmcloud sl vs list`  
 Login like `ssh -i /home/darragh/.ssh/id_rsa 158.176.93.70 -l root` or `ssh root@158.176.93.70`
 
 Once logged into the VM as `root` user, **Install docker**:
