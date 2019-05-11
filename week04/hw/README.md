@@ -22,6 +22,47 @@ The MNIST data set consists of 28x28 black and white images of hand written digi
 * Increase the batch size.  What impact does it have?
 * What is the best accuracy you can achieve? Are you over 99%? 99.5%?
 
+#### 3. Build your own model in Keras
+The [Conversation AI](https://conversationai.github.io/) team, a research initiative founded by [Jigsaw](https://jigsaw.google.com/) and Google (both a part of Alphabet) are working on tools to help improve online conversation. One area of focus is the study of negative online behaviors, like toxic comments (i.e. comments that are rude, disrespectful or otherwise likely to make someone leave a discussion).   
+  
+Kaggle are currently hosting their [second competition](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge#description) on this research. The challenge is to create a model that is capable of detecting different types of of toxicity like threats, obscenity, insults, and identity-based hate better than Perspective’s current models. The competitions use a dataset of comments from Wikipedia’s talk page edits. Improvements to the current model will hopefully help online discussion become more productive and respectful.
+
+We shall be using this dataset to benchmark a number of ML models. 
+
+First set up a CPU based to run your models. I set it up like below.
+```
+ibmcloud sl vs create --datacenter=lon06 --hostname=hw04cpu --domain=darragh.com --os=UBUNTU_16_64 --flavor C1_8Xbilling=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
+```
+As before check the VM created with `ibmcloud sl vs list`
+Login like `ssh -i /home/darragh/.ssh/id_rsa 158.176.93.70 -l root` or `ssh root@158.176.93.70`
+
+Once logged into the VM as `root` user, **Install docker**:
+```
+# Validate these at https://docs.docker.com/install/linux/docker-ce/ubuntu/
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+	
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"	
+
+apt-get update
+
+
+# Darragh validated on 05/11/19 that this below is still required; sigh
+# apt-get install docker-ce=5:18.09.0~3-0~ubuntu-xenial
+apt-get install -y docker-ce
+docker run hello-world
+# Download HW04 docker
+```
+
+Now we pull the image and start our jupyter notebook. 
 
 #### Submission:
 Please submit answers to #2
