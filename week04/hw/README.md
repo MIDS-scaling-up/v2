@@ -63,6 +63,20 @@ docker run hello-world
 ```
 
 Now we pull the image and start our jupyter notebook. 
+```
+docker run --rm -it -p 8888:8888 w251/tensorflow_gpu_hw04:jasper_mlp_01
+```
+
+You will have an output of the location of the book running line below
+```
+[I 11:47:41.840 NotebookApp] The Jupyter Notebook is running at:
+[I 11:47:41.841 NotebookApp] http://(5ebf32ea4e17 or 127.0.0.1):8888/?token=ffbb6d6b3a9b2e24fb8e0cc7eb8eb0657e1f58fa5595c5d4
+```
+Replace the domain name of the URL with your servers, public IP. For example fo the above I would go to URL. 
+```
+http://158.176.93.70:8888/?token=ffbb6d6b3a9b2e24fb8e0cc7eb8eb0657e1f58fa5595c5d4
+```
+Now open the notebook and run. And fill in the highlighted pieces and report your AUC. For the Logistic regression model you should be getting circa `0.88` AUC and `0.93` or more for the MLP. 
 
 #### Submission:
-Please submit answers to #2
+Please submit answers to #2, and a html download of your completed Jupyter notebook. 
