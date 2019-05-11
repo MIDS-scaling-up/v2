@@ -28,6 +28,7 @@ The [Conversation AI](https://conversationai.github.io/) team, a research initia
 Kaggle are currently hosting their [second competition](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge#description) on this research. The challenge is to create a model that is capable of detecting different types of of toxicity like threats, obscenity, insults, and identity-based hate better than Perspective’s current models. The competitions use a dataset of comments from Wikipedia’s talk page edits. Improvements to the current model will hopefully help online discussion become more productive and respectful.
 
 We shall be using this dataset to benchmark a number of ML models. 
+*Disclaimer: the dataset used contains text that may be considered profane, vulgar, or offensive.*
 
 First set up a CPU based VW to run your models. CPU is better suited to sparse tables we use here. I set it up like below.
 ```
