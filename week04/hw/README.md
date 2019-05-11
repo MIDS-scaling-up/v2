@@ -31,10 +31,10 @@ We shall be using this dataset to benchmark a number of ML models.
 
 First set up a CPU based VW to run your models. CPU is better suited to sparse tables we use here. I set it up like below.
 ```
-ibmcloud sl vs create --datacenter=lon06 --hostname=hw04cpu --domain=darragh.com --os=UBUNTU_16_64 --flavor C1_8Xbilling=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
+ibmcloud sl vs create --datacenter=lon06 --hostname=hw04cpu --domain=darragh.com --os=UBUNTU_16_64 --flavor C1_8X8X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
 ```
 As before check the VM created with `ibmcloud sl vs list`  
-Login like `ssh -i /home/darragh/.ssh/id_rsa 158.176.93.70 -l root` or `ssh root@158.176.93.70`
+Login like `ssh -i /home/darragh/.ssh/id_rsa 158.176.93.70 -l root` or `ssh root@158.176.93.70`. You may need to wait a couple of minutes before logging in for the VM to br created. 
 
 Once logged into the VM as `root` user, **Install docker**:
 ```
@@ -58,13 +58,13 @@ apt-get update
 # Darragh validated on 05/11/19 that this below is still required; sigh
 # apt-get install docker-ce=5:18.09.0~3-0~ubuntu-xenial
 apt-get install -y docker-ce
+# Test if docker hello world is working
 docker run hello-world
-# Download HW04 docker
 ```
 
 Now we pull the image and start our jupyter notebook. 
 ```
-docker run --rm -it -p 8888:8888 w251/tensorflow_gpu_hw04:jasper_mlp_01
+docker run --rm -it -p 8888:8888 w251/tensorflow_hw04:jasper_mlp_01
 ```
 
 You will have an output of the location of the book running line below
