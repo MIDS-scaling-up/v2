@@ -41,28 +41,11 @@ Once logged into the VM as `root` user, **Install docker**:
 ```
 # Validate these at https://docs.docker.com/install/linux/docker-ce/ubuntu/
 apt-get update
-apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-	
+apt install apt-transport-https ca-certificates 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-apt-get update
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"	
-
-apt-get update
-
-
-# Darragh validated on 05/11/19 that this below is still required; sigh
-# apt-get install docker-ce=5:18.09.0~3-0~ubuntu-xenial
-apt-get install -y docker-ce
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic test" 
+apt update 
+apt install docker-ce
 # Test if docker hello world is working
 docker run hello-world
 ```
