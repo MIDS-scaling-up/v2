@@ -1,6 +1,6 @@
 ### This lab will follow on from the homework and build a 1d-CNN
 
-#### Ordering an instance from the image template you build in week02
+#### Ordering an instance from the image template you built in week02
 Access the IBM® Cloud infrastructure [customer portal](https://control.softlayer.com/) by using your unique credentials.
 1. access the Image Templates page by selecting Devices > Manage > Images.
 2. Click the Actions menu for the image template that you want to use and select the type of virtual server that you want to order.
