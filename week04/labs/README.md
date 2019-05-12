@@ -19,7 +19,7 @@ nvidia-smi
 ```
    
 Now lets build our docker with the jupyter notebook.  
-Once in, start running your notebook and follow the instructions in blue where to fill in code. 
+Once in, start running your notebook and follow the instructions in bold where to fill in code. 
 ```
 docker run --rm --runtime=nvidia -it -p 8888:8888 w251/tensorflow_gpu_lab04:latest
 ```
