@@ -4,7 +4,7 @@
 Access the IBM® Cloud infrastructure [customer portal](https://control.softlayer.com/) by using your unique credentials.
 1. Access the Image Templates page by selecting Devices > Manage > Images.
 2. Select the image you created in week02/lab2. If you have not created one there you may select the public image `w251_nvidia_p100`
-3. Click the Actions menu for the image template that you want to use and select the type of virtual server that you want to order.
+3. Click the Actions menu for the image template that you want to use and select the type of virtual server that you want to order. Please select `flavor AC1.8x60x100`. 
 4. On the Configure your Cloud Server page, complete all of the relevant information.
 5. Click the Add to Order button to continue.
 6. On the Checkout page, select flavor **** and complete any advanced system configuration.
