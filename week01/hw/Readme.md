@@ -35,10 +35,29 @@ The process of fetching the software, installing and cross-compiling it will tak
 When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
 
 ### Testing Jetpack on the Jetson
-Ensure the Jetson is on and running Ubuntu. Use ls to check the directory name where the CUDA samples are (it looks likes "NVIDIA_CUDA-<version>" replacing the <> with the CUDA version you have). Then cd into it and run the oceanFTT sample:
+Ensure the Jetson is on and running Ubuntu. Use this command to verify that everything is happy and healthy:
+
 ```
-cd NVIDIA_CUDA-<version>_Samples/bin/aarch64/linux/release/
-./oceanFFT
+sudo nvpmodel -q --verbose
+```
+
+The output should be similar to:
+
+```
+NVPM VERB: Config file: /etc/nvpmodel.conf
+NVPM VERB: parsing done for /etc/nvpmodel.conf
+NVPM VERB: Current mode: NV Power Mode: MAXP_CORE_ARM
+3
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_1: PATH /sys/devices/system/cpu/cpu1/online: REAL_VAL: 0 CONF_VAL: 0
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_2: PATH /sys/devices/system/cpu/cpu2/online: REAL_VAL: 0 CONF_VAL: 0
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_3: PATH /sys/devices/system/cpu/cpu3/online: REAL_VAL: 1 CONF_VAL: 1
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_4: PATH /sys/devices/system/cpu/cpu4/online: REAL_VAL: 1 CONF_VAL: 1
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_5: PATH /sys/devices/system/cpu/cpu5/online: REAL_VAL: 1 CONF_VAL: 1
+NVPM VERB: PARAM CPU_A57: ARG MIN_FREQ: PATH /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq: REAL_VAL: 2035200 CONF_VAL: 0
+NVPM VERB: PARAM CPU_A57: ARG MAX_FREQ: PATH /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq: REAL_VAL: 2035200 CONF_VAL: 2000000
+NVPM VERB: PARAM GPU: ARG MIN_FREQ: PATH /sys/devices/17000000.gp10b/devfreq/17000000.gp10b/min_freq: REAL_VAL: 1134750000 CONF_VAL: 0
+NVPM VERB: PARAM GPU: ARG MAX_FREQ: PATH /sys/devices/17000000.gp10b/devfreq/17000000.gp10b/max_freq: REAL_VAL: 1134750000 CONF_VAL: 1120000000
+NVPM VERB: PARAM EMC: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/emc_iso_cap: REAL_VAL: 1600000000 CONF_VAL: 1600000000
 ```
 ### Exploring the power modes of the Jetson
 The Jetson SoCs has a number of different power modes described in some detail here: [TX2](https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/) or [Xavier](https://www.jetsonhacks.com/2018/10/07/nvpmodel-nvidia-jetson-agx-xavier-developer-kit/). The main idea is that the lowering clock speeds on the cpu and turning off cores saves energy; and the default power mode is a low energy mode. You need to switch to a higher power mode to use all cores and maximize the clock frequency.
@@ -69,7 +88,7 @@ Now your Docker work will automatically be stored on this external drive. The ne
 **NOTE: You'll have to manually mount your external drive and start Docker every time you reboot the Jetson if you use the external drive this way. You might want to have Ubuntu mount your external drive automatically every time you reboot by adding a line to the /etc/fstab file ([See here for more info on how to mount with the fstab file](https://help.ubuntu.com/community/Fstab)).**
   
 ### Creating a base CUDA Docker Image for the Jetson
-Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase3.0 file on Github in week1/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
+Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase file on Github in week01/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
 ```
 docker build -t cudabase -f Dockerfile.cudabase .
 ```
