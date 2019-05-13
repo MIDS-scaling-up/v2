@@ -141,7 +141,6 @@ Access the IBM® Cloud infrastructure [customer portal](https://control.softlaye
 7. Confirm or enter your payment information and click Submit Order. You are redirected to a screen with your provisioning order number. You can print the screen because it's also your provisioning order receipt.
 
 ## Object Storage
-{: #about-cos}
 
 Object storage is a modern storage technology concept and a logical progression from block and file storage. Object storage has been around since the late 1990s, but has gained market acceptance and success over the last 10 years.
 
