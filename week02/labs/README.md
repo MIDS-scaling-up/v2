@@ -52,7 +52,7 @@ docker ps
 This command should show you all active docker containers.  At this point, the list should be empty, since the hello-world container exited.  However, the container should still be there:
 ```
 docker ps -a
-# Should see something similar to the bwlow:
+# Should see something similar to the below:
 # CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
 # 94a841d96b07        hello-world         "/hello"            About a minute ago   Exited (0) About a minute ago                       elated_brahmagupta
 ```
@@ -226,7 +226,7 @@ Next, create a VM with a private only network in the same datacenter has your ju
 ibmcloud sl vs create --hostname=test --private --domain=you.cloud --cpu=2 --memory=2048 --datacenter=ams03 --os=UBUNTU_16_64 --san --disk=100 --key=123456
 ```
 
-Wait for the VM to be create, then SSH into it.  
+Wait for the VM to be created, then SSH into it.  
 Update the VM and install curl
 
 	apt-get update
@@ -238,7 +238,7 @@ Now try to connect to www.google.com
 curl https://www.google.com
 ```
 
-What happens?  Your connection should timeout.  This is because private network only systems do not have a connection to the internet.  We will now install an HTTP proxy on the jumpbox that will allow private network systems to reach the internet.  Exit out of the VM so that you are back on the jumpbox.
+What happens?  Your connection should timeout.  This is because "private network only" systems do not have a connection to the internet.  We will now install an HTTP proxy on the jumpbox that will allow private network systems to reach the internet.  Exit out of the VM so that you are back on the jumpbox.
 
 On the jumpbox, install docker (see the first part of the lab).  Once installed, copy squid.conf to the jumbox.  Then create the folder /root/proxy and move the squid.conf into it.
 	
@@ -250,7 +250,7 @@ mv squid.conf /root/proxy/
 We’ll need your VM’s private IP.  If you need to get it, you can run the command
 
 ```
-ipconfig etho0
+ipconfig eth0
 ```
 
 We’ll now start the proxy (for more details see https://github.com/sameersbn/docker-squid).
@@ -262,8 +262,8 @@ docker run --name squid -d --restart=always \
   sameersbn/squid:3.5.27-1
 
 ```
-Relogin to your private VM.
-Set the following environmental variables, replacking <jumpboxPrivateIP> with your jumpboxes privare IP:
+Login to your private VM.
+Set the following environmental variables, replacing <jumpboxPrivateIP> with your jumpbox's private IP:
 
 ```
 export http_proxy=http://<jumpboxPrivateIP>:3128
@@ -281,12 +281,12 @@ And this time you should be able to connect.
 
 ### Bonus 
 It is possible to install and use docker from your private network system.
-Make sure you've exported the http_proxy and https_proxy eenvironmental variables, then install docker as you have done before.
 
-Once installed, follo
-Follow sets on install docker from part 1.
+Log into your "private network only" VM. Make sure you've exported the http_proxy and https_proxy eenvironmental variables, then install docker as you have done before.
 
-Once installed, you need to configure docker to use the HTTP prxoy with the following steps (see https://docs.docker.com/config/daemon/systemd/#httphttps-proxy for additional details. 
+Follow the instructions to install docker from part 1.
+
+Once installed, you need to configure docker to use the HTTP proxy with the following steps (see https://docs.docker.com/config/daemon/systemd/#httphttps-proxy for additional details). 
 
 Create a systemd drop-in directory for the docker service
 
@@ -308,7 +308,7 @@ Create a file called /etc/systemd/system/docker.service.d/https-proxy.conf that 
 Environment="HTTPS_PROXY=http://<jumpboxPrivateIP>:3128"
 ```
 
-Making sure to replace 
+Making sure to replace <jumpboxPrivateIP> with the private IP address of your jumpbox.
 Flush changes:
 
 ```
@@ -339,13 +339,13 @@ curl http://<privateIPofVM>
 
 And verify you get a response.  Logout of the jumpbox.
 
-The following setups up SSH tunneling from your workstation to your private system via your jumpbox:
+The following creates an SSH tunnel from your workstation to your private system via your jumpbox:
 
 ```
 ssh -L 8080:<privateIPofVM>:80 root@<pubicIPofJumpbox>
 ```
 
-From a local brower, open up http://localhost:8080 and you should see your containers welcome page.
+From a local browser, open up http://localhost:8080 and you should see your containers welcome page.
 
 Log out of your ssh session, pressing ctl+c to terminate tunneling.
 
