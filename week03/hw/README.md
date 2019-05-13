@@ -56,7 +56,7 @@ Note that mqtt uses port 1883 for un-encrypted messages.
 
 To see what packages are available on Alpine linux for Mosquitto, you would do something like [this](https://pkgs.alpinelinux.org/packages?name=mosquitto&branch=edge)
 
-### Subscribing to messages on an MQTT Broker
+### Subscribing to messages on an MQTT Broker via mosquitto_sub
 To subscribe to a topic tree on an MQTT broker, we do something like this:
 
 ```
@@ -64,6 +64,9 @@ mosquitto_sub -t applications/in/+/public/# -h <ip address of the MQTT broker>
 ```
 
 This matches ```applications/in/app1/public`` as well as ```applications/in/app2/public/subtopic```, etc. etc.
+
+### MQTT via python
+Feel free to use [Paho-MQTT](https://pypi.org/project/paho-mqtt/)
 
 ## OpenCV
 [OpenCV](https://opencv.org/) is THE library for computer vision.  At the moment it has fallen behind the Deep Learning curve, but it could catch up at any moment.  For traditional, non-DL image processing, it is unmatched.
