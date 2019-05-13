@@ -165,3 +165,42 @@ performance-inhibiting metadata repositories.
 
 Data access is achieved by using a REST interface over the HTTP protocol, which allows anywhere and anytime access simply by referencing the object key.
 
+## Connect the VSI to Cloud Object storage
+
+Ingredients
+* Access to an IBM Cloud Object Storage (COS) bucket
+* A Linux based system
+
+
+The s3fs-fuse GitHub page has all the details on building and installing the package.
+```
+sudo apt-get update
+sudo apt-get install automake autotools-dev g++ git libcurl4-openssl-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
+git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+
+```
+
+Build and install the library
+```
+cd s3fs-fuse
+./autogen.sh
+./configure
+make
+sudo make install
+
+```
+
+In order to configure s3fs-fuse, you need your access key id, your secret access key, the name of the bucket you want to mount, and the endpoint for the 
+If you are using the Infrastructure variation of Cloud Object Storage (i.e. softlayer), you can get these values from the ObjectStorage section in the Control Portal.
+
+```
+Substitue your values for <Access_Key_ID> and <Secret_Access_Key> in the below command.
+echo "<Access_Key_ID>:<Secret_Access_Key>" > $HOME/.cos_creds
+chmod 600 $HOME/.cos_creds
+```
+Create a directory where you can mount your bucket. Typically, this is done in the /mnt directory on Linux, notice the bucket is created in the IBM Cloud UI
+```
+sudo mkdir /mnt/mybucket
+sudo s3fs bucketname /mnt/mybucket -o passwd_file=$HOME/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.us-east.objectstorage.softlayer.net
+
+```
