@@ -102,6 +102,32 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # face detection and other logic goes here
 ``` 
+## Linking containers
+As you can see from the architecture diagram below, you will need to make multiple docker containers inside your TX2 and you need them to work together.  Please review the [docker networking tutorial](https://docs.docker.com/network/network-tutorial-standalone/#use-user-defined-bridge-networks).  The idea is that you will need to create a local bridge network and then the containers you will create will join it, e.g.
+```
+# Create a bridge:
+docker network create --driver bridge hw03
+# Create an alpine linux - based mosquitto container:
+docker run --name mosquitto --network hw03 -p 1883:1883 -ti alpine sh
+# we are inside the container now
+# install mosquitto
+apk update && apk add mosquitto
+# run mosquitto
+/usr/sbin/mosquitto
+# Press Control-P Control-Q to disconnect from the container
+
+# Create an alpine linux - based message forwarder container:
+docker run --name forwarder --network hw03 -ti alpine sh
+# we are inside the container now
+# install mosquitto-clients
+apk update && apk add mosquitto-clients
+ping mosquitto
+# this should work - note that we are referring to the mosquitto container by name
+mosquitto_sub -h mosquitto -t <some topic>
+# the above should block until some messages arrive
+# Press Control-P Control-Q to disconnect from the container
+```
+
 
 ## Overall architecture / flow
 Your overall application flow / architecture should be something like ![this](hw03.png).  
