@@ -20,6 +20,10 @@ To follow the class, you'll a Mac or a PC (Windows or Linux) with an ability to 
 ### Homeworks:
 A homework is due before each class.  There are two types of homeworks: graded and credit only. Here is the link to [class 1](week01) - be sure to complete the setup of your Jetson as described in [homework 1](week01/hw)
 
+### SSH Reminder:
+Ensure that any VSI/VM create prohibts login with password prohibited.
+See: https://github.com/MIDS-scaling-up/v2/tree/master/week02/hw/README.md for details.
+
 ### Graded homeworks
 The graded homeworks are week 3, week 5, week 9, week 11; please notice that those are the slots that are available on the ISVC website except there are labeled as Homework 1, 2, 3 and 4 (we are working on getting this changed but in the meantime submit matching the graded homework week with it's slot i.e week 3 uploaded to Homework 1).
 
