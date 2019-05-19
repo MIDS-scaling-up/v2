@@ -5,7 +5,7 @@ Login to your ibmcloud `ibmcloud login`
 Please order a p100 virtual server off an existing w251 image.   
 For example, I ran the following:
 ```
-ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com  --flavor AC1_8X60X25 --billing=hourly --san  --network 1000 --image 2208861 --key=1418191
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com  --flavor AC1_8X60X25 --billing=hourly --san  --network 1000 --image 2250329 --key=1418191
 ```
 You will need to change the fields : `key`, and optionally the `datacenter`, `domain` and `hostname`.
   
