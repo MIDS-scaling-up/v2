@@ -18,3 +18,27 @@ The GPU temperature is here: ```GPU@32C``` Youg goal is:
 
 ### 2. Motion detection
 Detecting faces is fun, but detecting motion could be even more fun.  Depending on their location, most of the frames that the surveillance cameras see contain absolutely nothing interesting. This lab is very similar to your homework, but instead of detecting faces, you should be detection areas of the frame where motion occurred and displaying bounding rectangles around them
+Get the following code to run.  Your job is to implement the blur and then to display the frame. 
+```
+import numpy as np
+import cv2
+
+cap = cv2.VideoCapture(1)
+
+fgbg = cv2.createBackgroundSubtractorMOG2()
+
+while(1):
+     ret, frame = cap.read()
+
+     fgmask = fgbg.apply(frame)
+     ## implement the blur function with the kernel of 3,3
+     ## display the frame
+     k = cv2.waitKey(30) & 0xff
+     if k == 27:
+         break
+
+cap.release()
+cv2.destroyAllWindows()
+```
+
+Can you figure out how to create a bounding rectangle around the frame?
