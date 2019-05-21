@@ -9,7 +9,7 @@ RAM 1004/7852MB (lfb 7x2MB) CPU [0%@350,4%@345,2%@499,1%@341,1%@349,0%@345] EMC_
 RAM 1004/7852MB (lfb 7x2MB) CPU [1%@346,4%@499,3%@499,0%@345,0%@345,0%@346] EMC_FREQ 17%@40 GR3D_FREQ 0%@114 APE 150 MTS fg 0% bg 0% PLL@34C MCPU@34C PMIC@100C Tboard@28C GPU@32C BCPU@34C thermal@33.2C Tdiode@30.25C VDD_SYS_GPU 153/153 VDD_SYS_SOC 383/383 VDD_4V0_WIFI 0/0 VDD_IN 1876/1876 VDD_SYS_CPU 229/229 VDD_SYS_DDR 115/124
 RAM 1004/7852MB (lfb 7x2MB) CPU [0%@346,5%@806,4%@807,0%@345,0%@345,0%@345] EMC_FREQ 17%@40 GR3D_FREQ 0%@114 APE 150 MTS fg 0% bg 0% PLL@34C MCPU@34C PMIC@100C Tboard@28C GPU@32C BCPU@34C thermal@33.2C Tdiode@30.5C VDD_SYS_GPU 153/153 VDD_SYS_SOC 383/383 VDD_4V0_WIFI 0/0 VDD_IN 1876/1876 VDD_SYS_CPU 229/229 VDD_SYS_DDR 134/127
 ```
-The GPU temperature is here: ```GPU@32C``` Youg goal is:
+The GPU temperature is here: ```GPU@32C``` Your goal is:
 * parse out the GPU temperature
 * as soon as tegrastats produces the next value, publish it to the local broker.  You will need to specify a new topic for this, different from the one you used in your homework
 * You will need a new forwarder, which will forward this to the cloud, again, to a different topic
