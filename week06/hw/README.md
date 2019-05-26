@@ -1,6 +1,4 @@
-## Make sure that you complete [lab 5 - DIGITS and transfer learning](../../week05/labs/lab_digits.md).
-
-# Homework 6: The TPUs (and BERT!)
+# Homework 6: The TPUs (and BERT!) IS BEING REVISED AND WILL BE RELEASED SHORTLY.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
 
 * Read the Google Cloud Product Overview on the [TPUs](https://cloud.google.com/tpu/)
 * Read the primer on [Bert](https://github.com/google-research/bert)
