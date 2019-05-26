@@ -1,4 +1,4 @@
-# Homework 5
+# Homework 5 IS BEING REVISED AND WILL BE RELEASED SHORTLY
 
 ## Tensorflow for Poets
 
