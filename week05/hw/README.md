@@ -25,7 +25,8 @@ Notes:
 
 * To start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti tensorflow bash`. Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
 * In the command above, 6006 is the port number that Tensorboard uses.  Once you start training, will be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
-* Once you are inside the container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections (except section 9).
+* Use python3 instead of regular python for all commands, since as we mentioned above, Nvidia does not currently provide a TensorFlow distro for python2
+* Once you are inside the container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections, except the "next steps" section 9.
 * The Jetson packs a punch; make sure you run training for 4000 steps
 * When you want to make sure the container does *not* see the GPU, run it as `docker run --rm -p 6006:6006 -ti tensorflow bash`, with no privileged flag
 * On x86 based systems, Nvidia provides a tool called "nvidia-smi" to monitor GPU utilization and performance in real time.  On the Jetson, this tool is not yet supported, unfortunately.  But, the Jetpack has another tool, `/usr/bin/tegrastats`.  Its output looks like this:
