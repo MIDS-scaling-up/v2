@@ -15,7 +15,7 @@ docker build -t tensorrt -f Dockerfile.tx2-4.2_b158 .
 Now build the docker container for tensorflow using the python3 Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorflow).  Note that at the moment, Nvidia provides no support for Tensorflow with python2 on the Jetson boards.
 ```
 # cd to the correct directory after git cloning the class repo
-docker build -t tensorflow -f Dockerfile.tx2-4.2_b158-py3 .
+docker build -t tensorflow -f Dockerfile.dev-tx2-4.2_b158-py3 .
 ```
 
 ### TensorFlow for Poets
