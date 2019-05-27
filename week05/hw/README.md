@@ -1,6 +1,6 @@
 # Homework 5 IS BEING REVISED AND WILL BE RELEASED SHORTLY.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
 
-## Tensorflow for Poets
+## Introduction to Tensorflow
 The idea of this lab is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow is currently transitioning to [v2 alpha](https://www.tensorflow.org/alpha), which based on [Keras](https://keras.io/), which is much easier to use. However, there's a lot of code still written in Tensorflow v1, and we think that some hands-on experience with it will be useful. 
 
 ### TensorFlow container for TX2
@@ -18,8 +18,8 @@ Now build the docker container for tensorflow using the python3 Dockerfile [here
 docker build -t tensorflow -f Dockerfile.tx2-4.2_b158-py3 .
 ```
 
-### Running TensorFlow for Poets
-We will generally follow the [Tensorflow for Poets lab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) at the Google CodeLabs.
+### TensorFlow for Poets
+In this section, we will generally follow the [Tensorflow for Poets lab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) at the Google CodeLabs.
 
 Notes:
 
