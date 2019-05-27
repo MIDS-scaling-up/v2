@@ -54,7 +54,7 @@ In the current version of the TF for poets lab, check out line 124 of [label_ima
 #  with tf.Session(graph=graph) as sess:
   with tf.Session(graph=graph, config=config) as sess:
 ```
-* The Google lab has another bug when you use the Inception model, because the [retrain.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/retrain.py), line 870, states:
+* The lab has another bug when you try to use the Inception model, because the [retrain.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/retrain.py), line 870, states:
 ```
 resized_input_tensor_name = 'Mul:0'
 ```
@@ -77,7 +77,7 @@ input_height = 299
 1. In this lab, you trained the last layer (all the previous layers retain their already-trained state). Explain how the lab used the previous layers (where did they come from? how were they used in the process?)
 1. How does a low `--learning_rate` (step 7) value (like 0.005) affect the precision? How much longer does training take?
 1. How about a `--learning_rate` (step 7) of 1.0? Is the precision still good enough to produce a usable graph?
-1. For section 8, you can use any images you like. Pictures of food, people, or animals work well. You can even find images at ImageNet. How accurate was your model? Were you able to train it using a few images, or did you need a lot?
+1. For step 8, you can use any images you like. Pictures of food, people, or animals work well. You can even use [ImageNet](http://www.image-net.org/) images. How accurate was your model? Were you able to train it using a few images, or did you need a lot?
 1. Run the script on the CPU (see instructions above) How does the training time compare to the default network training (section 4)?
 1. Try the training again, but this time do `export ARCHITECTURE="inception_v3"` Do you notice the CPU vs GPU difference now?
 1. Given the hints under the notes section, if we trained Inception_v3, what do we need to pass to replace ??? below to the label_image script?  Can we also glean the answer from examining TensorBoard?
