@@ -1,6 +1,7 @@
 # Homework 5 IS BEING REVISED AND WILL BE RELEASED SHORTLY.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
 
 ## Tensorflow for Poets
+The idea of this lab is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow is currently transitioning to [v2 alpha](https://www.tensorflow.org/alpha), which based on [Keras](https://keras.io/), which is much easier to use. However, there's a lot of code still written in Tensorflow v1, and we think that some hands-on experience with it will be useful. 
 
 ### TensorFlow container for TX2
 First, you will need to build a Cuda Tensorflow container on your TX2.
@@ -11,7 +12,7 @@ First, build the docker container for [Nvidia TensorRT](https://developer.nvidia
 docker build -t tensorrt -f Dockerfile.tx2-4.2_b158 .
 ```
 
-Now build the docker container for tensorflow using the python3 Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorflow).  Note that at the moment, Nvidia provides is no support for Tensorflow with python2 on the Jetson boards.
+Now build the docker container for tensorflow using the python3 Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorflow).  Note that at the moment, Nvidia provides no support for Tensorflow with python2 on the Jetson boards.
 ```
 # cd to the correct directory after git cloning the class repo
 docker build -t tensorflow -f Dockerfile.tx2-4.2_b158-py3 .
@@ -22,10 +23,9 @@ We will generally follow the [Tensorflow for Poets lab](https://codelabs.develop
 
 Notes:
 
-* Make sure you do all of the optional sections (except section 9).
-* to start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti tensorflow bash`. Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
+* To start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti tensorflow bash`. Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
 * In the command above, 6006 is the port number that Tensorboard uses.  Once you start training, will be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
-* Once you are inside the container, proceed to clone the TF for poets repository and proceed with the rest of the lab
+* Once you are inside the container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections (except section 9).
 * The Jetson packs a punch; make sure you run training for 4000 steps
 * When you want to make sure the container does *not* see the GPU, run it as `docker run --rm -p 6006:6006 -ti tensorflow bash`, with no privileged flag
 * On x86 based systems, Nvidia provides a tool called "nvidia-smi" to monitor GPU utilization and performance in real time.  On the Jetson, this tool is not yet supported, unfortunately.  But, the Jetpack has another tool, `/usr/bin/tegrastats`.  Its output looks like this:
@@ -72,7 +72,7 @@ input_height = 299
 
 1. What is TensorFlow? Which company is the leading contributor to TensorFlow?
 1. What is TensorRT? How is it different from TensorFlow?
-1. In your own words, what is a **bottleneck**?
+1. In your own words, what is a bottleneck?
 1. In this lab, you trained the last layer (all the previous layers retain their already-trained state). Explain how the lab used the previous layers (where did they come from? how were they used in the process?)
 1. How does a low `--learning_rate` (step 7) value (like 0.005) affect the precision? How much longer does training take?
 1. How about a `--learning_rate` (step 7) of 1.0? Is the precision still good enough to produce a usable graph?
