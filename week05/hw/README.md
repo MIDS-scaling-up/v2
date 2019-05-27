@@ -62,7 +62,7 @@ whereas when MobileNet is used, line 912, we have
 ```
 resized_input_tensor_name = 'input:0'
 ```
-Also note lines 867 and 868 of [retrain.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/retrain.py)
+* Also observe lines 867 and 868 of [retrain.py](https://github.com/googlecodelabs/tensorflow-for-poets-2/blob/master/scripts/retrain.py)
 ```
 input_width = 299
 input_height = 299
@@ -78,8 +78,8 @@ input_height = 299
 1. How does a low `--learning_rate` (step 7) value (like 0.005) affect the precision? How much longer does training take?
 1. How about a `--learning_rate` (step 7) of 1.0? Is the precision still good enough to produce a usable graph?
 1. For step 8, you can use any images you like. Pictures of food, people, or animals work well. You can even use [ImageNet](http://www.image-net.org/) images. How accurate was your model? Were you able to train it using a few images, or did you need a lot?
-1. Run the script on the CPU (see instructions above) How does the training time compare to the default network training (section 4)?
-1. Try the training again, but this time do `export ARCHITECTURE="inception_v3"` Do you notice the CPU vs GPU difference now?
+1. Run the script on the CPU (see instructions above) How does the training time compare to the default network training (section 4)?  Why?
+1. Try the training again, but this time do `export ARCHITECTURE="inception_v3"` Are CPU and GPU training times different?
 1. Given the hints under the notes section, if we trained Inception_v3, what do we need to pass to replace ??? below to the label_image script?  Can we also glean the answer from examining TensorBoard?
 ```
 python -m scripts.label_image --input_layer=??? --input_height=??? --input_width=???  --graph=tf_files/retrained_graph.pb --image=tf_files/flower_photos/daisy/21652746_cc379e0eea_m.jpg
