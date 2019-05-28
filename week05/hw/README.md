@@ -1,7 +1,16 @@
-# Homework 5 IS BEING REVISED AND WILL BE RELEASED SHORTLY.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
+# Homework 5
 
 ## Introduction to Tensorflow
-The idea of this lab is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow is currently transitioning to [v2 alpha](https://www.tensorflow.org/alpha), which based on [Keras](https://keras.io/), which is much easier to use. However, there's a lot of code still written in Tensorflow v1, and we think that some hands-on experience with it will be useful. 
+The idea of this lab is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow is currently transitioning to [v2 alpha](https://www.tensorflow.org/alpha), which based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use. However, there's a lot of code still written in Tensorflow v1, and we think that some hands-on experience with it will be useful. 
+
+
+Please try to be patient and familiarize yourself with the code of this *beginner* lab.  In our opinion definitely rough around the edges,  while at the same time representative of what you might encounter "in the wild".
+
+
+The other concepts that we hope you will pick up are architectures for image classification as well as transfer learning.  The two go hand in hand: there are many pre-trained models today for image classification which you can further tweak (using transfer learning) on your own data. In this lab, you will see one approach where all the layers of the original model remain fixed.
+
+Note also that we are doing this homework on the TX2. It is powerful enough for real time inference - and even for incremental training.  This will come in handy later in the class as we begin to integrate neural processing into the kinds of pipelines you saw in homework 3.
+
 
 ### TensorFlow container for TX2
 First, you will need to build a Cuda Tensorflow container on your TX2.
@@ -24,6 +33,7 @@ In this section, we will generally follow the [Tensorflow for Poets lab](https:/
 Please read this before attempting the lab:
 
 * To start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti tensorflow bash`. Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
+* You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as a result of the Dockerfile instructions.
 * In the command above, 6006 is the port number that Tensorboard uses.  Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia does not currently provide a TensorFlow distro for python2
 * Once you are inside the interactive container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections, except the "next steps" section 9.
@@ -73,7 +83,10 @@ input_height = 299
 
 1. What is TensorFlow? Which company is the leading contributor to TensorFlow?
 1. What is TensorRT? How is it different from TensorFlow?
+1. What is ImageNet? How many images does it contain? How many classes?
+1. Please research and explain the differences between MobileNet and GoogleNet (Inception) architectures.
 1. In your own words, what is a bottleneck?
+1. How is a bottleneck different from the concept of layer freezing?
 1. In this lab, you trained the last layer (all the previous layers retain their already-trained state). Explain how the lab used the previous layers (where did they come from? how were they used in the process?)
 1. How does a low `--learning_rate` (step 7) value (like 0.005) affect the precision? How much longer does training take?
 1. How about a `--learning_rate` (step 7) of 1.0? Is the precision still good enough to produce a usable graph?
@@ -87,4 +100,4 @@ python -m scripts.label_image --input_layer=??? --input_height=??? --input_width
 
 ### To turn in:
 Turn in a text file or pdf with your answers to the questions above.
-
+Please note that this homework is NOT graded, credit / nocredit only.
