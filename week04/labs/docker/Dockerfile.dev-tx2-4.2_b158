@@ -13,7 +13,7 @@ FROM w251/keras:dev-tx2-4.2_b158-py3
 
 # this dockerfile is experimental
 # it should work, but watch your memory utilization!
-# if this dies -- reduce your memory consumption
+# if this dies -- make sure you enable swap (see hw01)
 WORKDIR /
 RUN mkdir -p notebooks
 WORKDIR notebooks
