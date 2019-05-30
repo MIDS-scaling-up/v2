@@ -1,7 +1,6 @@
 
 
 ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com --os=UBUNTU_16_64 --flavor AC1_8X60X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
-ibmcloud sl vs create --datacenter=dal09 --hostname=v100 --domain=darragh.com --os=UBUNTU_16_64 --flavor AC2_8X60X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
 
 
 ssh -i /Users/dhanley2/.ssh/id_rsa 158.176.131.5 -l root
@@ -10,8 +9,6 @@ ssh -i /Users/dhanley2/.ssh/id_rsa 158.176.131.5 -l root
 ###########################################################
 
 # https://github.com/dimsav/grin-guide/wiki/Install-nvidia-driver-(cuda)
-
-
 apt-get update
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
 dpkg -i cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
@@ -52,21 +49,28 @@ pkill -SIGHUP dockerd
 
 docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 
-
-
-###########################################################
-
-docker build -t torchimg -f Documents/w251/midsv2/week06/hw/PYTORCH.build .
-
 ###########################################################
 # Steps to start book
 ```
 git clone https://github.com/MIDS-scaling-up/v2
 ```
 
-# Go into the directory
+Go into the directory for week 06 and download the datasets with this helper script
+Note that we are downloading the pertrained BERT model published by google. During following steps we will be converting this to PyTorch.  
 ```
 cd v2/week06/hw/data/
 sh download.sh
 cd ~
 ```
+
+Let's grab our image and run it. You dont need the commented steps, but just so you are aware how it is built. 
+```
+# docker login
+# docker build -t torchimg -f v2/week06/hw/PYTORCH.build .
+# docker tag 386b7d7e5d24  w251/pytorch_gpu_hw06:latest
+# docker push w251/pytorch_gpu_hw06
+
+
+
+```
+
