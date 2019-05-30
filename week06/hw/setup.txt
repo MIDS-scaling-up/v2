@@ -1,0 +1,76 @@
+
+
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com --os=UBUNTU_16_64 --flavor AC1_8X60X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
+
+
+ssh -i /Users/dhanley2/.ssh/id_rsa 158.176.131.5 -l root
+
+
+###########################################################
+
+# https://github.com/dimsav/grin-guide/wiki/Install-nvidia-driver-(cuda)
+apt-get update
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
+apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+apt-get update
+apt-get install cuda
+
+echo 'export PATH="/usr/local/cuda/bin:$PATH"' >> ~/.bashrc
+reboot
+
+apt-get update
+apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+# add the docker repo    
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+# install it
+apt-get update
+apt-get install docker-ce
+
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+apt-get update
+
+apt-get install -y nvidia-docker2
+pkill -SIGHUP dockerd
+
+docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+
+###########################################################
+# Steps to start book
+```
+git clone https://github.com/MIDS-scaling-up/v2
+```
+
+Go into the directory for week 06 and download the datasets with this helper script
+Note that we are downloading the pertrained BERT model published by google. During following steps we will be converting this to PyTorch.  
+```
+cd v2/week06/hw/data/
+sh download.sh
+cd ~
+```
+
+Let's grab our image and run it. You dont need the commented steps, but just so you are aware how it is built. 
+```
+# docker login
+# docker build -t torchimg -f v2/week06/hw/PYTORCH.build .
+# docker tag 386b7d7e5d24  w251/pytorch_gpu_hw06:latest
+# docker push w251/pytorch_gpu_hw06
+
+
+
+```
+
