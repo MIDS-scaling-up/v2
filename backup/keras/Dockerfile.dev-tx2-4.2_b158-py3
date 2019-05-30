@@ -1,5 +1,9 @@
 FROM w251/tensorflow:dev-tx2-4.2_b158-py3
 
+# This is a container for Keras and Jupyter
+# docker run --name keras --privileged -p 8888:8888 -d w251/keras:dev-tx2-4.2_b158-py3 
+
+
 RUN apt update
 RUN apt install -y \
     libsm6 \
