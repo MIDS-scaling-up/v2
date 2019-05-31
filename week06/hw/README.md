@@ -1,4 +1,5 @@
-# Homework 6: The TPUs (and BERT!) IS BEING REVISED AND WILL BE RELEASED SHORTLY.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
+# Homework 6
+### The TPUs (and BERT!) IS UNDER REVISION.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
 
 1. Read the Google Cloud Product Overview on the [TPUs](https://cloud.google.com/tpu/)  
 2. Read the primer on [Bert](https://github.com/google-research/bert)  
@@ -13,7 +14,7 @@ Instructions on your assignment and training BERT in the book.
 * The final section in the book shows a number of tasks, you need only complete 1 of them.   
   
   
-## Images are in work - and will be updated here, but you can get started by creating your own VM's if you wish to start early.  
+#### Images are in work - and will be updated here, but you can get started by creating your own VM's if you wish to start early.  
    
    
 Start your `ibmcloud` VM. I ran like below - note this is a P100. For a V100, you need flavor `AC2_8X60X100`.  
