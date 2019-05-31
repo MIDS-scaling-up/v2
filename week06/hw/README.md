@@ -4,19 +4,19 @@
 2. Read the primer on [Bert](https://github.com/google-research/bert)  
 3. Follow the below steps to run BERT in pytorch on the Jigsaw Toxicity classification dataset.  
   
-A few notes on your assignment and the book.   
+Instructions on your assignment and training BERT in the book.   
 * The book is set with 10K rows training and 5K rows validation - so you can test it fast in your initial development. For your final run, we would like you to train on at least 1M rows; and validate on at least 500K rows.  
-* Please run it on a V100 VM and a P100 VM and report run times on training 1M rows on both. (Note, V100 will be faster, so maybe good to start there).  
-* You have 8 sections to complete the training of BERT. The first 5 are challenging - but there is a script linked in the book which should make it mostly copy and paste.  
-* Your submission should be your completed notebook (either from the P100 or V100). You can submit either through a HTML or link to a private GitHub repo.  
-* Please let your instructors know if it is taking an excessive amount of time. The scripts do run long on 1M rows ~ a number of hours on the both types of VM's, but the development should not take an excessivement amount of time.   
-
-
+* Please run it on a V100 VM and a P100 VM and report run times on training 1M rows on both. (Note, V100 will be faster, so maybe good to start there).   
+* You have 8 sections found in the jupyter notebook to complete the training of BERT and answer some questions. The first 5 seem challenging - but there is a script linked in the book which should make it trivial - should be just copy and pasting from and to the correct places.   
+* Your submission should be your completed notebook (either from the P100 or V100). You can submit either through a HTML or link to a private GitHub repo.   
+* Please let your instructors know if it is taking an excessive amount of time. The scripts do run long on 1M rows ~ a number of hours on the both types of VM's, but the development should not take an excessivement amount of time.  
+* The final section in the book shows a number of tasks, you need only complete 1 of them.   
+  
+  
 ## Images are in work - and will be updated here, but you can get started by creating your own VM's if you wish to start early.  
    
-
    
-Start you `ibmcloud` VM. I ran like below.  
+Start your `ibmcloud` VM. I ran like below - note this is a P100. For a V100, you need flavor `AC2_8X60X100`.  
 ```
 ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com --os=UBUNTU_16_64 --flavor AC1_8X60X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
 ```
@@ -75,7 +75,7 @@ Now download your assignment.
 git clone https://github.com/MIDS-scaling-up/v2
 ```
 
-Go into the directory for week 06 and download the datasets with this helper script
+Go into the directory for week 06 and download the datasets with this helper script.  
 Note that we are downloading the pertrained BERT model published by google. During following steps we will be converting this to PyTorch.  
 Please check your files in the `download.sh` script downloaded and unzipped correctly.   
 ```
@@ -83,7 +83,7 @@ cd v2/week06/hw/data/
 sh download.sh
 ```
 
-Let's grab our image and run it. You do n0t need the commented steps, but just so you are aware how it is built. 
+Let's grab our image and run it. You do not need the commented steps, but just so you are aware how it is built. 
 ```
 # docker login
 # docker build -t torchimg -f v2/week06/hw/PYTORCH.build .
