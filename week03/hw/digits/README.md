@@ -15,16 +15,16 @@ ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=
 ### Install cuda
 As of right now, 10.1 is the latest version.  Check https://developer.nvidia.com/cuda-toolkit  for the latest.
 ```
-wget https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
-dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
+wget https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-ubuntu1604-10-1-local-10.1.168-418.67_1.0-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.168-418.67_1.0-1_amd64.deb
 
 
 # the cuda 10.1 key
-apt-key add /var/cuda-repo-10-1-local-10.1.105-418.39/7fa2af80.pub
+apt-key add /var/cuda-repo-10-1-local-10.1.168-418.67/7fa2af80.pub
 
 # install it!
-apt-get update
-apt-get install -y cuda
+apt update
+apt install -y cuda
 ```
 If you have a dependency on cuda 10.0 (e.g. DeepStreamSDK), you will have to install these instead:
 ```
