@@ -1,5 +1,4 @@
 # Homework 6
-### The TPUs (and BERT!) IS UNDER REVISION.  SUMMER 2019 STUDENTS PLEASE HOLD OFF STARTING IT
 
 1. Read the Google Cloud Product Overview on the [TPUs](https://cloud.google.com/tpu/)  
 2. Read the primer on [Bert](https://github.com/google-research/bert)  
@@ -14,86 +13,28 @@ Instructions on your assignment and training BERT in the book.
 * The final section in the book shows a number of tasks, you need only complete 1 of them.   
   
   
-#### Images are in work - and will be updated here, but you can get started by creating your own VM's if you wish to start early.  
-   
-   
-Start your `ibmcloud` VM. I ran like below - note this is a P100. For a V100, you need flavor `AC2_8X60X100`.  
+### Start your VMs and notebook as below.  
+    
+Start your `ibmcloud` VM. I ran like below - note this is a P100. You will need to replace the key.   
+If you use `slcli`, no need to add `--san`.  
 ```
-ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com --os=UBUNTU_16_64 --flavor AC1_8X60X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --key=1418191 --flavor AC1_8X60X100 --san
+```
+
+For your v100, enter,
+```
+ibmcloud sl vs create --datacenter=lon04 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --key=1418191 --flavor AC2_8X60X100 --san
 ```
 
 `ssh` into your machine and run the below. 
 ```
-# Install cuda - referenced from - https://github.com/dimsav/grin-guide/wiki/Install-nvidia-driver-(cuda)
-apt-get update
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
-dpkg -i cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
-apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
-apt-get update
-apt-get install cuda
-# Add to your bashrc file
-echo 'export PATH="/usr/local/cuda/bin:$PATH"' >> ~/.bashrc
+nvidia-docker run --rm --name hw06 -p 8888:8888 -d w251/hw06:x86-64
 ```
-  
-As per week 02, install docker.
+   
+The above will output a `containerid` on completion, like `959f320ffed2cce68ff19d171dcd959e33ebca30a818501677978957867d96fe`
+With this run the below to get your URL. 
 ```
-apt-get update
-apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-
-# add the docker repo    
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-# install it
-apt-get update
-apt-get install docker-ce
-
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-  sudo apt-key add -
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-apt-get update
-
-apt-get install -y nvidia-docker2
-pkill -SIGHUP dockerd
-```
-  
-Test cuda is running in docker. 
-```
-docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
-```
-
-Now download your assignment. 
-```
-git clone https://github.com/MIDS-scaling-up/v2
-```
-
-Go into the directory for week 06 and download the datasets with this helper script.  
-Note that we are downloading the pertrained BERT model published by google. During following steps we will be converting this to PyTorch.  
-Please check your files in the `download.sh` script downloaded and unzipped correctly.   
-```
-cd v2/week06/hw/data/
-sh download.sh
-```
-
-Let's grab our image and run it. You do not need the commented steps, but just so you are aware how it is built. 
-```
-# docker login
-# docker build -t torchimg -f v2/week06/hw/PYTORCH.build .
-# docker tag 386b7d7e5d24  w251/pytorch_gpu_hw06:latest # you can see your tag with command `docker images`
-# docker push w251/pytorch_gpu_hw06
-
-# Just run the below
-cd ~
-docker run --rm --runtime=nvidia -it -p 8888:8888 -v /root:/root w251/pytorch_gpu_hw06
+docker logs <containerid>
 ```
   
 After you run this you will get an output like below. Go into your book, replacing the public IP in the brackets. For example for the below you can go to url   `http://158.176.131.11:8888/?token=c5d34fc988f452c4105c77a56924fe392d52991dde48478e`
@@ -105,14 +46,3 @@ After you run this you will get an output like below. Go into your book, replaci
 	[I 18:46:45.371 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 
 ```
-
-If you kill the above terminal, your notebook will stop. If you would like to keep your notebook permanently open you can run the docker in the background with `screen`, like below : 
-```
-# Enter `screen`
-screen
-docker run --rm --runtime=nvidia -it -p 8888:8888 -v /root:/root w251/pytorch_gpu_hw06 
-# to exit screen, type ctrl+d on your keyboard, and the command will keep running. To enter it again, type ctrl+a
-```
-
-
-
