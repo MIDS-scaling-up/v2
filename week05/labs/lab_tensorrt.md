@@ -1,0 +1,32 @@
+## Image Classification and Object Detection with TensorFlow and TensorRT
+
+### Introduction
+In this simple lab, we'll demonstrate how to speed up TensorFlow with Nvidia's runtime accelerator, TensorRT.  The lab generally follows 
+[this TensorRT tutorial](https://github.com/NVIDIA-AI-IOT/tf_trt_models).  Please spend a few minutes reading through this page. TensorRT 
+has its own runtime environment but here, it is just used to optimize an existing frozen TensorFlow graph. The optimized graph is 
+used in the Tensorflow runtime at inference time.
+
+### Setup
+
+Our TX2 docker container is built on the Keras + TF + TensoRT container you may have seen earlier in the class (please peek inside
+the Dockerfile):
+```
+docker build -t tensorrtlab05 -f Dockerfile.tensorrtlab05 .
+```
+Once this completes, let's launch the container:
+```
+docker run --privileged --rm -p 8888:8888 -d tensorrtlab05
+```
+If for whatever reason you were unable to get your container built, just use our pre-built version:
+```
+docker run --privileged --rm -p 8888:8888 -d tensorrtlab05
+```
+As before, find the token using ```docker logs``` and use it to connect to your jupyter notebook at http://jetsonip:8888
+```
+### Image Classification
+Complete the Image Classication Example under examples/classification, then try the following:
+1. Can you modify the notebook to measure the time it takes for one forward pass?
+1. Can you measure the time it takes for one forward pass using pure TensorFlow (hint: use the original frozen graph rather than the TensorRT optimized one)
+
+### Object Detection
+Complete the Object Detection example under examples/detection and answer the questions above as well.
