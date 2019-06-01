@@ -1,0 +1,13 @@
+# This builds the tensorrt lab file docker file 
+# docker build -t tensorrtlab05 -f Dockerfile.tensorrtlab05 .
+# docker run --privileged --rm -p 8888:8888 -d tensorrtlab05
+
+FROM w251/keras:dev-tx2-4.2_b158-py3
+
+RUN apt update && apt install python3-matplotlib python3-pil wget -y
+
+RUN git clone --recursive https://github.com/NVIDIA-Jetson/tf_trt_models.git
+WORKDIR tf_trt_models
+RUN ./install.sh python3
+
+ 
