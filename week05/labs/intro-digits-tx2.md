@@ -1,4 +1,4 @@
-# Labs 3: Fun with Digits on the Jetson with Nvidia Caffe backend
+# Lab: Fun with Digits on the Jetson with Nvidia Caffe backend
 
 Digits is an [Open Source](https://github.com/NVIDIA/DIGITS) project by Nvidia, designed to make it easy to train neural networks.
 
