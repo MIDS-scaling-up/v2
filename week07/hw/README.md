@@ -1,4 +1,4 @@
-# Homework 7: Object Detection with DIGITS
+# Homework 7: [ PLEASE DO NOT START; IS BEING REVISED] Object Detection with DIGITS
 
 #### catching up: do the Keras lab from week 4 [here](https://github.com/MIDS-scaling-up/v2/tree/master/week04)
 #### Kitti in the Cloud
