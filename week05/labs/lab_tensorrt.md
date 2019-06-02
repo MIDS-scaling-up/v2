@@ -1,10 +1,9 @@
-## Image Classification and Object Detection with TensorFlow and TensorRT
+## Optimizing models for Image Classification and Object Detection using TensorRT
 
 ### Introduction
-In this simple lab, you will learn how to speed up TensorFlow with Nvidia's runtime accelerator, TensorRT.  The lab generally follows 
-[this TensorRT tutorial](https://github.com/NVIDIA-AI-IOT/tf_trt_models).  Please spend a few minutes reading through this page. TensorRT 
-has its own runtime environment but here, it is just used to optimize an existing frozen TensorFlow graph. The optimized graph is 
-loaded into the Tensorflow runtime at inference time.
+In this simple lab, you will learn how to speed up TensorFlow models with Nvidia's runtime accelerator, TensorRT.  The lab generally follows 
+[this tutorial](https://github.com/NVIDIA-AI-IOT/tf_trt_models). Please spend a few minutes reading through this page. TensorRT 
+provides its own runtime environment but in this tutorial, it is just used to optimize an existing frozen TensorFlow graph. The optimized graph is loaded into the Tensorflow runtime at inference time.
 
 ### Setup
 
