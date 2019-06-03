@@ -1,4 +1,4 @@
-FROM caffe
+FROM w251/nvcaffe:tx2-4.2_b158
 # AUTHOR chenbryanchen@gmail.com
 
 WORKDIR /

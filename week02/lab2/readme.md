@@ -18,15 +18,14 @@ ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=
 ### Install cuda 10.0
 **cuda 10.1 does not work too well with tensorflow and we will use this image for tensorflow in lab04**
 ```
-wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64
-dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 . 
-
+apt-get update
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
 # the cuda 10.0 key
-apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
-
+apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 # install it!
 apt-get update
-apt-get install -y cuda
+apt-get install cuda
 ```
 
 ### Install docker

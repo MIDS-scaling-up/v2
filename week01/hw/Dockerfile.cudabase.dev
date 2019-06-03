@@ -65,6 +65,7 @@ RUN ln -s /usr/lib/aarch64-linux-gnu/tegra/libnvidia-ptxjitcompiler.so.32.1.0 /u
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/aarch64-linux-gnu/tegra
 ENV PATH=/usr/local/cuda-10.0/bin:$PATH
-RUN apt-get -y autoremove && apt-get -y autoclean
-RUN rm -rf /var/cache/apt
+RUN apt -y autoremove 
+# && apt-get -y autoclean
+# RUN rm -rf /var/cache/apt
 RUN rm -f /tmp/*.deb
