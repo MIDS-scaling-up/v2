@@ -12,7 +12,7 @@ a Deep Learning-based one. You could, for instance, rely on what you learned in
 * There is no need to train the network in this assignment, just find and use a pre-trained model.
 * Your neural detector should run on the Jetson.
 * Just like the OpenCV detector, your neural detector needs to take a frame as input and return an array of rectangles for each face detected.
-* Most neural object detectors operate on a frame of a given size, so you may need to resize the frame you get from your webcam to that resolution
+* Most neural object detectors operate on a frame of a given size, so you may need to resize the frame you get from your webcam to that resolution.
 
 ### Questions
 * Describe your solution in detail.  What neural network did you use? What dataset was it trained on? What accuracy does it achieve?
@@ -21,5 +21,4 @@ a Deep Learning-based one. You could, for instance, rely on what you learned in
 
 ### To turn in:
 
-Please provide answers to questions above, a copy of the code related to the neural face detector along with access to the locatiom (object storage?) 
-containing the detected faeces. Note that this homework is NOT graded, credit / nocredit only
+Please provide answers to questions above, a copy of the code related to the neural face detector along with access to the location (object storage?) containing the detected face images. Note that this homework is NOT graded, credit / no credit only.
