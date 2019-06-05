@@ -13,7 +13,7 @@ You will be training BERT in a jupyter notebook. Please read the below points be
 * Your submission should be your completed notebook (either from the P100 or V100). You can submit either through a HTML or link to a private GitHub repo.   
 * Please let your instructors know if it is taking an excessive amount of time. The scripts do run long on 1M rows ~ a number of hours on the both types of VM's, but the development should not take an excessive amount of time.  
 * The final section in the book shows a number of tasks, you need only complete 1 of them.   
-* For turning in your work, please send instructors the link your repo containing your completed notebooks and information on P100 and V100 runtimes etc., alternatively, mail instructors the notebooks in html format along with runtimes. 
+* **For turning in your work**, please send instructors the link your repo containing your completed notebooks and information on P100 and V100 runtimes etc., alternatively, mail instructors the notebooks in html format along with runtimes. 
   
   
 ### Start your VMs and notebook as below.  
