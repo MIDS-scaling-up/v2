@@ -4,10 +4,8 @@ In this week's homework, you leveraged BERT training code from a [public kaggle 
   
 * How many parameters does Bert Base have ? How many layers does it have ?
   
-* Even when we used APEX for mixed precision training, the max batch size we could get was 32 samples per batch. Take a look at the above notebook and see how you would simulate a 64 or 128 batch size without moving to a larger card. (Tip : look at the `accumulation`)
+* Even when we used [APEX](https://github.com/NVIDIA/apex) for mixed precision training, the max batch size we could get was 32 samples per batch. Take a look at the above notebook and see how you would simulate a 64 or 128 batch size without moving to a larger card. (Tip : look at the `accumulation`)
    
 * What would you change to simulate a 128 batch size ?
    
 * Read through the discussion forum [here](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/discussion/93339), particularly the comments over the last 10 days. What would you do to improve your homework results, given the recommendations posted.
-   
-   
