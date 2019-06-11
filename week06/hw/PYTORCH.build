@@ -1,7 +1,7 @@
-# Dockerfile for homework 5
+# Dockerfile for homework 6
 
-# docker build -t hw05 .
-# nvidia-docker run --rm --name hw05 -p 8888:8888 -d hw05
+# docker build -t hw06 .
+# nvidia-docker run --rm --name hw06 -p 8888:8888 -d hw06
 
 # point your browser to http://ip:8888/notebooks/v2/week06/hw/BERT_classifying_toxicity.ipynb
 
