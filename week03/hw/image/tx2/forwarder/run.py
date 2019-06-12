@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-# This is the Subscriber
+# Subscriber
 
 def on_connect(client, userdata, flags, a):
   print("Connected with result code "+str(a))
