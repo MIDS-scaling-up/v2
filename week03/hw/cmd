@@ -1,0 +1,32 @@
+### On Cloud ###
+docker network create --driver bridge hw03
+
+## set up broker
+docker run --name mosquitto --network hw03 -p 1883:1883 -ti alpine sh
+
+# we are inside the container now
+
+# install mosquitto
+apk update && apk add mosquitto
+
+# run mosquitto
+/usr/sbin/mosquitto -v
+
+# Disconnect from container (control-P, control Q)
+
+## run the image saver
+docker run --rm --privileged --name image_saver -v /mnt/w251:/mnt/w251 --network hw03 -ti image_saver:hw3 python run.py
+
+### on Jetson ###
+docker network create --driver bridge hw03
+
+## set up broker
+docker run -d --name mosquitto --network hw03  -p 1883:1883 -ti mosquitto:hw3
+
+## set up forwarder
+docker run -d --rm --name forwarder --network hw03 -ti forwarder:hw3 python run.py
+
+## run opencv
+docker run -d --rm --privileged --name opencv --device=/dev/video1:/dev/video1 -v "$PWD"/app:/app --network hw03 -it opencv:dev python /app/proc_video.py
+
+## Control-P Control-Q
