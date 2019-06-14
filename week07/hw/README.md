@@ -14,6 +14,7 @@ a Deep Learning-based one. You could, for instance, rely on what you learned in
 * Just like the OpenCV detector, your neural detector needs to take a frame as input and return an array of rectangles for each face detected.
 * Most neural object detectors operate on a frame of a given size, so you may need to resize the frame you get from your webcam to that resolution.
 * Note that face detection is not the same as face recognition; you don't need to discriminate between different faces
+* Here's a [sample notebook](hw07-hint.ipynb) that loads and uses [one face detector](https://github.com/yeephycho/tensorflow-face-detection)
 
 ### Questions
 * Describe your solution in detail.  What neural network did you use? What dataset was it trained on? What accuracy does it achieve?
