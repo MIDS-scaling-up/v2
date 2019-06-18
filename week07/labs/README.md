@@ -9,11 +9,11 @@ Go to the [quora competition data page](https://www.kaggle.com/c/quora-insincere
 Click on book (this book)[tbd], and press `Fork` in the top right corner. This will create a book under your own user. 
 
 #### Demo Notebooks
-https://www.kaggle.com/mchahhou/part1-optimizers
-https://www.kaggle.com/mchahhou/part2-transfer-learning
-https://www.kaggle.com/mchahhou/part3-preprocessing-and-finetuning
-https://www.kaggle.com/mchahhou/part4-meta-embeddings
-https://www.kaggle.com/mchahhou/part5-lab
+[Part 1 - Optimisers](https://www.kaggle.com/mchahhou/part1-optimizers)  
+[Part 2 - Transfer Learning](https://www.kaggle.com/mchahhou/part2-transfer-learning)  
+[Part 3 - Preprocessing and finetuning](https://www.kaggle.com/mchahhou/part3-preprocessing-and-finetuning)  
+[Part 4 - Meta Embeddings](https://www.kaggle.com/mchahhou/part4-meta-embeddings)   
+[Part 5 - Lab](https://www.kaggle.com/mchahhou/part5-lab)    
 
 #### Lab 
 **Make a submsission to Kaggle with your prediction.**
