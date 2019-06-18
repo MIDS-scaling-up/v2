@@ -1,4 +1,4 @@
-## DL 201 LAB *Under Revision*
+## DL 201 LAB
   
 Today we have a lab from our guest speaker [Chahhou Mohammed](https://docs.google.com/presentation/d/e/2PACX-1vRFn2idmx2dIu0Q2cfQaTKsPqdVX3rO2Yb9JTnm2jFX1BnEdvdVBAVmBLRzRE5y05m0ALhwMvjZ3mTg/pub?start=true&loop=false&delayms=3000). 
 
