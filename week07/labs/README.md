@@ -9,7 +9,7 @@ Go to the [quora competition data page](https://www.kaggle.com/c/quora-insincere
 Click on the book below, press `Fork` in the top right corner. This will create a new book under your own user which you can edit and rework as you wish.   
 
 ### Demo Notebooks
-[Part 1 - Optimisers](https://www.kaggle.com/mchahhou/part1-optimizers) 
+[Part 1 - Optimisers](https://www.kaggle.com/mchahhou/part1-optimizers)   
 [Part 2 - Transfer Learning](https://www.kaggle.com/mchahhou/part2-transfer-learning)  
 [Part 3 - Preprocessing and finetuning](https://www.kaggle.com/mchahhou/part3-preprocessing-and-finetuning)  
 [Part 4 - Meta Embeddings](https://www.kaggle.com/mchahhou/part4-meta-embeddings)   
