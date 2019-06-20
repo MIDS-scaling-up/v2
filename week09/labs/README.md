@@ -5,7 +5,7 @@
 On your Jetson TX2, start an OpenSeq2Seq docker container in interactive mode:
 ```
 # assuming your docker image is called "seq" - remember, you had to build it in the HW
-# if you forgot to build it, use w251/openseq2seq:tx2-3.3_b39
+# if you forgot to build it, use w251/openseq2seq:dev-tx2-4.2_b158-py3
 # also, assuming your external hard drive is mounted in /data, pass it through using -v
 docker run --privileged --name seq -v /data:/data -p 8888:8888 -ti seq bash
 ```
