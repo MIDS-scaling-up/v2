@@ -28,7 +28,7 @@ See: https://github.com/MIDS-scaling-up/v2/tree/master/week02/hw/README.md for d
 The graded homeworks are week 3, week 6, week 9, week 11; please notice that those are the slots that are available on the ISVC website except there are labeled as Homework 1, 2, 3 and 4 (we are working on getting this changed but in the meantime submit matching the graded homework week with it's slot i.e week 3 uploaded to Homework 1).
 
 
-### Final Projects
+### Final Projects (due in the final class session of the semester)
  - Form teams of three to four people
  - Leverage big data, cloud, DL, and the edge device to do something cool
  - Should be more than you can do on a workstation
