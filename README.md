@@ -28,3 +28,15 @@ See: https://github.com/MIDS-scaling-up/v2/tree/master/week02/hw/README.md for d
 The graded homeworks are week 3, week 6, week 9, week 11; please notice that those are the slots that are available on the ISVC website except there are labeled as Homework 1, 2, 3 and 4 (we are working on getting this changed but in the meantime submit matching the graded homework week with it's slot i.e week 3 uploaded to Homework 1).
 
 
+### Final Projects
+ - Form teams of three to four people
+ - Leverage big data, cloud, DL, and the edge device to do something cool
+ - Should be more than you can do on a workstation
+ - To turn in: White paper explaining what you did, how you did it, what you learned, what went right (or wrong) and a brief presentation (10-15 minutes)
+ 
+ An example of a final project:
+  - Leverage a dataset of missing persons.
+ - Train a model in the cloud to recognize the missing persons.
+ - Deploy the model to your edge device.
+ - If a person is recognized, send the image and location back to the cloud for further actions.
+ 
