@@ -11,7 +11,7 @@ Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/m
 1. Create account at https://ngc.nvidia.com/
 1. Follow [these instructions](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html#generating-api-key) to create an Nvidia Cloud docker registry API Key, unless you already have one.
 1. Login into one of the VMs and use your API key to login into Nvidia Cloud docker registry
-1. Pull the latest tensorflow image: ```docker pull nvcr.io/nvidia/tensorflow:19.01-py```
+1. Pull the latest tensorflow image with python3: ```docker pull nvcr.io/nvidia/tensorflow:19.05-py3```
 1. Use the files on [docker directory](docker) to create an openseq2seq image 
 1. Copy the created docker image to the other VM (or repeat the same steps on the other VM) 
 1. Create containers on both VMs: ``` docker run --runtime=nvidia -d --name openseq2seq --net=host -e SSH_PORT=4444 -v /data:/data -p 6006:6006 openseq2seq ```
