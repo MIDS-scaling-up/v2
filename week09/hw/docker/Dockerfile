@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:19.01-py3
+FROM nvcr.io/nvidia/tensorflow:19.05-py3
 MAINTAINER ggrunin@gmail.com
 
 RUN apt-get update \
