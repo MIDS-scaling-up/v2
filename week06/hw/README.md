@@ -21,12 +21,12 @@ You will be training BERT in a jupyter notebook. Please read the below points be
 Start your `ibmcloud` VM. I ran like below - note this is a P100. You will need to replace the key.   
 If you use `slcli`, no need to add `--san`.  
 ```
-ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --key=1418191 --flavor AC1_8X60X100 --san
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
 ```
 
 For your v100, enter,
 ```
-ibmcloud sl vs create --datacenter=lon04 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --key=1418191 --flavor AC2_8X60X100 --san
+ibmcloud sl vs create --datacenter=lon04 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC2_8X60X100 --san
 ```
 
 `ssh` into your machine and run the below. 
