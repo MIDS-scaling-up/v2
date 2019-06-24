@@ -1,4 +1,4 @@
-# Homework 9: [is being revised, please do not start it yet] Distributed Training
+# Homework 9: [is being revised, please do not start it yet] Distributed Training and Neural Machine Translation
 
 ## Please note that this homework is graded
 ### Read up on OpenSeq2Seq
@@ -24,7 +24,7 @@ Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/m
     scripts/get_en_de.sh /data/wmt16_de_en
     ```
     1. Copy configuration file to /data directory: ``` cp example_configs/text2text/en-de/transformer-base.py /data ```
-    1. Edit /data/transformer-base.py: replace ```[REPLACE THIS TO THE PATH WITH YOUR WMT DATA]``` with ```/data/wmt16_de_en/```,  in base_parms section replace ```"logdir": "nmt-small-en-de",``` with ```"logdir": "/data/en-de-transformer/",```  and make "batch_size_per_gpu": 128, in eval_params section set "repeat: to True. 
+    1. Edit /data/transformer-base.py: replace ```[REPLACE THIS TO THE PATH WITH YOUR WMT DATA]``` with ```/data/wmt16_de_en/```,  in base_parms section replace ```"logdir": "nmt-small-en-de",``` with ```"logdir": "/data/en-de-transformer/",```  make "batch_size_per_gpu": 128, and the in eval_params section set "repeat": to True. 
     1. If you are using V-100 GPUs, modify the config file to use mixed precision per the instructions in the file and set  "batch_size_per_gpu": 256 (yes, you can fit twice as much data in memory if you are using 16-bit precision)
     1. Start training -- **on the first VM only:** ```nohup mpirun --allow-run-as-root -n 4 -H <vm1 private ip address>:2,<vm2 private ip address>:2 -bind-to none -map-by slot --mca btl_tcp_if_include eth0  -x NCCL_SOCKET_IFNAME=eth0 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH  python run.py --config_file=/data/transformer-base.py --use_horovod=True --mode=train_eval & ```
     1. Monitor training progress: ``` tail -f nohup.out ```
