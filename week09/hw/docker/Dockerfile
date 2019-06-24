@@ -11,6 +11,9 @@ RUN mkdir /var/run/sshd
 
 ADD .ssh /root/.ssh
 
+# DR correct permissions on the id_rsa file 
+RUN chmod 600 /root/.ssh/id_rsa
+
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
