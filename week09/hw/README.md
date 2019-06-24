@@ -19,7 +19,7 @@ Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/m
     1. Test mpi: ``` mpirun -n 2 -H <vm1 private ip address>,<vm2 private ip address> --allow-run-as-root hostname ``` 
     1. Pull data to be used in neural machine tranlsation training ([more info](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)):  
     ``` 
-    cd /opt/OpenSeq2seq 
+    cd /opt/OpenSeq2Seq 
     scripts/get_en_de.sh /data/wmt16_de_en
     ```
     1. Copy configuration file to /data directory: ``` cp example_configs/text2text/en-de/transformer-base.py /data ```
