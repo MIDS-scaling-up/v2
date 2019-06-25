@@ -1,4 +1,4 @@
-# Homework 9: [is being revised, please do not start it yet] Distributed Training and Neural Machine Translation
+# Homework 9: Distributed Training and Neural Machine Translation
 
 ## Please note that this homework is graded
 ### Read up on OpenSeq2Seq
