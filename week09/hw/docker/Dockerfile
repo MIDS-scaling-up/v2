@@ -23,7 +23,7 @@ COPY start.sh  /root/
 WORKDIR /root
 RUN chmod +x ./start.sh
 
-RUN cd /opt && git clone https://github.com/NVIDIA/OpenSeq2Seq && cd /opt/OpenSeq2Seq && pip install -r requirements.txt
+RUN cd /opt && git clone https://github.com/NVIDIA/OpenSeq2Seq && cd /opt/OpenSeq2Seq && git checkout f1a0f49667764e7841d22a3eb4468a3276047244 && pip install -r requirements.txt
 
 
 CMD ["./start.sh"]
