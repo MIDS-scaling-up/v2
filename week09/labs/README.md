@@ -48,6 +48,9 @@ You will need to set the following:
 data_root="/data/wmt16_de_en/"
 # this is where your trained model is
 "logdir": "/data/models/Transformer-FP32-H-256",
+
+# we don't have Horovod installed on our Jetson!
+"use_horovod": False,
 ```
 
 Review the infer_params section at the end.  This is where we specify which files to use as input to our inference process.  Note that the default inference file is wmt14-en-de.src.BPE_common.32K.tok .  That is fine and should give you some reasonable idea about the bleu score of your model, but inference will take a while.  We suggest replacing it with wmt14.tiny.tok, which is only 10 lines long.  
@@ -55,7 +58,7 @@ Review the infer_params section at the end.  This is where we specify which file
 Now, we should be able to run the inference!
 ```
 cd /OpenSeq2Seq
-python run.py --config_file=example_configs/text2text/en-de/transformer-base.py --mode=infer --infer_output_file=raw.txt --num_gpus=1
+python3 run.py --config_file=example_configs/text2text/en-de/transformer-base.py --mode=infer --infer_output_file=raw.txt --num_gpus=1
 ```
 Note the output of the inference is tokenized, so we must detokenize it:
 ```
