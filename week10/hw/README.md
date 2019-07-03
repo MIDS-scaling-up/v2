@@ -1,4 +1,4 @@
-# [IS BEING REVISED PLEASE DO NOT START THIS YET] OpenAI Gym Framework
+# OpenAI Gym Framework
 
 OpenAI Gym is a framework that allows developing, training and testing of learning agents; one of it's applications is reinforcement learning, during this homework we will experiment with a Jupyter notebook aiming to train an agent to play a game using Reinforcement learning and Deep Learning.
 
