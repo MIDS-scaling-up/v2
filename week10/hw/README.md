@@ -2,11 +2,22 @@
 
 OpenAI Gym is a framework that allows developing, training and testing of learning agents; one of it's applications is reinforcement learning, during this homework we will experiment with a Jupyter notebook aiming to train an agent to play a game using Reinforcement learning and Deep Learning.
 
+OpenAI provides a common python interface to interact with the standarized set of environments, it is compatible with computational libraries liuke TensorFlow or Theano.
+
+There are two basic concepts in reinforcement learning: the environment and the agent. The agent sends actions to the environment, and the environment replies with observations and rewards (that is, a score).
+
+# General steps 
+reset(self): Reset the environment's state. Returns observation.
+step(self, action): Step the environment by one timestep. Returns observation, reward, done, info.
+render(self, mode='human'): Render one frame of the environment. The default mode will do something human friendly, such as pop up a window.
+
+More information [Gym getting started](https://gym.openai.com/docs/)
+
 ## Anaconda and OpenAI Gym installation
 These set of instructions is intended to be run in your local station (MAC OS X, or Windows)
 1. Install Anaconda according to [installation](https://docs.anaconda.com/anaconda/install/mac-os/)
 
-2. Update the local environment with the frameworks to support OpenAI Gym and launch the Jupyter notebook environmet
+2. Update the local environment with the frameworks to support OpenAI Gym and launch the Jupyter notebook environment
 ```
 conda create -n week10 python=3.7 ipykernel jupyter anaconda
 source activate week10
