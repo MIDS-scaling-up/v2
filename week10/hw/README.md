@@ -7,9 +7,9 @@ OpenAI provides a common python interface to interact with the standarized set o
 There are two basic concepts in reinforcement learning: the environment and the agent. The agent sends actions to the environment, and the environment replies with observations and rewards (that is, a score).
 
 # General steps 
-reset(self): Reset the environment's state. Returns observation.
-step(self, action): Step the environment by one timestep. Returns observation, reward, done, info.
-render(self, mode='human'): Render one frame of the environment. The default mode will do something human friendly, such as pop up a window.
+1.reset(self): Reset the environment's state. Returns observation.
+2.step(self, action): Step the environment by one timestep. Returns observation, reward, done, info.
+3.render(self, mode='human'): Render one frame of the environment. The default mode will do something human friendly, such as pop up a window.
 
 More information [Gym getting started](https://gym.openai.com/docs/)
 
