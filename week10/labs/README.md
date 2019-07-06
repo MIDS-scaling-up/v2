@@ -22,15 +22,11 @@ Installation
 
 You can perform a minimal install of ``gym`` with:
 
-.. code:: shell
-
     git clone https://github.com/openai/gym.git
     cd gym
     pip install -e .
 
-If you prefer, you can do a minimal install of the packaged version directly from PyPI:
-
-.. code:: shell
+Another method:
 
     pip install gym
 
