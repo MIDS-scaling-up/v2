@@ -13,7 +13,21 @@ There are two basic concepts in reinforcement learning: the environment and the 
 
 More information [Gym getting started](https://gym.openai.com/docs/)
 
-## Anaconda and OpenAI Gym installation
+
+## Dockerfile instructions example
+```
+clone the github repo including the Docker file and the gym.ipynb in the same directory
+ 
+Build the docker file: docker build -t gym .
+Run it: docker run --name gymweek10 -d -p 8888:8888 -p 6006:6006 gym:latest
+Access the Jupyter notebook endpoint: http://XX.XX.XX.XX:8888/tree?  (tip look for docker logs containerID to get the token)
+Run the gym.ipynb Notebook annotate your results 
+```
+## Submission
+Submit a document with evidence of the playbook run, changes you made and observations.
+
+
+## Optional Anaconda and OpenAI Gym installation
 These set of instructions is intended to be run in your local station (MAC OS X, or Windows)
 1. Install Anaconda according to [installation](https://docs.anaconda.com/anaconda/install/mac-os/)
 
