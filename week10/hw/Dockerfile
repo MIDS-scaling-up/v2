@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 # credit where its due, for sure!
 # MAINTAINER Ed Boraas <ed@boraas.ca>
-MAINTAINER Dima Rekesh <dima.rekesh@optum.com>  Esteban Arias <eariasn@us.ibm.com>
+MAINTAINER Dima Rekesh <bmwshop@gmail.com>  Esteban Arias <eariasn@us.ibm.com>
 
 
 # docker build -t ubuntu1604py36
@@ -24,26 +24,15 @@ RUN python3.6 -m pip install pip --upgrade && \
 
 # credit where its due, for sure!
 # MAINTAINER Ed Boraas <ed@boraas.ca>
-MAINTAINER Dima Rekesh <dima.rekesh@optum.com>
-# Checked into docker hub: https://docker.optum.com/repositories/dl_lab/openai/details
  
 
 # docker run -d -p 8888:8888 -p 6006:6006 --name openai -v /Users/drekesh/Downloads:/mnt/notebooks openai
-
- 
-
 # RUN apt-get update
 
 # RUN apt-get -y install software-properties-common
-
- 
-
 # RUN add-apt-repository universe
 
 # RUN add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
-
- 
-
 RUN apt-get update 
 
 RUN  apt-get -y install git
