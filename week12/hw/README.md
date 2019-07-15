@@ -43,7 +43,7 @@ As root on your node, download this tarball into /root, then unpack and install:
 apt-get update
 apt-get install ksh binutils libaio1 g++ make m4
 cd
-tar -xvf Spectrum_Scale_ADV_501_x86_64_LNX.tar
+tar -xvzf Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz
 ```
 Then install GPFS with:
 ```
