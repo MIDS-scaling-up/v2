@@ -56,7 +56,7 @@ Then install GPFS with:
 cd /usr/lpp/mmfs/5.0.1.0/gpfs_rpms/
 
 #install the rpms
-rpm -ivh gpfs.base*.rpm gpfs.gpl*rpm gpfs.license*rpm gpfs.gskit*rpm gpfs.msg*rpm gpfs.compression*rpm gpfs.adv*rpm gpfs.crypto*rpm
+gpfs_rpms]# rpm -ivh gpfs.base*.rpm gpfs.gpl*rpm gpfs.license*rpm gpfs.gskit*rpm gpfs.msg*rpm gpfs.compression*rpm gpfs.adv*rpm gpfs.crypto*rpm gpfs.ext*rpm
 
 #build the modules
 /usr/lpp/mmfs/bin/mmbuildgpl
