@@ -7,7 +7,7 @@ These instructions are a subset of the official instructions linked to from here
 
 We will install GPFS FPO with no replication (replication=1) and local write affinity.  This means that if you are on one of the nodes and are writing a file in GPFS, the file will end up on your local node unless your local node is out of space.
 
-A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, UBUNTU\_16\_64, __two local disks__ 25G and 100G each, in San Jose. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
+A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, REDHAT_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
 B. __Set up each one of your nodes as follows:__
 
@@ -40,24 +40,29 @@ Use the command wget (terminal) to download the installation package from [GPFS 
 
 As root on your node, download this tarball into /root, then unpack and install:
 ```
-apt-get update
-apt-get install ksh binutils libaio1 g++ make m4
-cd
+#update the kernel & install some pre-reqs
+yum install -y kernel-devel g++ gcc cpp kernel-headers gcc-c++ 
+yum update
+#reboot to use the latest kernel
+reboot
+#install more pre-reqs
+yum install -y ksh perl libaio m4 net-tools
+
 tar -xvzf Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz
 ```
 Then install GPFS with:
 ```
 ./Spectrum_Scale_Advanced-5.0.1.0-x86_64-Linux-install --silent
 cd /usr/lpp/mmfs/5.0.1.0/gpfs_debs
-dpkg -i *.deb
+
+#install the rpms
+rpm -ivh gpfs.base*.rpm gpfs.gpl*rpm gpfs.license*rpm gpfs.gskit*rpm gpfs.msg*rpm gpfs.compression*rpm gpfs.adv*rpm gpfs.crypto*rpm
+
+#build the modules
 /usr/lpp/mmfs/bin/mmbuildgpl
+
 ```
 
-If you have errors installing all of the deb packages, try limiting to this subnet
-```
-dpkg -i gpfs.base*deb gpfs.gpl*deb gpfs.license*.deb gpfs.gskit*deb 
-gpfs.msg*deb gpfs.ext*deb gpfs.compression*deb gpfs.adv*deb gpfs.crypto*deb
-```
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
 
