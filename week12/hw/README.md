@@ -53,7 +53,7 @@ tar -xvzf Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz
 Then install GPFS with:
 ```
 ./Spectrum_Scale_Advanced-5.0.1.0-x86_64-Linux-install --silent
-cd /usr/lpp/mmfs/5.0.1.0/gpfs_debs
+cd /usr/lpp/mmfs/5.0.1.0/gpfs_rpms/
 
 #install the rpms
 rpm -ivh gpfs.base*.rpm gpfs.gpl*rpm gpfs.license*rpm gpfs.gskit*rpm gpfs.msg*rpm gpfs.compression*rpm gpfs.adv*rpm gpfs.crypto*rpm
