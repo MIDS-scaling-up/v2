@@ -62,6 +62,33 @@ gpfs_rpms]# rpm -ivh gpfs.base*.rpm gpfs.gpl*rpm gpfs.license*rpm gpfs.gskit*rpm
 /usr/lpp/mmfs/bin/mmbuildgpl
 
 ```
+The prior steps will fail, we will use a patch to fix the installation, to get the fix we will download from IBM Cloud S3 COS
+
+```
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+yum install unzip
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+aws configure
+Access Key ID:
+A1XGdUexhlIdyusn16Jh
+Secret Access Key:
+vImKKsEPfYQuzovEuPZjabeAViRhdQ9P85RQJEt1
+aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install
+
+```
+
+Patch the installation
+```
+chmod +x Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install 
+./Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install --silent
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs1
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs2
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs3
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale setup -s IP-OF-GPFS1
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale callhome disable
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale install
+```
 
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
