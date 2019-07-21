@@ -1,4 +1,4 @@
-# Lecture 10: Real time and streams processing
+# Lecture 10: Streams processing and Deep Reinforcement Learning
 
 Scalable Streams Processing. Concepts on Stream processing, Apache Spark as a distributed system, Running Deep learning workloads on distributed systems with Caffe, TensorFlow and other examples.
 
