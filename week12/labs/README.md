@@ -30,21 +30,25 @@ nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it 
 
 ## Training an OpenSeq2Seq-based language model
 
-A. __Data collection:__
+A. __Data download:__
 In this first iteration we will work the model with the dataset wikitext-2-v1, which is a small subset, feel free to expand the lab and share your experiences using the dataset that was collected with LazyNLP.
 ```
 # update OpenSeq2Seq (optional since the TF container includes it anyways under /workspace/nvidia-examples/OpenSeq2Seq )
-git clone https://github.com/NVIDIA/OpenSeq2Seq
-cd OpenSeq2Seq
-pip install -r requirements.txt
+# git clone https://github.com/NVIDIA/OpenSeq2Seq
+# cd OpenSeq2Seq
+# pip install -r requirements.txt
 
 # pull the wikitext dataset
 wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-2-v1.zip
 unzip wikitext-2-v1.zip
 cd example_configs/lm
-Edit the file lstm-wkt2-fp32.py and setup the appropiate path for the train, validation and test.
-Make a copy of the data to fit the expected format, i.e.(your path might look different)
-cp /workspace/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/OpenSeq2Seq/wikitext-2/train.txt
+Edit the file lstm-wkt2-fp32.py and set the data_root variable, e.g.
+# data_root = "/workspace/nvidia-examples/OpenSeq2Seq/wikitext-2"
+Make a copy of the downoaded data files to fit the expected format, i.e.(your path might look different)
+cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/train.txt
+cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.valid.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/valid.txt
+cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.test.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/test.txt
+# kick off training:
 python run.py --config_file=example_configs/lm/lstm-wkt2-fp32.py --mode=train_eval --enable_logs
 ```
 
