@@ -33,7 +33,7 @@ nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it 
 A. __Data collection:__
 In this first iteration we will work the model with the dataset wikitext-2-v1, which is a small subset, feel free to expand the lab and share your experiences using the dataset that was collected with LazyNLP.
 ```
-# update OpenSeq2Seq (optional since the TF container includes it anyways)
+# update OpenSeq2Seq (optional since the TF container includes it anyways under /workspace/nvidia-examples/OpenSeq2Seq )
 git clone https://github.com/NVIDIA/OpenSeq2Seq
 cd OpenSeq2Seq
 pip install -r requirements.txt
