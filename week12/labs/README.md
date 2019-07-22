@@ -44,6 +44,8 @@ unzip wikitext-2-v1.zip
 cd example_configs/lm
 Edit the file lstm-wkt2-fp32.py and set the data_root variable, e.g.
 # data_root = "/workspace/nvidia-examples/OpenSeq2Seq/wikitext-2"
+# also make sure that horovod is turned off and that you're training on just 1 GPU (see the corresponding variables)
+
 Make a copy of the downoaded data files to fit the expected format, i.e.(your path might look different)
 cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/train.txt
 cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.valid.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/valid.txt
