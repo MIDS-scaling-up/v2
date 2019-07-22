@@ -1,4 +1,4 @@
-# Homework 13: Nvidia Transfer Learning Toolkit (TLT) [PLEASE HOLD OFF ON STARTING]
+# Homework 13: Nvidia Transfer Learning Toolkit (TLT)
 
 The TLT is a convenience framework that's supposed to help speed up the development of custom DL video applications. Get up to speed on the TLT by going through the links below:
 
