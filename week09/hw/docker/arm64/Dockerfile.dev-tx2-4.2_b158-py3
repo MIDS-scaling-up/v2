@@ -93,6 +93,7 @@ RUN rm -rf /tmp/llvm-7.0.1.src.tar.xz
 
 WORKDIR /
 
+RUN echo "repeating pull from github"
 RUN git clone https://github.com/NVIDIA/OpenSeq2Seq
 
 WORKDIR /OpenSeq2Seq
