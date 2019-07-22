@@ -21,11 +21,11 @@ We suggest that you generally follow [these instructions](https://github.com/dus
 * Review the [train script](https://github.com/dusty-nv/pytorch-imagenet/blob/master/train.py)
 * Once again, please use python3 for all commands
 * Note that in the instructions above, you passed through /data to your container.  Create the dataset directory, download the dataset / uncompress there.
-* Train for 100 epochs (--epochs=100)
+* Train for 100 epochs 
 * You are running on the tx2, so the training will take less time than on the nano (which is what Dusty benchmarked on)
 
 ## To submit
-Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Could you increase the batch size? Why? How long did the training take you?
+Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Could you increase the batch size? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
 
 
 Credit / no credit only
