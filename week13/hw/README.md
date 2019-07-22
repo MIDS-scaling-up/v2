@@ -18,6 +18,7 @@ docker run --rm --privileged -v /tmp:/tmp -v /data:/data -v /var:/var -v /home/n
 
 ## Training the model
 We suggest that you generally follow [these instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-plants.md) to train ResNet-18 on the PlantCLEF dataset.  Just a few notes:
+* Review the [train script](https://github.com/dusty-nv/pytorch-imagenet/blob/master/train.py)
 * Once again, please use python3 for all commands
 * Note that in the instructions above, you passed through /data to your container.  Create the dataset directory, download the dataset / uncompress there.
 * Train for 100 epochs (--epochs=100)
