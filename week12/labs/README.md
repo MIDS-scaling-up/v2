@@ -17,7 +17,10 @@ fast, simple-to-use, Horovod-based distributed training and data parallelism, su
 
 
 ## Setup: get a GPU VM in Softlayer
-Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw) to get an image-based P100 VM in Softlayer.  
+Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw) to get an image-based P100 VM in Softlayer, e.g.:
+```
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
+```
 
 Pull and launch the latest Nvidia TF container, e.g.
 
@@ -25,7 +28,7 @@ Pull and launch the latest Nvidia TF container, e.g.
 nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nvcr.io/nvidia/tensorflow:19.06-py3
 ```
 
-## Tensorflow operations
+## Training an OpenSeq2Seq-based language model
 
 A. __Data collection:__
 In this first iteration we will work the model with the dataset wikitext-2-v1, which is a small subset, feel free to expand the lab and share your experiences using the dataset that was collected with LazyNLP.
