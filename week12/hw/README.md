@@ -33,12 +33,7 @@ Create a nodefile.  Edit /root/nodefile and add the names of your nodes.  This i
     gpfs3::
 
 C. __Install and configure GPFS FPO on each node:__
-
-Use the command wget (terminal) to download the installation package from [GPFS installer](https://dal05.objectstorage.softlayer.net/v1/AUTH_c93299cb-85f8-4361-b654-67c868bcb6f6/gpfs/Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz)
-
-
-
-As root on your node, download this tarball into /root, then unpack and install:
+Install pre-requisites
 ```
 #update the kernel & install some pre-reqs
 yum install -y kernel-devel g++ gcc cpp kernel-headers gcc-c++ 
@@ -48,22 +43,10 @@ reboot
 #install more pre-reqs
 yum install -y ksh perl libaio m4 net-tools
 
-tar -xvzf Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz
 ```
-Then install GPFS with:
-```
-./Spectrum_Scale_Advanced-5.0.1.0-x86_64-Linux-install --silent
-cd /usr/lpp/mmfs/5.0.1.0/gpfs_rpms/
+Then install S3 API client and GPFS with:
 
-#install the rpms
-gpfs_rpms]# rpm -ivh gpfs.base*.rpm gpfs.gpl*rpm gpfs.license*rpm gpfs.gskit*rpm gpfs.msg*rpm gpfs.compression*rpm gpfs.adv*rpm gpfs.crypto*rpm gpfs.ext*rpm
-
-#build the modules
-/usr/lpp/mmfs/bin/mmbuildgpl
-
-```
-The prior steps will fail, we will use a patch to fix the installation, to get the fix we will download from IBM Cloud S3 COS
-
+S3 Client
 ```
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 yum install unzip
@@ -74,14 +57,14 @@ Access Key ID:
 A1XGdUexhlIdyusn16Jh
 Secret Access Key:
 vImKKsEPfYQuzovEuPZjabeAViRhdQ9P85RQJEt1
-aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install
+aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
 
 ```
 
-Patch the installation
+GPFS installation (node that we are adding nodes using the node names, be sure to update the hosts file on each VM)
 ```
-chmod +x Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install 
-./Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install --silent
+chmod +x Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
+./Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install --silent
 /usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs1
 /usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs2
 /usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs3
@@ -93,9 +76,7 @@ chmod +x Spectrum_Scale_Protocols_Data_Management-5.0.1.1-x86_64-Linux-install
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
 
-Now we are ready to create our cluster.  I named mine \[ -C\] dima .. Make sure you pass the correct node file to the --N command.
-
-    mmcrcluster -C dima -p gpfs1 -s gpfs2 -R /usr/bin/scp -r /usr/bin/ssh -N /root/nodefile
+Now the cluster is installed, let's work the details.
 
 Now, you must accept the license:
 
