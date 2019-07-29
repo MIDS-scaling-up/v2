@@ -71,15 +71,9 @@ deepstream-app -c configs/deepstream-app/source4_720p_dec_infer-resnet_tracker_s
 ```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
-* Review the [github repo](https://github.com/dusty-nv/jetson-inference)
-* Review the Docker file (Dockerfile.inf) required the build the container
-* Try building on the TX2, e.g. ``` docker build -t inf -f Dockerfile.inf .``` This may take a while and provided for reference only, so you could modify it in the future. You can complete this in your own free time; kill it before continuing to the next step
-* Start the container in interactive mode, e.g.
-```
-xhost +
-docker run --rm --privileged -v /tmp:/tmp -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:tx2-3.3_b39 bash
-```
-Note: this demo will, by default, use the on-board camera.  If you wish to use the external USB camera, you will need to edit the corresponding source -- e.g. /jetson-inference/detectnet-camera/detectnet-camera.cpp or imagenet-camera/imagenet-camera.cpp and change the DEFAULT_CAMERA variable to the index of your USB camera.  For instance, the first USB camera should be /dev/video1 (the /dev/video0 camera should be the built in one), so DEFAULT_CAMERA should be set to 1 
+At of July 2019, this functionality is, yet again in flux (sigh).  Nvidia has just dropped [Jetpack 4.2.1](https://developer.nvidia.com/embedded/jetpack) - which is [supposed to introduce Nvidia docker to the Jetson platform](https://devtalk.nvidia.com/default/topic/1046113/jetson-tx2/can-nvidia-docker-run-on-tx2-/) . But, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw)
+
+Note: these demox will, by default, use the on-board camera.  If you wish to use the external USB camera, you will need to edit the corresponding source -- e.g. /jetson-inference/detectnet-camera/detectnet-camera.cpp or imagenet-camera/imagenet-camera.cpp and change the DEFAULT_CAMERA variable to the index of your USB camera.  For instance, the first USB camera should be /dev/video1 (the /dev/video0 camera should be the built in one), so DEFAULT_CAMERA should be set to 1 
 
 Also, some USB cameras do not support the default resolution for this code, which is set to 1280x720 in utils/camera/gstCamera.h:
 ```
