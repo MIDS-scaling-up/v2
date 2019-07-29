@@ -71,7 +71,25 @@ deepstream-app -c configs/deepstream-app/source4_720p_dec_infer-resnet_tracker_s
 ```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
-At of July 2019, this functionality is, yet again in flux (sigh).  Nvidia has just dropped [Jetpack 4.2.1](https://developer.nvidia.com/embedded/jetpack) - which is [supposed to introduce Nvidia docker to the Jetson platform](https://devtalk.nvidia.com/default/topic/1046113/jetson-tx2/can-nvidia-docker-run-on-tx2-/) . But, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw)
+At of July 2019, this functionality is, yet again in flux (sigh).  Nvidia has just dropped [Jetpack 4.2.1](https://developer.nvidia.com/embedded/jetpack) - which is [supposed to introduce Nvidia docker to the Jetson platform](https://devtalk.nvidia.com/default/topic/1046113/jetson-tx2/can-nvidia-docker-run-on-tx2-/) . But, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not test it in time.
+
+So, let's just prepare the codebase on the Jetson directly:
+```
+# borrowing from https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo.md
+# become root
+# in case you don't have these.. 
+apt install -y git cmake 
+# go to the directory of your choosing
+cd 
+# clone the repo
+git clone https://github.com/dusty-nv/jetson-inference.git
+cd jetson-inference
+git submodule update --init
+mkdir build
+cd build
+cmake ../
+make -j6
+make install
 
 Note: these demox will, by default, use the on-board camera.  If you wish to use the external USB camera, you will need to edit the corresponding source -- e.g. /jetson-inference/detectnet-camera/detectnet-camera.cpp or imagenet-camera/imagenet-camera.cpp and change the DEFAULT_CAMERA variable to the index of your USB camera.  For instance, the first USB camera should be /dev/video1 (the /dev/video0 camera should be the built in one), so DEFAULT_CAMERA should be set to 1 
 
