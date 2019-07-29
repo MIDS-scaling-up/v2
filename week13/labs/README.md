@@ -91,23 +91,13 @@ cmake ../
 make -j6
 make install
 ```
-Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
+
 
 #### Notes
-These demox will, by default, use the on-board camera.  If you wish to use the external USB camera, you will need to edit the corresponding source -- e.g. /jetson-inference/detectnet-camera/detectnet-camera.cpp or imagenet-camera/imagenet-camera.cpp and change the DEFAULT_CAMERA variable to the index of your USB camera.  For instance, the first USB camera should be /dev/video1 (the /dev/video0 camera should be the built in one), so DEFAULT_CAMERA should be set to 1 
+* Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
+* It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=[/dev/video0], --width=[640], --height=[480], --network=[resnet-18]
+* There is a lot of information in this repo, take some time to go through it!
 
-Also, some USB cameras do not support the default resolution for this code, which is set to 1280x720 in utils/camera/gstCamera.h:
-```
-	static const uint32_t DefaultWidth  = 1280;
-	static const uint32_t DefaultHeight = 720;
-```
-Tweak these (640x480 is a safe bet) if you see related errors while trying to run.  
-
-Once you change the source, you need to recompile:
-```
-cd /jetson-inference/build
-make install
-```
 #### Running
 * Run the camera demo, e.g. ```./gst-camera``` . Close the window to exit the program.
 * Run the frame classification demo, e.g. ```./imagenet-camera```.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
