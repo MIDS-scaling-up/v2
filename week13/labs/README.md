@@ -57,13 +57,12 @@ Using the VNC / screensharing client of your choice, connect to the VNC display 
 
 Now, let us start the container:
 ```
-# this is the latest ATM and it depends on Cuda 10.0, sigh
 nvidia-docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -w /root/DeepStream_Release/samples nvcr.io/nvidia/deepstream:3.0-18.11
 ```
 
-Since we are using a P-100 card (we are cheap!), we need to change to default inference mode from Int8 to Int32. The inference precision is set using the network-mode setting (1=INT8, 0 = FP32). Therefore, all entries in the above config files reading: ```network-mode=1``` have to be changed to: ```network-mode=0```
+Since we are using a P-100 card (we are cheap!), we need to change to default inference mode from Int8 to Int32 for optimal performance as Int8 is not native for a P-100. The inference precision is set using the network-mode setting (1=INT8, 0 = FP32). Therefore, all entries in the above config files reading: ```network-mode=1``` have to be changed to: ```network-mode=0```
 ```
-These are the files we need to change:
+These are the files we need to OPTIONALLY change:
 
 /root/DeepStream_Release/samples/configs/deepstream-app/config_infer_primary.txt
 /root/DeepStream_Release/samples/configs/deepstream-app/config_infer_secondary_carcolor.txt
