@@ -90,6 +90,8 @@ cd build
 cmake ../
 make -j6
 make install
+```
+Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
 
 Note: these demox will, by default, use the on-board camera.  If you wish to use the external USB camera, you will need to edit the corresponding source -- e.g. /jetson-inference/detectnet-camera/detectnet-camera.cpp or imagenet-camera/imagenet-camera.cpp and change the DEFAULT_CAMERA variable to the index of your USB camera.  For instance, the first USB camera should be /dev/video1 (the /dev/video0 camera should be the built in one), so DEFAULT_CAMERA should be set to 1 
 
