@@ -1,51 +1,44 @@
-# TurboVNC on your TX2
+# AWS DeepRacer Lab
+In this lab, we will look at the AWS DeepRacer project. You will design a Reinforcement Learning training program for a virtual car on a virtual track by tweaking parameters like steering and speed.
 
-This lab will allow you to run a VNC server on your TX2 that works with OpenGL. Essentially, you can run the homework remotely. The .deb files are hosted in this github repo.
+First, go to the [DeepRacer portal](https://console.aws.amazon.com/deepracer/home?region=us-east-1).
 
-```
-dpkg --add-architecture aarch64
-sudo dpkg -i libjpeg-turbo_2.0.1_arm64.deb
-sudo dpkg -i virtualgl_2.6.2_aarch64.deb
-sudo dpkg -i turbovnc_2.2.1_aarch64.deb
-sudo apt install xfce4 xfce4-goodies
-```
+## Step 0
+Create account resources (Required / ~5 mins)
 
-Add the following to /etc/X11/xorg.conf
+You will see a button to create all the required resources:
 
-```
-Section "Screen"
-    Identifier  "Screen0"
-        Option "AllowEmptyInitialConfiguration"
-        Option "UseEdid" "False"
-EndSection
-```
+![](CreateResources.png)
 
-Create the file `/etc/ld.so.conf.d/libjpeg-turbo.conf` and add the following line
+## Step 1
+Learn the basics of reinforcement learning (Optional / ~10 mins)
 
-```
-/opt/libjpeg-turbo/lib32
-```
+![](StartLearningRL.png)
 
-Run the following commands:
+**You can skip this step because we will discuss in class.**
 
-```
-sudo ldconfig
-sudo /opt/VirtualGL/bin/vglserver_config
-sudo usermod -a -G vglusers nvidia
-```
+## Step 2
+Create a model and race (Required / ~1 hour)
 
-Create the file `~/.vnc/xstartup.turbovnc` and add the following:
+![](CreateModel.png)
 
-```
-#!/bin/sh
+Click the "Create Model" button and fill out the details:
 
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-startxfce4 &
-```
+ - Model name
+ - Environment Simulation **Pick the re:Invent 2018 track for this lab**
+ - Action Space **Tweak the steering angle, granularity, speed, speed granularity however you please**
+ - Use the default reward function
+ - Use the default Hyperparameters
+ - Use the default stop condition of 60 minutes
 
-Start the VNC server with `/opt/TurboVNC/bin/vncserver`
 
-You can connect to the VNC server with any VNC client, but you will need the TurboVNC client for OpenGL to work properly.
+## Start your training
+Click the button to start the training
+ 
+## Check your results
+After the training is complete, run an evaluation of the model. 
 
-Connect to the VNC server at <your_jetson_ip_address>:1
+ - How far did your car go? 
+ - Compare your results to others. 
+ - Did you change any parameters that made your model perform better or worse? 
+ - Does your car run very well on other tracks?

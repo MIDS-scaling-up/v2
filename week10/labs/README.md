@@ -1,124 +1,137 @@
-### Using Spark with Intel BigDL
-This lab assumes that you have three CentOS or RedHat servers available (names spark1, spark2, and spark3). We recommend using the VMs from your homework.
+### OpenAI Gym fun
+
+Basics
+======
+
+There are two basic concepts in reinforcement learning: the
+environment (namely, the outside world) and the agent (namely, the
+algorithm you are writing). The agent sends `actions` to the
+environment, and the environment replies with `observations` and
+`rewards` (that is, a score).
+
+The core `gym` interface is `Env <https://github.com/openai/gym/blob/master/gym/core.py>`_, which is
+the unified environment interface. There is no interface for agents;
+that part is left to you. The following are the ``Env`` methods you
+should know:
+
+- `reset(self)`: Reset the environment's state. Returns `observation`.
+- `step(self, action)`: Step the environment by one timestep. Returns `observation`, `reward`, `done`, `info`.
+- `render(self, mode='human')`: Render one frame of the environment. The default mode will do something human friendly, such as pop up a window. 
+Installation
+============
+
+You can perform a minimal install of ``gym`` with:
+
+    git clone https://github.com/openai/gym.git
+    cd gym
+    pip install -e .
+
+Another method:
+
+    pip install gym
+
+You'll be able to run a few environments right away:
+
+- algorithmic
+- toy_text
+- classic_control (you'll need ``pyglet`` to render though)
+
+## Example agent
+```
+from __future__ import print_function
+
+import gym
+from gym import wrappers, logger
+import numpy as np
+from six.moves import cPickle as pickle
+import json, sys, os
+from os import path
+from _policies import BinaryActionLinearPolicy # Different file so it can be unpickled
+import argparse
+
+def cem(f, th_mean, batch_size, n_iter, elite_frac, initial_std=1.0):
+    """
+    Generic implementation of the cross-entropy method for maximizing a black-box function
+
+    f: a function mapping from vector -> scalar
+    th_mean: initial mean over input distribution
+    batch_size: number of samples of theta to evaluate per batch
+    n_iter: number of batches
+    elite_frac: each batch, select this fraction of the top-performing samples
+    initial_std: initial standard deviation over parameter vectors
+    """
+    n_elite = int(np.round(batch_size*elite_frac))
+    th_std = np.ones_like(th_mean) * initial_std
+
+    for _ in range(n_iter):
+        ths = np.array([th_mean + dth for dth in  th_std[None,:]*np.random.randn(batch_size, th_mean.size)])
+        ys = np.array([f(th) for th in ths])
+        elite_inds = ys.argsort()[::-1][:n_elite]
+        elite_ths = ths[elite_inds]
+        th_mean = elite_ths.mean(axis=0)
+        th_std = elite_ths.std(axis=0)
+        yield {'ys' : ys, 'theta_mean' : th_mean, 'y_mean' : ys.mean()}
+
+def do_rollout(agent, env, num_steps, render=False):
+    total_rew = 0
+    ob = env.reset()
+    for t in range(num_steps):
+        a = agent.act(ob)
+        (ob, reward, done, _info) = env.step(a)
+        total_rew += reward
+        if render and t%3==0: env.render()
+        if done: break
+    return total_rew, t+1
+
+if __name__ == '__main__':
+    logger.set_level(logger.INFO)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--display', action='store_true')
+    parser.add_argument('target', nargs="?", default="CartPole-v0")
+    args = parser.parse_args()
+
+    env = gym.make(args.target)
+    env.seed(0)
+    np.random.seed(0)
+    params = dict(n_iter=10, batch_size=25, elite_frac=0.2)
+    num_steps = 200
+
+    # You provide the directory to write to (can be an existing
+    # directory, but can't contain previous monitor results. You can
+    # also dump to a tempdir if you'd like: tempfile.mkdtemp().
+    outdir = '/tmp/cem-agent-results'
+    env = wrappers.Monitor(env, outdir, force=True)
+
+    # Prepare snapshotting
+    # ----------------------------------------
+    def writefile(fname, s):
+        with open(path.join(outdir, fname), 'w') as fh: fh.write(s)
+    info = {}
+    info['params'] = params
+    info['argv'] = sys.argv
+    info['env_id'] = env.spec.id
+    # ------------------------------------------
+
+    def noisy_evaluation(theta):
+        agent = BinaryActionLinearPolicy(theta)
+        rew, T = do_rollout(agent, env, num_steps)
+        return rew
+
+    # Train the agent, and snapshot each stage
+    for (i, iterdata) in enumerate(
+        cem(noisy_evaluation, np.zeros(env.observation_space.shape[0]+1), **params)):
+        print('Iteration %2i. Episode mean reward: %7.3f'%(i, iterdata['y_mean']))
+        agent = BinaryActionLinearPolicy(iterdata['theta_mean'])
+        if args.display: do_rollout(agent, env, 200, render=True)
+        writefile('agent-%.4i.pkl'%i, str(pickle.dumps(agent, -1)))
+
+    # Write out the env at the end so we store the parameters of this
+    # environment.
+    writefile('info.json', json.dumps(info))
+
+    env.close()
+
+```
 
 
-In this lab, we are experimenting with [Intel's BigDL](https://github.com/intel-analytics/BigDL), a distributed Deep Learning framework developed specifically for Intel hardware
-
-We will use the code from the link below with some minor modification.  Feel free to go over it time permitting:
-https://bigdl-project.github.io/0.2.0/#PythonUserGuide/python-examples/
-
-### Installing BigDL
-Download and install BigDL on the master node
-```
-# on the master node only
-cd /usr/local
-mkdir -m 777 bigdl
-cd bigdl
-wget https://oss.sonatype.org/content/groups/public/com/intel/analytics/bigdl/dist-spark-2.1.1-scala-2.11.8-linux64/0.3.0/dist-spark-2.1.1-scala-2.11.8-linux64-0.3.0-dist.zip
-unzip *.zip
-rm *.zip
-```
-Make sure rsync is installed everywhere
-```
-yum install rsync
-ssh spark2 yum install rsync
-ssh spark3 yum install rsync
-```
-Now, propagate BigDL directory to other nodes
-```
-# repeat for all slave nodes
-cd /usr/local
-rsync -avz bigdl spark2:/usr/local
-rsync -avz bigdl spark3:/usr/local
-```
-Make sure you have numpy installed:
-```
-yum install -y numpy
-```
-
-### Validating the install
-To get a python shell with BigDL you do this:
-```
-cd /usr/local/bigdl/lib
-export BIGDL_HOME=/usr/local/bigdl
-cd $BIGDL_HOME/lib
-BIGDL_VERSION=0.3.0
-${SPARK_HOME}/bin/pyspark --master local[2] \
---conf spark.driver.extraClassPath=bigdl-SPARK_2.1-${BIGDL_VERSION}-jar-with-dependencies.jar \
---py-files bigdl-${BIGDL_VERSION}-python-api.zip \
---properties-file ../conf/spark-bigdl.conf
-```
-Assuming it started with no errors, see if you can create a basic linear layer:
-```
-from bigdl.util.common import *
-from pyspark import SparkContext
-from bigdl.nn.layer import *
-import bigdl.version
-
-# create sparkcontext with bigdl configuration
-sc = SparkContext.getOrCreate(conf=create_spark_conf()) 
-init_engine() # prepare the bigdl environment 
-bigdl.version.__version__ # Get the current BigDL version
-linear = Linear(2, 3) # Try to create a Linear layer
-```
-### Training LeNet
-LeNet is a classic neural network developed in the late 90's to classify handwritten digits
-Let us pick a directory and clone Intel's BigDL examples directory
-```
-cd /root
-git clone https://github.com/intel-analytics/BigDL
-cd BigDL
-git checkout branch-0.3
-```
-
-We will need to install a package called six:
-```
-pip install six
-ssh spark2 pip install six
-ssh spark3 pip install six
-```
-
-Now, create a script file called lenet.sh and write the following into it:
-```
-#!/bin/sh
-
-PYTHONHASHSEED=0
-BIGDL_VERSION=0.3.0
-BigDL_HOME=/usr/local/bigdl
-GITHUB_BIGDL_HOME=/root/BigDL
-SPARK_HOME=/usr/local/spark
-MASTER=local[2]
-
-PYTHON_API_ZIP_PATH=${BigDL_HOME}/lib/bigdl-0.3.0-python-api.zip
-BigDL_JAR_PATH=${BigDL_HOME}/lib/bigdl-SPARK_2.1-0.3.0-jar-with-dependencies.jar
-
-# BigDL_JAR_PATH=${BigDL_HOME}/dist/lib/bigdl-VERSION-jar-with-dependencies.jar
-PYTHONPATH=${PYTHON_API_ZIP_PATH}:$PYTHONPATH
-
-        ${SPARK_HOME}/bin/spark-submit \
-            --master ${MASTER} \
-            --driver-cores  2 \
-            --driver-memory 2g  \
-            --total-executor-cores  2 \
-            --executor-cores 4  \
-            --executor-memory 4g \
-            --py-files ${PYTHON_API_ZIP_PATH},${GITHUB_BIGDL_HOME}/pyspark/bigdl/models/textclassifier/textclassifier.py  \
-            --jars ${BigDL_JAR_PATH} \
-            --conf spark.driver.extraClassPath=${BigDL_JAR_PATH} \
-            --conf spark.executor.extraClassPath=bigdl-SPARK_1.6-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
-            --conf spark.executorEnv.PYTHONHASHSEED=${PYTHONHASHSEED} \
-            ${GITHUB_BIGDL_HOME}/pyspark/bigdl/models/textclassifier/textclassifier.py \
-             --max_epoch 3 \
-             --model cnn
-```
-Let us run it:
-```
-chmod a+x lenet.sh
-./lenet.sh
-```
-IF all goes well, you should see something like:
-```
-2017-10-16 18:41:14 INFO  DistriOptimizer$:374 - [Epoch 3 16000/15958][Iteration 375][Wall Clock 58.496114957s] Epoch finished. Wall clock time is 59357.355329 ms
-2017-10-16 18:41:14 INFO  DistriOptimizer$:626 - [Wall Clock 59.357355329s] Validate model...
-2017-10-16 18:41:15 INFO  DistriOptimizer$:668 - Top1Accuracy is Accuracy(correct: 3878, count: 4039, accuracy: 0.9601386481802426
-```

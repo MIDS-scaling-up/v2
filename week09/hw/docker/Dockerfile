@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:19.01-py3
+FROM nvcr.io/nvidia/tensorflow:19.05-py3
 MAINTAINER ggrunin@gmail.com
 
 RUN apt-get update \
@@ -11,6 +11,9 @@ RUN mkdir /var/run/sshd
 
 ADD .ssh /root/.ssh
 
+# DR correct permissions on the id_rsa file 
+RUN chmod 600 /root/.ssh/id_rsa
+
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -20,7 +23,7 @@ COPY start.sh  /root/
 WORKDIR /root
 RUN chmod +x ./start.sh
 
-RUN cd /opt && git clone https://github.com/NVIDIA/OpenSeq2Seq && cd /opt/OpenSeq2Seq && pip install -r requirements.txt
+RUN cd /opt && git clone https://github.com/NVIDIA/OpenSeq2Seq && cd /opt/OpenSeq2Seq && git checkout f1a0f49667764e7841d22a3eb4468a3276047244 && pip install -r requirements.txt
 
 
 CMD ["./start.sh"]

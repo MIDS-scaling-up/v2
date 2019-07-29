@@ -86,6 +86,31 @@ sudo service docker start
 Now your Docker work will automatically be stored on this external drive. The new "docker" directory in /var/lib is a softlink: every time Docker calls on that, it'll actually be pulling from the original "docker" directory in the external drive. Just remember to hook it up when working with Docker.
 
 **NOTE: You'll have to manually mount your external drive and start Docker every time you reboot the Jetson if you use the external drive this way. You might want to have Ubuntu mount your external drive automatically every time you reboot by adding a line to the /etc/fstab file ([See here for more info on how to mount with the fstab file](https://help.ubuntu.com/community/Fstab)).**
+
+### Creating a swap file pointing to the external drive (recommended)
+If you have an external drive, your TX2 can function as a small desktop. Let's enable swap to complete the picture, so that you can start multiple jobs in parallel (assuming that only one is active at a time, you should have reasonable performance):
+```
+# assuming your hard drive is mounted to /data
+# and that you want to create a 24G swap file (3 times the memory, which is ok.  Assuming that your hard drive is 500G, this should be easy)
+# become root
+fallocate -l 24.0G /data/swapfile
+chmod 600 /data/swapfile
+mkswap /data/swapfile
+swapon /data/swapfile
+# confirm that your swap is working:
+free -m
+# You should see something like:
+#               total        used        free      shared  buff/cache   available
+# Mem:           7852        5050        1522          20        1279        2597
+# Swap:         24575           0       24575
+
+# Now, edit /etc/fstab and add the following line:
+/data/swapfile  none    swap    0       0
+# Finally, reboot
+reboot
+# Once the tx2 starts, type free -m again to make sure that your swap is working
+# Happy swapping!
+```
   
 ### Creating a base CUDA Docker Image for the Jetson
 Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase file on Github in week01/hw, and place it in the new directory. Ensure you are in the new directory and run the following:

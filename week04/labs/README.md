@@ -26,3 +26,5 @@ docker run --rm --runtime=nvidia -it -p 8888:8888 w251/tensorflow_gpu_lab04:late
 This docker run will open a jupyter notebook, and the token will be provided on output of the docker run. You can reach this by going in your browser to `http://<my_ip>:8888`.  
 
 For example, for my notebook, I go to `http://158.176.93.70:8888`, and enter my token.   
+
+#### Don't forget to CANCEL (not shut down but CANCEL) this VM after you are done to avoid a continuous charge!

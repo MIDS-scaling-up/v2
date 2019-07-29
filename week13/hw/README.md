@@ -1,54 +1,35 @@
-# Homework 13: Nvidia Transfer Learning Toolkit (TLT)
+# Homework 13: Deep Learning SDK (the unofficial one, by Dustin Franklin)
 
-The TLT is a convenience framework that's supposed to help speed up the development of custom DL video applications. Get up to speed on the TLT by going through the links below:
+We find that Dusty's repo has been one of the best places to find cool examples and cool code for doing something practical, so hopefully you'll enjoy it as well.  In this homework, you'll be using transfer learning to create a model that classifies plants, directly on your TX2!
 
-* https://developer.nvidia.com/transfer-learning-toolkit
-* https://devblogs.nvidia.com/accelerating-video-analytics-tlt/
-* https://devblogs.nvidia.com/transfer-learning-toolkit-pruning-intelligent-video-analytics/
-* The [Getting Started Guide](https://github.com/MIDS-scaling-up/v2/blob/master/week13/hw/Transfer-Learning-Toolkit-Getting-Started-Guide-IVAOpenBeta.pdf) (also available in the authenticated area of the developer Nvidia portal)
+## Setting up
 
-Note its model pruning capabilities.  
-At the moment, the TLT is still early release, and you need to apply for access. 
-We have contacted Nvidia and passed on your email addresses with which you registered for the class - with the idea that you could use the same email address to register for the NGC and then get access to the TLT.  
+* Review the [github repo](https://github.com/dusty-nv/jetson-inference)
+* Review the Docker file (Dockerfile.inf) required the build the container
+* Try building on the TX2, e.g. ``` docker build -t inf -f Dockerfile.inf .``` This will take a few minutes.
+* Start the container in interactive mode, e.g.
+```
+# this needs to be done on the jetson
+xhost +
+docker run --rm --privileged -v /tmp:/tmp -v /data:/data -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:dev-tx2-4.2_b158 bash
+```
+* Pytorch and torchvision should already be installed for you, just make sure you use python3 for all commands instead of regular python (which points to python2)
+* Swap should also be already set up for you ( we did this in homework 1)
 
-You will need a virtual machine with a GPU.  Please obtain and set up one (including docker and nvidia docker) in Softlayer as per instructions in earlier homeworks.
-Once that is done, log into the NGC with your credentials and pull the latest TLT container, e.g.
-```
-docker login
-# make sure you enter the credentials that allow you access to the TLT
-docker pull nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py2
-```
-Assuming this completed ok, you should now be able to run the TLT container. You will need to have a mountpoint or disk with some space available (let's say, 20G) - in the example below, /data is my mountpoint , and pass it through to the container.  Notice that we are also setting up a port passthrough:
-```
-nvidia-docker run --rm -v /data:/data -p 9888:8888 -it  nvcr.io/nvtltea/iva/tlt-streamanalytics:v0.3_py2 /bin/bash
-```
-Validate that your TLT command line is working by trying to list the available models:
-```
-root@34eda020fe6a:/workspace# tlt-pull -k $YOUR_KEY  --list_models -o nvtltea -t iva
-# the output should look like this:
-+-----------------------------------+-------------+----------------+----------------+-----------+-----------+-------------------------+
-| Name                              | Org/Team    | Latest Version | Application    | Framework | Precision | Last Modified           |
-+-----------------------------------+-------------+----------------+----------------+-----------+-----------+-------------------------+
-| tlt_iva_classification_alexnet    | nvtltea/iva | 1              | Classification | TLT       | FP32      | 2019-03-01 20:41:41 UTC |
-| tlt_iva_classification_googlenet  | nvtltea/iva | 1              | Classification | TLT       | FP32      | 2019-03-02 00:08:48 UTC |
-| tlt_iva_classification_resnet18   | nvtltea/iva | 1              | Classification | TLT       | FP32      | 2019-03-01 23:56:49 UTC |
-| tlt_iva_classification_resnet50   | nvtltea/iva | 1              | Classification | TLT       | FP32      | 2019-03-01 23:52:58 UTC |
-| tlt_iva_classification_vgg16      | nvtltea/iva | 1              | Classification | TLT       | FP32      | 2019-03-02 00:03:52 UTC |
-| tlt_iva_classification_vgg19      | nvtltea/iva | 1              | Classification | TLT       | FP32      | 2019-03-02 00:06:36 UTC |
-| tlt_iva_object_detection_googlene | nvtltea/iva | 1              | Detection      | TLT       | FP32      | 2019-03-02 00:48:15 UTC |
-| t                                 |             |                |                |           |           |                         |
-| tlt_iva_object_detection_resnet10 | nvtltea/iva | 1              | Detection      | TLT       | FP32      | 2019-03-02 00:45:16 UTC |
-| tlt_iva_object_detection_resnet18 | nvtltea/iva | 1              | Detection      | TLT       | FP32      | 2019-03-02 00:37:46 UTC |
-| tlt_iva_object_detection_vgg16    | nvtltea/iva | 1              | Detection      | TLT       | FP32      | 2019-03-02 00:41:00 UTC |
-+-----------------------------------+-------------+----------------+----------------+-----------+-----------+-------------------------+
-root@34eda020fe6a:/workspace# 
-```
-Now, let's go through the object detection sample:
-```
-jupyter notebook --ip 0.0.0.0 --allow-root
-```
-Point your browser to http://ip_of_your_vm:9888 and use the token that was printed to standard output when you launched your notebook.
-Now, navigate to examples, detection.ipynb and follow the instructions to complete it.
+## Training the model
+We suggest that you generally follow [these instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-plants.md) to train ResNet-18 on the PlantCLEF dataset.  Just a few notes:
+* Review the [train script](https://github.com/dusty-nv/pytorch-imagenet/blob/master/train.py)
+* Once again, please use python3 for all commands
+* Note that in the instructions above, you passed through /data to your container.  Create the dataset directory, download the dataset / uncompress there.
+* Train for 100 epochs 
+* You are running on the tx2, so the training will take less time than on the nano (which is what Dusty benchmarked on)
+
+## To submit
+Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Could you increase the batch size? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
+
+
+Credit / no credit only
+
 
 
 

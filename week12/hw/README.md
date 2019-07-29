@@ -7,7 +7,7 @@ These instructions are a subset of the official instructions linked to from here
 
 We will install GPFS FPO with no replication (replication=1) and local write affinity.  This means that if you are on one of the nodes and are writing a file in GPFS, the file will end up on your local node unless your local node is out of space.
 
-A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, UBUNTU\_16\_64, __two local disks__ 25G and 100G each, in San Jose. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
+A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, REDHAT_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
 B. __Set up each one of your nodes as follows:__
 
@@ -33,37 +33,50 @@ Create a nodefile.  Edit /root/nodefile and add the names of your nodes.  This i
     gpfs3::
 
 C. __Install and configure GPFS FPO on each node:__
+Install pre-requisites
+```
+#update the kernel & install some pre-reqs
+yum install -y kernel-devel g++ gcc cpp kernel-headers gcc-c++ 
+yum update
+#reboot to use the latest kernel
+reboot
+#install more pre-reqs
+yum install -y ksh perl libaio m4 net-tools
 
-Use the command wget (terminal) to download the installation package from [GPFS installer](https://dal05.objectstorage.softlayer.net/v1/AUTH_c93299cb-85f8-4361-b654-67c868bcb6f6/gpfs/Spectrum_Scale_ADV_501_x86_64_LNX.tar.gz)
+```
+Then install S3 API client and GPFS with:
 
+S3 Client
+```
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+yum install unzip
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+aws configure
+Access Key ID:
+A1XGdUexhlIdyusn16Jh
+Secret Access Key:
+vImKKsEPfYQuzovEuPZjabeAViRhdQ9P85RQJEt1
+aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
 
-
-As root on your node, download this tarball into /root, then unpack and install:
-```
-apt-get update
-apt-get install ksh binutils libaio1 g++ make m4
-cd
-tar -xvf Spectrum_Scale_ADV_501_x86_64_LNX.tar
-```
-Then install GPFS with:
-```
-./Spectrum_Scale_Advanced-5.0.1.0-x86_64-Linux-install --silent
-cd /usr/lpp/mmfs/5.0.1.0/gpfs_debs
-dpkg -i *.deb
-/usr/lpp/mmfs/bin/mmbuildgpl
 ```
 
-If you have errors installing all of the deb packages, try limiting to this subnet
+GPFS installation (node that we are adding nodes using the node names, be sure to update the hosts file on each VM)
 ```
-dpkg -i gpfs.base*deb gpfs.gpl*deb gpfs.license*.deb gpfs.gskit*deb 
-gpfs.msg*deb gpfs.ext*deb gpfs.compression*deb gpfs.adv*deb gpfs.crypto*deb
+chmod +x Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
+./Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install --silent
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs1
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs2
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs3
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale setup -s IP-OF-GPFS1
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale callhome disable
+/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale install
 ```
+
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
 
-Now we are ready to create our cluster.  I named mine \[ -C\] dima .. Make sure you pass the correct node file to the --N command.
-
-    mmcrcluster -C dima -p gpfs1 -s gpfs2 -R /usr/bin/scp -r /usr/bin/ssh -N /root/nodefile
+Now the cluster is installed, let's work the details.
 
 Now, you must accept the license:
 

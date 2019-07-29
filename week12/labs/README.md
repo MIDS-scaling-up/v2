@@ -16,86 +16,49 @@ support for mixed-precision training, that utilizes Tensor Cores introduced in N
 fast, simple-to-use, Horovod-based distributed training and data parallelism, supporting both multi-GPU and multi-node
 
 
-### Get a pair of GPU VMs in Softlayer
-Follow instructions in [Homework 3](https://github.com/MIDS-scaling-up/v2/tree/master/week03/hw) to get 1 P100 VM in Softlayer.  
-
-Virtual servers middleware installation:
-
-A. __Install GCC__
+## Setup: get a GPU VM in Softlayer
+Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw) to get an image-based P100 VM in Softlayer, e.g.:
 ```
-sudo apt-get update && sudo apt-get install build-essential software-properties-common -y && sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y && sudo apt-get update && sudo apt-get install gcc-snapshot -y && sudo apt-get update && sudo apt-get install gcc-6 g++-6 -y && sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6 && sudo apt-get install gcc-4.8 g++-4.8 -y && sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8;
-sudo update-alternatives --config gcc
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
 ```
 
-B. __Install CUDA drivers:__
+Pull and launch the latest Nvidia TF container, e.g.
 
 ```
-wget https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.105_418.39_linux.run
-sh cuda_10.1.105_418.39_linux.run
-Follow the prompts
-```
-C. __Install Docker CE:__
-```
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-    
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-sudo apt-key fingerprint 0EBFCD88
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-   
-sudo apt-get update
-
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-sudo docker run hello-world
-
+nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nvcr.io/nvidia/tensorflow:19.06-py3
 ```
 
-C. __Install NVIDIA docker 2 and run the Tensorflow container:__
-```
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-  sudo apt-key add -
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-sudo apt-get update
+## Training an OpenSeq2Seq-based language model
+We will generally follow [OpenSeq2Seq LM training intructions](https://nvidia.github.io/OpenSeq2Seq/html/language-model.html), please refer to them as needed.
 
-sudo apt-get install nvidia-docker2
-sudo pkill -SIGHUP dockerd
-
-#Test it
-docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
- 
-docker pull nvcr.io/nvidia/tensorflow:19.03-py3
- 
- nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nvcr.io/nvidia/tensorflow:18.12-py3
-```
-
-## Tensorflow operations
-
-A. __Data collection:__
+A. __Data download:__
 In this first iteration we will work the model with the dataset wikitext-2-v1, which is a small subset, feel free to expand the lab and share your experiences using the dataset that was collected with LazyNLP.
 ```
-git clone https://github.com/NVIDIA/OpenSeq2Seq
-cd OpenSeq2Seq
-pip install -r requirements.txt
+# update OpenSeq2Seq (optional since the TF container includes it anyways under /workspace/nvidia-examples/OpenSeq2Seq )
+# git clone https://github.com/NVIDIA/OpenSeq2Seq
+# cd OpenSeq2Seq
+# pip install -r requirements.txt
+
+# pull the wikitext dataset
 wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-2-v1.zip
 unzip wikitext-2-v1.zip
+```
+B. __Edit your config file:__
+```
 cd example_configs/lm
-Edit the file lstm-wkt2-fp32.py and setup the appropiate path for the train, validation and test.
-Make a copy of the data to fit the expected format, i.e.(your path might look different)
-cp /workspace/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/OpenSeq2Seq/wikitext-2/train.txt
+Edit the file lstm-wkt2-fp32.py and set the data_root variable, e.g.
+# data_root = "/workspace/nvidia-examples/OpenSeq2Seq/wikitext-2"
+# also make sure that horovod is turned off and that you're training on just 1 GPU (see the corresponding variables)
+
+Make a copy of the downoaded data files to fit the expected format, i.e.(your path might look different)
+cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/train.txt
+cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.valid.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/valid.txt
+cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.test.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/test.txt
+```
+C. __Kick off training:__
+```
 python run.py --config_file=example_configs/lm/lstm-wkt2-fp32.py --mode=train_eval --enable_logs
 ```
 
-C. __Exploration (optional):__
-Review the official documentation and try different combinations of settings and hyperparameters, share your experiences with the class [OpenSeq2Seq](https://nvidia.github.io/OpenSeq2Seq/html/index.html)
+D. __Exploration (optional):__
+Review the [LM training docs](https://nvidia.github.io/OpenSeq2Seq/html/language-model.html) and try different combinations of settings and hyperparameters for training, share your experiences with the class 

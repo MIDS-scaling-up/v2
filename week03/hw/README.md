@@ -63,7 +63,7 @@ To subscribe to a topic tree on an MQTT broker, we do something like this:
 mosquitto_sub -t applications/in/+/public/# -h <ip address of the MQTT broker>
 ```
 
-This matches ```applications/in/app1/public`` as well as ```applications/in/app2/public/subtopic```, etc. etc.
+This matches `applications/in/app1/public` as well as `applications/in/app2/public/subtopic`, etc. etc.
 
 ### MQTT via python
 Feel free to use [Paho-MQTT](https://pypi.org/project/paho-mqtt/)
