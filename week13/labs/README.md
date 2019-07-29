@@ -1,12 +1,15 @@
 # Labs 13: Running Deep Learning applications end to nd
 Even though we are in the middle 2019, it's impossible not to observe that running end to end DL applications remains suprisingly complex. Perhaps the rapid rate at which new frameworks are being developed is to blame.  Another aspect could be that a lot of time the focus is on the data science aspects only - e.g. on the development of new models, but not on the development of end to end applications. 
 
-In this session, we will review Nvidia Digits - a slightly dated but still, a ridiculously easy to use tool for training and inference; the DeepStream SDK, a bleeding edge yet not-so-easy-to use tool for processing multiple video streams in real time, and spend the rest of the time on Dusty Franklin's framework - initially designed for inference only on the Jetson family of devices but now extended to do some training as well.
+In this session, we will review:
+* Nvidia Digits - a slightly dated but still, a ridiculously easy to use tool for training and inference
+* The DeepStream SDK, a bleeding edge yet not-so-easy-to use tool for processing multiple video streams in real time, 
+* Dusty Franklin's framework - initially designed for inference only on the Jetson family of devices but now extended to do some training as well.
 
 ### Nvidia Digits Review
-Some of you may have already done these, but in case you didn't, this is the time.
-* [Introduction to Digits on the TX2](https://github.com/MIDS-scaling-up/v2/blob/master/week05/labs/intro-digits-tx2.md)
-* [Fine tuning GoogleNet with Digits](https://github.com/MIDS-scaling-up/v2/blob/master/week05/labs/lab_digits.md)
+Some of you may have already done these, but in case you didn't, this is the time!
+* [Introduction to Digits on the TX2](https://github.com/MIDS-scaling-up/v2/blob/master/week05/labs/intro-digits-tx2.md). Digits wasn't supposed to be run on the TX2, but we can!
+* [Fine tuning GoogleNet with Digits](https://github.com/MIDS-scaling-up/v2/blob/master/week05/labs/lab_digits.md). Note that it does not take long to fine tune, especially if you know what you are doing and know how to freeze weights!
 * [Object Detection with Digits](https://github.com/MIDS-scaling-up/v2/tree/master/week07/hw/backup) - review only, we won't be able to complete this in class.  The idea here is to learn that it is possible to train an object detection framework on your own dataset.
 
 ### DeepStream SDK (the official one)
