@@ -1,4 +1,4 @@
-# Homework 7: [ PLEASE DO NOT START; IS BEING REVISED] Object Detection with DIGITS
+# Homework 7b: Object Detection with DIGITS
 
 
 #### Kitti in the Cloud
