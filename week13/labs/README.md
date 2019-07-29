@@ -13,14 +13,19 @@ Some of you may have already done these, but in case you didn't, this is the tim
 * [Object Detection with Digits](https://github.com/MIDS-scaling-up/v2/tree/master/week07/hw/backup) - review only, we won't be able to complete this in class.  The idea here is to learn that it is possible to train an object detection framework on your own dataset.
 
 ### DeepStream SDK (the official one)
+* With the just released jetpack 4.2.1 , you should be able to run DeepStream SDK on the jetson; We will run it in the Cloud as it's not compatible with 4.2.0
 * The [documentation](https://developer.nvidia.com/deepstream-sdk)
 * The [Smart Parking Application](https://github.com/NVIDIA-AI-IOT/deepstream_360_d_smart_parking_application/tree/master/perception_docker)
 * The [blog post](https://devblogs.nvidia.com/multi-camera-large-scale-iva-deepstream-sdk/) on multi-camera applications
 * The [docker container](https://ngc.nvidia.com/catalog/containers/nvidia:deepstream)
 
-Provision a VM with a P-100 in Soflayer per the [instructions in HW3](https://github.com/MIDS-scaling-up/v2/tree/master/week03/hw)  In this case, you will need CUDA 10.0, not CUDA 10.1 Make sure that you install docker and then nvidia-docker.
+Provision a VM with a P-100 in Soflayer per the [instructions in HW6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw), e.g.
+```
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
+```
 
-We will be running DeepStream SDK in the cloud obviously but would still like to see the output locally.  So, let's configure the remote desktop:
+
+We will be running DeepStream SDK in the cloud VM obviously but would still like to see the output locally.  So, let's configure the remote desktop:
 ```
 apt update
 apt install x11vnc x11-xserver-utils xinit
