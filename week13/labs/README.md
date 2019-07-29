@@ -1,4 +1,4 @@
-# Labs 13: Running Deep Learning applications end to nd
+# Labs 13: Running Deep Learning applications end to end
 Even though we are in the middle 2019, it's impossible not to observe that running end to end DL applications remains suprisingly complex. Perhaps the rapid rate at which new frameworks are being developed is to blame.  Another aspect could be that a lot of time the focus is on the data science aspects only - e.g. on the development of new models, but not on the development of end to end applications. 
 
 In this session, we will review:
