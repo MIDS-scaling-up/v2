@@ -99,7 +99,7 @@ make install
 * There is a lot of information in this repo, take some time to go through it!
 
 #### Running
-* Run the camera demo, e.g. ```./gst-camera``` . Close the window to exit the program.
+* Run the camera demo, e.g. ```./camera-viewer``` . Close the window to exit the program.
 * Run the frame classification demo, e.g. ```./imagenet-camera```.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
 * Run the object detection demo, e.g. ```./detectnet-camera```. What is the framerate now?  Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-camera-2.md)
 * Try to image segmentation demo as well: ```./segnet-camera``` Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console.md)
