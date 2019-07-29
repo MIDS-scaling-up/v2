@@ -42,6 +42,8 @@ nvidia-xconfig --query-gpu-info
 # Note BusID above, e.g. PCI:0:7:0 and replace BUSID with it below
 nvidia-xconfig -a --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1200 --busid $BUSID
 ```
+Next, make sure to remove the ServerLayout and Screen sections from /etc/X11/xorg.conf.
+
 Now we should be ready to start our X and VNC server!
 ```
 xinit & 
@@ -56,7 +58,7 @@ Using the VNC / screensharing client of your choice, connect to the VNC display 
 Now, let us start the container:
 ```
 # this is the latest ATM and it depends on Cuda 10.0, sigh
-nvidia-docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -w /roo/tDeepStream_Release/samples nvcr.io/nvidia/deepstream:3.0-18.11
+nvidia-docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -w /root/DeepStream_Release/samples nvcr.io/nvidia/deepstream:3.0-18.11
 ```
 
 Since we are using a P-100 card (we are cheap!), we need to change to default inference mode from Int8 to Int32. The inference precision is set using the network-mode setting (1=INT8, 0 = FP32). Therefore, all entries in the above config files reading: ```network-mode=1``` have to be changed to: ```network-mode=0```
