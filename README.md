@@ -1,11 +1,11 @@
-# W251 reloaded (Spring 2019)
+# W251 reloaded (Fall 2019)
 
 The revised class is focused on Deep Learning and Big Data at the Edge and in the Cloud.
 
 To follow the class, you'll a Mac or a PC (Windows or Linux) with an ability to run docker or VirtualBox VMs. You will also need additional equipment as follows:
 ### Required equipment:
 
-1. Nvidia [Jetson TX2 dev kit](https://developer.nvidia.com/embedded/buy/jetson-tx2) ($299 + tax with educational discount). To get the discount, you'll need a code, which you can get from [Nvidia directly](https://www.nvidia.com/object/jetsontx2-edu-discount.html) or by signing up for the class or contacting your instructor(s).  We are currently testing [Nvidia Xavier](https://developer.nvidia.com/embedded/buy/jetson-xavier-devkit) and you're welcome to give it a shot, but it's expensive ($1,299 AFTER the educational discount), while the software (Jetpack) for it is not yet GA.  You've been warned. 
+1. Nvidia [Jetson TX2 dev kit](https://developer.nvidia.com/embedded/buy/jetson-tx2) ($299 + tax with educational discount). To get the discount, you'll need a code, which you can get from [Nvidia directly](https://www.nvidia.com/object/jetsontx2-edu-discount.html) or by signing up for the class or contacting your instructor(s).  We are currently testing [Nvidia Xavier](https://developer.nvidia.com/embedded/buy/jetson-xavier-devkit) and you're welcome to give it a shot, but it's expensive ($899 AFTER the educational discount), and we are not actively testing the class materials on it.  You've been warned. 
 
 2. Additional storage.  The Jetson TX2 System on a Chip (SoC) has only 16G eMMC, which is tight for developer.  There is a slot for an SD card and it could be the cheapest (albeit, a somewhat slow) option.  The class will take advantage of Docker which in turn drive up storage needs.  We recommend at least 128 GB, for instance, [this card](https://www.amazon.com/Sandisk-Ultra-128GB-Micro-Adapter/dp/B073JYC4XM/ref=sr_1_4?s=electronics&ie=UTF8&qid=1537913441&sr=1-4&keywords=micro+sd+card+128gb) (currently, $19.99).  If you are a performance user, you will need to get a SATA SSD, e.g. [this one](https://www.amazon.com/Kingston-240GB-Solid-SA400S37-240G/dp/B01N5IB20Q/ref=sr_1_3?s=electronics&ie=UTF8&qid=1543808366&sr=1-3&keywords=240GB+SSD) (currently, $35.50). While it's possible to insert an SSD directly / vertically into the Jetson dev board, it's quite easy to accidentally bump the SSD causing the slot to break off the board.  Therefore, it's safer to purchase a [cable connector](https://www.amazon.com/gp/product/B00L9R3AKA/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) (currently, $5.66). Alternatively, you could just use any USB 3.0 external disk.
 
