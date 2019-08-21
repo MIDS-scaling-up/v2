@@ -5,7 +5,9 @@
 Jetpack is a SDK that basically contains everything needed for deep learning and AI applications in a handy package for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 All of the following must be done in an Ubuntu OS. If a command is ever permission denied, try adding "sudo" at the beginning.
 
-Please note that starting from the Summer semester of 2019 we are moving from Jetpack3.3 to the latest [Jetpack4.2](https://developer.nvidia.com/embedded/jetpack) .  We see no reason to use 3.3 anymore, but if you do have such a reason, please follow the [3.3 instructions](Readme.jetpack3.3.md)
+In the Fall of 2019, we are moving to the latest Jetpack 4.2.1.  We need to complete testing, please stay tuned.
+
+
 
 ### Host (Computer) Installation
 To reiterate, you will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
@@ -65,7 +67,7 @@ The Jetson SoCs has a number of different power modes described in some detail h
 ## 2. Docker 
 Docker is a platform that allows you to create, deploy, and run applications in containers. The application and all its dependecies are packaged into one container that is easy to ship out and uses the same Linux kernel as the system it's running on, unlike a virtual machine. This makes it especially useful for compact platforms such as the Jetson.
 
-Jetpack 4.2 has Docker pre-installed.
+Jetpack 4.2.1 has Docker pre-installed.
 
 Let's test it to see if it can run containers. Since the Jetson doesn't have the image below yet, Docker will automatically pull it online from the official repository:
 ```
@@ -112,22 +114,10 @@ reboot
 # Happy swapping!
 ```
   
-### Creating a base CUDA Docker Image for the Jetson
-Most of the work later in the class will require a Docker base image running Ubuntu 16.04 with all the needed dependencies. On the Jetson, create a new directory to store the Dockerfile for this cudabase image, download the Dockerfile.cudabase file on Github in week01/hw, and place it in the new directory. Ensure you are in the new directory and run the following:
-```
-docker build -t cudabase -f Dockerfile.cudabase .
-```
-After a while, the image is created. List the current images to see if it worked:
-```
-docker images
-```
+### Run the base Docker Image for the Jetson
+Most of the work later in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and follow the instructions to start the [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
 
-Now let's buil the cudabase:dev image:
-```
-docker build -t cudabase:dev -f Dockerfile.cudabase.dev .
-```
-
-Note for future reference that these Docker images are also available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
+Note for future reference that  Docker images for jetpacks 4.2 are  available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
 
 We'll cover Docker during the in-class lab in more detail.
 
