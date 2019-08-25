@@ -80,7 +80,7 @@ Jetpack 4.2.1 has Docker pre-installed.
 
 Let's test it to see if it can run containers. Since the Jetson doesn't have the image below yet, Docker will automatically pull it online from the official repository:
 ```
-docker run arm64v8/hello-world
+sudo docker run arm64v8/hello-world
 ```
 
 ### Linking Docker to an External Drive (required)
