@@ -83,19 +83,45 @@ sudo docker run arm64v8/hello-world
 ```
 
 ### Linking Docker to an External Drive (required)
-The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is the only choice to store all your Docker work. A SSD is strongly recommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
+The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is the only choice to store all your Docker work. A SSD is strongly recommended to speed up processes. We will need to move the directory that Docker uses to store its images and containers to this SSD.
+
+Plug in your SSD. What is it called?
+```
+fdisk -l
+# Among many entries, you shoud see something like this:
+Disk /dev/sda: 465.8 GiB, 500107862016 bytes, 976773168 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+```
+In this case, our disk is called /dev/sda. Your disk may be named differently. Format it:
+```
+# first, create the mountpoint!
+mkdir -m 777 /data
+mkfs.ext4 /dev/xvdc
+```
+Now, let's create an entry in fstab so that the disk will be auto-mounted on restart:
+```
+# edit /etc/fstab and all this line:
+/dev/xvdc /data                   ext4    defaults,noatime        0 0
+```
+Now, mount your SSD!
+```
+mount /data
+```
+
+
+The Docker files on the Jetson are in /var/lib/docker. We need to stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
 ```
 sudo service docker stop
-mv /var/lib/docker /media/nvidia/<drivename>
+mv /var/lib/docker /data/docker
 ```
 Create a symbolic link between the Docker directory you just moved onto on the external drive to a new softlink that Docker on the Jetson will refer to when pulling files:
 ```
-sudo ln -s /media/nvidia/<drivename>/docker /var/lib/docker
+sudo ln -s /data/docker /var/lib/docker
 sudo service docker start
 ```
 Now your Docker work will automatically be stored on this external drive. The new "docker" directory in /var/lib is a softlink: every time Docker calls on that, it'll actually be pulling from the original "docker" directory in the external drive. Just remember to hook it up when working with Docker.
-
-**NOTE: You'll have to manually mount your external drive and start Docker every time you reboot the Jetson if you use the external drive this way. You might want to have Ubuntu mount your external drive automatically every time you reboot by adding a line to the /etc/fstab file ([See here for more info on how to mount with the fstab file](https://help.ubuntu.com/community/Fstab)).**
 
 ### Creating a swap file pointing to the external drive (recommended)
 If you have an external drive, your TX2 can function as a small desktop. Let's enable swap to complete the picture, so that you can start multiple jobs in parallel (assuming that only one is active at a time, you should have reasonable performance):
