@@ -98,12 +98,12 @@ In this case, our disk is called /dev/sda. Your disk may be named differently. F
 ```
 # first, create the mountpoint!
 mkdir -m 777 /data
-mkfs.ext4 /dev/xvdc
+mkfs.ext4 /dev/sda
 ```
-Now, let's create an entry in fstab so that the disk will be auto-mounted on restart:
+Let's create an entry in fstab so that the disk will be auto-mounted on restart:
 ```
 # edit /etc/fstab and all this line:
-/dev/xvdc /data                   ext4    defaults,noatime        0 0
+/dev/sda /data                   ext4    defaults,noatime        0 0
 ```
 Now, mount your SSD!
 ```
@@ -192,9 +192,11 @@ sudo xrandr --fb 1600x900
 ```
 * Reboot your Jetson
 * Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900:
+
 ![remmina](remmina2.png)
 You should now be able to connect without entering a password. However, should you reboot your Jetson, you will need to use the attached mouse and keyboard and actually log into it so that the vino-server starts up. Only then will you be able to connect to it remotely again.
 * We noticed that with Jetpack 4.2.1, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this:
+
 ![set connection quality](remmina1.png)
 
 Set it to "best"
