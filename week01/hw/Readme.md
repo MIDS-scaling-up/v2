@@ -37,7 +37,7 @@ You will need to stick to the default settings except:
 * Select "Jetson TX2" (NOT the less powerful TX2i) as the target device
 * Select "Manual" and place your TX2 into the recovery mode as mentioned above.
 
-The process of fetching the software, installing and cross-compiling it will take some time, depending on the speed of your workstation and your internet connection. It took me 30 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  Once the OS image is built and flashed to the Jetson, you will need to complete the OS set up ON THE JETSON; specifically, create the userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point.
+The process of fetching the software and decompressing it will take some time, depending on the speed of your workstation and your internet connection. It took me 15 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  Once the OS image is built and flashed to the Jetson, you will need to log into the newly flashed Jetson using a keyboard, mouse, and monitor attached to it and complete the OS set up; specifically, create a userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point, decompress them, set them up. This took me another 15 min (jetpack 4.2.1).
 
 **IF you have problems with the install**
 On Step 02, select "DOWNLOAD & INSTALL OPTIONS" and click on "Download Now, Install Later". Then ensure all packages download successfully, which may take several attempts. Then proceed to Step 03 in the installer.
@@ -79,7 +79,7 @@ Jetpack 4.2.1 has Docker pre-installed.
 
 Let's test it to see if it can run containers. Since the Jetson doesn't have the image below yet, Docker will automatically pull it online from the official repository:
 ```
-sudo docker run arm64v8/hello-world
+sudo docker run hello-world
 ```
 
 ### Linking Docker to an External Drive (required)
