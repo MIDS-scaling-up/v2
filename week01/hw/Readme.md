@@ -74,8 +74,8 @@ Let's test it to see if it can run containers. Since the Jetson doesn't have the
 docker run arm64v8/hello-world
 ```
 
-### Linking Docker to an External Drive (strongly recommended)
-The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is a good choice to store all your Docker work. A SSD is recommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
+### Linking Docker to an External Drive (required)
+The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is the only choice to store all your Docker work. A SSD is strongly recommended to speed up processes. The Docker files on the Jetson are in /var/lib/docker. Plug an external drive into the Jetson and check its location and name (usually /media/nvidia/<drivename>). Now stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
 ```
 sudo service docker stop
 mv /var/lib/docker /media/nvidia/<drivename>
