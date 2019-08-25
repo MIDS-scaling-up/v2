@@ -160,6 +160,11 @@ NoDisplay=true
 gsettings set org.gnome.Vino prompt-enabled false
 gsettings set org.gnome.Vino require-encryption false
 ```
+
+* If you want a bigger screen, change the resolution:
+```
+sudo xrandr --fb 1600x900
+```
 * Reboot your Jetson
 * Then, launch your client, type in the IP address of your jetson and port 5900.  You should now be able to connect!
 # To turn in
