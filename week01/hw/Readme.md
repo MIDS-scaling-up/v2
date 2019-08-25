@@ -165,7 +165,12 @@ gsettings set org.gnome.Vino require-encryption false
 sudo xrandr --fb 1600x900
 ```
 * Reboot your Jetson
-* Then, launch your client, type in the IP address of your jetson and port 5900.  You should now be able to connect without entering a password. However, should you reboot your Jetson, you will need to use the attached mouse and keyboard and actually log into it so that the vino-server starts up. Only then will you be able to connect to it remotely again.
-* We noticed that with Jetpack 4.2.1, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this.  Set it to "best"
+* Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900:
+![remmina](remmina2.png)
+You should now be able to connect without entering a password. However, should you reboot your Jetson, you will need to use the attached mouse and keyboard and actually log into it so that the vino-server starts up. Only then will you be able to connect to it remotely again.
+* We noticed that with Jetpack 4.2.1, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this:
+![set connection quality](remmina1.png)
+
+Set it to "best"
 # To turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
