@@ -149,7 +149,16 @@ reboot
 ```
   
 ### Run the base Docker Image for the Jetson
-Most of the work  in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. For the first time, in July 2019, Nvidia has released an officially supported base container! Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and follow the instructions to start this [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
+Most of the work  in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. For the first time, in July 2019, Nvidia has released an officially supported base container! Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and review the documentation for the [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
+
+Let's start the container:
+```
+# allow remote X connections
+xhost +
+sudo docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.2
+# this should complete successfully. Once you are convinced that you are inside the Docker container (e.g. try to list the contents of your home directory), just exit from it:
+exit
+```
 
 Note for future reference that the Docker images for jetpacks 4.2 that we used in earlier sessions of W251 are still available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
 
