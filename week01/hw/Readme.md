@@ -13,26 +13,35 @@ In the Fall of 2019, we are moving to the latest Jetpack 4.2.1.  We need to comp
 To reiterate, you will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
 
 #### VM Installation (if needed)
-Download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) and the extension to give VMs access to your USB hubs [here](https://download.virtualbox.org/virtualbox/6.0.6/Oracle_VM_VirtualBox_Extension_Pack-6.0.6.vbox-extpack). First download the Ubuntu 16.04 iso image [here](http://releases.ubuntu.com/16.04/ubuntu-16.04.5-desktop-amd64.iso). Open Virtual Box and select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. The size of the disk should be 55GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
+Download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) or VMware Workstation (Windows) or VMware Fusion (Mac) [here](https://my.vmware.com/web/vmware/downloads) and the extension to give VMs access to your USB hubs [here](https://download.virtualbox.org/virtualbox/6.0.6/Oracle_VM_VirtualBox_Extension_Pack-6.0.6.vbox-extpack). We recommend VMware for stability, but it only allows 30 days of use without a license.
+
+Download the Ubuntu 18.04 iso image [here](http://releases.ubuntu.com/18.04/ubuntu-18.04.3-desktop-amd64.iso). 
+
+Create a new VM in VMware/Virtual Box. 
+
+For Virtual Box, select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. For VMware, select File -> New, then drag & drop the ISO file to the VMware window.
+
+The size of the disk should be 55GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
 
 NOTE: if you are on Windows and are not seeing the 64-bit option for VMs, please look [here](https://forums.virtualbox.org/viewtopic.php?f=1&t=62339).  Unfortunately, Docker on Windows does not currently support USB. Therefore, you can't use it, which leads you to having to install VirtualBox and disabling HyperV, per the instructions, if it was previously enabled.
 
-With the VM now created, highlight it in the menu and select "Settings" in the upper right. In Network > Adapter 1, change "Attached to" to "Bridged Adapter". In Ports > USB, ensure "Enable USB Controller" is under "USB 3.0 (xHCI) Controller". In System > Processor, enable 2 CPU cores.
-
-Now select "Start" in the upper right. When prompted to select a start-up disk, browse and select the Ubuntu image you downloaded. Follow the rest of the instructions to complete setting up the Ubuntu VM. Afterwards, enter the Virtualbox Preferences menu and go to the "Extensions" section. Find and enable the Extension Pack. 
+Virtual Box Only: With the VM now created, highlight it in the menu and select "Settings" in the upper right. In Network > Adapter 1, change "Attached to" to "Bridged Adapter". In Ports > USB, ensure "Enable USB Controller" is under "USB 3.0 (xHCI) Controller". In System > Processor, enable 2 CPU cores. Now select "Start" in the upper right. When prompted to select a start-up disk, browse and select the Ubuntu image you downloaded. Follow the rest of the instructions to complete setting up the Ubuntu VM. Afterwards, enter the Virtualbox Preferences menu and go to the "Extensions" section. Find and enable the Extension Pack. 
 
 **Note: if you are using a VM, you need to ensure the VM can see the Jetson by placing the Jetson into force recovery mode. First ensure the Jetson is completely off and connected to the host computer via USB cable. Press the power button once to power on the Jetson and then hold the FORCE RECOVERY button. While holding this button, press the RESET button once. Hold the FORCE RECOVERY button for 2 more seconds, then release. Tip: the FORCE RECOVERY button is the button next to the power button, and the RESET button is the button on the opposite end of the row.**
 
 **Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible.**
 
 #### Installation on Ubuntu
-Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it and then open the freshly installed application. 
+Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it (we recommend using the Ubuntu software install gui which automatically resolves dependencies) and then open the freshly installed application. It can be opened by running "sdkmanager" from a terminal command line.
 
 You will need to stick to the default settings except:
 * Select "Jetson TX2" (NOT the less powerful TX2i) as the target device
 * Select "Manual" and place your TX2 into the recovery mode as mentioned above.
 
 The process of fetching the software, installing and cross-compiling it will take some time, depending on the speed of your workstation and your internet connection. It took me 30 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  Once the OS image is built and flashed to the Jetson, you will need to complete the OS set up ON THE JETSON; specifically, create the userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point.
+
+**IF you have problems with the install**
+On Step 02, select "DOWNLOAD & INSTALL OPTIONS" and click on "Download Now, Install Later". Then ensure all packages download successfully, which may take several attempts. Then proceed to Step 03 in the installer.
 
 When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
 
