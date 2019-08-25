@@ -2,15 +2,14 @@
 
 
 ## 1. Nvidia Jetpack SDK
-Jetpack is a SDK that basically contains everything needed for deep learning and AI applications in a handy package for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
-All of the following must be done in an Ubuntu OS. If a command is ever permission denied, try adding "sudo" at the beginning.
+Jetpack is an SDK that basically contains everything needed for deep learning and AI applications in a handy package bundle containing the OS for for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 
-In the Fall of 2019, we are moving to the latest Jetpack 4.2.1.  We need to complete testing, please stay tuned.
+In the Fall of 2019, we are moving to the latest Jetpack 4.2.1.  There may be some rough air ahead, please buckle your seatbelts!
 
 
 
 ### Host (Computer) Installation
-To reiterate, you will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
+You will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
 
 #### VM Installation (if needed)
 Download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) or VMware Workstation (Windows) or VMware Fusion (Mac) [here](https://my.vmware.com/web/vmware/downloads) and the extension to give VMs access to your USB hubs [here](https://download.virtualbox.org/virtualbox/6.0.6/Oracle_VM_VirtualBox_Extension_Pack-6.0.6.vbox-extpack). We recommend VMware for stability, but it only allows 30 days of use without a license.
@@ -124,9 +123,9 @@ reboot
 ```
   
 ### Run the base Docker Image for the Jetson
-Most of the work later in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and follow the instructions to start the [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
+Most of the work  in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. For the first time, in July 2019, Nvidia has released an officially supported base container! Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and follow the instructions to start this [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
 
-Note for future reference that  Docker images for jetpacks 4.2 are  available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
+Note for future reference that the Docker images for jetpacks 4.2 that we used in earlier sessions of W251 are still available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
 
 We'll cover Docker during the in-class lab in more detail.
 
@@ -161,11 +160,12 @@ gsettings set org.gnome.Vino prompt-enabled false
 gsettings set org.gnome.Vino require-encryption false
 ```
 
-* If you want a bigger screen, change the resolution:
+* The default resolution is 1920x1080. If you still want to change it (optional):
 ```
 sudo xrandr --fb 1600x900
 ```
 * Reboot your Jetson
-* Then, launch your client, type in the IP address of your jetson and port 5900.  You should now be able to connect!
+* Then, launch your client, type in the IP address of your jetson and port 5900.  You should now be able to connect without entering a password. However, should you reboot your Jetson, you will need to use the attached mouse and keyboard and actually log into it so that the vino-server starts up. Only then will you be able to connect to it remotely again.
+* We noticed that with Jetpack 4.2.1, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this.  Set it to "best"
 # To turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
