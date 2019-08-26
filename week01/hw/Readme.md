@@ -4,7 +4,7 @@
 ## 1. Nvidia Jetpack SDK
 Jetpack is an SDK that basically contains everything needed for deep learning and AI applications in a handy package bundle containing the OS for for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 
-In the Fall of 2019, we are moving to the latest Jetpack 4.2.1.  There may be some rough air ahead, please buckle your seatbelts!
+In the Fall of 2019, we are moving to the latest Jetpack 4.2.1.  There will be some rough air ahead, please buckle your seatbelts!
 
 
 
@@ -70,12 +70,12 @@ NVPM VERB: PARAM GPU: ARG MAX_FREQ: PATH /sys/devices/17000000.gp10b/devfreq/170
 NVPM VERB: PARAM EMC: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/emc_iso_cap: REAL_VAL: 1600000000 CONF_VAL: 1600000000
 ```
 ### Exploring the power modes of the Jetson
-The Jetson SoCs has a number of different power modes described in some detail here: [TX2](https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/) or [Xavier](https://www.jetsonhacks.com/2018/10/07/nvpmodel-nvidia-jetson-agx-xavier-developer-kit/). The main idea is that the lowering clock speeds on the cpu and turning off cores saves energy; and the default power mode is a low energy mode. You need to switch to a higher power mode to use all cores and maximize the clock frequency.
+The Jetson SoCs has a number of different power modes described in some detail here: [TX2](https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/) or [Xavier](https://www.jetsonhacks.com/2018/10/07/nvpmodel-nvidia-jetson-agx-xavier-developer-kit/). The main idea is that the lowering clock speeds on the cpu and turning off cores saves energy; and the default power mode is a low energy mode. You need to switch to a higher power mode to use all cores and maximize the clock frequency.  In the upper right corner of your desktop you will see a widget that should allow you to switch between power modes.  This functionality is new in 4.2.1. Set your power mode to MAXN; this will enable all six cores and will maximize your clock frequency. This is ok when we use our Jetson as a small desktop computer.  If you decide to use your Jetson as a robotic device and become worried about the power draw, you may want to lower this setting.
   
 ## 2. Docker 
 Docker is a platform that allows you to create, deploy, and run applications in containers. The application and all its dependecies are packaged into one container that is easy to ship out and uses the same Linux kernel as the system it's running on, unlike a virtual machine. This makes it especially useful for compact platforms such as the Jetson.
 
-Jetpack 4.2.1 has Docker pre-installed.
+Jetpack 4.2.1 has Docker pre-installed, and for the first time, has an experimental nvidia-docker support.
 
 Let's test it to see if it can run containers. Since the Jetson doesn't have the image below yet, Docker will automatically pull it online from the official repository:
 ```
@@ -149,9 +149,9 @@ reboot
 ```
   
 ### Run the base Docker Image for the Jetson
-Most of the work  in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. For the first time, in July 2019, Nvidia has released an officially supported base container! Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and review the documentation for the [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
+Most of the work  in the class will require a Docker base image running Ubuntu 18.04 with all the needed dependencies. For the first time, in July 2019, Nvidia has released an officially supported base cuda container! Please register at the [Nvidia GPU Cloud](http://ngc.nvidia.com) and review the documentation for the [base jetson container](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base)
 
-Let's start the container:
+Let's start this container:
 ```
 # allow remote X connections
 xhost +
@@ -159,8 +159,9 @@ sudo docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tm
 # this should complete successfully. Once you are convinced that you are inside the Docker container (e.g. try to list the contents of your home directory), just exit from it:
 exit
 ```
+More on the use of this beta container is [here](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson)
 
-Note for future reference that the Docker images for jetpacks 4.2 that we used in earlier sessions of W251 are still available in the docker hub as ```w251/cuda:tx2-4.2_b158``` and ```w251/cuda:dev-tx2-4.2_b158```. In the docker hub you will find other versions of these containers as well. 
+Note that our own Docker images for the Jetsons are still available in the [docker hub](https://cloud.docker.com/u/w251/), e.g.  ```w251/cuda:tx2-4.2.1_b97``` and ```w251/cuda:dev-tx2-4.2.1_b97```. As the officially supported containers mature, we expect to sunset these; but for now, it looks like we'll be needing them. 
 
 We'll cover Docker during the in-class lab in more detail.
 
