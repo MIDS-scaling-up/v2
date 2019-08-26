@@ -17,7 +17,7 @@ You'll likely see the arm64/hello-world image created in HW #1. "latest" is the 
 ```
 docker ps -a
 ```
-There should be a container with "arm64/hello-world" listed under the "IMAGE" column, based off the hello-world image we just saw. Containers also have IDs as well as names (different from an image's tag) that are randomly generated if not specified.
+There should be a container with "hello-world" listed under the "IMAGE" column, based off the hello-world image we just saw. Containers also have IDs as well as names (different from an image's tag) that are randomly generated if not specified.
 
 ### Creating a Docker Image with a Dockerfile
 This Dockerfile downloads yolo as well as tiny-yolo, which is a condensed version of Yolo that runs faster but is less accurate. cd into the directory with this Dockerfile, download the Makefile on Github in the week1/lab directory, and place it in here. Build the image:
