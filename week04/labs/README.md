@@ -1,5 +1,24 @@
 ### This lab will follow on from the homework and build a 1d-CNN
 
+#### Running locally on the Jetson
+The Jetson's small GPU has 256 cores, here's how to put it through its paces:
+
+```
+# start the container:
+root@dima-desktop:~/v2/backup/keras# docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_gpu_lab04:dev-tx2-4.2.1_b97-py3 
+67ad13ba7dfb8a58c048dec4d5fec3d3f3c9c52eee6d18d9c5c65debf0d06d51
+
+# Use the container id above and grab the token:
+root@dima-desktop:~/v2/backup/keras# docker logs 67ad13ba7dfb8a58c048dec4d5fec3d3f3c9c52eee6d18d9c5c65debf0d06d51
+[I 16:31:50.951 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 16:31:51.970 NotebookApp] Serving notebooks from local directory: /notebooks
+[I 16:31:51.971 NotebookApp] The Jupyter Notebook is running at:
+[I 16:31:51.972 NotebookApp] http://67ad13ba7dfb:8888/?token=1db35ebea1544348a44772bc8b9ae101405fed1f658c912d
+[I 16:31:51.972 NotebookApp]  or http://127.0.0.1:8888/?token=1db35ebea1544348a44772bc8b9ae101405fed1f658c912d
+[I 16:31:51.972 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+```
+You can now access your notebook at http://yourjetsonip:8888?token=yourtoken
+
 #### Ordering an instance from the image template you built in week02
 Login to your ibmcloud `ibmcloud login`  
 Please order a p100 virtual server off an existing w251 image.   
