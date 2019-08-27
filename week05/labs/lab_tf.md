@@ -5,7 +5,7 @@ Please follow these general steps:
 * Clone this repo into a directory on your Jetson.  If you cloned it before, do a git pull
 * Start up an interactive Tensorflow-python3 docker container, passing port 6006 and the directory that you cloned the class to.  It should look something like this:
 ```
-docker run --rm -p 6006:6006 -v /home/nvidia/v2:/v2 -ti w251/tensorflow:tx2-3.3_b39-py3 bash
+docker run --rm -p 6006:6006 -v /home/nvidia/v2:/v2 -ti w251/tensorflow:dev-tx2-4.2.1_b97 bash
 ```
 * go to the lab5 directory - e,g, cd /v2/week05/labs .  Here, you can run the training script, e.h.
 ```
