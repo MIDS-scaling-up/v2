@@ -10,7 +10,7 @@ docker build -t caffe -f Dockerfile.caffebase .
 ```
 This obviously assumes that you completed previous homeworks and already created a docker image called "cudabase" and that it exists locally. This build will take a few hours [!].  For now, you could cheat and pull the already created image from the class docker hub repo: 
 ```
-docker pull w251/nvcaffe:tx2-4.2_b158
+docker pull w251/nvcaffe:tx2-4.2.1_b97
 ```
 
 You should now have your NVCaffe container for the Jetson TX2 ready to go.
@@ -22,7 +22,7 @@ docker build -t digits -f Dockerfile.digits .
 ```
 Once again, if something goes terribly wrong, you can use our pre-built container instead:
 ```
-docker pull w251/digits:tx2-4.2_b158
+docker pull w251/digits:tx2-4.2.1_b97
 ```
 
 When you run DIGITS, you likely want to pass your data directory through so you won't be copying enormous data sets back and forth.  If you recall, we asked you to add a larger storage device to your Jetson.  Assuming it's mounted to /data, do something like this:
