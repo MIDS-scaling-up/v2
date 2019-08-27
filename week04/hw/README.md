@@ -30,7 +30,27 @@ Kaggle are currently hosting their [second competition](https://www.kaggle.com/c
 We shall be using this dataset to benchmark a number of ML models. 
 *Disclaimer: the dataset used contains text that may be considered profane, vulgar, or offensive.*
 
-First set up a CPU based VM to run your models. We shall use sparse matrices which are better suited to CPU than GPU. 
+##### a. Running on your Jetson
+Your Jetson is quite powerful; let's start a keras / tensorflow - enabled jupyter notebook on it:
+```
+docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_hw04:dev-tx2-4.2.1_b97-py3
+# once you run this command, it will print the id of the container, e.g.
+# root@dima-desktop:~/v2/backup/keras# docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_hw04:dev-tx2-4.2.1_b97-py3 
+7d783a4b0feb89fe91072c0d6934a000471fa101cf9e5b6c09b4b8d881291903
+
+# Now, get the token from docker logs:
+root@dima-desktop:~/v2/backup/keras# docker logs 7d783a4b0feb89fe91072c0d6934a000471fa101cf9e5b6c09b4b8d881291903
+[I 16:11:29.070 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 16:11:30.208 NotebookApp] Serving notebooks from local directory: /notebooks
+[I 16:11:30.208 NotebookApp] The Jupyter Notebook is running at:
+[I 16:11:30.208 NotebookApp] http://7d783a4b0feb:8888/?token=0cebf472b557f2e871de6be4e0717ff35cdd30b013b0d7e5
+[I 16:11:30.209 NotebookApp]  or http://127.0.0.1:8888/?token=0cebf472b557f2e871de6be4e0717ff35cdd30b013b0d7e5
+[I 16:11:30.209 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation)
+```
+Now, point your browser to http://yourjetsonip:8888?token=yourtoken
+
+##### b. Running in the Cloud
+Set up a CPU based VM to run your models. We shall use sparse matrices which are better suited to CPU than GPU. 
 I set the VM up like below, you may need to change the `datacenter` and `domain`.
 ```
 ibmcloud sl vs create --datacenter=lon06 --hostname=hw04cpu --domain=darragh.com --os=UBUNTU_16_64 --flavor C1_8X8X100 --billing=hourly --san --disk=100 --disk=2000 --network 1000  --key=1418191
