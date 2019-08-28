@@ -1,0 +1,32 @@
+FROM w251/pytorch:dev-tx2-4.2.1_b97
+
+
+# This is a container for Keras and Jupyter
+# docker run --name pytorch-jup --privileged -p 8888:8888 -d w251/keras:dev-tx2-4.2.1_b97-py3 
+
+
+RUN apt update
+RUN apt install -y \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgtk2.0-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    wget
+
+RUN pip3 install jupyter
+RUN pip3 install pandas
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt install -y python3-sklearn
+
+WORKDIR /
+RUN mkdir -p notebooks
+WORKDIR /notebooks
+
+EXPOSE 8888
+
+# Jupyter
+CMD jupyter notebook  --no-browser --ip=0.0.0.0 --allow-root
