@@ -92,3 +92,6 @@ For the Logistic regression model you should be getting circa `0.88` AUC and `0.
 #### Submission:
 Please submit answers to #2, and a html download of your completed Jupyter notebook.   
 Please mail these to your instructors. 
+
+## Note on cloud usage
+![Soflayer](../../softlayer.png?raw=true "Title")
