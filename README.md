@@ -40,3 +40,4 @@ The graded homeworks are week 3, week 6, week 9, week 11; please notice that tho
  - Deploy the model to your edge device.
  - If a person is recognized, send the image and location back to the cloud for further actions.
  
+![Softlayer](softlayer.png?raw=true "Title")
