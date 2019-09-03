@@ -97,3 +97,5 @@ Ensure you successfully cancel the VSI using the `ibmcloud sl vs list` command
 
 **To Turn In**: A copy/paste of the output from `ibmcloud sl vs list` before and after you cancel the second VSI
 
+## Note on cloud usage
+![Soflayer](../../softlayer.png?raw=true "Title")
