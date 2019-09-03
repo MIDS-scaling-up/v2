@@ -137,3 +137,7 @@ On the TX2, you should have a mosquitto broker container, based on Alpine linux.
 ## Submission
 Please point us to the repository of your code and provide an http link to the location of your faces in the object storage.  Also, explan the naming of the MQTT topics and the QoS that you used.
 
+## Note on cloud usage
+![Soflayer](softlayer.png?raw=true "Title")
+
+
