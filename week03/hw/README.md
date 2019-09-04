@@ -85,6 +85,10 @@ for (x,y,w,h) in faces:
 	# your logic goes here
 ```
 
+```
+Note, you can find the OpenCV cascade files on the tx2 in the directory /usr/share/OpenCV/haarcascades
+```
+
 ### Reading video from a USB webcam
 This really is super-simple. You read videos one frame at a time.  The example below follows [this tutorial](https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html):
 ```
