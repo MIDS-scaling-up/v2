@@ -93,7 +93,7 @@ Connect to the new VSI using ssh
 
 Once you have verified that you can connect to the new VSI, you can disconnect and cancel it using the `ibmcloud sl vs cancel` command. You will need to provide an argument to cancel the proper VSI. **DO NOT CANCEL YOUR PRIMARY, ORIGINAL VSI. YOU WILL NEED IT IN FUTURE HOMEWORKS**
 
-Ensure you successfully cancel the VSI using the `ibmcloud sl vs list` command
+Ensure you successfully cancel your second VSI and all VSIs created in the future using the `ibmcloud sl vs list` command. You should keep your original "jumpbox" VSI.
 
 **To Turn In**: A copy/paste of the output from `ibmcloud sl vs list` before and after you cancel the second VSI
 
