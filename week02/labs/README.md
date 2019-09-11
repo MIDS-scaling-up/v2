@@ -134,7 +134,7 @@ directory to the /usr/local/apache2/htdocs inside the container.
 ```
 docker run -d --name my-apache-app -p8003:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4
 ```
-Now, let us edit index.html in our current directory and then point our browser to http://ip-of-my-vm  (you could get it from ifconfig)
+Now, let us edit index.html in our current directory and then point our browser to http://ip-of-my-vm:8003  (you could get it from ifconfig)
 You should be able to see that our http server is running!
 
 #### Using Dockerfiles
