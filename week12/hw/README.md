@@ -37,7 +37,7 @@ Install pre-requisites
 ```
 #update the kernel & install some pre-reqs
 yum install -y kernel-devel g++ gcc cpp kernel-headers gcc-c++ 
-yum update
+yum update -y
 #reboot to use the latest kernel
 reboot
 #install more pre-reqs
@@ -65,12 +65,12 @@ GPFS installation (node that we are adding nodes using the node names, be sure t
 ```
 chmod +x Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
 ./Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install --silent
-/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs1
-/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs2
-/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale node add gpfs3
-/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale setup -s IP-OF-GPFS1
-/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale callhome disable
-/usr/lpp/mmfs/5.0.1.1/installer/spectrumscale install
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs1
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs2
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs3
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale setup -s IP-OF-GPFS1
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale callhome disable
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale install
 ```
 
 
