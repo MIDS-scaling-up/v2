@@ -141,6 +141,10 @@ On the TX2, you should have a mosquitto broker container, based on Alpine linux.
 ## Submission
 Please point us to the repository of your code and provide an http link to the location of your faces in the object storage.  Also, explan the naming of the MQTT topics and the QoS that you used.
 
+### Some hints
+1. See Week 1's lab (https://github.com/MIDS-scaling-up/v2/blob/master/week01/lab/Dockerfile.yolo) for how to install openCV.
+2. To make storing in Object Store easier, look at https://github.com/s3fs-fuse/s3fs-fuse
+
 ## Note on cloud usage
 ![Soflayer](../../softlayer.png?raw=true "Title")
 
