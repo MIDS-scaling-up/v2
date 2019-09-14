@@ -67,7 +67,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic test" 
 apt update 
 apt install docker-ce
-# Validated 05/11/19 - Darragh
+# Validated 09/14/19 - Darragh
 # Test if docker hello world is working
 docker run hello-world
 ```
