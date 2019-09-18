@@ -114,7 +114,10 @@ face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 gray = cv.cvtColor(gray, cv.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 for (x,y,w,h) in faces:
-	# your logic goes here
+	# your logic goes here; for instance
+	# rc,png = cv2.imencode('.png', face)
+	# msg = png.tobytes()
+	# ...
 ```
 
 ```
