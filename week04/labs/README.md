@@ -1,7 +1,7 @@
 ### This lab will follow on from the homework and build a 1d-CNN
 
 #### Running locally on the Jetson
-The Jetson's small GPU has 256 cores, here's how to put it through its paces:
+The Jetson's small GPU has 256 cores, here's how to put it through its paces.  Note that we use the container for the Jetson here, not for the cloud; these containers differ!
 
 ```
 # start the container:
@@ -21,7 +21,8 @@ You can now access your notebook at http://yourjetsonip:8888?token=yourtoken
 
 #### Ordering an instance from the image template you built in week02
 Login to your ibmcloud `ibmcloud login`  
-Please order a p100 virtual server off an existing w251 image.   
+Please order a p100 virtual server off an existing w251 image. If you have trouble starting from your image, use ours image number 2250329 (see below). You will need to use your key, though.
+
 For example, I ran the following:
 ```
 ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=darragh.com  --flavor AC1_8X60X25 --billing=hourly --san  --network 1000 --image 2250329 --key=1418191
@@ -36,8 +37,8 @@ Now login, I logged in like below, where I entered my public key location, and t
 
 #### Start the Jupyter notebook.
 
-When logged in to your VM, lets build our docker with the jupyter notebook.  
-Once in, start running your notebook and follow the instructions in bold where to fill in code. 
+When logged in to your VM, lets build our docker with the jupyter notebook. Make sure that we use our cloud container, not the Jetson container. 
+Once in, start running your notebook and follow the instructions in bold where to fill in code.  
 ```
 docker run --rm --runtime=nvidia -it -p 8888:8888 w251/tensorflow_gpu_lab04:latest
 ```
