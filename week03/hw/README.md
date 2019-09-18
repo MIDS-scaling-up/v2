@@ -66,7 +66,39 @@ mosquitto_sub -t applications/in/+/public/# -h <ip address of the MQTT broker>
 This matches `applications/in/app1/public` as well as `applications/in/app2/public/subtopic`, etc. etc.
 
 ### MQTT via python
-Feel free to use [Paho-MQTT](https://pypi.org/project/paho-mqtt/)
+You don't need to use Python, in fact, perhaps it's more fun to just use command line tools like mosquitto_sub and mosquitto_pub; but it's obviously better to use Python.  Here's a simple template on how to use [Paho-MQTT](https://pypi.org/project/paho-mqtt/):
+```
+import paho.mqtt.client as mqtt
+
+
+LOCAL_MQTT_HOST="mosquitto"
+LOCAL_MQTT_PORT=1883
+LOCAL_MQTT_TOPIC="test_topic"
+
+def on_connect_local(client, userdata, flags, rc):
+        print("connected to local broker with rc: " + str(rc))
+        client.subscribe(LOCAL_MQTT_TOPIC)
+	
+def on_message(client,userdata, msg):
+  try:
+    print("message received!")	
+    # if we wanted to re-publish this message, something like this should work
+    # msg = msg.payload
+    # remote_mqttclient.publish(REMOTE_MQTT_TOPIC, payload=msg, qos=0, retain=False)
+  except:
+    print("Unexpected error:", sys.exc_info()[0])
+
+local_mqttclient = mqtt.Client()
+local_mqttclient.on_connect = on_connect_local
+local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
+local_mqttclient.on_message = on_message
+
+
+
+# go into a loop
+local_mqttclient.loop_forever()
+
+```
 
 ## OpenCV
 [OpenCV](https://opencv.org/) is THE library for computer vision.  At the moment it has fallen behind the Deep Learning curve, but it could catch up at any moment.  For traditional, non-DL image processing, it is unmatched.
