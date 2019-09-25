@@ -16,7 +16,7 @@ docker run --privileged --rm -p 8886:8888 -d pytorchlab05
 ```
 If for whatever reason you were unable to get your container built, just use our pre-built version:
 ```
-docker run --privileged --rm -p 8888:8888 -d w251/tensorrtlab05:dev-tx2-4.2.1_b97
+docker run --privileged --rm -p 8888:8888 -d w251/pytorchlab05:dev-tx2-4.2.1_b97
 ```
 As before, find the token using ```docker logs``` and use it to connect to your jupyter notebook at http://jetsonip:8888
 
