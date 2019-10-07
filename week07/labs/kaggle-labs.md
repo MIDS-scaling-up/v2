@@ -14,9 +14,9 @@ mkdir -m 777 /week07
 # install the s3fs mount utility
 apt update && apt install -y s3fs
 # save the read only creds
-echo "3fb8e3920adf45f38d51b813ed064544:650bdf1dfb0d0e8ddb91e34ab9758cf7b9c8ca957988fe52" > ~/root/.cos_creds
+echo "3fb8e3920adf45f38d51b813ed064544:650bdf1dfb0d0e8ddb91e34ab9758cf7b9c8ca957988fe52" > /root/.cos_creds
 # this file needs to be secure
-chmod 600 ~/root/.cos_creds
+chmod 600 /root/.cos_creds
 # mount it
 s3fs w251dal /week07 -o passwd_file=/root/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.private.us-south.cloud-object-storage.appdomain.cloud -o nonempty
 ```
@@ -24,8 +24,8 @@ s3fs w251dal /week07 -o passwd_file=/root/.cos_creds -o sigv2 -o use_path_reques
 Make sure to pass the mountpoint
 ```
 # start it.
-docker run --runtime=nvidia --ipc=host --rm -v /week07:/data -p 8888:8888 -d w251/lab07
+docker run --runtime=nvidia --ipc=host --rm -v /week07:/data/kaggle -p 8888:8888 -d w251/lab07
 # get the token
 docker logs <container id>
 ```
-Now you can connect to your jupyter at ```http://ip_of_your_vm:8888?token=yourtoken````
+Now you can connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/berkeley-mids-w251-week07-lab.ipynb```
