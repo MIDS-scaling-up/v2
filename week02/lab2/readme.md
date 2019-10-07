@@ -1,4 +1,4 @@
-# Customer Image creation  in Softlayer
+# Custom Image creation  in Softlayer
 With IBM® Cloud Virtual Servers image templates, you can capture a device's image to quickly replicate its configuration with minimal changes in the order process.
 
 Image templates provide an imaging option for all Virtual Servers, regardless of operating system. Image templates allow you to capture an image of an existing virtual server and create a new one based on the captured image. 
@@ -16,7 +16,7 @@ ibmcloud sl vs create --datacenter=dal13 --hostname=<hostname> --domain=<domain>
 ibmcloud sl vs create --datacenter=dal13 --hostname=p100 --domain=dima.com --os=UBUNTU_16_64 --flavor AC1_16X120X25 --billing=hourly --san --disk=25 --disk=2000 --network 1000 --key=p305
 ``` 
 ### Install cuda 10.0
-**cuda 10.1 does not work too well with tensorflow and we will use this image for tensorflow in lab04**
+Please use the latest CUDA here. Note that we are installing CUDA in the host here, so even if a particular workload wants a downlevel version of CUDA, this could be arranged in the container where it is running.
 ```
 apt-get update
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
@@ -187,11 +187,17 @@ cd s3fs-fuse
 make
 sudo make install
 
+# You could also just apt install -y s3fs, but linux repos often have these tools backlevel, so..
 ```
 
 In order to configure s3fs-fuse, you need your access key id, your secret access key, the name of the bucket you want to mount, and the endpoint for the 
-If you are using the Infrastructure variation of Cloud Object Storage (i.e. softlayer), you can get these values from the ObjectStorage section in the Control Portal.
-
+If you are using the Infrastructure variation of Cloud Object Storage (i.e. softlayer), you can get these values from the ObjectStorage section in the Control Portal.  If you are using the new version of IBM Cloud Object storage, you will need to go to Service Credentials,  New Credential (be sure to check the HMAC checkbox), and then click "view credential".  You will see a JSON file, so just look for the cos_hmac_keys section:
+```
+#   "cos_hmac_keys": {
+#    "access_key_id": "somekey",
+#    "secret_access_key": "somesecretkey"
+#  },
+```
 ```
 Substitue your values for <Access_Key_ID> and <Secret_Access_Key> in the below command.
 echo "<Access_Key_ID>:<Secret_Access_Key>" > $HOME/.cos_creds
@@ -199,7 +205,7 @@ chmod 600 $HOME/.cos_creds
 ```
 Create a directory where you can mount your bucket. Typically, this is done in the /mnt directory on Linux, notice the bucket is created in the IBM Cloud UI
 ```
-sudo mkdir /mnt/mybucket
+sudo mkdir -m 777 /mnt/mybucket
 sudo s3fs bucketname /mnt/mybucket -o passwd_file=$HOME/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.us-east.objectstorage.softlayer.net
 
 ```
