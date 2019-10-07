@@ -5,12 +5,16 @@ We recommmend that you provision a VM with a V-100 GPU in Dallas 12 this time. T
 ```
 slcli vs create --datacenter=dal12 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=p305 --flavor AC2_8X60X100 --san
 ```
+Instead of `slcli vs ...`, you may need to use `ibmcloud sl vs ....`
 
 ### Mount the object storage bucket.  
 Note that we created an object storage bucket in the US South availability zone and are providing read only credentials to you.
 ```
 # create the mountpoint
 mkdir -m 777 /week07
+# Add keys
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
 # install the s3fs mount utility
 apt update && apt install -y s3fs
 # save the read only creds
