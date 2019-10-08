@@ -32,4 +32,11 @@ docker run --runtime=nvidia --ipc=host --rm -v /week07/week07:/data/kaggle -p 88
 # get the token
 docker logs <container id>
 ```
-Now you can connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/berkeley-mids-w251-week07-lab.ipynb```
+### Lab 1 - Recursion Cellular Image Classification
+Connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/berkeley-mids-w251-week07-lab.ipynb```
+
+### Lab 2a - Aptos - model pre-training
+Connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/w251-aptos-pretrain.ipynb```
+
+### Lab 2b - Aptos - model finetuning
+Connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/w251-aptos-finetune.ipynb```
