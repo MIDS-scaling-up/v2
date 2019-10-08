@@ -35,8 +35,8 @@ docker logs <container id>
 ### Lab 1 - Recursion Cellular Image Classification
 Connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/berkeley-mids-w251-week07-lab.ipynb```
 
-### Lab 2a - Aptos - model pre-training
+### Lab 2a - APTOS 2019 Blindness Detection - model pre-training
 Connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/w251-aptos-pretrain.ipynb```
 
-### Lab 2b - Aptos - model finetuning
+### Lab 2b - APTOS 2019 Blindness Detection - model finetuning
 Connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/w251-aptos-finetune.ipynb```
