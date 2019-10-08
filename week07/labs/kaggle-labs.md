@@ -28,7 +28,7 @@ s3fs w251dal /week07 -o passwd_file=/root/.cos_creds -o sigv2 -o use_path_reques
 Make sure to pass the mountpoint
 ```
 # start it.
-docker run --runtime=nvidia --ipc=host --rm -v /week07:/data/kaggle -p 8888:8888 -d w251/lab07
+docker run --runtime=nvidia --ipc=host --rm -v /week07/week07:/data/kaggle -p 8888:8888 -d w251/lab07
 # get the token
 docker logs <container id>
 ```
