@@ -164,7 +164,7 @@ performance-inhibiting metadata repositories.
 
 Data access is achieved by using a REST interface over the HTTP protocol, which allows anywhere and anytime access simply by referencing the object key.
 
-## Connect the VSI to Cloud Object storage
+## Mount a Cloud Object storage into your VSI
 
 Ingredients
 * Access to an IBM Cloud Object Storage (COS) bucket
@@ -209,3 +209,64 @@ sudo mkdir -m 777 /mnt/mybucket
 sudo s3fs bucketname /mnt/mybucket -o passwd_file=$HOME/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.us-east.objectstorage.softlayer.net
 
 ```
+## Install a CLI for working with your S3-compatible account
+The filesystem mount is great for rapid exploration of the contents of your buckets, but you will soon notice that the performance is very very suspicious. It would be a mistake to rely on the s3fs mount to write large quantities of files to your bucket, for instance. 
+
+For these types of activities, we need to install a command line tool, such as s3cmd:
+```
+pip install --upgrade s3cmd
+```
+
+Now, we need to create your .s3cfg file.  Here's an example that works with the IBM Cloud Object Storage:
+```
+# root@gpu:~# cat .s3cfg
+[default]
+
+access_key = your_access_key
+secret_key = your_secret_key
+gpg_command = /usr/local/bin/gpg
+# host_base = s3.private.us-south.cloud-object-storage.appdomain.cloud
+# host_bucket = %(bucket)s.s3.private.us-south.cloud-object-storage.appdomain.cloud
+host_base = your_access_url
+host_bucket = %(bucket)s.your_access_url
+use_https = True
+```
+Change the permissions on this file, e.g. ```chmod 600 .s3cfg```, even though it's not required, and you're good to go.
+
+s3cmd can do many things, and you can browse [the documentation](https://s3tools.org/s3cmd) as you need to.  Here, we will just suggest that you try two things:
+
+Assuming that you have a bucket creaated, let's list its content.  Here's what I did:
+```
+s3cmd ls s3://w251dal
+# the output:
+#                       DIR   s3://w251dal/week07/
+# 2019-10-07 03:37   2398736   s3://w251dal/IMG_7710.JPG
+
+# You can keep drilling in further, e.g.
+# root@gpu:~# s3cmd ls s3://w251dal/week07/  
+# produces for me
+
+#                       DIR   s3://w251dal/week07/aptos/
+#                       DIR   s3://w251dal/week07/recursion-cellular-image-classification/
+#                       DIR   s3://w251dal/week07/train/
+# 2019-10-07 04:58         0   s3://w251dal/week07/
+2019-10-07 04:58         0   s3://w251dal/week07/a.txt
+
+```
+Second, here's how you mirror a directory into the object storage bucket. Mirroring avoids the transfer of files that already exist remotely and are the same as the local files. You may be familiar with the rsync tool; this is very similar conceptually.
+```
+# s3cmd local_dir s3://bucket/somedir/
+# Make sure the remote path ends with the slash if you want your dir to be transferred under that path
+# this is what I did:
+s3cmd sync train s3://w251dal/week07/aptos/
+# this resulted in my local dir 'train' mirrored with s3://w251dal/week07/aptos/train
+```
+Finally, if you have many files scattered throughout subdirectories, you just might wish to initiate many file transfers in parallel to save time. s3cmd is single-threaded, but the object strage works over HTTP, so it is fundamentally multi-threaded. In other words, if you have 20 directories to transfer, you could likely transfer them all in parallel with no penalty. Here's one way to do this:
+```
+d=somelocadir
+# use nohup so that you can log out and the transfer will continue
+# put the transfer into background so that you can initiate a new one
+# redirect your output into a log file and redirect standard error into the same log file
+nohup s3cmd sync "$d" s3://bucket/some_remote_dir/ > log.out 2>&1 &
+```
+
