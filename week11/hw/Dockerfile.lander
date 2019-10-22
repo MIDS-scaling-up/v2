@@ -1,0 +1,13 @@
+FROM w251/hw11_base
+
+
+# AUTHOR brad.des@gmail.com
+# This is the base container for the Jetson TX2 board with drivers (with cuda)
+
+COPY run_lunar_lander.py .
+COPY lunar_lander.py .
+
+RUN mkdir /tmp/videos
+
+CMD ["python3", "run_lunar_lander.py"]
+
