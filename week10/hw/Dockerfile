@@ -71,8 +71,7 @@ RUN pip install tensorflow --upgrade
 # Jupyter Notebook
 RUN pip install jupyter
 RUN pip install matplotlib
-RUN pip uninstall pyglet
-RUN pip install -Iv pyglet==1.3.2
+
 
 EXPOSE 8888
 
