@@ -9,7 +9,7 @@ algorithm you are writing). The agent sends `actions` to the
 environment, and the environment replies with `observations` and
 `rewards` (that is, a score).
 
-The core `gym` interface is [Env] (https://github.com/openai/gym/blob/master/gym/core.py), which is
+The core `gym` interface is [Env](https://github.com/openai/gym/blob/master/gym/core.py), which is
 the unified environment interface. There is no interface for agents;
 that part is left to you. The following are the ``Env`` methods you
 should know:
