@@ -38,6 +38,8 @@ if __name__=="__main__":
         X_train.append(list(prev_s)+list(a))
         y_train.append(r)
 
+        # This 'if' statement determines how often your model is re-trained
+
         if steps > training_thr and steps %1000 ==0:
             # re-train a model
             print("training model model")
@@ -80,7 +82,6 @@ if __name__=="__main__":
         tr = tr + r
 
         steps += 1
-#         env.render(mode='human')
         frame = env.render(mode='rgb_array')
         frames.append(frame)
         if steps >= training_thr and steps %1000 == 0:

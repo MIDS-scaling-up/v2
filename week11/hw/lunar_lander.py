@@ -327,10 +327,6 @@ class LunarLander(gym.Env):
             print("Landed it!")
             done   = True
             reward = +200
-#         if (not self.lander.awake): 
-#             print("Landed it!")
-#             done   = True
-#             reward = +200     
         return np.array(state), reward, done, {}
 
     def render(self, mode='human'):
