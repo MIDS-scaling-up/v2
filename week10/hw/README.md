@@ -23,5 +23,14 @@ Run it: docker run --name gymweek10 -d -p 8888:8888 -p 6006:6006 gym:latest
 Access the Jupyter notebook endpoint: http://XX.XX.XX.XX:8888/tree?  (tip look for docker logs containerID to get the token)
 Run the gym.ipynb Notebook annotate your results 
 ```
+
+## Docker pull instructions
+```
+docker pull eariasn/w251-eariasn:hw10
+Run it: docker run --name gymweek10 -d -p 8888:8888 -p 6006:6006 eariasn/w251-eariasn:hw10
+Access the Jupyter notebook endpoint: http://XX.XX.XX.XX:8888/tree?  (tip look for docker logs containerID to get the token)
+Run the gym.ipynb Notebook annotate your results
+
+```
 ## Submission
 Submit a document with evidence of the playbook run, changes you made and observations.
