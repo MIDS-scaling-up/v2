@@ -30,6 +30,11 @@ The training parameters are in the `run_lunar_lander.py` file:
 .
 .
 .
+    model = nnmodel(10)
+
+.
+.
+.
     training_thr = 3000
     total_itrs = 50000
 .
