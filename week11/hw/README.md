@@ -1,6 +1,6 @@
 # Homework 11 -- More fun with OpenAI Gym!
 
-In this homework, you will be training a Lunar Lander to land properly **using your Jetson TX2**.
+In this homework, you will be training a Lunar Lander to land properly **using your Jetson TX2**. There is a video component to this file, so use a display or VNC.
 
 There are two python scripts used for this process. The first file, `lunar_lander.py`, defines the Lunar Lander for OpenAI Gym. It also defines the keras model.
 
