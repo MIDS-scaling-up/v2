@@ -5,9 +5,9 @@
 [LazyNLP](https://github.com/chiphuyen/lazynlp) is a straightfoward library that allows you to crawl, clean up, and deduplicate webpages to create massive monolingual datasets. Using this library, you should be able to create datasets larger than the one used by OpenAI for GPT-2.
 
 
-1. SSH into your first node (gpfs1) and proceed to install the requisites for LazyNLP installation
+1. SSH into each node (gpfs1, gpfs2, gpfs3) and proceed to install the requisites for LazyNLP installation
 ```
-  * yum install -y python3 python3-devel python3-pip
+  * yum install -y python3 python3-devel git
   * git clone https://github.com/chiphuyen/lazynlp.git
   * cd lazynlp
   * pip3 install -r requirements.txt
@@ -34,7 +34,7 @@
 
 6. Use the following URL dumps:
  ```
- * # Gutenberg
+ * # Gutenberg US
  * gdown https://drive.google.com/uc?id=1zIVaRaVqGP8VNBUT4eKAzW3gYWxNk728
  * # AUS Gutenberg
  * https://drive.google.com/uc?id=1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC
