@@ -68,14 +68,16 @@ chmod +x Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
 /usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs1
 /usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs2
 /usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs3
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale setup -s IP-OF-GPFS1
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale callhome disable
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale install
+
 ```
 
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
-
+```
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale setup -s IP-OF-GPFS1
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale callhome disable
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale install
+```
 Now the cluster is installed, let's work the details.
 
 Now, you must accept the license:
