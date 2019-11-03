@@ -184,4 +184,4 @@ If the file was created, you are all set:
     ssh gpfs3 'ls -l /gpfs/gpfsfpo'
 
 
-# Part 2 - The dataset [Crawler library](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/dataset.md)
+# Part 2 - LazyNLP [Crawler library](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/dataset.md)
