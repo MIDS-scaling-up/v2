@@ -34,9 +34,10 @@
 
 6. Use the following URL dumps:
  ```
- * https://drive.google.com/file/d/1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51/view
- * https://drive.google.com/file/d/1zIVaRaVqGP8VNBUT4eKAzW3gYWxNk728/view?usp=sharing
- * https://drive.google.com/file/d/1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC/view?usp=sharing
+ * # Gutenberg
+ * gdown https://drive.google.com/uc?id=1zIVaRaVqGP8VNBUT4eKAzW3gYWxNk728
+ * # AUS Gutenberg
+ * https://drive.google.com/uc?id=1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC
  * https://dumps.wikimedia.org/enwiktionary/20190301/enwiktionary-20190301-pages-articles-multistream.xml.bz2 (notice this is not a url.txt file but a text file)
   ```
 7. Be creative with the crawler (multithread, run in background no up &) and put the data into the distributed storage, we will use for the class lab;
