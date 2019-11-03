@@ -7,9 +7,9 @@ A straightfoward library that allows you to crawl, clean up, and deduplicate web
 
 1. SSH into your first node (gpfs1) and proceed to install the requisites for LazyNLP installation
 ```
-  * sudo apt-get --purge remove gpfs.gss.pmcollector gpfs.gui
-  * sudo apt-get install -y python3 python3-dev python3-  setuptools python3-pip
+  * yum install -y python3 python3-devel python3-pip
   * git clone https://github.com/chiphuyen/lazynlp.git
+  * cd lazynlp
   * pip3 install -r requirements.txt
   * pip3 install .
  ``` 
