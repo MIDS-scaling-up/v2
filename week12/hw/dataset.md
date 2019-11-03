@@ -23,25 +23,22 @@
   * unzip wikitext-103-v1.zip
   * rm -rf wikitext-103-v1.zip
   ```
-4. Let's use the library to crawl a medium size dataset, the approach we are going to use is getting dumps of URL's that have been deduplicated, we will just clean them and prepare for processing.
+6. Let's use LazyNLP to crawl a small (Gutenberg AUS) and medium (Gutenberg US) datasets.  Once you download the lists of urls below, you will need to modify the [crawler](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/crawler.py) to point at these URL files.  Process the AUS file first. How long did it take? Now, kick off processing on the US file -- obviously, it will take a while.
+ ```
+ * # Gutenberg US. About 50K books, about 14GB of text.
+ * gdown https://drive.google.com/uc?id=1zIVaRaVqGP8VNBUT4eKAzW3gYWxNk728
+ * # AUS Gutenberg. About 4k books, 1GB of text.
+ * https://drive.google.com/uc?id=1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC
+ * https://dumps.wikimedia.org/enwiktionary/20190301/enwiktionary-20190301-pages-articles-multistream.xml.bz2 (notice this is not a url.txt file but a text file)
+  ```
+4. Now, let's process a larger deduplicated collection of Reddit URLs. There are 163 separate URL files here, containing altogether 23M URLs. Your last task is to download them all. Hint: you have three nodes and you can run many crawlers in parallel.
   ```
   * # The reddit dataset
   * pip install gdown
   * gdown https://drive.google.com/uc?id=1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51
   * unzip reddit_urls.zip
   ```
-5. In step 4 a urls.txt file was downloaded, use it as a base with the contents of [crawler code](https://github.com/MIDS-scaling-up/v2/blob/master/week12/hw/crawler.py), main idea is to use the function lazynlp.download_pages()
 
-6. Use the following URL dumps:
- ```
- * # Gutenberg US
- * gdown https://drive.google.com/uc?id=1zIVaRaVqGP8VNBUT4eKAzW3gYWxNk728
- * # AUS Gutenberg
- * https://drive.google.com/uc?id=1C5aSisXMC3S3OXBFbnETLeK3UTUXEXrC
- * https://dumps.wikimedia.org/enwiktionary/20190301/enwiktionary-20190301-pages-articles-multistream.xml.bz2 (notice this is not a url.txt file but a text file)
-  ```
-7. Be creative with the crawler (multithread, run in background no up &) and put the data into the distributed storage, we will use for the class lab;
-
-8. Feel free to suggest improvements and try to collect as much data as possible.
+5. Feel free to suggest improvements and go after other data sets as needed (e.g. if your class project requires them)
 
 
