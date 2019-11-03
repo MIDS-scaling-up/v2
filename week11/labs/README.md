@@ -42,3 +42,9 @@ After the training is complete, run an evaluation of the model.
  - Compare your results to others. 
  - Did you change any parameters that made your model perform better or worse? 
  - Does your car run very well on other tracks?
+
+## Fun Links:
+ - [AWS Racer Reward function inputs](https://docs.aws.amazon.com/deepracer/latest/developerguide/deepracer-reward-function-input.html)
+ - [Huber loss](https://en.wikipedia.org/wiki/Huber_loss)
+ - [Proximal Policy Optimization](https://arxiv.org/pdf/1707.06347.pdf) and [AWS Racer Primer on PPO](https://docs.aws.amazon.com/deepracer/latest/developerguide/deepracer-how-it-works-reinforcement-learning-algorithm.html)
+ 
