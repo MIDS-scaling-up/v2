@@ -1,8 +1,8 @@
-# Homework: Part 2 - Installing LazyNLP
+# Homework: Part 2 - LazyNLP
 
 ## Overview
 
-A straightfoward library that allows you to crawl, clean up, and deduplicate webpages to create massive monolingual datasets. Using this library, you should be able to create datasets larger than the one used by OpenAI for GPT-2.
+[LazyNLP](https://github.com/chiphuyen/lazynlp) is a straightfoward library that allows you to crawl, clean up, and deduplicate webpages to create massive monolingual datasets. Using this library, you should be able to create datasets larger than the one used by OpenAI for GPT-2.
 
 
 1. SSH into your first node (gpfs1) and proceed to install the requisites for LazyNLP installation
