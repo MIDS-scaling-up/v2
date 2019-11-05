@@ -11,7 +11,7 @@ You will see a button to create all the required resources:
 ![](CreateResources.png)
 
 ## Step 1
-Learn the basics of reinforcement learning (Optional / ~10 mins)
+Learn the basics of reinforcement learning (Required / ~10 mins)
 
 ![](StartLearningRL.png)
 
@@ -27,7 +27,7 @@ Click the "Create Model" button and fill out the details:
  - Model name
  - Environment Simulation **Pick the re:Invent 2018 track for this lab**
  - Action Space **Tweak the steering angle, granularity, speed, speed granularity however you please**
- - Use the default reward function
+ - Pick a reward function (based on what you learned in the "basics" walkthrough)
  - Use the default Hyperparameters
  - Use the default stop condition of 60 minutes
 
