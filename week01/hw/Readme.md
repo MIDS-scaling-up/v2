@@ -42,6 +42,8 @@ The process of fetching the software and decompressing it will take some time, d
 **IF you have problems with the install**
 On Step 02, select "DOWNLOAD & INSTALL OPTIONS" and click on "Download Now, Install Later". Then ensure all packages download successfully, which may take several attempts. Then proceed to Step 03 in the installer.
 
+The last part of the install -- the SDK components -- will prompt you for the IP address of the Jetson, its userid and password.  This step DOES require that you connect a mouse, keyboard, and monitor to your Jetson and complete its setup.  Once you've done that, and have loggged into your Jetson, you can return to your host machine and try this part. Leave the pre-filled IP address (192.168.55.1) of the Jetson as is -as long as the USB cable that you used to flash the OS remains in place between the two machines. Use the userid and password that you just entered into the Jetson and click Next.  The SDK components should now start installing.
+
 When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
 
 ### Testing Jetpack on the Jetson
