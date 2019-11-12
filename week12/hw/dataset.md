@@ -39,6 +39,6 @@
 
 5. Feel free to suggest improvements and go after other data sets as needed (e.g. if your class project requires them)
 
-Credit / No-credit only.
+Credit / No-credit only.  Please do not destroy the GPFS cluster as we will use it in class for labs.  Submit the list of files you that your LazyNLP spiders crawled (ls -la).
 
 
