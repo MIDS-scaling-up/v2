@@ -64,44 +64,44 @@ aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3:/
 GPFS installation (node that we are adding nodes using the node names, be sure to update the hosts file on each VM)
 ```
 chmod +x Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
-./Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install --silent
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs1
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs2
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs3
+./Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install --silent  (this command needs to be run on every node)
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs1  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs2  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs3  (this command needs to be run just gpfs1)
 
 ```
 
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
 ```
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale setup -s IP-OF-GPFS1
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale callhome disable
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale install
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale setup -s IP-OF-GPFS1  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale callhome disable   (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale install  (this command needs to be run just gpfs1)
 ```
 Now the cluster is installed, let's work the details.
 
 Now, you must accept the license:
 
-    mmchlicense server -N all
+    mmchlicense server -N all (this command needs to be run just gpfs1)
     # (say yes)
 
 Now, start GPFS:
 
-    mmstartup -a
+    mmstartup -a (this command needs to be run just gpfs1)
 
 All nodes should be up ("GPFS state" column shows "active"):
 
-    mmgetstate -a
+    mmgetstate -a (this command needs to be run just gpfs1)
 
 Nodes may reflect "arbitrating" state briefly before "active".  If one or more nodes are down, you will need to go back and see what you might have missed. If some node shows a DOWN state, log into the node and run the command  mmstartup. The main GPFS log file is `/var/adm/ras/mmfs.log.latest`; look for errors there.
 
 You could get more details on your cluster:
 
-    mmlscluster
+    mmlscluster (this command needs to be run just gpfs1)
 
 Now we need to define our disks. Do this to print the paths and sizes of disks on your machine:
 
-    fdisk -l
+    fdisk -l (this command and the rest until the file creation command (touch aa) needs to be run just gpfs1)
 
 Note the names of your 100G disks. Here's what I see:
 
