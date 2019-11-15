@@ -39,6 +39,15 @@
 
 5. Feel free to suggest improvements and go after other data sets as needed (e.g. if your class project requires them)
 
-Credit / No-credit only.  Please do not destroy the GPFS cluster as we will use it in class for labs.  Submit the list of files you that your LazyNLP spiders crawled (ls -la).
+### To Turn In
+1. How much disk space is used after step 4?
+2. Did you parallelize the crawlers in step 4? If so, how? 
+3. Describe the steps to de-duplicate the web pages you crawled.
+4. Submit the list of files you that your LazyNLP spiders crawled (ls -la).
+
+
+Credit / No-credit only.  
+
+#Please do not destroy the GPFS cluster as we will use it in class for labs.  
 
 
