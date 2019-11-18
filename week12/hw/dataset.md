@@ -36,6 +36,32 @@
   * gdown https://drive.google.com/uc?id=1hRtA3zZ0K5UHKOQ0_8d0BIc_1VyxgY51
   * unzip reddit_urls.zip
   ```
+5. If you run into weird "out of space" errors when clearly there's space, check your inode count:
+```
+mmdf gpfsfpo -F
+# if you see the below
+[root@gpfs3 gpfsfpo]# mmdf gpfsfpo -F
+Inode Information
+-----------------
+Number of used inodes:          206848
+Number of free inodes:               0
+Number of allocated inodes:     206848
+Maximum number of inodes:       206848
+
+# to fix:
+mmchfs gpfsfpo --inode-limit 15M
+Set maxInodes for inode space 0 to 15728640
+Fileset root changed.
+[root@gpfs3 gpfsfpo]# mmdf gpfsfpo -F
+Inode Information
+-----------------
+Number of used inodes:          206848
+Number of free inodes:           53248
+Number of allocated inodes:     260096
+Maximum number of inodes:     15728640
+[root@gpfs3 gpfsfpo]
+# all better!
+```
 
 5. Feel free to suggest improvements and go after other data sets as needed (e.g. if your class project requires them)
 
