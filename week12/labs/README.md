@@ -33,19 +33,8 @@ nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -v /
 We will generally follow [OpenSeq2Seq LM training intructions](https://nvidia.github.io/OpenSeq2Seq/html/language-model.html), please refer to them as needed.
 
 A. __Data download:__
-In this first iteration we will work the model with the dataset wikitext-2-v1, which is a small subset, feel free to expand the lab and share your experiences using the dataset that was collected with LazyNLP.
-```
-# update OpenSeq2Seq (optional since the TF container includes it anyways under /workspace/nvidia-examples/OpenSeq2Seq )
-# git clone https://github.com/NVIDIA/OpenSeq2Seq
-# cd OpenSeq2Seq
-# pip install -r requirements.txt
+We will discuss the best option to move the data from the LazyNLP / GPFS cluster into IBM Cloud, please refer to the discussed Cloud storage options (async video) and try to come up with ideas about it.
 
-# go to the directory that you passed through to the container
-cd /data
-# pull the wikitext dataset
-wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-2-v1.zip
-unzip wikitext-2-v1.zip
-```
 B. __Edit your config file:__
 ```
 cd example_configs/lm
