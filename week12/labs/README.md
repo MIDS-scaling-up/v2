@@ -40,6 +40,8 @@ In this first iteration we will work the model with the dataset wikitext-2-v1, w
 # cd OpenSeq2Seq
 # pip install -r requirements.txt
 
+# go to the directory that you passed through to the container
+cd /data
 # pull the wikitext dataset
 wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-2-v1.zip
 unzip wikitext-2-v1.zip
@@ -48,18 +50,19 @@ B. __Edit your config file:__
 ```
 cd example_configs/lm
 Edit the file lstm-wkt2-fp32.py and set the data_root variable, e.g.
-# data_root = "/workspace/nvidia-examples/OpenSeq2Seq/wikitext-2"
+# data_root = "/data/wikitext-2"
 # also make sure that horovod is turned off and that you're training on just 1 GPU (see the corresponding variables)
 
 Make a copy of the downoaded data files to fit the expected format, i.e.(your path might look different)
-cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.train.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/train.txt
-cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.valid.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/valid.txt
-cp /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/wiki.test.tokens /workspace/nvidia-examples/OpenSeq2Seq/wikitext-2/test.txt
+cp /data/wikitext-2/wiki.train.tokens /data/wikitext-2/train.txt
+cp /data/wikitext-2/wiki.valid.tokens /data/wikitext-2/valid.txt
+cp /data/wikitext-2/wiki.test.tokens /data/wikitext-2/test.txt
 ```
 C. __Kick off training:__
 ```
 python run.py --config_file=example_configs/lm/lstm-wkt2-fp32.py --mode=train_eval --enable_logs
 ```
+D. __Transfer data from your GPFS cluster to your VM___
 
-D. __Exploration (optional):__
+F. __Exploration (optional):__
 Review the [LM training docs](https://nvidia.github.io/OpenSeq2Seq/html/language-model.html) and try different combinations of settings and hyperparameters for training, share your experiences with the class 
