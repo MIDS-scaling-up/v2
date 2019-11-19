@@ -51,7 +51,9 @@ C. __Kick off training:__
 ```
 python run.py --config_file=example_configs/lm/lstm-wkt2-fp32.py --mode=train_eval --enable_logs
 ```
-D. __Transfer data from your GPFS cluster to your VM___
+D. __Transfer the lazynlp data from your GPFS cluster to your VM__
+* How do you transfer Gutenberg, Reddit files over?
+* How do you kick off training?
 
 F. __Exploration (optional):__
 Review the [LM training docs](https://nvidia.github.io/OpenSeq2Seq/html/language-model.html) and try different combinations of settings and hyperparameters for training, share your experiences with the class 
