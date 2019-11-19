@@ -25,7 +25,8 @@ ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --im
 Pull and launch the latest Nvidia TF container, e.g.
 
 ```
-nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nvcr.io/nvidia/tensorflow:19.06-py3
+# replace /data in the command with the location of your large data files so you don't need to copy them into your container
+nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -v /data:/data -it --rm nvcr.io/nvidia/tensorflow:19.10-py3
 ```
 
 ## Training an OpenSeq2Seq-based language model
