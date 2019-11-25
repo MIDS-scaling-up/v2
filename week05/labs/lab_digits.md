@@ -4,7 +4,7 @@
 
 This assumes that you completed lab 3, have started the digits container and have it running on port 5001.  If you recall, we did something like this:
 ```
-docker run --privileged -v /data/digits-data:/data -p 5001:5001 -d digits
+docker run --privileged -v /data/digits-data:/data -p 5001:5001 -d w251/digits:tx2-4.2.1_b97
 ```
 Where /data/digits-data resides on your external SD card or a hard drive and has plenty of space.  Let's download a pre-trained googlenet model:
 ```
