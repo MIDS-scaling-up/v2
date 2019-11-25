@@ -2,7 +2,7 @@
 Even though we are in the middle 2019, it's impossible not to observe that running end to end DL applications remains suprisingly complex. Perhaps the rapid rate at which new frameworks are being developed is to blame.  Another aspect could be that a lot of time the focus is on the data science aspects only - e.g. on the development of new models, but not on the development of end to end applications. 
 
 In this session, we will review:
-* Nvidia Digits - a slightly dated but still, a ridiculously easy to use tool for training and inference
+* Nvidia Digits - a slightly dated but still, a ridiculously easy to use tool for training and inference.  Note that the [Nvidia Jarvis](https://developer.nvidia.com/nvidia-jarvis) project is supposed to be the successor to DIGITS.
 * The DeepStream SDK, a bleeding edge yet not-so-easy-to use tool for processing multiple video streams in real time, 
 * Dusty Franklin's framework - initially designed for inference only on the Jetson family of devices but now extended to do some training as well.
 
@@ -13,12 +13,24 @@ Some of you may have already done these, but in case you didn't, this is the tim
 * [Object Detection with Digits](https://github.com/MIDS-scaling-up/v2/tree/master/week07/hw/backup) - review only, we won't be able to complete this in class.  The idea here is to learn that it is possible to train an object detection framework on your own dataset.
 
 ### DeepStream SDK (the official one)
-* With the just released jetpack 4.2.1 , you should be able to run DeepStream SDK on the jetson; We will run it in the Cloud as it's not compatible with 4.2.0
+* Even though the [official page](https://ngc.nvidia.com/catalog/containers/nvidia:deepstream-l4t) states that you need jetpack 4.2.2 , you should be able to run DeepStream SDK on the jetson.  We also provide instructions to run it in the Cloud.
 * The [documentation](https://developer.nvidia.com/deepstream-sdk)
 * The [Smart Parking Application](https://github.com/NVIDIA-AI-IOT/deepstream_360_d_smart_parking_application/tree/master/perception_docker)
 * The [blog post](https://devblogs.nvidia.com/multi-camera-large-scale-iva-deepstream-sdk/) on multi-camera applications
 * The [docker container](https://ngc.nvidia.com/catalog/containers/nvidia:deepstream)
+#### TX2 Instructions
+Grab the container:
+```
+docker run -it --rm --net=host --provileged  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-l4t:4.0.1-19.09-samples
+```
+Run the 12-camera example:
+```
+cd /deepstream_sdk_v4.0.1_jetson/samples
+deepstream-app -c configs/deepstream-app/source12_1080p_dec_infer-resnet_tracker_tiled_display_fp16_tx2.txt
+```
+You shoud see 12 screens tracking objects simultaneously.
 
+#### Cloud Instructions
 Provision a VM with a P-100 in Soflayer per the [instructions in HW6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw), e.g.
 ```
 ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
