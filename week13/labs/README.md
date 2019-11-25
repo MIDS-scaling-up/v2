@@ -103,7 +103,7 @@ sudo make install
 * As you are exploring, just download all networks for image classification, object detection, segmentation when prompted.
 * On the tx2, your camera will be flipped until you follow [these instructions](https://devtalk.nvidia.com/default/topic/1023180/jetson-tx2/imagenet-camera-gets-reverse-orientation-image-on-tx2-with-tr2-1/2) to flip it.
 * Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
-* It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=[/dev/video0], --width=[640], --height=[480], --network=[resnet-18]
+* It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=[/dev/video0], --width=[640], --height=[480], --network=[resnet-18]  Note that at as of today (Nov 25th), an attempt to use a usb camera causes the entire TX2 to seize up, cured only by reboot, doublefacepalm.
 * There is a lot of information in this repo, take some time to go through it!
 
 #### Running
