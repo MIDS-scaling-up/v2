@@ -77,14 +77,14 @@ deepstream-app -c configs/deepstream-app/source4_720p_dec_infer-resnet_tracker_s
 ```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
-At of July 2019, this functionality is, yet again in flux (sigh).  Nvidia has just dropped [Jetpack 4.2.1](https://developer.nvidia.com/embedded/jetpack) - which is [supposed to introduce Nvidia docker to the Jetson platform](https://devtalk.nvidia.com/default/topic/1046113/jetson-tx2/can-nvidia-docker-run-on-tx2-/) . But, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not test it in time.
+At of November 2019, this functionality is yet again and still in flux (sigh).  Even with the 4.2.1 jetpack, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not make it work in time. Note that this worked with Jetpack 3.3 so we expect it to work again in the future.
 
 So, let's just prepare the codebase on the Jetson directly:
 ```
 # borrowing from https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo.md
-# become root
+
 # in case you don't have these.. 
-apt install -y git cmake 
+sudo apt install -y git cmake 
 # go to the directory of your choosing
 cd 
 # clone the repo
@@ -93,9 +93,9 @@ cd jetson-inference
 git submodule update --init
 mkdir build
 cd build
-cmake ../
-make -j6
-make install
+sudo cmake ../
+sudo make -j6
+sudo make install
 ```
 
 
