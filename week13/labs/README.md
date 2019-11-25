@@ -77,7 +77,7 @@ deepstream-app -c configs/deepstream-app/source4_720p_dec_infer-resnet_tracker_s
 ```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
-At of November 2019, this functionality is yet again and still in flux (sigh).  Even with the 4.2.1 jetpack, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not make it work in time. Note that this worked with Jetpack 3.3 so we expect it to work again in the future.
+At of November 2019, this functionality is yet again and still in flux (sigh).  Even with the 4.2.1 jetpack, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not validate it in time. Note that this worked with Jetpack 3.3 so we expect it to work again in the future.
 
 So, let's just prepare the codebase on the Jetson directly:
 ```
@@ -100,12 +100,14 @@ sudo make install
 
 
 #### Notes
+* As you are exploring, just download all networks for image classification, object detection, segmentation when prompted.
+* On the tx2, your camera will be flipped until you follow [these instructions](https://devtalk.nvidia.com/default/topic/1023180/jetson-tx2/imagenet-camera-gets-reverse-orientation-image-on-tx2-with-tr2-1/2) to flip it.
 * Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
 * It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=[/dev/video0], --width=[640], --height=[480], --network=[resnet-18]
 * There is a lot of information in this repo, take some time to go through it!
 
 #### Running
-* Run the camera demo, e.g. ```./camera-viewer``` . Close the window to exit the program.
+* Run the camera demo, e.g. ```./camera-viewer``` . See the notes section if your view is flipped. Close the window to exit the program.
 * Run the frame classification demo, e.g. ```./imagenet-camera```.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
 * Run the object detection demo, e.g. ```./detectnet-camera```. What is the framerate now?  Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-camera-2.md)
 * Try to image segmentation demo as well: ```./segnet-camera``` Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console.md)
