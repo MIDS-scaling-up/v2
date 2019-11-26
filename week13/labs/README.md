@@ -21,7 +21,7 @@ Some of you may have already done these, but in case you didn't, this is the tim
 #### TX2 Instructions
 Grab the container:
 ```
-docker run -it --rm --net=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-l4t:4.0.1-19.09-samples
+docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-l4t:4.0.1-19.09-samples
 ```
 Run the 12-camera example:
 ```
