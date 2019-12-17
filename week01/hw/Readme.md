@@ -20,7 +20,7 @@ Download the Ubuntu 18.04 iso image [here](http://releases.ubuntu.com/18.04/ubun
 
 Create a new VM in VMware/Virtual Box. 
 
-Walk-through on VMware is ![here](CreateUbuntuVMInVMware.mp4)
+Walk-through on VMware is ![here](CreateUbuntuVMInVMware.mkv)
 
 For Virtual Box, select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. For VMware, select File -> New, then drag & drop the ISO file to the VMware window.
 
