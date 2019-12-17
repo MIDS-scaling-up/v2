@@ -11,9 +11,11 @@ A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, CENTOS_7_64, __tw
 
 B. __Set up each one of your nodes as follows:__
 
-Add to /root/.bash\_profile the following line in the end:
+Add to /root/.profile the following line in the end:
 
     export PATH=$PATH:/usr/lpp/mmfs/bin
+    
+Then execute the command `source ~/.profile` to commit the extra path to your `$PATH` variable.
 
 Make sure the nodes can talk to each other without a password.  When you created the VMs, you specified a keypair.  Copy it to /root/.ssh/id\_rsa (copy paste or scp works).  Set its permissions:
 
@@ -99,6 +101,12 @@ You could get more details on your cluster:
 
     mmlscluster (this command needs to be run just gpfs1)
 
+If a node doesn't appear for some reason (for example, if there was a connection issue when the cluster was initially created), you can manually the node in with the command `mmaddnode`:
+    
+    mmaddnode -N gpfs3
+
+Where `gpfs3` is the name of the missing node.
+
 Now we need to define our disks. Do this to print the paths and sizes of disks on your machine:
 
     fdisk -l (this command and the rest until the file creation command (touch aa) needs to be run just gpfs1)
@@ -115,7 +123,7 @@ Now inspect the mount location of the root filesystem on your boxes:
     [root@gpfs1 ras]# mount | grep ' \/ '
     /dev/xvda2 on / type ext3 (rw,noatime)
 
-Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo`:
+Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo` on gpfs1:
 
     %pool:
     pool=system
