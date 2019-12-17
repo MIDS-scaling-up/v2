@@ -105,7 +105,7 @@ sudo docker run hello-world
 ```
 
 ### Linking Docker to an External Drive (required)
-Walk-throughs to format the external drive (one with gui, one with command line): [here](FormatSDcard.mp4) and [here](TestDockerAndMountExternalDrive.mp4)
+Walk-throughs to format the external drive with [gui](FormatSDcard.mp4), one with [command line](TestDockerAndMountExternalDrive.mp4).
 
 The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is the only choice to store all your Docker work. A SSD is strongly recommended to speed up processes. We will need to move the directory that Docker uses to store its images and containers to this SSD.
 
