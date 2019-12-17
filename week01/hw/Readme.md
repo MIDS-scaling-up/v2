@@ -35,7 +35,9 @@ Virtual Box Only: With the VM now created, highlight it in the menu and select "
 **Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible.**
 
 #### Installation on Ubuntu
-Walk-through on VMware. Note that the first video neglects to de-select the "Host Machine" option, but you should de-select it, as seen in the seconf video: [this video](InstallJetPackSDKManager.mp4) and [this one](JetsonFlashing.mp4).
+Walk-through on VMware. Note that the first video neglects to de-select the "Host Machine" option, but you should de-select it, as seen in the seconf video: [this video](InstallJetPackSDKManager.mp4) and [this one](JetsonFlashing.mp4). 
+
+**NOTE:** In the JetsonFlashing video, there is an error at about the 8:20 mark. This error was resolved by rebooting the TX2 into recovery mode.
 
 Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it (we recommend using the Ubuntu software install gui which automatically resolves dependencies) and then open the freshly installed application. It can be opened by running "sdkmanager" from a terminal command line.
 
