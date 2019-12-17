@@ -20,7 +20,7 @@ Download the Ubuntu 18.04 iso image [here](http://releases.ubuntu.com/18.04/ubun
 
 Create a new VM in VMware/Virtual Box. 
 
-Walk-through on VMware is [![here]()](CreateUbuntuVMInVMware.webm)
+Walk-through on VMware is [here](CreateUbuntuVMInVMware.mp4)
 
 For Virtual Box, select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. For VMware, select File -> New, then drag & drop the ISO file to the VMware window.
 
@@ -35,7 +35,7 @@ Virtual Box Only: With the VM now created, highlight it in the menu and select "
 **Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible.**
 
 #### Installation on Ubuntu
-Walk-through on VMware. Note that the first video neglects to de-select the "Host Machine" option, but you should de-select it, as seen in the seconf video: ![this video](InstallJetPackSDKManager.mp4) and ![this one](JetsonFlashing.mp4).
+Walk-through on VMware. Note that the first video neglects to de-select the "Host Machine" option, but you should de-select it, as seen in the seconf video: [this video](InstallJetPackSDKManager.mp4) and [this one](JetsonFlashing.mp4).
 
 Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it (we recommend using the Ubuntu software install gui which automatically resolves dependencies) and then open the freshly installed application. It can be opened by running "sdkmanager" from a terminal command line.
 
@@ -60,7 +60,7 @@ Once you've done that, and have loggged into your Jetson, you can return to your
 * If your Jetson is connected to your home router, use the IP address of the Jetson (192.168.11.113 in the video below).
 * Use the userid and password that you just entered into the Jetson and click Next.  The SDK components should now start installing.
 
-Example ![here](InstallJetsonSDK.mp4)
+Example [here](InstallJetsonSDK.mp4)
 
 When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
 
@@ -103,7 +103,7 @@ sudo docker run hello-world
 ```
 
 ### Linking Docker to an External Drive (required)
-Walk-throughs to format the external drive (one with gui, one with command line): ![here](FormatSDcard.mp4) and ![here](TestDockerAndMountExternalDrive.mp4)
+Walk-throughs to format the external drive (one with gui, one with command line): [here](FormatSDcard.mp4) and [here](TestDockerAndMountExternalDrive.mp4)
 
 The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is the only choice to store all your Docker work. A SSD is strongly recommended to speed up processes. We will need to move the directory that Docker uses to store its images and containers to this SSD.
 
