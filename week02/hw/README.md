@@ -2,18 +2,18 @@
 
 ## Add a ssh key to the Cloud Portal
  - Create a ssh key on your local computer, if you don't have one, using the ssh-keygen command
- - Navigate to https://control.softlayer.com
+ - Navigate to https://cloud.ibm.com
  - Log in using your credentials or using your IBM ID (if that's how you configured your account)
- - Navigate to Devices -> Manage -> SSH Keys
+ - Navigate to IBM Cloud (top left) -> Classic Infrastructure -> Devices -> Manage -> SSH Keys
  - Use the "Add" link to add your public ssh key to the portal
 
 ## Enable VLAN spanning
- - Navigate to Network -> IP Management -> VLANs
+ - Staying in the "Classic" section, navigate to Network -> IP Management -> VLANs
  - Click on the "Span" tab
  - Turn `VLAN Spanning` On
 
 ## Create a VSI using the gui (make sure ssh key is used)
- - Navigate to https://cloud.ibm.com/classic/devices
+ - Staying in the "Classic" section, navigate to Devices -> Device List
  - Select the blue "Order Devices" button at the top right
  - Select "Virtual Server" from the list, then "Public Virtual Server"
  - Accept the default for Quantity (1) and Billing (Hourly)
@@ -28,6 +28,9 @@
  - Navigate to https://cloud.ibm.com/classic/devices to monitor your VM creation
 
 ## Harden the VSI, ensure ssh still works with the key
+
+**NOTE: These steps are essential for every server created in IBM Cloud, for all future homeworks and labs**
+
  - SSH into the VSI using your SSH Key and the `root` ID
  - Edit /etc/ssh/sshd_config and make the following changes to prevent brute force attacks
 
@@ -53,8 +56,6 @@ curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 ```
 
 Log into IBM Cloud using `ibmcloud login`
-
-Enable the IBM Cloud Infrastructure component using `ibmcloud sl init` (accept the default endpoint)
 
 Test the CLI using the command `ibmcloud sl vs list` to see a list of VSIs in your account
 
@@ -91,7 +92,7 @@ ibmcloud sl vs list
 
 Connect to the new VSI using ssh 
 
-Once you have verified that you can connect to the new VSI, you can disconnect and cancel it using the `ibmcloud sl vs cancel` command. You will need to provide an argument to cancel the proper VSI. **DO NOT CANCEL YOUR PRIMARY, ORIGINAL VSI. YOU WILL NEED IT IN FUTURE HOMEWORKS**
+Once you have verified that you can connect to the new VSI, you can disconnect and cancel it using the `ibmcloud sl vs cancel` command. You will need to provide an argument to cancel the proper VSI. **DO NOT CANCEL YOUR PRIMARY, ORIGINAL VSI. YOU WILL USE IT TO RUN THE ibmcloud CLI IN FUTURE HOMEWORKS AND LABS**
 
 Ensure you successfully cancel your second VSI and all VSIs created in the future using the `ibmcloud sl vs list` command. You should keep your original "jumpbox" VSI.
 
