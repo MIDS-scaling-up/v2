@@ -1,5 +1,7 @@
 # Homework 2: The Cloud
 
+## NOTE: Due to abuse of the IBM Cloud credits, you are now responsible for the charges on this account. IBM will no longer cover the difference if you go over the $2000 credits in a month. You will lose access to your account if you go over that amount (unless you want to pay the difference out-of-pocket). 
+
 ## Add a ssh key to the Cloud Portal
  - Create a ssh key on your local computer, if you don't have one, using the ssh-keygen command
  - Navigate to https://cloud.ibm.com
@@ -57,10 +59,28 @@ curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 
 Log into IBM Cloud using `ibmcloud login`
 
+You can get help on the CLI by placing the word `help` at the end of a command. For example:
+
+```
+ibmcloud sl vs help
+```
+
 Test the CLI using the command `ibmcloud sl vs list` to see a list of VSIs in your account
 
 
 ## Create a VSI using the CLI with private network only
+
+To see the options for creating a VSI, run
+
+```
+ibmcloud sl vs options
+```
+
+To see the command-line parameters, run
+
+```
+ibmcloud sl vs create --help
+```
 
 Create a new ssh key on your VSI using `ssh-keygen`
 
