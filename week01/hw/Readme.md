@@ -97,9 +97,9 @@ The Jetson SoCs has a number of different power modes described in some detail h
 ## 2. Docker 
 Docker is a platform that allows you to create, deploy, and run applications in containers. The application and all its dependecies are packaged into one container that is easy to ship out and uses the same Linux kernel as the system it's running on, unlike a virtual machine. This makes it especially useful for compact platforms such as the Jetson.
 
-Jetpack 4.2.1 has Docker pre-installed, and for the first time, has an experimental nvidia-docker support.
+Jetpack 4.3 has Docker pre-installed, and has an experimental nvidia-docker support.
 
-Let's test it to see if it can run containers. Since the Jetson doesn't have the image below yet, Docker will automatically pull it online from the official repository:
+Let's test it to see if it can run containers. Since the Jetson doesn't have the docker image 'hello-world' downloaded yet, Docker will automatically pull it online from the official repository:
 ```
 sudo docker run hello-world
 ```
