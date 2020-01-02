@@ -49,7 +49,7 @@ You will need to stick to the default settings except:
 
 The process of fetching the software and decompressing it will take some time, depending on the speed of your workstation and your internet connection. It took me 15 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  
 
-Once the OS image is built and flashed to the Jetson, **you will need to log into the newly flashed Jetson using a keyboard, mouse, and monitor attached to it and complete the OS set up**; specifically, create a userid and password.  Then, you need to get back to the installer and type them in.  The installer will copy a few additional files to the Jetson at that point, decompress them, set them up. This took me another 15 min (jetpack 4.2.3).
+Once the OS image is built and flashed to the Jetson, **you will need to log into the newly flashed Jetson using a keyboard, mouse, and monitor attached to it and complete the OS set up**; specifically, create a userid and password.  Then, you need to get back to the installer and type them in.  The installer will install a few additional packages to the Jetson at that point, decompress them, set them up. This took me another hour or so (jetpack 4.3).
 
 **IF you have problems with the install**
 On Step 02, select "DOWNLOAD & INSTALL OPTIONS" and click on "Download Now, Install Later". Then ensure all packages download successfully, which may take several attempts. Then proceed to Step 03 in the installer.
