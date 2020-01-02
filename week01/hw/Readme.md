@@ -4,7 +4,7 @@
 ## 1. Nvidia Jetpack SDK
 Jetpack is an SDK that basically contains everything needed for deep learning and AI applications in a handy package bundle containing the OS for for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
 
-In the spring of 2020, we are moving to the just released Jetpack 4.3.  There will be some rough air ahead, please buckle your seatbelts!
+In the spring of 2020, we are moving to the just released Jetpack 4.3.  As usual, here will be some rough air ahead, please buckle your seatbelts!
 
 
 
