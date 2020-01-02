@@ -198,7 +198,7 @@ Let's start this container:
 ```
 # allow remote X connections
 xhost +
-sudo docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.2
+sudo docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.3.1
 # this should complete successfully. Once you are convinced that you are inside the Docker container (e.g. try to list the contents of your home directory), just exit from it:
 exit
 ```
@@ -248,7 +248,7 @@ sudo xrandr --fb 1600x900
 
 ![remmina](remmina2.png)
 You should now be able to connect without entering a password. However, should you reboot your Jetson, you will need to use the attached mouse and keyboard and actually log into it so that the vino-server starts up. Only then will you be able to connect to it remotely again.
-* We noticed that with Jetpack 4.2.1, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this:
+* We noticed that with Jetpack 4.3, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this:
 
 ![set connection quality](remmina1.png)
 
