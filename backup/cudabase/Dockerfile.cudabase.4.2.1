@@ -5,7 +5,7 @@ FROM arm64v8/ubuntu:bionic
 # This is the base container for the Jetson TX2 board with drivers (with cuda)
 
 
-ARG URL=http://169.44.201.108:7002/jetpacks/4.3
+ARG URL=http://169.44.201.108:7002/jetpacks/4.2.1
 
 RUN apt-get update && apt-get install -y --no-install-recommends gnupg2 apt-utils bzip2 curl sudo unp && apt-get clean && rm -rf /var/cache/apt
 WORKDIR /tmp

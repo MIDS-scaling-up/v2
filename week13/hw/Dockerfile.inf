@@ -1,4 +1,5 @@
-FROM w251/cuda:dev-tx2-4.2_b158
+# FROM w251/cuda:dev-tx2-4.2_b158
+FROM w251/cuda:dev-tx2-4.2.1_b97
 
 # to run this in interactive mode, try
 # docker run --rm --privileged -v /tmp:/tmp -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:tx2-3.3_b39 bash
@@ -68,3 +69,5 @@ RUN make -j6
 RUN make install
 
 WORKDIR /jetson-inference/build/aarch64/bin
+
+RUN apt install -y gstreamer1.0-plugins-bad

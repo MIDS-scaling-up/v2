@@ -1,6 +1,6 @@
-FROM w251/cuda:dev-tx2-4.2.1_b97
+FROM w251/cuda:dev-tx2-4.3_b132
 
-ARG URL=http://169.44.201.108:7002/jetpacks/4.2.1
+ARG URL=http://169.44.201.108:7002/jetpacks/4.3
 
 RUN apt-get update && apt install -y git pkg-config wget build-essential cmake unzip
 
