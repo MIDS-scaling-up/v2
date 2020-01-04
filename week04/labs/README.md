@@ -5,7 +5,7 @@ The Jetson's small GPU has 256 cores, here's how to put it through its paces.  N
 
 ```
 # start the container:
-root@dima-desktop:~/v2/backup/keras# docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_gpu_lab04:dev-tx2-4.2.1_b97-py3 
+root@dima-desktop:~/v2/backup/keras# docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_gpu_lab04:dev-tx2-4.3_b132 
 67ad13ba7dfb8a58c048dec4d5fec3d3f3c9c52eee6d18d9c5c65debf0d06d51
 
 # Use the container id above and grab the token:
