@@ -33,9 +33,9 @@ We shall be using this dataset to benchmark a number of ML models.
 ##### a. Running on your Jetson
 Your Jetson is quite powerful; let's start a keras / tensorflow - enabled jupyter notebook on it:
 ```
-docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_hw04:dev-tx2-4.2.1_b97-py3
+docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_hw04:dev-tx2-4.3_b132
 # once you run this command, it will print the id of the container, e.g.
-# root@dima-desktop:~/v2/backup/keras# docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_hw04:dev-tx2-4.2.1_b97-py3 
+# root@dima-desktop:~/v2/backup/keras# docker run --rm --privileged -p 8888:8888 -d  w251/tensorflow_hw04:dev-tx2-4.3_b132 
 7d783a4b0feb89fe91072c0d6934a000471fa101cf9e5b6c09b4b8d881291903
 
 # Now, get the token from docker logs:
