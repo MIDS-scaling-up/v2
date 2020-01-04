@@ -1,4 +1,4 @@
-FROM w251/cuda:dev-tx2-4.2.1_b97
+FROM w251/cuda:dev-tx2-4.3_b132
 
 MAINTAINER bmwshop@gmail.com
 
@@ -8,6 +8,9 @@ WORKDIR /
 
 ENV DEBIAN_FRONTEND=noninteractive
 # Install opencv dev package libraries
+
+RUN apt remove -y libopencv-calib3d-dev libopencv-core-dev 
+
 RUN apt-get update && apt-get install -y libopencv-dev
 
 # Install dependencies
