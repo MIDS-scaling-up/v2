@@ -1,0 +1,46 @@
+FROM w251/cuda:tx2-4.2.1_b326
+
+RUN apt-get update && \
+    apt-get remove -y python && \
+    apt-get install -y python3 virtualenv python3-pip hdf5-tools python-h5py \
+            libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip \
+            liblapack-dev libatlas-base-dev libblas-dev gfortran \
+            libjpeg8-dev swig python3-dev libpython3-dev libhdf5-dev pkg-config && \
+    ldconfig && \
+    apt-get -y autoremove && \
+    apt-get -y autoclean && \
+    rm -rf /var/cache/apt && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/aarch64-linux-gnu/hdf5/serial
+ENV VIRTUAL_ENV="/opt/venv"
+
+RUN python3 -m virtualenv -p python3 $VIRTUAL_ENV
+
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN pip3 install --upgrade pip
+
+RUN pip3 install -U h5py tensorflow-estimator \
+         numpy grpcio absl-py py-cpuinfo psutil portpicker six mock \
+         requests gast astor termcolor protobuf keras-applications \
+         keras-preprocessing wrapt google-pasta setuptools testresources \
+         box2d-kengz box2d gym scikit-video h5py scikit-video keras  && \
+    pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
+
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+RUN apt-get update && \
+    apt-get remove -y swig && \
+    apt-get install -y swig libgl1-mesa-glx mesa-utils ffmpeg && \
+    pip3 uninstall -y box2d box2d-kengz && \
+    pip3 install box2d box2d-kengz ffmpeg && \
+    apt-get -y autoremove && \
+    apt-get -y autoclean && \
+    rm -rf /var/cache/apt && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+ENV NVIDIA_REQUIRE_CUDA "cuda>=10.1 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=396,driver<397 brand=tesla,driver>=410,driver<411"
+
