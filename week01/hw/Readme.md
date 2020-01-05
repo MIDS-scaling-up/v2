@@ -112,6 +112,22 @@ The Jetson SoC has limited storage (only 16G), so linking Docker to an external 
 Plug in your SSD. What is it called? You can use the `lsblk` command to find out:
 
 ```
+nvidia@nvidia-desktop:~$ lsblk | grep -v mmcblk0
+NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+loop0          7:0    0    16M  1 loop 
+mmcblk2      179:128  0 119.1G  0 disk 
+└─mmcblk2p1  179:129  0 119.1G  0 part /media/nvidia/8a3327cb-50d0-4a03-bde2-31ae1a0a52ef
+zram0        252:0    0 982.5M  0 disk [SWAP]
+zram1        252:1    0 982.5M  0 disk [SWAP]
+zram2        252:2    0 982.5M  0 disk [SWAP]
+zram3        252:3    0 982.5M  0 disk [SWAP]
+nvidia@nvidia-desktop:~$ 
+```
+In this case, it's the mmcblk2 device (which already has a partition called mmcblk2p1).
+
+You can also use `fdisk`:
+
+```
 fdisk -l
 # Among many entries, you shoud see something like this:
 Disk /dev/sda: 465.8 GiB, 500107862016 bytes, 976773168 sectors
