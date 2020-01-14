@@ -1,7 +1,8 @@
-FROM w251/tensorflow:dev-tx2-4.3_b132
+# FROM w251/tensorflow:dev-tx2-4.3_b132
+FROM tensorflow
 
 # This is a container for Keras and Jupyter
-# docker run --name keras --privileged -p 8888:8888 -d w251/keras:dev-tx2-4.3_b132-py3 
+# docker run --name keras --privileged -p 8888:8888 -d w251/keras:dev-tx2-4.3_b132 
 
 
 RUN apt update

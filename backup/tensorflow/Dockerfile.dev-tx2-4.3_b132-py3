@@ -1,5 +1,5 @@
-FROM w251/tensorrt:dev-tx2-4.3_b132
-# FROM tensorrt
+# FROM w251/tensorrt:dev-tx2-4.3_b132
+FROM tensorrt
 
 RUN apt update && apt install -y python3-pip
 
