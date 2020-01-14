@@ -14,21 +14,13 @@ You will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have
 #### VM Installation (if needed)
 You get a free VMware subscription through Berkeley [here](https://software.berkeley.edu/vmware). Download and install VMware Workstation (for Windows) or VMware Fusion (for macOS).
 
-If you have issues with VMware and want to try an alternative, you can download Virtual Box [here](https://www.virtualbox.org/wiki/Downloads) and the extension to give VMs access to your USB hubs [here](https://download.virtualbox.org/virtualbox/6.0.6/Oracle_VM_VirtualBox_Extension_Pack-6.0.6.vbox-extpack). We recommend VMware for stability, but in rare cases students have reported better success with VirtualBox.
-
 Download the Ubuntu 18.04 iso image [here](http://releases.ubuntu.com/18.04/ubuntu-18.04.3-desktop-amd64.iso). 
 
-Create a new VM in VMware/Virtual Box. 
+Create a new VM in VMware. 
 
 Walk-through on VMware is [here](CreateUbuntuVMInVMware.mp4)
 
-For Virtual Box, select "New" in the upper left corner. Make sure the type and version are "Linux" and "Ubuntu 64-bit". When prompted, choose to create a virtual hard disk and VDI as the type. For VMware, select File -> New, then drag & drop the ISO file to the VMware window.
-
-**For both VMware and VirtualBox**, the size of the disk should be 40GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
-
-NOTE: if you are on Windows and are not seeing the 64-bit option for VMs, please look [here](https://forums.virtualbox.org/viewtopic.php?f=1&t=62339).  Unfortunately, Docker on Windows does not currently support USB. Therefore, you can't use it, which leads you to having to install VirtualBox and disabling HyperV, per the instructions, if it was previously enabled.
-
-Virtual Box Only: With the VM now created, highlight it in the menu and select "Settings" in the upper right. In Network > Adapter 1, change "Attached to" to "Bridged Adapter". In Ports > USB, ensure "Enable USB Controller" is under "USB 3.0 (xHCI) Controller". In System > Processor, enable 2 CPU cores. Now select "Start" in the upper right. When prompted to select a start-up disk, browse and select the Ubuntu image you downloaded. Follow the rest of the instructions to complete setting up the Ubuntu VM. Afterwards, enter the Virtualbox Preferences menu and go to the "Extensions" section. Find and enable the Extension Pack. 
+**VM Configuration**, the size of the disk should be 40GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
 
 **Note: if you are using a VM, you need to ensure the VM can see the Jetson by placing the Jetson into force recovery mode. First ensure the Jetson is completely off and connected to the host computer via USB cable. Press the power button once to power on the Jetson and then hold the FORCE RECOVERY button. While holding this button, press the RESET button once. Hold the FORCE RECOVERY button for 2 more seconds, then release. Tip: the FORCE RECOVERY button is the button next to the power button, and the RESET button is the button on the opposite end of the row.**
 
@@ -229,14 +221,7 @@ You will need to have a keyboard, mouse, and monitor attached to your Jetson; bu
 
 1.  Get a VNC screen sharing client.  You can install [TightVNC](https://www.tightvnc.com/) or another VNC client of your choice. On Linux, you can use [Remmina](https://remmina.org/), which you likely already have installed.
 2. Configure your Jetson for remote screen sharing.
-* Launch the desktop sharing utility:
 
-![desktop sharing utility](launch-vino-config-450x197.jpg)
-* Allow other users to view / control your desktop, requre the user to enter password:
-
-![config](enable-vino-server-450x354.jpg)
-
-* Has the desktop sharing utility **still** crashed for you? We would imagine this will be fixed at some point. Here is the workaround:
 ```
 mkdir ~/.config/autostart
 ```
