@@ -1,8 +1,7 @@
 # Homework 5
 
 ## Introduction to Tensorflow
-The idea of this lab is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow is currently transitioning to [v2 alpha](https://www.tensorflow.org/alpha), which based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use. However, there's a lot of code still written in Tensorflow v1, and we think that some hands-on experience with it will be useful. 
-
+The idea of this lab is to servce as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow as moved to a new version based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use.  
 
 Please try to be patient and familiarize yourself with the code of this *beginner* lab.  In our opinion definitely rough around the edges,  while at the same time representative of what you might encounter "in the wild".
 
@@ -15,17 +14,13 @@ Note also that we are doing this homework on the TX2. It is powerful enough for 
 ### TensorFlow container for TX2
 First, you will need to build a Cuda Tensorflow container on your TX2.
 
-First, build the docker container for [Nvidia TensorRT](https://developer.nvidia.com/tensorrt) using the corresponding Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorrt)
-```
-# cd to the correct directory after git cloning the class repo
-docker build -t tensorrt -f Dockerfile.tx2-4.2.1_b97 .
-```
+First, build the container using the Dockerfile located in this [directory](https://github.com/MIDS-scaling-up/v2/tree/rdejana_hw5/week05/hw/Dockerfile.hw5).
 
-Now build the docker container for tensorflow using the python3 Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorflow).  Note that at the moment, Nvidia provides no support for Tensorflow with python2 on the Jetson boards.
 ```
 # cd to the correct directory after git cloning the class repo
-docker build -t tensorflow -f Dockerfile.dev-tx2-4.2.1_b97-py3 .
+docker build -t hw5 -f Dockerfile.hw5 .
 ```
+Note that at the moment, Nvidia provides no support for Tensorflow with python2 on the Jetson boards.
 
 ### TensorFlow for Poets
 In this section, we will generally follow the [Tensorflow for Poets lab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) at the Google CodeLabs.
