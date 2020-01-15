@@ -45,7 +45,7 @@ GPU utilization can be deduced from the value of the GR3D_FREQ variable: the hig
 1. This part uses a notebook to demonstate transfer learning.  You'll need you to first get your token.
 
 ```
-$docker logs tensorflow
+docker logs tensorflow
 [I 16:11:29.070 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
 [I 16:11:30.208 NotebookApp] Serving notebooks from local directory: /notebooks
 [I 16:11:30.208 NotebookApp] The Jupyter Notebook is running at:
