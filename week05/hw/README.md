@@ -130,6 +130,7 @@ You may find additional example at https://www.tensorflow.org/tutorials/images.
 1. In part 2, you can also specifiy the learning rate using the flag `--learning_rate`.   How does a low `--learning_rate` (part 2, step  4) value (like 0.001) affect the precision? How much longer does training take?
 1. How about a `--learning_rate` (part 2, step  4) of 1.0? Is the precision still good enough?
 1. For part 2, step 5,  How accurate was your model? Were you able to train it using a few images, or did you need a lot?
+1. What is the difference between image classification and object detection?
 1. In part 3, which model ran faster, FasterRCNN+InceptionResNet V2 or ssd+mobilenet V2.  how much so?  Which was more accurate? 
 
 
