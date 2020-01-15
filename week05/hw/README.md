@@ -27,7 +27,7 @@ In this section, we will generally follow the [Tensorflow for Poets lab](https:/
 
 Please read this before attempting the lab:
 
-* To start the TensorFlow container, run `docker run --privileged --rm -p 8888:8888 -d tensorflow`. Note the ```--rm```:  when you type stop the container, this container will be removed from your TX2.
+* To start the TensorFlow container, run `docker run --privileged --rm --name tensorflow-p 8888:8888 -d hw5`. Note the ```--rm```:  when you type stop the container, this container will be removed from your TX2.
 
 
 
