@@ -104,7 +104,7 @@ make_image_classifier \
  ```
  where -tfhub_module is the URL of a pre-trained model on TF Hub, --image_size is the size images are resized to, --saved_model_dir is the directory to save the trained move to, --labels_output_file  is the text file where the class labels are saved to, one per line, in the same order as they appear in the predictions output by the model, --train_epochs is the number of epochs, and --batch_size is the how many images are sampled each training step.  Additional flags may be found by running the command ``make_image_classifier --helpfull``
 
-4. To test your model, you'll need to write a simple python script that uses the model for inference.  This script should take your model, the classes, and a test image as input and return the top 3 predictions, both the probablity and classname.
+4. To test your model, you'll need to write a simple python script that uses the model for inference.  This script should take your model, the classes, and a test image as input and return the top 3 predictions, both the probablity and classname. Look over ``transfer_learning_with_hub.ipynb`` for examples of how to load a model and run inference.
 
 5. Try training with a dataset of your choice.  Pictures of food, people, or animals work well. You can even use [ImageNet](http://www.image-net.org/) images. 
 
