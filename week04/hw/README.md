@@ -90,8 +90,8 @@ Now open the notebook and run. And fill in the codes blocks marked for filling i
 For the Logistic regression model you should be getting circa `0.88` AUC and `0.93` or more for the MLP. 
 
 #### Submission:
-Please submit answers to #2, and a html download of your completed Jupyter notebook.   
-Please mail these to your instructors. 
+Please submit answers to #2, and a html download of your completed Jupyter notebook. A link to a github repo is a great way to submit.
+ 
 
 PLEASE CANCEL YOUR VM ONCE YOU ARE DONE!!!
 
