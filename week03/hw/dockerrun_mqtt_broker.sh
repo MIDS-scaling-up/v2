@@ -1,7 +1,7 @@
 #!/bin/bash -f 
 
-image_name='sgupta/opencv:latest'
-container_name='face_detector'
+image_name='alpine_mosquitto'
+container_name='alpine_mqtt_broker'
 network_name='face_detection'
 
 xhost + local:root
@@ -15,4 +15,5 @@ sudo docker run -d \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v $(pwd):/data \
 	-v /usr/share/opencv4/:/usr/share/opencv \
-	-ti $image_name 
+	-p 1884:1883 \
+	-ti $image_name

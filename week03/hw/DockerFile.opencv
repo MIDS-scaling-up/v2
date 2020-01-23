@@ -19,12 +19,22 @@ RUN apt install -y  libtbb-dev libavcodec-dev libavformat-dev libgstreamer1.0-de
 RUN apt install -y libswscale-dev libv4l-dev
 RUN dpkg -i *.deb
 
+RUN apt install -y mosquitto-clients mosquitto
+
 RUN apt install -y python-pip
-RUN pip install numpy
+RUN pip install numpy paho-mqtt
 
 RUN apt install -y vim
 
 RUN apt install -y libcanberra-gtk-module libcanberra-gtk3-module libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev 
+
+
+# Expose MQTT ports 
+EXPOSE 1883
+
+# Environment
+ENV ARCH=aarch64
+ENV PATH /usr/sbin:$PATH
 
 
 #NOTE: run container with "docker run -e DISPLAY=$DISPLAY --privileged -v /tmp:/tmp --rm --env QT_X11_NO_MITSHM=1 yolo ./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights -c 1"

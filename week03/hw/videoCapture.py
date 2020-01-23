@@ -2,11 +2,22 @@
 
 import numpy as np 
 import cv2 as cv 
-face_cascade=cv.CascadeClassifier('/lib/opencv/data/haarcascades/haarcascade_frontalface_default.xml')
+import os
+import time
+import paho.mqtt.client as mqtt
+
+cascadeXMLpath = '/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml'
+face_cascade=cv.CascadeClassifier(cascadeXMLpath)
 
  # 0 corresponds to the USB camera. Check using ls -lrth /dev/video* or v4l2-ctl --list-devices
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(1)
 
+host_ip='172.19.0.2' # docker ip address of the broker
+port=1883 # mqtt port
+keepalive=60 # timeout
+topic="face_detection"
+client=mqtt.Client()
+client.connect(host_ip,port,keepalive)
 
 def crop_face(x,y,w,h,img):
 	r = max(w,h)/2
@@ -23,21 +34,21 @@ while(True):
     #Capture frame by frame 
     ret,frame = cap.read()
     # ignore the color information and save spaces
-    grayScale = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
-    faces=face_cascade.detectMultiScale(grayScale,1.3,5)
-    print(len(faces))
-    #cv.imshow('Video', grayScale)
+    grayScale = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)  # convert the frame to grayscale
+    faces=face_cascade.detectMultiScale(grayScale,1.3,5)  # detect faces from the frame
     for(x,y,w,h) in faces:
-		face = cv.rectangle(grayScale,(x,y),(x+w,y+h),(255,0,0),2)
-		croppedFrame=crop_face(x,y,w,h,face)
-		cv.imshow('Video',croppedFrame)
+		face = cv.rectangle(grayScale,(x,y),(x+w,y+h),(255,0,0),2)  # cut out the face from the frame
+		croppedFace=crop_face(x,y,w,h,face)
+		cv.imshow('Video',croppedFace)
+		ret,face_png = cv.imencode('.png', croppedFace)
+		msg = face_png.tobytes()  # convert to byte stream
+                client.publish(topic,msg)
 		
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
 
-	
-
-
 cap.release()
 cv.destroyAllWindows()
+client.disconnect()
+
 
