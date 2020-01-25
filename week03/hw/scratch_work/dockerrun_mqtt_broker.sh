@@ -12,8 +12,6 @@ sudo docker run -d \
         --rm \
         --privileged \
 	--network $network_name \
-	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v $(pwd):/data \
-	-v /usr/share/opencv4/:/usr/share/opencv \
 	-p 1884:1883 \
 	-t $image_name
