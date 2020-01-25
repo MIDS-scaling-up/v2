@@ -16,4 +16,4 @@ sudo docker run -d \
 	-v $(pwd):/data \
 	-v /usr/share/opencv4/:/usr/share/opencv \
 	-p 1887:1883 \
-	-ti $image_name
+	-t $image_name
