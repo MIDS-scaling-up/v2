@@ -1,0 +1,21 @@
+FROM alpine:latest
+
+# Install packages 
+ENV PACKAGES="\
+                bash \
+                vim \
+                mosquitto-clients \
+                mosquitto \
+                python \
+                py-pip \
+                "
+RUN apk --no-cache add $PACKAGES
+RUN pip install paho-mqtt s3cmd
+
+# Expose MQTT ports 
+EXPOSE 1883
+EXPOSE 9001
+
+# Environment
+ENV ARCH=aarch64
+ENV PATH /usr/sbin:$PATH
