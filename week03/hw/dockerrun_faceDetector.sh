@@ -15,4 +15,4 @@ sudo docker run -d \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v $(pwd):/data \
 	-v /usr/share/opencv4/:/usr/share/opencv \
-	-ti $image_name 
+	-t $image_name 

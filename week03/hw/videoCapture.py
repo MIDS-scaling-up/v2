@@ -12,7 +12,7 @@ face_cascade=cv.CascadeClassifier(cascadeXMLpath)
  # 0 corresponds to the USB camera. Check using ls -lrth /dev/video* or v4l2-ctl --list-devices
 cap = cv.VideoCapture(1)
 
-host_ip='172.19.0.2' # docker ip address of the broker
+host_ip='172.19.1.3' # docker ip address of the broker
 port=1883 # mqtt port
 keepalive=60 # timeout
 topic="face_detection"
@@ -50,5 +50,3 @@ while(True):
 cap.release()
 cv.destroyAllWindows()
 client.disconnect()
-
-
