@@ -13,20 +13,6 @@ The other concepts that we hope you will pick up are architectures for image cla
 Note also that we are doing this homework on the TX2. It is powerful enough for real time inference - and even for incremental training.  This will come in handy later in the class as we begin to integrate neural processing into the kinds of pipelines you saw in homework 3.
 
 
-### TensorFlow container for TX2
-First, you will need to build a Cuda Tensorflow container on your TX2.
-
-First, build the docker container for [Nvidia TensorRT](https://developer.nvidia.com/tensorrt) using the corresponding Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorrt)
-```
-# cd to the correct directory after git cloning the class repo
-docker build -t tensorrt -f Dockerfile.tx2-4.2.1_b97 .
-```
-
-Now build the docker container for tensorflow using the python3 Dockerfile [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup/tensorflow).  Note that at the moment, Nvidia provides no support for Tensorflow with python2 on the Jetson boards.
-```
-# cd to the correct directory after git cloning the class repo
-docker build -t tensorflow -f Dockerfile.dev-tx2-4.2.1_b97-py3 .
-```
 
 ### TensorFlow for Poets
 In this section, we will generally follow the [Tensorflow for Poets lab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0) at the Google CodeLabs.
