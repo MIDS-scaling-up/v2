@@ -1,4 +1,4 @@
-FROM w251/keras:dev-tx2-4.3_b132
+FROM w251/keras:dev-tx2-4.3_b132-tf1
 
 # this dockerfile is for Jetson tx2 jetpack 4.3
 # to build:

@@ -1,4 +1,4 @@
-FROM w251/tensorflow:dev-tx2-4.3_b132
+FROM w251/tensorflow:dev-tx2-4.3_b132-tf1
 # FROM tensorflow
 
 # This is a container for Keras and Jupyter
