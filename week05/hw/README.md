@@ -20,6 +20,8 @@ First, build the container using the Dockerfile located in this [directory](http
 # cd to the correct directory after git cloning the class repo
 docker build -t hw5 -f Dockerfile.hw5 .
 ```
+This may take some time.
+
 Note that at the moment, Nvidia provides no support for Tensorflow with python2 on the Jetson boards.
 
 ### Transfer learning with TensorFlow Hub
