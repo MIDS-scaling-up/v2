@@ -8,6 +8,8 @@ The idea of this homework is to serve as an introduction to [TensorFlow](https:/
 * Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). Download this notebook from the TF hub and upload it to your TX2 container. Run it to completion.
 * What's the structure of the network that's being used for classification? How good is it? Based on what you learned in homework 4, can you beat it? Hint: use something like [this](https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/01-TF2.0-Overview) if you need an inspiration.
 * Repeat for the [TF2 Quickstart lab](https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub). Download / upload to TX2 and run to completion.
+* Note: you'll have to make changes to the code and fix the OOM errors.  Hint: what is your batch size?
+* Can you improve model accuracy? Hint: are your layers frozen?
 
 
 ## Introduction to / comparison with Tensorflow v1
