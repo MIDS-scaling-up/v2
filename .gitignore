@@ -1,5 +1,7 @@
 *.s3cfg*
 .ipynb_checkpoints/
+*.npz
+*.zip
 
 
 
