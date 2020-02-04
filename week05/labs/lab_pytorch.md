@@ -22,3 +22,6 @@ As before, find the token using ```docker logs``` and use it to connect to your 
 
 ### Image Classification using pre-trained weights
 In your Jupyter notebook, navigate to EfficientNet-Pytorh folder, examples, simple, and run example.ipynb
+
+### Notes:
+If you see an error message related to PIL, please open a terminal in jupyter and type ```pip3 install 'pillow<7'```
