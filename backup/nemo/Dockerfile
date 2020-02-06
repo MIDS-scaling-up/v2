@@ -1,5 +1,6 @@
 FROM w251/pytorch:dev-tx2-4.3_b132
 
+# This container is called w251/nemo:dev-tx2-4.3_b132
 # You will need to pull the data first and place it into /data like we did:
 # docker run --privileged -v /data:/data nemo python3 scripts/get_librispeech_data.py --data_root=/data/librispeech --data_set=dev_clean
 # You wil need to download the pre-trained weights from here: https://ngc.nvidia.com/catalog/models/nvidia:quartznet15x5 and place them, like we did, under /data/models/QuartzNet15x5
