@@ -3,9 +3,10 @@
 ### Provision your VM
 We recommmend that you provision a VM with a V-100 GPU in Dallas 12 this time. This is because we placed our dataset into an object storage pod in US South.
 ```
-slcli vs create --datacenter=dal12 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=p305 --flavor AC2_8X60X100 --san
+slcli vs create --datacenter=fra02 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=p305 --flavor AC2_8X60X100 --san
 ```
 Instead of `slcli vs ...`, you may need to use `ibmcloud sl vs ....`
+Tested 02/15/20 : `dal12` not working, switched to `fra02`
 
 ### Mount the object storage bucket.  
 Note that we created an object storage bucket in the US South availability zone and are providing read only credentials to you.
