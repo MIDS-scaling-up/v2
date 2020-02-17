@@ -1,36 +1,21 @@
 # Kaggle labs
 
-### Provision your VM
-We recommmend that you provision a VM with a V-100 GPU in Dallas 12 this time. This is because we placed our dataset into an object storage pod in US South.
-```
-slcli vs create --datacenter=fra02 --hostname=v100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=p305 --flavor AC2_8X60X100 --san
-```
-Instead of `slcli vs ...`, you may need to use `ibmcloud sl vs ....`       
-Tested 02/15/20 : `dal12` not working, switched to `fra02`    
+### Kaggle Notebooks inference and TTA
+    
+If you have not done so, please sign up to [kaggle.com](kaggle.com)    
+    
+Go to the kernel we will be working with today [week07 lab](https://www.kaggle.com/darraghdog/berkeley-mids-w251-week7-lab).   
+   
+Fork the Kernel – using the “Copy and Edit Kernel” option found in the top right corner (you will see it after clicking on the three dots).   
+The training steps will run too long so we skip these steps, and run until only until cell 27 where we set up training with mixed precision. We will skip over sections 28 to 29 as they run too long.   
 
-### Mount the object storage bucket.  
-Note that we created an object storage bucket in the US South availability zone and are providing read only credentials to you.
-```
-# create the mountpoint
-mkdir -m 777 /week07
-# Add keys
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-  sudo apt-key add -
-# install the s3fs mount utility
-apt update && apt install -y s3fs
-# save the read only creds
-echo "3fb8e3920adf45f38d51b813ed064544:650bdf1dfb0d0e8ddb91e34ab9758cf7b9c8ca957988fe52" > /root/.cos_creds
-# this file needs to be secure
-chmod 600 /root/.cos_creds
-# mount it
-s3fs w251dal /week07 -o passwd_file=/root/.cos_creds -o sigv2 -o use_path_request_style -o url=https://s3.private.us-south.cloud-object-storage.appdomain.cloud -o nonempty
-```
-### Start the docker container with jupyter inside
-Make sure to pass the mountpoint
-```
-# start it.
-docker run --runtime=nvidia --ipc=host --rm -v /week07/week07:/data/kaggle -p 8888:8888 -d w251/lab07
-# get the token
-docker logs <container id>
-```
-Now you can connect to your jupyter at ```http://ip_of_your_vm:8888/notebooks/berkeley-mids-w251-week07-lab.ipynb```
+Now skip forward to the section “Now please implement test time augmentation to make predictions”.
+Your task in here is to,
+* Load the `recursion_model.bin` weights into the model. Note; you may need to change the folder where the weights are located. Check subdirectories within directory `../input`    
+* Turn the torch model to evaluation mode.   
+* Iterate through the valloader and view a sample image. You do not need to view it as an image; it suffices to check the shape of the batch and print some of the contents, to see for example is it already normalised etc.      
+* Predict on a single image.   
+* Apply augmentation to the image; eg. horizontal flip, or vertical flip, using albumentations library. You can reference how augmentation is performed during training.        
+* Perform Test Time Augmentation (TTA) by predicting on the original image, and the augmentations and averaging the result.   
+
+Finally after the above steps, predict on all images using TTA and save your predictions. 
