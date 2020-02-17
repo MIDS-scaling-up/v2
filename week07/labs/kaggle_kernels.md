@@ -2,7 +2,7 @@
 
 ### Kaggle Notebooks inference and TTA
     
-If you have not done so, please sign up to kaggle.com    
+If you have not done so, please sign up to [kaggle.com](kaggle.com)    
     
 Go to the kernel we will be working with today [week07 lab](https://www.kaggle.com/darraghdog/berkeley-mids-w251-week7-lab).   
    
