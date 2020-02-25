@@ -19,13 +19,13 @@ In the directory /images, you'll find the file sherbrooke_video.avi.  This is a 
 
 You'll need to create the test directories ahead of time.  
 
-```mkdir data/ffmepg```
+```mkdir -p data/ffmepg```
 
-```mkdir data/ffmepg/test1```
+```mkdir -p data/ffmepg/test1```
 
-```mkdir data/ffmepg/test2```
+```mkdir -p data/ffmepg/test2```
 
-```mkdir data/ffmepg/test3```
+```mkdir -p data/ffmepg/test3```
 
 If you get errors in the following steps, you can extract to data/ and change the extracted image name pattern.
 
