@@ -1,4 +1,14 @@
-# THIS HOMEWORK IS BEING MODIFIED, DO NOT START IT YET.
+# THIS HOMEWORK IS BEING POSTPONED,PLEASE FOCUS IN YOUR WEEK 10 PROJECT UPDATE PRESENTATION.
+
+
+
+
+
+
+
+
+
+
 OpenAI Gym Framework
 
 OpenAI Gym is a framework that allows developing, training and testing of learning agents; one of it's applications is reinforcement learning, during this homework we will experiment with a Jupyter notebook aiming to train an agent to play a game using Reinforcement learning and Deep Learning.
