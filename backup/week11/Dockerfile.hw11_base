@@ -1,10 +1,10 @@
-FROM w251/cuda:tx2-4.2.1_b326
+FROM w251/cuda:tx2-4.3_b132
 
 RUN apt-get update && \
     apt-get remove -y python && \
     apt-get install -y python3 virtualenv python3-pip hdf5-tools python-h5py \
             libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip \
-            liblapack-dev libatlas-base-dev libblas-dev gfortran \
+            liblapack-dev libatlas-base-dev libblas-dev gfortran wget \
             libjpeg8-dev swig python3-dev libpython3-dev libhdf5-dev pkg-config && \
     ldconfig && \
     apt-get -y autoremove && \
@@ -21,11 +21,13 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN pip3 install --upgrade pip
 
+ARG URL=http://169.44.201.108:7002/jetpacks/4.3
+
 RUN pip3 install -U h5py tensorflow-estimator \
          numpy grpcio absl-py py-cpuinfo psutil portpicker six mock \
          requests gast astor termcolor protobuf keras-applications \
          keras-preprocessing wrapt google-pasta setuptools testresources \
-         box2d-kengz box2d gym scikit-video h5py scikit-video keras  && \
+         box2d-kengz box2d gym==0.15.3 scikit-video h5py scikit-video keras  && \
     pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow-gpu
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
