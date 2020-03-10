@@ -18,11 +18,13 @@ def nnmodel(input_dim):
     return model
 ```
  
-In its current state, the model which is created is not very good.
+In its current state, the model which is created is not very good and the process is very slow.
 
 For this homework, you should adjust the model parameters and the training parameters (total iterations and threshold) to get better results. You should do a little research into how the parameters affect the resulting model. For example, is `adam` better than `adamax`? Is there a better optimizer than both of them? Are there better options for the loss and metrics paremeters of the model? Would more/denser layers help? Fewer layers?
 
 You should try at least three different configurations (one can be the initial "base" configuration) and compare your results. The goal is to increase the number of successful landings (noted by the output "Landed it!").
+
+Hint: The training process can be sped up drastically by eliminating code that doesn't affect the model. 
 
 Some training parameters are in the `run_lunar_lander.py` file:
 
