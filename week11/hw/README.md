@@ -24,7 +24,7 @@ For this homework, you should adjust the model parameters and the training param
 
 You should try at least three different configurations (one can be the initial "base" configuration) and compare your results. The goal is to increase the number of successful landings (noted by the output "Landed it!").
 
-Hint: The training process can be sped up drastically by eliminating code that doesn't affect the model. 
+**Hint: The video display/collecting does not contribute to the training of the model **
 
 Some training parameters are in the `run_lunar_lander.py` file:
 
