@@ -24,6 +24,11 @@ We suggest that you generally follow [these instructions](https://github.com/dus
 * Train for 100 epochs 
 * You are running on the tx2, so the training will take less time than on the nano (which is what Dusty benchmarked on)
 
+### Note:
+if you see the ```ImportError: cannot import name 'PILLOW_VERSION'``` error, downgrade it:
+```
+pip3 install Pillow==6.1%
+```
 ## To submit
 Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Could you increase the batch size? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
 
