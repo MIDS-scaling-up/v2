@@ -11,7 +11,7 @@ We find that Dusty's repo has been one of the best places to find cool examples 
 ```
 # this needs to be done on the jetson
 xhost +
-docker run --rm --privileged -v /tmp:/tmp -v /data:/data -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:dev-tx2-4.2.1_b97 bash
+docker run --rm --privileged -v /tmp:/tmp -v /data:/data -v /var:/var -v /home/nvidia/models:/models --net=host --ipc=host --env DISPLAY=$DISPLAY -ti w251/inf:dev-tx2-4.3_b132 bash
 ```
 * Pytorch and torchvision should already be installed for you, just make sure you use python3 for all commands instead of regular python (which points to python2)
 * Swap should also be already set up for you ( we did this in homework 1)
