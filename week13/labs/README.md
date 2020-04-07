@@ -115,12 +115,12 @@ sudo make install
 * As you are exploring, just download all networks for image classification, object detection, segmentation when prompted.
 * On the tx2, your camera will be flipped until you follow [these instructions](https://devtalk.nvidia.com/default/topic/1023180/jetson-tx2/imagenet-camera-gets-reverse-orientation-image-on-tx2-with-tr2-1/2) to flip it.
 * Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
-* It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=[/dev/video0], --width=[640], --height=[480], --network=[resnet-18]  Note that at as of today (Nov 25th), an attempt to use a usb camera causes the entire TX2 to seize up, cured only by reboot, doublefacepalm.
+* It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=/dev/video1 --width=640 --height=480 --network=resnet-18 
 * There is a lot of information in this repo, take some time to go through it!
 
 #### Running
 * Run the camera demo, e.g. ```./camera-viewer``` . See the notes section if your view is flipped. Close the window to exit the program.
-* Run the frame classification demo, e.g. ```./imagenet-camera```.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
+* Run the frame classification demo, e.g. ```./imagenet-camera```.  Be patient if you see a lot of debug output, as it's converting the weights to the TensorRT format.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
 * Run the object detection demo, e.g. ```./detectnet-camera```. What is the framerate now?  Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-camera-2.md)
 * Try to image segmentation demo as well: ```./segnet-camera``` Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console.md)
 * Remember the homework? Let's go back to [your trained model](https://github.com/dusty-nv/jetson-inference/blob/7e81381a96c1ac5f57f1728afbfdec7f1bfeffc2/docs/pytorch-plants.md) and continue. Convert our model to the ONNX format, and run imagenet-camera against it. 
