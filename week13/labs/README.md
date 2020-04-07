@@ -1,5 +1,5 @@
 # Labs 13: Running Deep Learning applications end to end
-Even though we are in the middle 2019, it's impossible not to observe that running end to end DL applications remains suprisingly complex. Perhaps the rapid rate at which new frameworks are being developed is to blame.  Another aspect could be that a lot of time the focus is on the data science aspects only - e.g. on the development of new models, but not on the development of end to end applications. 
+Even though we are in the middle 2020, it's impossible not to observe that running end to end DL applications remains suprisingly complex. Perhaps the rapid rate at which new frameworks are being developed is to blame.  Another aspect could be that a lot of time the focus is on the data science aspects only - e.g. on the development of new models, but not on the development of end to end applications. 
 
 In this session, we will review:
 * Nvidia Digits - a slightly dated but still, a ridiculously easy to use tool for training and inference.  Note that the [Nvidia Jarvis](https://developer.nvidia.com/nvidia-jarvis) project is supposed to be the successor to DIGITS.
