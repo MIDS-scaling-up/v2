@@ -21,11 +21,11 @@ Some of you may have already done these, but in case you didn't, this is the tim
 #### TX2 Instructions
 Grab the container:
 ```
-docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-l4t:4.0.1-19.09-samples
+docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-samples
 ```
 Run the 12-camera example:
 ```
-cd /deepstream_sdk_v4.0.1_jetson/samples
+cd samples
 deepstream-app -c configs/deepstream-app/source12_1080p_dec_infer-resnet_tracker_tiled_display_fp16_tx2.txt
 ```
 You shoud see 12 screens tracking objects simultaneously.
