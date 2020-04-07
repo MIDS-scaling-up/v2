@@ -96,7 +96,7 @@ So, let's just prepare the codebase on the Jetson directly:
 # borrowing from https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo.md
 
 # in case you don't have these.. 
-sudo apt install -y git cmake 
+sudo apt-get install git cmake libpython3-dev python3-numpy 
 # go to the directory of your choosing
 cd 
 # clone the repo
