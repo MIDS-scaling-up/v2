@@ -25,7 +25,7 @@ docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X1
 ```
 Run the 12-camera example:
 ```
-cd samples
+cd deepstream_sdk_v4.0.2_jetson/samples
 deepstream-app -c configs/deepstream-app/source12_1080p_dec_infer-resnet_tracker_tiled_display_fp16_tx2.txt
 ```
 You shoud see 12 screens tracking objects simultaneously.
