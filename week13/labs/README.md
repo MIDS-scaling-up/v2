@@ -89,7 +89,7 @@ deepstream-app -c configs/deepstream-app/source4_720p_dec_infer-resnet_tracker_s
 ```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
-At of November 2019, this functionality is yet again and still in flux (sigh).  Even with the 4.2.1 jetpack, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not validate it in time. Note that this worked with Jetpack 3.3 so we expect it to work again in the future.
+At of April 2020, this functionality is yet again and still in flux (sigh).  Even with the 4.3 jetpack, we can't get the on-board camera to work with our docker container introduced in [the homework](https://github.com/MIDS-scaling-up/v2/tree/master/week13/hw). It is possible that the USB camera works, but we could not validate it in time. Note that this worked with Jetpack 3.3 so we expect it to work again in the future.
 
 So, let's just prepare the codebase on the Jetson directly:
 ```
