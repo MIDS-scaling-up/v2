@@ -177,9 +177,22 @@ On the TX2, you should have a mosquitto broker container, based on Alpine linux.
 ## Submission
 Please point us to the repository of your code and provide an http link to the location of your faces in the object storage.  Also, explan the naming of the MQTT topics and the QoS that you used.
 
-### Some hints
+## Some hints
 1. See Week 1's lab (https://github.com/MIDS-scaling-up/v2/blob/master/week01/lab/Dockerfile.yolo) for how to install openCV.
 2. To make storing in Object Store easier, look at https://github.com/s3fs-fuse/s3fs-fuse
+
+```
+Here's how to enable http access to the S3 COS:
+1) create a bucket & upload a file, remember the resiliency you pick and the location
+2) Go to Buckets -> Access Policies -> Public Access
+3) click the "Create access policy" button
+4) Go to Endpoint (on the left menu) and select your resiliency to find your endpoint (mine was "Regional" because that's how I created my COS)
+5) Your endpoint is the Public location plus your bucket name plus the file
+```
+
+Example: https://s3.eu-gb.cloud-object-storage.appdomain.cloud/brooklyn-artifacts/IBM_MULTICLOUD_MANAGER_3.1.2_KLUS.tar.gz
+
+In this example, the bucket is "brooklyn-artifacts" and the single Region is eu-gb
 
 ## Note on cloud usage
 ![Soflayer](../../softlayer.png?raw=true "Title")
