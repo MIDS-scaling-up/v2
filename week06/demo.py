@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Demo Frameworks 
-Closely follws : 
+Closely follows : 
     https://keras.io/api/applications/
     https://github.com/rwightman/pytorch-image-models
     
