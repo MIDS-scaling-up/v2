@@ -183,3 +183,27 @@ model.conv_stem.stride= (1,1)
 
 out = model(x)
 out
+
+
+# Make a small model with test data
+criterion = torch.nn.CrossEntropyLoss()
+x = torch.randn(4, 12, 512)
+y = torch.ones(4)
+
+lstm_layer = torch.nn.LSTM(512, 128, batch_first=True)
+linear_layer = torch.nn.Linear(128, 1)
+
+out, _ = lstm_layer(x)
+out.shape
+out = torch.mean(out, 1)  # Average pool
+out
+out = linear_layer(out)
+out.shape
+out
+
+criterion =  torch.nn.BCEWithLogitsLoss()
+
+loss = criterion(y, out.flatten())
+loss
+
+
