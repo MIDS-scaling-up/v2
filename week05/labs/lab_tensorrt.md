@@ -18,7 +18,9 @@ docker run --privileged --rm -p 8888:8888 -d tensorrtlab05
 ```
 If for whatever reason you were unable to get your container built, just use our pre-built version:
 ```
-docker run --privileged --rm -p 8888:8888 -d w251/tensorrtlab05:dev-tx2-4.3_b132
+# The object detection example with the latest version of TF / tensorrt results in a crash :/
+# docker run --privileged --rm -p 8888:8888 -d w251/tensorrtlab05:dev-tx2-4.3_b132
+docker run --privileged --rm -p 8888:8888 -d w251/tensorrtlab05:dev-tx2-4.2_b158
 ```
 As before, find the token using ```docker logs``` and use it to connect to your jupyter notebook at http://jetsonip:8888
 
