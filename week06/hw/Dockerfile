@@ -40,7 +40,7 @@ RUN pip install transformers
 WORKDIR /root
 RUN git clone https://github.com/MIDS-scaling-up/v2
 WORKDIR /root/v2/week06/hw/data
-RUN sh download.sh
+# RUN sh download.sh
 WORKDIR /root
 
 EXPOSE 8888
