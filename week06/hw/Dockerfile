@@ -38,10 +38,13 @@ RUN git clone https://github.com/NVIDIA/apex.git && cd apex && python setup.py i
 RUN pip install transformers
 
 WORKDIR /root
+
 RUN git clone https://github.com/MIDS-scaling-up/v2
 WORKDIR /root/v2/week06/hw/data
-# RUN sh download.sh
-WORKDIR /root
+WORKDIR /root/v2/week06/hw/data
+
+RUN sh download.sh
+WORKDIR /root 
 
 EXPOSE 8888
 CMD jupyter notebook  --no-browser --ip=0.0.0.0 --allow-root
