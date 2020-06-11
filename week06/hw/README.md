@@ -9,7 +9,8 @@
 You will be training BERT in a jupyter notebook. Please read the below points before starting.    
 * The book is set with 10K rows training and 5K rows validation - so you can test it fast in your initial development. For your final run, we would like you to train on at least 1M rows; and validate on at least 500K rows.  
 * Please run it on a V100 VM and a P100 VM and report run times on training 1M rows on both. (Note, V100 will be faster, so maybe good to start there).   
-* You have 8 sections found in the jupyter notebook to complete the training of BERT and answer some questions. The first 5 seem challenging - but there is a script linked in the book which should make help a lot - should be just copy and pasting the correct code chunks.   
+* You have 8 sections found in the jupyter notebook to complete the training of BERT and answer some questions. The first 5 seem challenging - but there is a script linked in the book which should make help a lot - should be just copy and pasting the correct code chunks.
+* The Huggingface transformers code changed since the original Kaggle kernel was created.  Use the AdamW optimizer.
 * Your submission should be your completed notebook (either from the P100 or V100). You can submit either through a HTML or link to a private GitHub repo.   
 * Please let your instructors know if it is taking an excessive amount of time. The scripts do run long on 1M rows ~ a number of hours on the both types of VM's, but the development should not take an excessive amount of time.  
 * The final section in the book shows a number of tasks, you need only complete 1 of them.   
