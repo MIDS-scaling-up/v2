@@ -7,7 +7,7 @@ If you have not done so, please sign up to [kaggle.com](kaggle.com)
 Go to the kernel we will be working with today [week07 lab](https://www.kaggle.com/darraghdog/berkeley-mids-w251-week7-lab).   
    
 Fork the Kernel – using the “Copy and Edit Kernel” option found in the top right corner (you will see it after clicking on the three dots). Please ensure you have the accelerator set to GPU as seen below.   
-![](kaggle_accelerator_setting.png?raw=true "Title"){:height="50%" width="50%"}
+![](kaggle_accelerator_setting.png?raw=true "Title")
      
 The training steps will run too long so we skip these steps, and run until only until cell 27 where we set up training with mixed precision. We will skip over sections 28 to 29 as they run too long.   
 
