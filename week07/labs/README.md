@@ -9,7 +9,7 @@ Go to the kernel we will be working with today [week07 lab](https://www.kaggle.c
 Fork the Kernel – using the “Copy and Edit Kernel” option found in the top right corner (you will see it after clicking on the three dots). Please ensure you have the accelerator set to GPU as seen below.   
 ![](kaggle_accelerator_setting.png?raw=true "Title")
      
-The training steps will run too long so we skip these steps, and run until only until cell 27 where we set up training with mixed precision. We will skip over sections 28 to 29 as they run too long.   
+The training steps will run too long so we skip these steps, and **run only until cell 27** where we set up training with mixed precision. We will skip over sections 28 to 29 as they run too long.   
 
 Now skip forward to the section “Now please implement test time augmentation to make predictions”.
 Your task in here is to,
