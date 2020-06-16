@@ -13,7 +13,7 @@ The training steps will run too long so we skip these steps, and **run only unti
 
 Now skip forward to the section “Now please implement test time augmentation to make predictions”.
 Your task in here is to,
-* Load the `recursion_model.bin` weights into the model. Note; you may need to change the folder where the weights are located. Check subdirectories within directory `../input`    
+* Load the `recursion_model.bin` weights into the model. Note; you may need to change the folder where the weights are located. Check for the weight within directory `../input/w251wk7model`... eg. `os.listdir('../input/w251wk7model')` 
 * Turn the torch model to evaluation mode. ([reference](https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615))   
 * Iterate through the valloader and view a sample image. You do not need to view it as an image; it suffices to check the shape of the batch and print some of the contents, to see for example is it already normalised etc. As the `valloader` is an iterable style dataset, you can get a single sample batch with `batch = next(iter(valloader)); imgs = batch[0]`. This will pick up the first batch the data loader releases.            
 * Predict on a single image.   
