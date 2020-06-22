@@ -56,6 +56,8 @@ Images should be annotated with the following rules:
 Steps (Assuming labelImg):
 1. Install the tool, following the steps on https://github.com/tzutalin/labelImg . You might want to use the docker container on your local machine. e.g.
 ```
+# make sure your container can push a window to the desktop
+xhost +
 # start the container
 docker run --rm -e DISPLAY -v /data:/data -v /tmp:/tmp -ti tzutalin/py3qt5 bash
 # clone the latest repo
@@ -68,7 +70,7 @@ python3 labelImg.py
 
 2. Clone the repository https://github.com/rdejana/MIDS_HW8 into a working directory, e.g. /Users/rdejana/Documents/Homework.  In the subdirectory IDS_HW8/images/, you'll find the images that you'll be annotating.  
 3. Create a directory that'll be used to store the annotations, for example /Users/rdejana/Documents/Homework/MIDS_HW8/annotations.
-4. MAke sure that lalbeImg is starte (see above)
+4. MAke sure that lalbeImg is started (see above)
 5. Click "Open Dir" and select the images directory, e.g. Users/rdejana/Documents/Homework/MIDS_HW8/images
 6. Make sure that PascalVOC is displayed under the "Save" icon.
 7. Click "Change Save Dir" and set it to your annonations directory.
