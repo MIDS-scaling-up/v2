@@ -87,7 +87,7 @@ Experiment with your own search terms and with the different usage options.
 
 ## Old Part 2a: Downloading images from Google
 
-This part currently does not work as Google has changed the format of the search results.  Leaving here in case the tool is ever update.
+This part currently does not work as Google has changed the format of the search results.  Leaving here in case the tool is ever updated.
 
 This this part of the lab, you'll be using a tool called google-images-download (https://github.com/hardikvasa/google-images-download) to download images.  This tool allows you to search google and download images to your machine.  Note, the default installation is limited 100 miages per keyword.  See the github repository for details on how to download more and for the command line arguements.
 
