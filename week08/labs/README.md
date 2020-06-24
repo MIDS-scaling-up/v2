@@ -173,7 +173,7 @@ This tool also supports the ability to select difference usage/license options.
 
 Try with your own search terms and license options.  How were the results? 
 
-Try running the same search terms with both google-images-download and datr.
+Try running the same search terms with both Bulk-Bing-Image-downloader and datr.
 
 - Which is giving better results for you?  How are they better?
 - Which is faster?
