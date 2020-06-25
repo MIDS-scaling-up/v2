@@ -1,5 +1,7 @@
 FROM nvcr.io/nvidia/l4t-ml:r32.4.2-py3
 
+# tested on Jetson NX
+
 # Create working directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
