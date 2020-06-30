@@ -4,13 +4,12 @@
 
 On your Jetson TX2, start an OpenSeq2Seq docker container in interactive mode:
 ```
-# assuming your docker image is called "seq" - remember, you had to build it in the HW
-# if you forgot to build it, use w251/openseq2seq:dev-tx2-4.2_b158
+# start your docker image
 # also, assuming your external hard drive is mounted in /data, pass it through using -v
-docker run --privileged --name seq -v /data:/data -p 8888:8888 -ti seq bash
+docker run --privileged --name seq -v /data:/data -p 8888:8888 -ti w251/openseq2seq:dev-tx2-4.2.1_b97 bash
 ```
 
-As of 7/2/2019, we still need to patch file open statements in  tokenizer_wrapper.py (sigh) like so:
+As of 6/29/2020, we still need to patch file open statements in  tokenizer_wrapper.py (sigh) like so:
 ```
 # all occurrences, both 'r' and 'w', add encoding="utf-8", e.g.
 with open(input_file1, 'r', encoding="utf-8")
@@ -65,6 +64,11 @@ Note the output of the inference is tokenized, so we must detokenize it:
 python3 tokenizer_wrapper.py --mode=detokenize --model_prefix=/data/wmt16_de_en/m_common --decoded_output=result.txt --text_input=raw.txt
 ```
 The result of your hard work should now be in ```result.txt``` !
+
+Recall that you were translating [wmt14.tiny.tok](wmt14.tiny.tok).  It's obviously tokenized, so let's detokenize it so that we can read it, e.g.
+```
+python3 tokenizer_wrapper.py --mode=detokenize --model_prefix=/data/wmt16_de_en/wmt14.tiny.tok --decoded_output=input.txt --text_input=raw.txt
+```
 
 ### Troubleshooting
 * If you get a massive error with a lot of output eventually pointin to out of memory errors during the loading of your model snapshot, just reboot your jetson at try again.
