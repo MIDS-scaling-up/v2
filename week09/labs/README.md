@@ -35,7 +35,16 @@ If you like completeless, you can now download the entire en-de corpus.  Hint: i
 
 scripts/get_en_de.sh /data/wmt16_de_en
 ```
-A more practical way would be to copy the three files that we included in this directory: [m_common.vocab](m_common.vocab), [m_common.model](m_common.model),  [wmt14-en-de.src.BPE_common.32K.tok](wmt14-en-de.src.BPE_common.32K.tok), and [wmt14.tiny.tok](wmt14.tiny.tok) and place them into your data directory -- we'll assume it is /data/wmt16_de_en for now.
+A more practical way would be to copy the three files that we included in this directory: [m_common.vocab](m_common.vocab), [m_common.model](m_common.model),  [wmt14-en-de.src.BPE_common.32K.tok](wmt14-en-de.src.BPE_common.32K.tok), and [wmt14.tiny.tok](wmt14.tiny.tok) and place them into your data directory -- we'll assume it is /data/wmt16_de_en for now:
+
+```
+mkdir /data/wmt16_de_en
+cd /data/wmt16_de_en
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/m_common.vocab
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/m_common.model
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/wmt14-en-de.src.BPE_common.32K.tok
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/wmt14.tiny.tok
+```
 
 Recall where you transferred your model that you trained in the cloud.  If you lost your model, just download one from [Nvidia](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html), just pick the transformer-base.py version - we assume this is what you trained in the cloud.
 
