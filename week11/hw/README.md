@@ -8,7 +8,7 @@ We are using a container base image with all the OpenAI Gym prerequisites instal
 
 The python code is in agent_lunar_lander.py.
 
-The `env.step()` method directs the lander module to take another step (equivalent to one frame of video) and returns several fields: `state`, `reward`, `done`, and `info`. 
+In the python code, the `env.step()` method directs the lander module to take another step (equivalent to one frame of video) and returns several fields: `state`, `reward`, `done`, and `info`. 
 
  - The `state` is a vector with eight values (x and y position, x and y velocity, lander angle and angular velocity, boolean for left leg contact with ground, boolean for right leg contact with ground). The state information is used to build the model using Keras.
  - The `reward` is a value indicating whether or not the step was "good" or "bad". A reward greater than 200 indicates a successful landing.
@@ -17,7 +17,15 @@ The `env.step()` method directs the lander module to take another step (equivale
 
 The goal of this homework is to train the lunar module to land better. The model, as it is currently configured, will not converge and the lunar module will never learn to land well. By modifying the parameters (lines 30-43 of the python code), you should be able to train the module in fewer than 500 iterations.
 
-We are using a Sequential model for the lander. A Sequential model is appropriate for a plain stack of layers where each layer has exactly one input tensor and one output tensor. 
+```
+        self.density_first_layer = 16
+        self.density_second_layer = 8
+        self.num_epochs = 1
+        self.batch_size = 64
+        self.epsilon_min = 0.01
+```
+
+We are using a Sequential model for the lander. A Sequential model is appropriate for a plain stack of layers where each layer has exactly one input tensor (current state) and one output tensor (best move to make). The "moves" that can be made are firing the thrusters (right, left, up) to adjust the speed and trajectory.
 
 The current model has three layers. Consider the dimension of the input tensor for each layer. Is it optimal? Are the activations appropriate for the use case?
 
@@ -65,7 +73,7 @@ Training output looks like this:
 8 	: Episode || Reward:  -10.731355125180073 	|| Average Reward:  -204.92840769275233 	 epsilon:  0.9558895783575597
 ```
 
-The training will end when either the Average Reward is greater than 200, or 2000 iterations. I would recommend killing the model if it ever hits 800, though.
+The training will end when either the Average Reward is greater than 200, or 2000 iterations have passed. I would recommend killing the model if it ever hits 800, though.
 
 After the training, it will run a test process. The output will look like this:
 
@@ -79,11 +87,15 @@ Starting Testing of the trained model...
 4       : Episode || Reward:  265.38375246986914
 5       : Episode || Reward:  231.17971859331598
 6       : Episode || Reward:  158.1286447553571
+.
+.
+.
+Average Reward:  243.09916996497867
 ```
 
-The assignment: Modify the parameters with your best (educated) guess to improve the model training. A well tuned model will start landing the module after about 300 iterations and consistently land it after about 400 iterations. If you are feeling creative, you can change other aspects of the model training (like batch size and epsilon value).
+**The assignment**: Modify the parameters with your best (educated) guess to improve the model training. A well tuned model will start landing the module after about 300 iterations and consistently land it after about 400 iterations. If you are feeling creative, you can change other aspects of the model training (like batch size and epsilon value).
 
-Each training run will take between 150 and 400 minutes. So it is recommended to kick off the container and come back later to check on it. Try running the training process a few times with different values.
+**Each training run will take between 150 and 400 minutes**. So it is recommended to kick off the container and come back later to check on it. Try running the training process a few times with different values.
 
 You will have a lot of mp4 files in `/data/videos` on your TX2. You can use VLC or Chrome to watch the videos of your landing attempts to see the improvement of your model over the iterations.
 
