@@ -44,7 +44,8 @@ sudo usermod -aG docker $USER
 
 # reboot to make the previous step take effect
 
-docker build -t hw11 -f Dockerfile.lander .
+docker build -t hw11 -f Dockerfile.agent .
+
 # enable video sharing from the container
 xhost +
 
