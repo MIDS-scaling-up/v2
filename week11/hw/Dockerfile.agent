@@ -1,0 +1,12 @@
+FROM w251/hw11_base:tx2-4.3_b132
+#FROM w251/hw11_base
+
+# AUTHOR brad.des@gmail.com
+# This is the base container for the Jetson TX2 board with drivers (with cuda)
+
+COPY agent_lunar_lander.py .
+
+RUN mkdir /tmp/videos
+
+CMD ["python3", "agent_lunar_lander.py"]
+
