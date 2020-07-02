@@ -18,6 +18,7 @@ WORKDIR /tmp
 
 # RUN pip install --upgrade pip
 
+RUN apt update
 RUN apt install -y cmake
 RUN git clone https://github.com/NVIDIA/NeMo.git
 WORKDIR /tmp/NeMo

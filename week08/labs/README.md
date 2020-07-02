@@ -57,7 +57,37 @@ Finally, we'll extract all the images with the command
 - How many images did you get?  
 - Which is the "best" approach?
 
-## Part 2a: Downloading images from Google
+## Part 2a: Downloading images from Bing
+
+As the simple tool that uses Google no longs works, we'll be using a tool, https://github.com/ostrolucky/Bulk-Bing-Image-downloader, that enables downloads from Bing.  
+
+Install the tool
+
+From /images run the following:
+``git clone https://github.com/ostrolucky/Bulk-Bing-Image-downloader``
+
+And change to the new directory:
+``cd Bulk-Bing-Image-downloader``
+
+Now run a simple example:
+``./bbid.py -s "Polar Bears" --limit 20 -o /images/data/bing``
+
+- How long did it take to download the roughly 200 images (you may get some errors)?
+- Review the images.  How accurate are they? 
+
+Not all images on the web are licensed for you to reuse as you see fit.  This tool provides the ablity to search with different usage rights.  
+Review the repository to see how you can filter for different license types.
+
+Did you see any difference in your results?  
+
+Experiment with your own search terms and with the different usage options. 
+- What terms did you use?  
+- How accurate where your results?  
+- What filters did you use and how well did the filters work?
+
+## Old Part 2a: Downloading images from Google
+
+This part currently does not work as Google has changed the format of the search results.  Leaving here in case the tool is ever updated.
 
 This this part of the lab, you'll be using a tool called google-images-download (https://github.com/hardikvasa/google-images-download) to download images.  This tool allows you to search google and download images to your machine.  Note, the default installation is limited 100 miages per keyword.  See the github repository for details on how to download more and for the command line arguements.
 
@@ -143,7 +173,7 @@ This tool also supports the ability to select difference usage/license options.
 
 Try with your own search terms and license options.  How were the results? 
 
-Try running the same search terms with both google-images-download and datr.
+Try running the same search terms with both Bulk-Bing-Image-downloader and datr.
 
 - Which is giving better results for you?  How are they better?
 - Which is faster?

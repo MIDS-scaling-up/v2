@@ -4,26 +4,29 @@
 
 On your Jetson TX2, start an OpenSeq2Seq docker container in interactive mode:
 ```
-# assuming your docker image is called "seq" - remember, you had to build it in the HW
-# if you forgot to build it, use w251/openseq2seq:dev-tx2-4.2_b158
+# start your docker image
 # also, assuming your external hard drive is mounted in /data, pass it through using -v
-docker run --privileged --name seq -v /data:/data -p 8888:8888 -ti seq bash
+docker run --privileged --name seq -v /data:/data -p 8888:8888 -ti w251/openseq2seq:dev-tx2-4.2.1_b97 bash
 ```
 
-As of 7/2/2019, we still need to patch file open statements in  tokenizer_wrapper.py (sigh) like so:
+As of 6/29/2020, we still need to patch file open statements in  tokenizer_wrapper.py (sigh) like so:
 ```
 # all occurrences, both 'r' and 'w', add encoding="utf-8", e.g.
 with open(input_file1, 'r', encoding="utf-8")
 ```
-While you are at it, similarly patch (sigh):
-```
-# there is just one occurrence of open() here:
-/OpenSeq2Seq/open_seq2seq/data/text2text/text2text.py
 
-/OpenSeq2Seq/open_seq2seq/utils/utils.py:
-# in def deco_print()
-# replace in  else:
-# print((start + " " * offset + line).encode('utf-8'), end=end)
+My steps (I chose to use vi). I found 8 instances of the open command:
+```
+apt-get update --fix-missing
+apt-get install vim
+vi /OpenSeq2Seq/tokenizer_wrapper.py
+```
+
+While you are at it, apply the same patch to `/OpenSeq2Seq/open_seq2seq/data/text2text/text2text.py` (there is only one instance in this file). (sigh)
+
+And one more patch in `/OpenSeq2Seq/open_seq2seq/utils/utils.py`. In the def deco_print() method, replace the else with:
+```
+    print((start + " " * offset + line).encode('utf-8'), end=end)
 ```
 
 If you like completeless, you can now download the entire en-de corpus.  Hint: it will take a while:
@@ -32,7 +35,16 @@ If you like completeless, you can now download the entire en-de corpus.  Hint: i
 
 scripts/get_en_de.sh /data/wmt16_de_en
 ```
-A more practical way would be to copy the three files that we included in this directory: [m_common.vocab](m_common.vocab), [m_common.model](m_common.model),  [wmt14-en-de.src.BPE_common.32K.tok](wmt14-en-de.src.BPE_common.32K.tok), and [wmt14.tiny.tok](wmt14.tiny.tok) and place them into your data directory -- we'll assume it is /data/wmt16_de_en for now.
+A more practical way would be to copy the three files that we included in this directory: [m_common.vocab](m_common.vocab), [m_common.model](m_common.model),  [wmt14-en-de.src.BPE_common.32K.tok](wmt14-en-de.src.BPE_common.32K.tok), and [wmt14.tiny.tok](wmt14.tiny.tok) and place them into your data directory -- we'll assume it is /data/wmt16_de_en for now:
+
+```
+mkdir /data/wmt16_de_en
+cd /data/wmt16_de_en
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/m_common.vocab
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/m_common.model
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/wmt14-en-de.src.BPE_common.32K.tok
+wget https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/wmt14.tiny.tok
+```
 
 Recall where you transferred your model that you trained in the cloud.  If you lost your model, just download one from [Nvidia](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html), just pick the transformer-base.py version - we assume this is what you trained in the cloud.
 
@@ -65,6 +77,11 @@ Note the output of the inference is tokenized, so we must detokenize it:
 python3 tokenizer_wrapper.py --mode=detokenize --model_prefix=/data/wmt16_de_en/m_common --decoded_output=result.txt --text_input=raw.txt
 ```
 The result of your hard work should now be in ```result.txt``` !
+
+Recall that you were translating [wmt14.tiny.tok](wmt14.tiny.tok).  It's obviously tokenized, so let's detokenize it so that we can read it, e.g.
+```
+python3 tokenizer_wrapper.py --mode=detokenize --model_prefix=/data/wmt16_de_en/wmt14.tiny.tok --decoded_output=input.txt --text_input=raw.txt
+```
 
 ### Troubleshooting
 * If you get a massive error with a lot of output eventually pointin to out of memory errors during the loading of your model snapshot, just reboot your jetson at try again.

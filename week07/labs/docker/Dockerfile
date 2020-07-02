@@ -2,6 +2,7 @@
 
 
 FROM nvcr.io/nvidia/pytorch:19.09-py3
+# FROM nvcr.io/nvidia/pytorch:20.03-py3
 
 RUN pip install albumentations
 RUN pip install efficientnet_pytorch

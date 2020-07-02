@@ -12,4 +12,4 @@ In this week's homework, you leveraged BERT training code from a [public kaggle 
 
 * What do you need to change in order to freeze the BERT model?
    
-* Read through the discussion forum [here](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/discussion/93339), particularly the most recent comments. What would you do to improve your homework results, given the recommendations posted. Keep in mind that the participants used a different metric, so there reported scores may seem lower than what you achieved with `auc`.
+* Read through the discussion forum [here](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/discussion/93339), particularly the most recent comments. What would you do to improve your homework results, given the recommendations posted. Keep in mind that the participants used a different metric, so their reported scores may seem lower than what you achieved with `auc`.
