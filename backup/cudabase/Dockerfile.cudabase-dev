@@ -1,5 +1,6 @@
 # FROM arm64v8/ubuntu:xenial-20180123
-FROM arm64v8/ubuntu:bionic
+# FROM arm64v8/ubuntu:bionic
+FROM arm64v8/ubuntu:focal
 
 
 # AUTHOR bmwshop@gmail.com
