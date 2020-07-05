@@ -48,8 +48,6 @@ ENV LLVM_CONFIG=/usr/lib/llvm-7/bin/llvm-config
 ENV MPLLOCALFREETYPE=1
 ENV LD_LIBRARY_PATH=/usr/local/cuda/targets/aarch64-linux/lib:${LD_LIBRARY_PATH}
 
-WORKDIR /tmp/nemo
-
 RUN apt-get update && \
 apt-get install -y \
 libsndfile1 sox \
@@ -86,6 +84,12 @@ python3-pip \
 libhdf5-serial-dev hdf5-tools libhdf5-dev \
 libprotobuf-dev protobuf-compiler
 
+RUN apt install -y git
+WORKDIR /tmp
+RUN git clone https://github.com/NVIDIA/NeMo.git
+WORKDIR /tmp/NeMo
+
+
 #Install PyTorch 1.5
 RUN wget https://nvidia.box.com/shared/static/3ibazbiwtkl181n95n9em3wtrca7tdzp.whl -O torch-1.5.0-cp36-cp36m-linux_aarch64.whl
 RUN apt-get install -y libopenblas-base libopenmpi-dev
@@ -105,13 +109,14 @@ RUN cd sentencepiece-0.1.85 && mkdir build && cd build && cmake .. && make -j $(
     cd ../python && python3 setup.py bdist_wheel && cd dist && pip3 install sentencepiece-0.1.85-cp36-cp36m-linux_aarch64.whl --verbose
 
 # install nemo dependencies
-WORKDIR /tmp/nemo
-COPY requirements/requirements_docker.txt requirements.txt
-RUN pip3 install --disable-pip-version-check -r requirements.txt
+# WORKDIR /tmp/nemo
+# COPY requirements/requirements_docker.txt requirements.txt
+# RUN pip3 install --disable-pip-version-check -r requirements.txt
+RUN pip3 install --disable-pip-version-check -r requirements/requirements_docker.txt
 
 # copy nemo source into a scratch image
-WORKDIR /tmp/nemo-src
-COPY . .
+# WORKDIR /tmp/nemo-src
+# COPY . .
 
 RUN pip3 install -U pytest 
 RUN pip3 install megatron
@@ -146,14 +151,26 @@ RUN apt install -y libsox-dev libsox-fmt-all
 # ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/cuda-10.0/targets/aarch64-linux/lib/"
 # RUN mkdir -p /tmp/audio && cd /tmp/audio && git clone https://github.com/pytorch/audio.git -b v0.5.0 && cd audio && pip3 install .[all]
 
-RUN cd /tmp/nemo-src && pip3 install ".[all]"
+# RUN cd /tmp/nemo-src && pip3 install ".[all]"
+RUN cd /tmp/NeMo && pip3 install ".[all]"
+
+WORKDIR /tmp
+RUN git clone https://github.com/NVIDIA/apex.git && cd apex && python3 setup.py install --cuda_ext --cpp_ext && cd ..
+
 
 # copy scripts/examples/tests into container for end user
 WORKDIR /workspace/nemo
-COPY scripts /workspace/nemo/scripts
-COPY examples /workspace/nemo/examples
-COPY tests /workspace/nemo/tests
-COPY README.rst LICENSE /workspace/nemo/
+# COPY scripts /workspace/nemo/scripts
+# COPY examples /workspace/nemo/examples
+# COPY tests /workspace/nemo/tests
+# COPY README.rst LICENSE /workspace/nemo/
+
+
+RUN cp -r /tmp/NeMo/scripts /workspace/nemo/
+RUN cp -r /tmp/NeMo/examples /workspace/nemo/
+RUN cp -r /tmp/NeMo/tests /workspace/nemo/
+RUN cp /tmp/NeMo/README.rst /workspace/nemo/
+RUN cp /tmp/NeMo/LICENSE /workspace/nemo/
 
 RUN printf "#!/bin/bash\njupyter lab --no-browser --allow-root --ip=0.0.0.0" >> start-jupyter.sh && \
 chmod +x start-jupyter.sh
