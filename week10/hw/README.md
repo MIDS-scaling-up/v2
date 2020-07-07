@@ -8,5 +8,5 @@ In this initial homework we will be using a DQN (Deep Q Networks) agent training
 
 Please access the following notebook: [DQN](https://github.com/MIDS-scaling-up/v2/blob/master/week10/hw/1_dqn_tutorial.ipynb)
 
-Document your results, we will be discussing them during the class.
+Document your results, Please upload your training videos to ISVC.
 
