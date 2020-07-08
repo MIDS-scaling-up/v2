@@ -1,4 +1,4 @@
-# W251 reloaded (Summer 2020)
+# W251 reloaded (Fall 2020)
 
 The revised class is focused on Deep Learning and Big Data at the Edge and in the Cloud.
 
