@@ -4,15 +4,15 @@
 This homework requires that we build, one for Tensorflow 2 and one for Tensflow 1.15.   Both images are built from the official Nvidia nvidia-l4t-tensorflow base images.
 
 ### Building Tensorflow 2
-Change to the directory `docker/hw5-tf2` and build the image with the following command.
+Build the image with the following command.
 ```
-docker build -t hw5-tf2 .
+docker build -t hw5-tf2 -f docker/hw5-tf2/Dockerfile  docker/hw5-tf2
 ```
 
 ### Building Tensorflow 1.15
-Change to the directory `docker/hw5-tf115` and build the image with the following command.
+Build the image with the following command.
 ```
-docker build -t hw5-tf115 .
+build -t hw5-tf115 -f docker/hw5-tf115/Dockerfile  docker/hw5-tf115
 ```
 
 ## Introduction to Tensorflow v2
