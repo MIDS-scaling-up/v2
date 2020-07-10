@@ -7,7 +7,7 @@ The 2 labs will be embedded into the the image.
 ## Introduction to Tensorflow v2
 The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 (TF2) was released in late 2019- and it includes [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use.   
 
-* Start the TF2 container: `sudo docker run -it --rm --runtime nvidia --network host hw5:latest`.  Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
+* Start the TF2 container: `sudo docker run -it --rm --runtime nvidia --network host hw5:latest`.  Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
 * Connect to your Jetson via browser on port 8888 and enter the passworld `nvidia`.
 * Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). This lab is available in the container at the path `/beginner.ipynb`.  Open up the notebook and run it to completion.  
 * What's the structure of the network that's being used for classification? How good is it? Based on what you learned in homework 4, can you beat it? Hint: use something like [this](https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/01-TF2.0-Overview) if you need an inspiration.
@@ -32,21 +32,35 @@ In this section, we will generally follow the [Tensorflow for Poets lab](https:/
 
 Please read this before attempting the lab:
 
-* To start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti w251/tensorflow:dev-tx2-4.3_b132-tf1 bash`. Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
+* To start an interactive TensorFlow container, run `sudo docker run -it --rm --runtime nvidia --network host nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3`. Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
 * You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as a result of the Dockerfile instructions.
-* In the command above, 6006 is the port number that Tensorboard uses.  Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
+* In the command above, we allow the container to use the host's ports. Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia no longer provides a TensorFlow distro for python2 as python2 is dead!
+For example, instead of
+```
+python -m scripts.retrain -h
+```
+use
+```
+python3 -m scripts.retrain -h
+```
+And for the actual retraining, use
+```
+python3 -m scripts.retrain \
+  --bottleneck_dir=tf_files/bottlenecks \
+  --how_many_training_steps=500 \
+  --model_dir=tf_files/models/ \
+  --summaries_dir=tf_files/training_summaries/"${ARCHITECTURE}" \
+  --output_graph=tf_files/retrained_graph.pb \
+  --output_labels=tf_files/retrained_labels.txt \
+  --architecture="${ARCHITECTURE}" \
+  --image_dir=tf_files/flower_photos
+```
 * Once you are inside the interactive container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections, except the "next steps" section 9.
 * The Jetson packs a punch; make sure you run training for 4000 steps
-* When you want to make sure the container does *not* see the GPU, run it as `docker run --rm -p 6006:6006 -ti tensorflow bash`, with no privileged flag
-* On x86 based systems, Nvidia provides a tool called "nvidia-smi" to monitor GPU utilization and performance in real time.  On the Jetson, this tool is not yet supported, unfortunately.  But, the Jetpack has another tool, `/usr/bin/tegrastats`.  Its output looks like this:
-```
-root@tegra-ubuntu:~# tegrastats
-RAM 2586/7846MB (lfb 1x1MB) CPU [0%@960,0%@499,0%@499,0%@959,0%@960,0%@960] EMC_FREQ 10%@665 GR3D_FREQ 53%@140 APE 150 MTS fg 0% bg 0% BCPU@41C MCPU@41C GPU@39C PLL@41C Tboard@35C Tdiode@37.75C PMIC@100C thermal@40.2C VDD_IN 3177/3177 VDD_CPU 536/536 VDD_GPU 383/383 VDD_SOC 536/536 VDD_WIFI 0/0 VDD_DDR 575/575
-RAM 2586/7846MB (lfb 1x1MB) CPU [49%@806,10%@345,0%@345,46%@806,34%@959,26%@960] EMC_FREQ 10%@665 GR3D_FREQ 46%@140 APE 150 MTS fg 0% bg 0% BCPU@41C MCPU@41C GPU@39C PLL@41C Tboard@35C Tdiode@37.75C PMIC@100C thermal@40.2C VDD_IN 3177/3177 VDD_CPU 536/536 VDD_GPU 383/383 VDD_SOC 536/536 VDD_WIFI 0/0 VDD_DDR 575/575
+* On x86 based systems, Nvidia provides a tool called "nvidia-smi" to monitor GPU utilization and performance in real time.  On the Jetson, this tool is not yet supported, unfortunately.  But, the Jetson community has developered another tool, jtop. <add install for that>
 
-```
-GPU utilization can be deduced from the value of the GR3D_FREQ variable: the higher the value, the higher the GPU utilization.
+
 * If you experience OOM (out of memory) errors, they could be related to the fact that the current port of Tensorflow does not understand the fact that the GPU memory that it sees is actually the same as the system memory and could be used for buffering.  Run the `flush_buffers.sh` script in this repo to help clear them out and re-run your tensorflow script.
 * Another way to resolve the above is to add the following to the calling script:
 ```
