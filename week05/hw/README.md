@@ -18,7 +18,7 @@ build -t hw5-tf115 -f docker/hw5-tf115/Dockerfile  docker/hw5-tf115
 ## Introduction to Tensorflow v2
 The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 (TF2) was released in late 2019- and it includes [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use.   
 
-* Start the TF2 container: `sudo docker run -it --rm --runtime nvidia --network host hw5:latest`.  Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
+* Start the TF2 container: `docker run -it --rm --runtime nvidia --network host hw5-tf2`.  Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
 * Connect to your Jetson via browser on port 8888 and enter the passworld `nvidia`.
 * Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). This lab is available in the container at the path `/beginner.ipynb`.  Open up the notebook and run it to completion.  
 * What's the structure of the network that's being used for classification? How good is it? Based on what you learned in homework 4, can you beat it? Hint: use something like [this](https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/01-TF2.0-Overview) if you need an inspiration.
@@ -43,7 +43,7 @@ In this section, we will generally follow the [Tensorflow for Poets lab](https:/
 
 Please read this before attempting the lab:
 
-* To start an interactive TensorFlow container, run `sudo docker run -it --rm --runtime nvidia --network host nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3`. Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
+* To start an interactive TensorFlow container, run `ocker run -it --rm --runtime nvidia --network host hw5-tf115`. Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
 * You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as a result of the Dockerfile instructions.
 * In the command above, we allow the container to use the host's ports. Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourjetson:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia no longer provides a TensorFlow distro for python2 as python2 is dead!
