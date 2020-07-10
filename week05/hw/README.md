@@ -1,8 +1,19 @@
 # Homework 5: TF2 and TF1
 
-initial notes, keeping this the same, but moving to Xaiver NX and the new Nvidia images.
-The 2 labs will be embedded into the the image.
+## Building the images
+This homework requires that we build, one for Tensorflow 2 and one for Tensflow 1.15.   Both images are built from the official Nvidia nvidia-l4t-tensorflow base images.
 
+### Building Tensorflow 2
+Change to the directory `docker/hw5-tf2` and build the image with the following command.
+```
+docker build -t hw5-tf2 .
+```
+
+### Building Tensorflow 1.15
+Change to the directory `docker/hw5-tf115` and build the image with the following command.
+```
+docker build -t hw5-tf115 .
+```
 
 ## Introduction to Tensorflow v2
 The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 (TF2) was released in late 2019- and it includes [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use.   
@@ -34,7 +45,7 @@ Please read this before attempting the lab:
 
 * To start an interactive TensorFlow container, run `sudo docker run -it --rm --runtime nvidia --network host nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3`. Note the ```--rm```:  when you type `exit`, this container will be removed from your device.
 * You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as a result of the Dockerfile instructions.
-* In the command above, we allow the container to use the host's ports. Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
+* In the command above, we allow the container to use the host's ports. Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourjetson:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia no longer provides a TensorFlow distro for python2 as python2 is dead!
 For example, instead of
 ```
@@ -48,7 +59,7 @@ And for the actual retraining, use
 ```
 python3 -m scripts.retrain \
   --bottleneck_dir=tf_files/bottlenecks \
-  --how_many_training_steps=500 \
+  --how_many_training_steps=400 \
   --model_dir=tf_files/models/ \
   --summaries_dir=tf_files/training_summaries/"${ARCHITECTURE}" \
   --output_graph=tf_files/retrained_graph.pb \
