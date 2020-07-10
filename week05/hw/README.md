@@ -5,14 +5,14 @@ The 2 labs will be embedded into the the image.
 
 
 ## Introduction to Tensorflow v2
-The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 has just been GA'ed - and it is based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use. 
+The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 (TF2) was released in late 2019- and it includes [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use.   
 
-* Start the tf2 container: `docker run --privileged --rm -p 8888:8888 -d w251/keras:dev-tx2-4.3_b132`
-* As we did before, find out associated token - e.g. note the container id and then ussue `docker logs <container_id>` and find the token.  Use it to connect to your tx2 via browser on port 8888
-* Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). Download this notebook from the TF hub and upload it to your TX2 container. Run it to completion.
+* Start the TF2 container: `sudo docker run -it --rm --runtime nvidia --network host hw5:latest`.  Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
+* Connect to your Jetson via browser on port 8888 and enter the passworld `nvidia`.
+* Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). This lab is available in the container at the path `/beginner.ipynb`.  Open up the notebook and run it to completion.  
 * What's the structure of the network that's being used for classification? How good is it? Based on what you learned in homework 4, can you beat it? Hint: use something like [this](https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/01-TF2.0-Overview) if you need an inspiration.
-* Repeat for the [TF2 Quickstart lab](https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub). Download / upload to TX2 and run to completion.
-* Note: you'll have to make changes to the code and fix the OOM errors.  Hint: what is your batch size?
+* Repeat for the [TF2 Quickstart lab](https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub). This notebook is available on the container at `/transfer_learning_with_hub.ipynb`.  Open the notebook and run to completion on your Jetson.
+* Note: you may have to make changes to the code and fix the OOM errors.  Hint: what is your batch size?
 * Can you improve model accuracy? Hint: are your layers frozen?
 
 
@@ -23,7 +23,7 @@ Please try to be patient and familiarize yourself with the code of this *beginne
 
 The other concepts that we hope you will pick up are architectures for image classification as well as transfer learning.  The two go hand in hand: there are many pre-trained models today for image classification which you can further tweak (using transfer learning) on your own data. In this lab, you will see one approach where all the layers of the original model remain fixed.
 
-Note also that we are doing this homework on the TX2. It is powerful enough for real time inference - and even for incremental training.  This will come in handy later in the class as we begin to integrate neural processing into the kinds of pipelines you saw in homework 3.
+Note also that we are doing this homework on the Jetson. It is powerful enough for real time inference - and even for incremental training.  This will come in handy later in the class as we begin to integrate neural processing into the kinds of pipelines you saw in homework 3.
 
 
 
