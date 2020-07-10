@@ -1,5 +1,9 @@
 # Homework 5: TF2 and TF1
 
+initial notes, keeping this the same, but moving to Xaiver NX and the new Nvidia images.
+The 2 labs will be embedded into the the image.
+
+
 ## Introduction to Tensorflow v2
 The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 has just been GA'ed - and it is based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use. 
 
