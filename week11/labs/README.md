@@ -1,4 +1,4 @@
-# AWS DeepRacer Lab
+# AWS DeepRacer Lab -- Start at the beginning of class to allow 60 minutes to train the model
 In this lab, we will look at the AWS DeepRacer project. You will design a Reinforcement Learning training program for a virtual car on a virtual track by tweaking parameters like steering and speed.
 
 First, go to the [DeepRacer portal](https://console.aws.amazon.com/deepracer/home?region=us-east-1).
