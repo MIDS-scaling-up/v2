@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y libfreetype6-dev
 # JupyterLab
 #
 RUN pip3 install matplotlib
-RUN pip3 install matplotlib
 RUN pip3 install jupyter jupyterlab --verbose
 #RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@2
 
