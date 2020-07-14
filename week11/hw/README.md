@@ -1,5 +1,23 @@
 # Homework 11 -- More fun with OpenAI Gym!
 
+## Want to see how busy your device is?
+Take a look at the jtop tool: https://github.com/rbonghi/jetson_stats
+
+You can use it to monitor the CPU, GPU, and memory of your Jetson device. Note how busy the GPU is while the training and inferring.
+
+To install and run:
+```
+# install the jetson-stats package
+sudo -H pip install -U jetson-stats
+
+# reboot to load the libraries
+reboot
+
+# run as root
+sudo jtop
+```
+
+# Assignment
 In this homework, you will be training a Lunar Lander module to land properly **using your Jetson TX2**. There is a video component to this file, so use a display or VNC.
 
 First, some background reading: https://www.novatec-gmbh.de/en/blog/introduction-to-q-learning/
