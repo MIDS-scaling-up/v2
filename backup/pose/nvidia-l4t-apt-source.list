@@ -1,0 +1,2 @@
+deb https://repo.download.nvidia.com/jetson/common r32.4 main
+deb https://repo.download.nvidia.com/jetson/t186 r32.4 main
