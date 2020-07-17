@@ -57,26 +57,26 @@ Access Key ID:
 A1XGdUexhlIdyusn16Jh
 Secret Access Key:
 vImKKsEPfYQuzovEuPZjabeAViRhdQ9P85RQJEt1
-aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
+aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install
 
 ```
 
 GPFS installation (node that we are adding nodes using the node names, be sure to update the hosts file on each VM)
 ```
-chmod +x Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install
-./Spectrum_Scale_Advanced-5.0.3.2-x86_64-Linux-install --silent  (this command needs to be run on every node)
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs1  (this command needs to be run just gpfs1)
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs2  (this command needs to be run just gpfs1)
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale node add gpfs3  (this command needs to be run just gpfs1)
+chmod +x Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install
+./Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install --silent  (this command needs to be run on every node)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs1  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs2  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs3  (this command needs to be run just gpfs1)
 
 ```
 
 
 D. __Create the cluster.  Do these steps only on one node (gpfs1 in my example).__
 ```
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale setup -s IP-OF-GPFS1  (this command needs to be run just gpfs1)
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale callhome disable   (this command needs to be run just gpfs1)
-/usr/lpp/mmfs/5.0.3.2/installer/spectrumscale install  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale setup -s IP-OF-GPFS1  (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale callhome disable   (this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale install  (this command needs to be run just gpfs1)
 ```
 Now the cluster is installed, let's work the details.
 
