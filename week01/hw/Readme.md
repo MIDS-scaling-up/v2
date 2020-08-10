@@ -8,7 +8,7 @@ Required equipment:
 
  1. MicroSD card (64GB minimum size)
  2. USB MicroSD card reader
- 3. NVMe SSD (256GB minimum size)
+ 3. NVMe M.2 SSD (256GB minimum size) **NOTE: SATA M.2 SSDs will not work**
  4. Size 0 Philips head screwdriver
  5. Micro USB to USB cable
  6. USB Webcam
@@ -22,6 +22,8 @@ On your Windows, Mac, or Ubuntu workstation, navigate to the [Jetpack homepage](
 NVIDIA provides [flashing instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit#write) for Windows, Linux, and Mac. You will need to insert the MicroSD card into the card reader and connect it to the USB port on your computer.
 
 **While the flashing process runs, you can use the Philips head screwdriver to install the SSD on your Xavier NX.**
+
+A quick video showing MicroSD card and SSD installation is [here](Xavier_NX_Install_SSD.mp4).
 
 Once the flashing process is complete, you will insert the MicroSD card into your Xavier. **Do not power it on yet.**
 
