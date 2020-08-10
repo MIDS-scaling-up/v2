@@ -2,64 +2,160 @@
 
 
 ## 1. Nvidia Jetpack SDK
-Jetpack is an SDK that basically contains everything needed for deep learning and AI applications in a handy package bundle containing the OS for for the Jetson. Installation on the Jetson requires downloading and installing both on the Jetson (the target) and an Ubuntu computer (the host).
+Jetpack is an SDK that basically contains everything needed for deep learning and AI applications in a handy package bundle containing the OS for for the Xavier. Installation on the Xavier requires downloading and flashing the image to a MicroSD card.
 
-In the spring of 2020, we are moving to the just released Jetpack 4.3.  As usual, here will be some rough air ahead, please buckle your seatbelts!
+Required equipment:
+
+ 1. MicroSD card (64GB minimum size)
+ 2. USB MicroSD card reader
+ 3. NVMe SSD (256GB minimum size)
+ 4. Size 0 Philips head screwdriver
+ 5. Micro USB to USB cable
+ 6. USB Webcam
 
 
 
-### Host (Computer) Installation
-You will need a machine running Ubuntu 16.04 or Ubuntu 18.04. If you do not have one, you will need to create a VM running Ubuntu.
+### 1.1 Host (Computer) Installation
 
-#### VM Installation (if needed)
+On your Windows, Mac, or Ubuntu workstation, navigate to the [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download SD Card Image" in the `JETSON XAVIER NX DEVELOPER KIT` box. Once it downloads, follow the steps at [Getting Started with Jetson Xavier NX Developer Kit](https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit) to flash the SD card.
+
+NVIDIA provides [flashing instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit#write) for Windows, Linux, and Mac. You will need to insert the MicroSD card into the card reader and connect it to the USB port on your computer.
+
+**While the flashing process runs, you can use the Philips head screwdriver to install the SSD on your Xavier NX.**
+
+Once the flashing process is complete, you will insert the MicroSD card into your Xavier. **Do not power it on yet.**
+
+
+
+
+### 1.2 Post-flash setup
+
+There are two setup options. 
+
+ 1. Use a USB keyboard/mouse and HDMI display
+ 2. Use a tty terminal from Mac or Linux
+
+With the first option, you will obviously need additional hardware. Option number two is quite easy, though, and we will walk you through the process.
+
+If you choose option two, you will need a machine running Linux (we recommend Ubuntu 18.04), or a Mac. If you do not have one, you can create a VM running Ubuntu (see section 1.2).
+
+If you are using install option one, you can connect the keyboard, mouse, and display to [complete the setup process](https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit#setup). Once they are connected, you can connect the power adapter. Follow the steps to complete the setup and then go to section 2. If you have issues connecting to wifi, skip that step and connect the Xavier directly to your router with an ethernet cable **after** the setup is complete.
+
+If you are using install option two, you can connect the Xavier to your Mac or Linux computer using the micro-USB cable and then connect the power adapter.
+
+**If you are using a VMware VM, you will be prompted to connect the USB device to your host computer or the VM; choose the VM. When in the VM, use "lsusb" in the terminal to check if the Xavier is visible.**
+
+### 1.3 VM Installation (if needed)
 You get a free VMware subscription through Berkeley [here](https://software.berkeley.edu/vmware). Download and install VMware Workstation (for Windows) or VMware Fusion (for macOS).
 
 Download the Ubuntu 18.04 iso image [here](http://releases.ubuntu.com/18.04/ubuntu-18.04.3-desktop-amd64.iso). 
 
 Create a new VM in VMware. 
 
-Walk-through on VMware is [here](CreateUbuntuVMInVMware.mp4)
+Walk-through on VMware image creation is [here](CreateUbuntuVMInVMware.mp4).
 
 **VM Configuration**, the size of the disk should be 40GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
 
-**Note: if you are using a VM, you need to ensure the VM can see the Jetson by placing the Jetson into force recovery mode. First ensure the Jetson is completely off and connected to the host computer via USB cable. Press the power button once to power on the Jetson and then hold the FORCE RECOVERY button. While holding this button, press the RESET button once. Hold the FORCE RECOVERY button for 2 more seconds, then release. Tip: the FORCE RECOVERY button is the button next to the power button, and the RESET button is the button on the opposite end of the row.**
 
-**Now open the VM settings, go to Ports > USB, click "Add new USB filters...etc", and add "NVIDIA Corp. APX". When in the VM, use "lsusb" in the terminal to check if the Jetson is visible.**
+#### 1.3.1 Mac: 
+Run this command from the Mac Terminal application:
 
-#### Installation on Ubuntu
-Walk-through on VMware. Note that the first video neglects to de-select the "Host Machine" option, but you should de-select it, as seen in the seconf video: [this video](InstallJetPackSDKManager.mp4) and [this one](JetsonFlashing.mp4). 
+```
+ls -ls /dev/cu.*
+```
 
-**NOTE:** In the JetsonFlashing video, there is an error at about the 8:20 mark. This error was resolved by rebooting the TX2 into recovery mode.
+You should see a `usbmodem` device like:
 
-Navigate to [Jetpack homepage](https://developer.nvidia.com/embedded/jetpack) and click on "Download Nvidia SDK Manager". Once it downloads, install it (we recommend using the Ubuntu software install gui which automatically resolves dependencies) and then open the freshly installed application. It can be opened by running "sdkmanager" from a terminal command line.
+```
+/dev/cu.usbmodem14210200096973
+```
 
-You will need to stick to the default settings except:
+You will use the `screen` command to connect to the tty device:
 
-* Un-select "Host Machine". We do not need the NVIDIA software on the host.
-* Select "Jetson TX2" (NOT the less powerful TX2i) as the target device
-* After the flash, select "Manual" and place your TX2 into the recovery mode as mentioned above.
+```
+screen /dev/cu.usbmode* 115200 -L
+```
 
-The process of fetching the software and decompressing it will take some time, depending on the speed of your workstation and your internet connection. It took me 15 min on my old 2011 Toshiba portege ultralight notebook over a 120 Mbit cable modem.  
+#### 1.3.2 Linux:
+Run this command from the Linux terminal application:
 
-Once the OS image is built and flashed to the Jetson, **you will need to log into the newly flashed Jetson using a keyboard, mouse, and monitor attached to it and complete the OS set up**; specifically, create a userid and password.  Then, you need to get back to the installer and type them in.  The installer will install a few additional packages to the Jetson at that point, decompress them, set them up. This took me another hour or so (jetpack 4.3).
+```
+ls -ls /dev/ttyA*
+```
 
-**IF you have problems with the install**
-On Step 02, select "DOWNLOAD & INSTALL OPTIONS" and click on "Download Now, Install Later". Then ensure all packages download successfully, which may take several attempts. Then proceed to Step 03 in the installer.
+You should see a `ttyACM` device like:
 
-The last part of the install -- the SDK components -- will prompt you for the IP address of the Jetson, its userid and password.  This step DOES require that you connect a mouse, keyboard, and monitor to your Jetson and complete its setup.  
+```
+/dev/ttyACM0
+```
+You will use the `screen` command to connect to the tty device:
 
-Once you've done that, and have loggged into your Jetson, you can return to your host machine. 
+```
+sudo apt-get install -y screen
+sudo screen /dev/ttyACM0 115200 -L
+```
 
-* If the Jetson is connected via the USB cable, you can leave the pre-filled IP address (192.168.55.1) as-is. 
-* If your Jetson is connected to your home router, use the IP address of the Jetson (192.168.11.113 in the video below).
-* Use the userid and password that you just entered into the Jetson and click Next.  The SDK components should now start installing.
+### 1.4 Both Linux and Mac:
+**Note: the wifi configuration might not work due to a bug in the software. If it is an issue, just skip the wifi step and connect the Xavier directly to your router with an ethernet cable after the setup is complete**
 
-Example [here](InstallJetsonSDK.mp4)
+You will finish the [setup process](https://developer.nvidia.com/embedded/learn/get-started-jetson-xavier-nx-devkit#setup) using the tty terminal you just opened to the device. 
 
-When installation on the Jetson is done, close the installer as prompted and you're done. You could shut down and even remove your VM at this point.
+## 2. Configure VNC
 
-### Testing Jetpack on the Jetson
-Ensure the Jetson is on and running Ubuntu. Use this command to verify that everything is happy and healthy:
+It is highly recommended that you connect your Xavier directly to your router with an ethernet cable.
+
+You can have a keyboard, mouse, and monitor attached to your Jetson; but it is also extremely convenient to set up screen sharing, so you can see the Jetson desktop remotely. This is needed, for instance, when you want to show Jetson's screen over a web conference - plus it's a lot easier than switching between monitors all the time.
+
+1.  Get a VNC screen sharing client.  You can install [TightVNC](https://www.tightvnc.com/), [Remmina](https://remmina.org/), or another VNC client of your choice. 
+2. Configure your Xavier for remote screen sharing.
+
+On your Xavier, open a terminal (or ssh to your Xavier from another computer). 
+
+```
+mkdir ~/.config/autostart
+```
+* Now, edit ```~/.config/autostart/vino-server.desktop``` and insert the following:
+
+```
+[Desktop Entry]
+Type=Application
+Name=Vino VNC server
+Exec=/usr/lib/vino/vino-server
+NoDisplay=true
+```
+
+* Disable security:
+
+```
+gsettings set org.gnome.Vino prompt-enabled false
+gsettings set org.gnome.Vino require-encryption false
+```
+
+* Enable automatic login by editing /etc/gdm3/custom.conf and add the following (the AutomaticLogin ID should be the user ID you created in the setup):
+
+```
+# Enabling automatic login
+  AutomaticLoginEnable = true
+  AutomaticLogin = nvidia # Ensure that you replace 'nvidia' with your ID
+```
+
+
+* Reboot your Xavier
+* Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900:
+
+![remmina](remmina2.png)
+
+* The default resolution is very small. You can change it with this command (required after every reboot):
+
+```
+sudo xrandr --fb 1600x900 # you can choose some other resolution if desired
+```
+
+
+
+
+### Testing Jetpack on the Xavier
+Ensure the Xavier is on and running Ubuntu. Use this command to verify that everything is happy and healthy:
 
 ```
 sudo nvpmodel -q --verbose
@@ -70,132 +166,57 @@ The output should be similar to:
 ```
 NVPM VERB: Config file: /etc/nvpmodel.conf
 NVPM VERB: parsing done for /etc/nvpmodel.conf
-NVPM VERB: Current mode: NV Power Mode: MAXP_CORE_ARM
-3
-NVPM VERB: PARAM CPU_ONLINE: ARG CORE_1: PATH /sys/devices/system/cpu/cpu1/online: REAL_VAL: 0 CONF_VAL: 0
-NVPM VERB: PARAM CPU_ONLINE: ARG CORE_2: PATH /sys/devices/system/cpu/cpu2/online: REAL_VAL: 0 CONF_VAL: 0
+NV Fan Mode:quiet
+NVPM VERB: Current mode: NV Power Mode: MODE_15W_6CORE
+2
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_0: PATH /sys/devices/system/cpu/cpu0/online: REAL_VAL: 1 CONF_VAL: 1
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_1: PATH /sys/devices/system/cpu/cpu1/online: REAL_VAL: 1 CONF_VAL: 1
+NVPM VERB: PARAM CPU_ONLINE: ARG CORE_2: PATH /sys/devices/system/cpu/cpu2/online: REAL_VAL: 1 CONF_VAL: 1
 NVPM VERB: PARAM CPU_ONLINE: ARG CORE_3: PATH /sys/devices/system/cpu/cpu3/online: REAL_VAL: 1 CONF_VAL: 1
 NVPM VERB: PARAM CPU_ONLINE: ARG CORE_4: PATH /sys/devices/system/cpu/cpu4/online: REAL_VAL: 1 CONF_VAL: 1
 NVPM VERB: PARAM CPU_ONLINE: ARG CORE_5: PATH /sys/devices/system/cpu/cpu5/online: REAL_VAL: 1 CONF_VAL: 1
-NVPM VERB: PARAM CPU_A57: ARG MIN_FREQ: PATH /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq: REAL_VAL: 2035200 CONF_VAL: 0
-NVPM VERB: PARAM CPU_A57: ARG MAX_FREQ: PATH /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq: REAL_VAL: 2035200 CONF_VAL: 2000000
-NVPM VERB: PARAM GPU: ARG MIN_FREQ: PATH /sys/devices/17000000.gp10b/devfreq/17000000.gp10b/min_freq: REAL_VAL: 1134750000 CONF_VAL: 0
-NVPM VERB: PARAM GPU: ARG MAX_FREQ: PATH /sys/devices/17000000.gp10b/devfreq/17000000.gp10b/max_freq: REAL_VAL: 1134750000 CONF_VAL: 1120000000
+NVPM VERB: PARAM TPC_POWER_GATING: ARG TPC_PG_MASK: PATH /sys/devices/gpu.0/tpc_pg_mask: REAL_VAL: 2 CONF_VAL: 1
+NVPM VERB: PARAM GPU_POWER_CONTROL_ENABLE: ARG GPU_PWR_CNTL_EN: PATH /sys/devices/gpu.0/power/control: REAL_VAL: auto CONF_VAL: on
+NVPM VERB: PARAM CPU_DENVER_0: ARG MIN_FREQ: PATH /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq: REAL_VAL: 1190400 CONF_VAL: 1190400
+NVPM VERB: PARAM CPU_DENVER_0: ARG MAX_FREQ: PATH /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq: REAL_VAL: 1420800 CONF_VAL: 1420800
+NVPM VERB: PARAM CPU_DENVER_1: ARG MIN_FREQ: PATH /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq: REAL_VAL: 1190400 CONF_VAL: 1190400
+NVPM VERB: PARAM CPU_DENVER_1: ARG MAX_FREQ: PATH /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq: REAL_VAL: 1420800 CONF_VAL: 1420800
+NVPM VERB: PARAM CPU_DENVER_2: ARG MIN_FREQ: PATH /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq: REAL_VAL: 1190400 CONF_VAL: 1190400
+NVPM VERB: PARAM CPU_DENVER_2: ARG MAX_FREQ: PATH /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq: REAL_VAL: 1420800 CONF_VAL: 1420800
+NVPM VERB: PARAM GPU: ARG MIN_FREQ: PATH /sys/devices/17000000.gv11b/devfreq/17000000.gv11b/min_freq: REAL_VAL: 114750000 CONF_VAL: 0
+NVPM VERB: PARAM GPU: ARG MAX_FREQ: PATH /sys/devices/17000000.gv11b/devfreq/17000000.gv11b/max_freq: REAL_VAL: 1109250000 CONF_VAL: 1109250000
+NVPM VERB: PARAM GPU_POWER_CONTROL_DISABLE: ARG GPU_PWR_CNTL_DIS: PATH /sys/devices/gpu.0/power/control: REAL_VAL: auto CONF_VAL: auto
 NVPM VERB: PARAM EMC: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/emc_iso_cap: REAL_VAL: 1600000000 CONF_VAL: 1600000000
+NVPM VERB: PARAM DLA_CORE: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/nafll_dla: REAL_VAL: 1100800000 CONF_VAL: 1100800000
+NVPM VERB: PARAM DLA_FALCON: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/nafll_dla_falcon: REAL_VAL: 640000000 CONF_VAL: 640000000
+NVPM VERB: PARAM PVA_VPS: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/nafll_pva_vps: REAL_VAL: 819200000 CONF_VAL: 819200000
+NVPM VERB: PARAM PVA_CORE: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/nafll_pva_core: REAL_VAL: 601600000 CONF_VAL: 601600000
+NVPM VERB: PARAM CVNAS: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/nafll_cvnas: REAL_VAL: 576000000 CONF_VAL: 576000000
+
 ```
+
 ### Exploring the power modes of the Jetson
-The Jetson SoCs has a number of different power modes described in some detail here: [TX2](https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/) or [Xavier](https://www.jetsonhacks.com/2018/10/07/nvpmodel-nvidia-jetson-agx-xavier-developer-kit/). The main idea is that the lowering clock speeds on the cpu and turning off cores saves energy; and the default power mode is a low energy mode. You need to switch to a higher power mode to use all cores and maximize the clock frequency.  In the upper right corner of your desktop you will see a widget that should allow you to switch between power modes.  This functionality is new since 4.2.1. Set your power mode to MAXN; this will enable all six cores and will maximize your clock frequency. This is ok when we use our Jetson as a small desktop computer.  If you decide to use your Jetson as a robotic device and become worried about the power draw, you may want to lower this setting.
+The Jetson line of SoCs (including the Xavier NX) has a number of different power modes described in some detail here: [TX2](https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/) or [Xavier](https://www.jetsonhacks.com/2018/10/07/nvpmodel-nvidia-jetson-agx-xavier-developer-kit/). The main idea is that the lowering clock speeds on the cpu and turning off cores saves energy; and the default power mode is a low energy mode. You need to switch to a higher power mode to use all cores and maximize the clock frequency.  In the upper right corner of your desktop you will see a widget that should allow you to switch between power modes.  Set your power mode to MAXN; this will enable all six cores and will maximize your clock frequency. This is ok when we use our Xavier as a small desktop computer.  If you decide to use your Xavier as a robotic device and become worried about the power draw, you may want to lower this setting.
+
+## 3. Configure Operating System to run from SSD
+
+Your Xavier is booting the Operating System from the MicroSD card, which is not very fast.
+
+We recommend that you configure your system to run from the SSD instead. Follow the instructions on [this page](https://www.jetsonhacks.com/2020/05/29/jetson-xavier-nx-run-from-ssd/) (watch the video carefully).
+
+Use the `configure_xavier.sh` script in this repo to set up swap space after you have rebooted and are running your Operating System from the SSD.
+
+
   
-## 2. Docker 
+## 4. Docker 
 Docker is a platform that allows you to create, deploy, and run applications in containers. The application and all its dependecies are packaged into one container that is easy to ship out and uses the same Linux kernel as the system it's running on, unlike a virtual machine. This makes it especially useful for compact platforms such as the Jetson.
 
 Jetpack 4.3 has Docker pre-installed, and has an experimental nvidia-docker support.
 
 Let's test it to see if it can run containers. Since the Jetson doesn't have the docker image 'hello-world' downloaded yet, Docker will automatically pull it online from the official repository:
-```
-sudo docker run hello-world
-```
-
-### Linking Docker to an External Drive (required)
-Walk-throughs to format the external drive with [gui](FormatSDcard.mp4), one with [command line](TestDockerAndMountExternalDrive.mp4).
-
-The Jetson SoC has limited storage (only 16G), so linking Docker to an external drive is the only choice to store all your Docker work. A SSD is strongly recommended to speed up processes. We will need to move the directory that Docker uses to store its images and containers to this SSD.
-
-Plug in your SSD. What is it called? You can use the `lsblk` command to find out:
 
 ```
-nvidia@nvidia-desktop:~$ lsblk | grep -v mmcblk0
-NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-loop0          7:0    0    16M  1 loop 
-mmcblk2      179:128  0 119.1G  0 disk 
-└─mmcblk2p1  179:129  0 119.1G  0 part /media/nvidia/8a3327cb-50d0-4a03-bde2-31ae1a0a52ef
-zram0        252:0    0 982.5M  0 disk [SWAP]
-zram1        252:1    0 982.5M  0 disk [SWAP]
-zram2        252:2    0 982.5M  0 disk [SWAP]
-zram3        252:3    0 982.5M  0 disk [SWAP]
-nvidia@nvidia-desktop:~$ 
-```
-In this case, it's the mmcblk2 device (which already has a partition called mmcblk2p1).
-
-You can also use `fdisk`:
-
-```
-fdisk -l
-# Among many entries, you shoud see something like this:
-Disk /dev/sda: 465.8 GiB, 500107862016 bytes, 976773168 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-```
-In this case, our disk is called /dev/sda. Your disk may be named differently. Format it. The videos show formatting of a particular partition on the device, but you can format the entire device for simplicity:
-
-```
-# first, create the mountpoint!
-mkdir -m 777 /data
-mkfs.ext4 /dev/sda
-```
-Let's create an entry in fstab so that the disk will be auto-mounted on restart:
-
-```
-# edit /etc/fstab and all this line:
-/dev/sda /data                   ext4    defaults,noatime        0 0
-```
-Now, mount your SSD!
-
-```
-mount /data
-```
-
-
-The Docker files on the Jetson are in /var/lib/docker. We need to stop Docker and then move the Docker directory stored on the Jetson (in /var/lib/docker) to the external drive. You might want to back up this directory first somewhere in case of errors.
-
-```
-sudo service docker stop
-mv /var/lib/docker /data/docker
-```
-Create a symbolic link between the Docker directory you just moved onto on the external drive to a new softlink that Docker on the Jetson will refer to when pulling files:
-
-```
-sudo ln -s /data/docker /var/lib/docker
-sudo service docker start
-```
-Now your Docker work will automatically be stored on this external drive. The new "docker" directory in /var/lib is a softlink: every time Docker calls on that, it'll actually be pulling from the original "docker" directory in the external drive. Just remember to hook it up when working with Docker.
-
-### Creating a swap file pointing to the external drive (recommended)
-If you have an external drive, your TX2 can function as a small desktop. Let's enable swap to complete the picture, so that you can start multiple jobs in parallel (assuming that only one is active at a time, you should have reasonable performance):
-
-Assuming your hard drive is mounted to /data and that you want to create a 24G swap file (3 times the memory, which is ok.  Assuming that your hard drive is 500G, this should be easy)
-
-```
-sudo -i
-fallocate -l 24.0G /data/swapfile
-chmod 600 /data/swapfile
-mkswap /data/swapfile
-swapon /data/swapfile
-```
-Confirm that your swap is working:
-
-```
-free -m
-```
-You should see something like:
-
-```
-              total        used        free      shared  buff/cache   available
-Mem:           7852        5050        1522          20        1279        2597
-Swap:         24575           0       24575
-```
-Now, edit /etc/fstab and add the following line:
-
-```
-/data/swapfile  none    swap    0       0
-```
-Finally, reboot
-
-```
-reboot
-# Once the tx2 starts, type free -m again to make sure that your swap is working
-# Happy swapping!
+docker run hello-world
 ```
   
 ### Run the base Docker Image for the Jetson
@@ -206,8 +227,14 @@ Let's start this container:
 ```
 # allow remote X connections
 xhost +
-sudo docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.3.1
-# this should complete successfully. Once you are convinced that you are inside the Docker container (e.g. try to list the contents of your home directory), just exit from it:
+docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.4.3
+# this should complete successfully. Run this command to verify that you are inside the Docker container
+
+ls
+# You should see the following:
+# bin  boot  dev  dst  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+# Now exit from the container:
 exit
 ```
 More on the use of this beta container is [here](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson)
@@ -216,43 +243,6 @@ Note that our own Docker images for the Jetsons are still available in the [dock
 
 We'll cover Docker during the in-class lab in more detail.
 
-### Setting up screen sharing for the Jetson
-You will need to have a keyboard, mouse, and monitor attached to your Jetson; but it is also extremely convenient to set up screen sharing, so you can see the Jetson desktop remotely. This is needed, for instance, when you want to show Jetson's screen over a web conference - plus it's a lot easier than switching between monitors all the time.
 
-1.  Get a VNC screen sharing client.  You can install [TightVNC](https://www.tightvnc.com/) or another VNC client of your choice. On Linux, you can use [Remmina](https://remmina.org/), which you likely already have installed.
-2. Configure your Jetson for remote screen sharing.
-
-```
-mkdir ~/.config/autostart
-```
-* Now, edit ```~/.config/autostart/vino-server.desktop``` and insert the following:
-```
-[Desktop Entry]
-Type=Application
-Name=Vino VNC server
-Exec=/usr/lib/vino/vino-server
-NoDisplay=true
-```
-
-* Disable security:
-```
-gsettings set org.gnome.Vino prompt-enabled false
-gsettings set org.gnome.Vino require-encryption false
-```
-
-* The default resolution is 1920x1080. If you still want to change it (optional):
-```
-sudo xrandr --fb 1600x900
-```
-* Reboot your Jetson
-* Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900:
-
-![remmina](remmina2.png)
-You should now be able to connect without entering a password. However, should you reboot your Jetson, you will need to use the attached mouse and keyboard and actually log into it so that the vino-server starts up. Only then will you be able to connect to it remotely again.
-* We noticed that with Jetpack 4.3, when connecting via Remmina, the initial resolution is too low.  You can change it by clicking the Preferences gear icon to the left of the screen, like this:
-
-![set connection quality](remmina1.png)
-
-Set it to "best"
 # To turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up your Jetson
