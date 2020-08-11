@@ -26,7 +26,7 @@ There should be a container with "hello-world" listed under the "IMAGE" column, 
 This Dockerfile downloads YOLO as well as tiny-YOLO, which is a condensed version of YOLO that runs faster but is less accurate. cd into the directory with this Dockerfile, download the Makefile on Github in the week1/lab directory, and place it in here. Build the image:
 
 ```
-docker build -t yolov5 -f Dockerfile.YOLOv5 .
+docker build -t yolov5 -f Dockerfile.yolov5 .
 ```
 Wait for the process to finish, then list the Docker images to see if it worked. You should see a new image with the label "YOLO" under the repository column.
 
