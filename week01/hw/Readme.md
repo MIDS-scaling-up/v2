@@ -93,6 +93,7 @@ You should see a `ttyACM` device like:
 You will use the `screen` command to connect to the tty device:
 
 ```
+sudo apt-get update
 sudo apt-get install -y screen
 sudo screen /dev/ttyACM0 115200 -L
 ```
@@ -143,9 +144,19 @@ gsettings set org.gnome.Vino require-encryption false
 
 
 * Reboot your Xavier
-* Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900:
+* Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900.
+
+Remmina: 
 
 ![remmina](remmina2.png)
+
+VNC Viewer: 
+
+![vnc2](vnc2.png)
+and
+
+![vnc1](vnc1.png)
+
 
 * The default resolution is very small. You can change it with this command (required after every reboot):
 
@@ -197,7 +208,7 @@ NVPM VERB: PARAM CVNAS: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/nafll_cv
 
 ```
 
-### Exploring the power modes of the Jetson
+### Exploring the power modes of the Xavier
 The Jetson line of SoCs (including the Xavier NX) has a number of different power modes described in some detail here: [TX2](https://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/) or [Xavier](https://www.jetsonhacks.com/2018/10/07/nvpmodel-nvidia-jetson-agx-xavier-developer-kit/). The main idea is that the lowering clock speeds on the cpu and turning off cores saves energy; and the default power mode is a low energy mode. You need to switch to a higher power mode to use all cores and maximize the clock frequency.  In the upper right corner of your desktop you will see a widget that should allow you to switch between power modes.  Set your power mode to MAXN; this will enable all six cores and will maximize your clock frequency. This is ok when we use our Xavier as a small desktop computer.  If you decide to use your Xavier as a robotic device and become worried about the power draw, you may want to lower this setting.
 
 ## 3. Configure Operating System to run from SSD
@@ -206,7 +217,96 @@ Your Xavier is booting the Operating System from the MicroSD card, which is not 
 
 We recommend that you configure your system to run from the SSD instead. Follow the instructions on [this page](https://www.jetsonhacks.com/2020/05/29/jetson-xavier-nx-run-from-ssd/) (watch the video carefully).
 
-Use the `configure_xavier.sh` script in this repo to set up swap space after you have rebooted and are running your Operating System from the SSD.
+# WARNING: This is a destructive process and will wipe your SSD. 
+### Note: This process assumes that your SSD is at /dev/nvme0n1, which is the standard device location
+
+Steps:
+
+Verify that the OS is booting from the Micro SD.
+
+```
+lsblk
+```
+
+Your output should show a `/` in the MOUNTPOINT column of the `mmcblk0p1` line:
+
+```
+NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+loop0          7:0    0    16M  1 loop 
+mtdblock0     31:0    0    32M  0 disk 
+mmcblk0      179:0    0  59.5G  0 disk 
+├─mmcblk0p1  179:1    0  59.2G  0 part /
+├─mmcblk0p2  179:2    0    64M  0 part 
+├─mmcblk0p3  179:3    0    64M  0 part 
+├─mmcblk0p4  179:4    0   448K  0 part 
+├─mmcblk0p5  179:5    0   448K  0 part 
+├─mmcblk0p6  179:6    0    63M  0 part 
+├─mmcblk0p7  179:7    0   512K  0 part 
+├─mmcblk0p8  179:8    0   256K  0 part 
+├─mmcblk0p9  179:9    0   256K  0 part 
+├─mmcblk0p10 179:10   0   100M  0 part 
+└─mmcblk0p11 179:11   0    18K  0 part 
+zram0        252:0    0   1.9G  0 disk [SWAP]
+zram1        252:1    0   1.9G  0 disk [SWAP]
+nvme0n1      259:0    0 465.8G  0 disk 
+```
+
+To setup the SSD:
+
+```
+# Wipe the SSD
+sudo wipefs --all --force /dev/nvme0n1
+
+# Format and partition the SSD
+sudo parted --script /dev/nvme0n1 mklabel gpt mkpart primary ext4 0% 100%
+
+# We will use the jetsonhacks scripts to move data and enable the SSD as
+# the default disk
+
+git clone https://github.com/jetsonhacks/rootOnNVMe.git
+cd rootOnNVMe/
+./copy-rootfs-ssd.sh
+./setup-service.sh
+
+# Reboot for the update to take effect
+sudo reboot
+```
+
+Run the `lsblk` command again to verify that you are running the OS from the SSD. This time, the `/` should be the MOUNTPOINT for `nvme0n1p1`:
+
+
+```
+NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+loop0          7:0    0    16M  1 loop 
+mtdblock0     31:0    0    32M  0 disk 
+mmcblk0      179:0    0  59.5G  0 disk 
+├─mmcblk0p1  179:1    0  59.2G  0 part /media/nvidia/48fc8f75-dc2b-4a68-9673-c4cc26f9d5db
+├─mmcblk0p2  179:2    0    64M  0 part 
+├─mmcblk0p3  179:3    0    64M  0 part 
+├─mmcblk0p4  179:4    0   448K  0 part 
+├─mmcblk0p5  179:5    0   448K  0 part 
+├─mmcblk0p6  179:6    0    63M  0 part 
+├─mmcblk0p7  179:7    0   512K  0 part 
+├─mmcblk0p8  179:8    0   256K  0 part 
+├─mmcblk0p9  179:9    0   256K  0 part 
+├─mmcblk0p10 179:10   0   100M  0 part 
+└─mmcblk0p11 179:11   0    18K  0 part 
+zram0        252:0    0   1.9G  0 disk [SWAP]
+zram1        252:1    0   1.9G  0 disk [SWAP]
+nvme0n1      259:0    0 465.8G  0 disk 
+└─nvme0n1p1  259:1    0 465.8G  0 part /
+```
+
+
+Use the `configure_xavier.sh` script in this repo to set up swap space after you have rebooted and verified that you are running your Operating System from the SSD:
+
+```
+git clone https://github.com/MIDS-scaling-up/v2.git
+cd v2/week01/hw
+chmod +x configure_xavier.sh
+./configure_xavier.sh
+```
+
 
 
   
