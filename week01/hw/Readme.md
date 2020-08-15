@@ -4,16 +4,14 @@
 ## 1. Nvidia Jetpack SDK
 Jetpack is an SDK that basically contains everything needed for deep learning and AI applications in a handy package bundle containing the OS for for the Xavier. Installation on the Xavier requires downloading and flashing the image to a MicroSD card.
 
-Required equipment:
-
- 1. MicroSD card (64GB minimum size)
- 2. USB MicroSD card reader
- 3. NVMe M.2 SSD (256GB minimum size) **NOTE: SATA M.2 SSDs will not work**
- 4. Size 0 Philips head screwdriver
- 5. Micro USB to USB cable
- 6. USB Webcam
-
-
+We are working on sourcing discount codes for the Jetson Xavier NX Developer Kit and hope to have them available the week before classes start. For details on set up see [homework 1](week01/hw): 
+ 1. [Jetson Xavier NX Developer Kit](https://developer.nvidia.com/embedded/jetson-xavier-nx-devkit)
+ 2. MicroSD card (64GB minimum size)
+ 3. USB MicroSD card reader
+ 4. NVMe M.2 SSD (256GB minimum size) **NOTE: SATA M.2 SSDs will not work**
+ 5. Size 0 Philips head screwdriver
+ 6. Micro USB to USB cable
+ 7. USB Webcam
 
 ### 1.1 Host (Computer) Installation
 
