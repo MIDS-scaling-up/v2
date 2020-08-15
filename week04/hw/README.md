@@ -37,10 +37,7 @@ At the end you need to load pretrained embeddings from Stanford's GloVe project.
 there is a step to download these embeddings in the book.
        
 Let's go to the lab at [this link](https://colab.research.google.com/github/MIDS-scaling-up/v2/blob/master/week04/hw/w251_homework04.ipynb).
-     
-##### Nvidia NX Version    
-   
-To be continued.     
+    
 
 Now open the notebook and run. And fill in the codes blocks marked for filling in and monitor your AUC. 
 For the Logistic regression model you should be getting circa `0.88` AUC and `0.93` or more for the MLP. 
