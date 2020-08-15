@@ -15,7 +15,7 @@ We are working on sourcing discount codes for the Jetson Xavier NX Developer Kit
  7. USB Webcam
 
 ### Homeworks:
-A homework is due before each class.  There are two types of homeworks: graded and credit only. Here is the link to [class 1](week01) - be sure to complete the setup of your Jetson as described in [homework 1](week01/hw)
+A homework is due before each class.  There are two types of homeworks: graded and credit only. Here is the link to [class 1](week01) - be sure to complete the setup of your Xavier as described in [homework 1](week01/hw)
 
 ### SSH Reminder:
 Ensure that any VSI/VM create prohibts login with password prohibited.
