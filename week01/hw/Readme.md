@@ -310,7 +310,7 @@ chmod +x configure_xavier.sh
 ./configure_xavier.sh
 ```
 
-Install jtop
+Install jtop (a monitoring tool from https://github.com/rbonghi/jetson_stats):
 
 ```
 sudo -H pip install -U jetson-stats
