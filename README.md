@@ -5,8 +5,8 @@ The revised class is focused on Deep Learning and Big Data at the Edge and in th
 To follow the class, you'll a Mac or a PC (Windows or Linux) with an ability to run docker or VirtualBox VMs. You will also need additional equipment as follows:
 ### Required equipment:
 
-We are working on sourcing discount codes for the Jetson Xavier NX Developer Kit (@$329 in the US) and hope to have them available the week before classes start. 
-**NB** We have an update from Nvidia that we will get the discount codes to distribute early this week (of 17th August 2020), it is recommended to hold on for ordering till you get this code. This may mean the devices are recieved to late to complete the homeworks for the week 01 deadline next week, which is ok.   
+We are working on sourcing discount codes for the Jetson Xavier NX Developer Kit (@$329 in the US) and hope to have them available the week before classes start.   
+**NB** We have an update from Nvidia that we will get the discount codes to distribute early this week (of 17th August 2020), it is recommended to hold on for ordering till you get this code. This may mean the devices are recieved to late to complete the homeworks for the week 01 deadline next week, which is ok.    
 
 For details on set up see [homework 1](week01/hw): 
  1. [Jetson Xavier NX Developer Kit](https://developer.nvidia.com/embedded/jetson-xavier-nx-devkit)
