@@ -45,7 +45,12 @@ If you are using install option two, you can connect the Xavier to your Mac or L
 
 **If you are using a VMware VM, you will be prompted to connect the USB device to your host computer or the VM; choose the VM. When in the VM, use "lsusb" in the terminal to check if the Xavier is visible.**
 
-### 1.3 VM Installation (if needed)
+### 1.3 If you chose Option 2 in section 1.2
+
+You will need to use a Linux VM or a Mac to perform these steps.
+
+#### 1.3.1 Create a VM (skip this step if you are using a Mac)
+
 You get a free VMware subscription through Berkeley [here](https://software.berkeley.edu/vmware). Download and install VMware Workstation (for Windows) or VMware Fusion (for macOS).
 
 Download the Ubuntu 18.04 iso image [here](http://releases.ubuntu.com/18.04/ubuntu-18.04.3-desktop-amd64.iso). 
@@ -57,7 +62,7 @@ Walk-through on VMware image creation is [here](CreateUbuntuVMInVMware.mp4).
 **VM Configuration**, the size of the disk should be 40GB absolutely minimum. Give the VM 2-4 cores to make sure cross-compilation does not take forever, and at least 4-8G of RAM. 
 
 
-#### 1.3.1 Mac: 
+#### 1.3.2 Mac: 
 Run this command from the Mac Terminal application:
 
 ```
@@ -76,7 +81,7 @@ You will use the `screen` command to connect to the tty device:
 screen /dev/cu.usbmode* 115200 -L
 ```
 
-#### 1.3.2 Linux:
+#### 1.3.3 Linux:
 Run this command from the Linux terminal application:
 
 ```
