@@ -310,7 +310,15 @@ chmod +x configure_xavier.sh
 ./configure_xavier.sh
 ```
 
+Install jtop
 
+```
+sudo -H pip install -U jetson-stats
+sudo reboot
+
+# Test after reboot
+jtop
+```
 
   
 ## 4. Docker 
