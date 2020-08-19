@@ -10,11 +10,20 @@ are very small and light, they are easy to spin up and you can have many of them
 
 #### Installing docker
 If you already have docker running, you may skip this step.  However, you may wish to do it if you never installed docker on ubuntu.
-This assumes that you have an slcli installed somewhere, e.g. on a VM in softlayer or in your local environment.
-
+This assumes that you have the aws cli installed and have access to your account with the credits allowed for W251
 Let us spin up a clean VM.  This will take a few minutes to come up:
 ```
- ibmcloud sl vs create --datacenter=dal09 --domain=<something here> --hostname=<something here> --os=UBUNTU_16_64 --cpu=1 --memory=1024 --billing=hourly --key=<your key>
+aws ec2 create-key-pair --key-name MIDSkeypair --query 'UCBerkeley' --output text > MIDSkeypair.pem
+chmod 400 MIDSkeypair.pem
+aws ec2 describe-key-pairs --key-name MIDSkeypair
+aws ec2 create-default-vpc
+aws ec2 describe-vpcs (find the vpc-id of the one you just created)
+aws ec2 create-security-group --group-name MIDS-grp01 --description "Lab 1 Security group" --vpc-id vpc-XXXXXXXXXX
+aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --protocol tcp --port 22 --cidr 0.0.0.0/0
+aws ec2 run-instances --image-id ami-0bcc094591f354be2  --instance-type t2.large --key-name esarias
+aws ec2 describe-instances
+grep for the instance name, similar to: ec2-54-236-50-196.compute-1.amazonaws.com  
+ssh -i "MIDSkeypair.pem" ubuntu@ec2-54-236-50-196.compute-1.amazonaws.com
 ```
 
 #### ENSURE THAT YOU SECURE THE VSI'S SSH AGAINST ATTACKS USING THE INSTRUCTIONS IN HOMEWORK 2
@@ -22,6 +31,7 @@ Let us spin up a clean VM.  This will take a few minutes to come up:
 Now, let us follow the official instructions here to install DockerCE on Ubuntu 16:
 https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
 ```
+sudo su
 apt-get update
 apt-get install \
     apt-transport-https \
