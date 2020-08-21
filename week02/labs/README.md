@@ -153,6 +153,13 @@ docker run -d --name my-apache-app -p8003:80 -v "$PWD":/usr/local/apache2/htdocs
 ```
 Check inbound rules in the default security group to allow this connection to be succesful 
 
+#### Create an inbound rule to allow tcp access into the virtual machine for the specific ports
+```
+aws ec2 create-security-group --group-name MIDS-grp01 --description "Lab 1 Security group" --vpc-id vpc-XXXXXXXXXX
+aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --protocol tcp --port 8003 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --protocol tcp --port 8800 --cidr 0.0.0.0/0  <used later>
+```
+
 Now, let us edit index.html in our current directory and then point our browser to http://ip-of-my-vm:8003  (you could get it from ifconfig)
 You should be able to see that our http server is running!
 
@@ -169,27 +176,27 @@ RUN apt-get update \
     build-essential \
     curl \
     git \
-    python-pip \
+    python3-pip \
     python-setuptools \
     python-dev \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip install h5py pandas
-RUN pip install theano
+RUN pip3 install h5py pandas
+RUN pip3 install theano
 
-RUN pip install --upgrade -I setuptools \
-  && pip install --upgrade \
+RUN pip3 install --upgrade -I setuptools \
+  && pip3 install --upgrade \
     keras
 
-RUN pip install  \
+RUN pip3 install  \
     matplotlib \
     seaborn
 
-RUN pip install scikit-learn tables
-RUN pip install --upgrade pip
-RUN pip install 'ipython<6'
+RUN pip3 install scikit-learn tables
+RUN pip3 install --upgrade pip
+RUN pip3 install 'ipython<6'
 
-RUN pip install jupyter
+RUN pip3 install jupyter
 
 VOLUME /notebook
 WORKDIR /notebook
@@ -220,156 +227,3 @@ docker logs jupyter
 Now, point your browser to http://my_vm_ip:8800  and use the token to log in.
 
 Once you are all done, remove the VM to avoid extra charges!
-
-### Part 2 (Optional)
-
-In this section, we’ll expand upon the private network concept we explored in HW2.
-First, you’ll need to upload your private key to the jumpbox VM created in HW2.  
-For example:
-
-	```
-    sftp root@<jumpboxVM>
-    mput ~/.ssh/id_rsa
-    ```
-
-Then ssh back to the jump box move the key to the .ssh directory and update the permission:
-
-```
-	mv id_rsa ~/.ssh
-    chmod 600 ~/.ssh/id_rsa
-```
-
-Next, create a VM with a private only network in the same datacenter has your jumpbox.  For example (ensuring to replace the key ID with your SSH Key ID):
-
-```
-ibmcloud sl vs create --hostname=test --private --domain=you.cloud --cpu=2 --memory=2048 --datacenter=ams03 --os=UBUNTU_16_64 --san --disk=100 --key=123456
-```
-
-Wait for the VM to be created, then SSH into it.  
-Update the VM and install curl
-
-	apt-get update
-	apt-get install curl
-
-Now try to connect to www.google.com
-
-```
-curl https://www.google.com
-```
-
-What happens?  Your connection should timeout.  This is because "private network only" systems do not have a connection to the internet.  We will now install an HTTP proxy on the jumpbox that will allow private network systems to reach the internet.  Exit out of the VM so that you are back on the jumpbox.
-
-On the jumpbox, install docker (see the first part of the lab).  Once installed, copy squid.conf to the jumbox.  Then create the folder /root/proxy and move the squid.conf into it.
-	
-```
-mkdir /root/proxy             
-mv squid.conf /root/proxy/
-```
-
-We’ll need your VM’s private IP.  If you need to get it, you can run the command
-
-```
-ipconfig eth0
-```
-
-We’ll now start the proxy (for more details see https://github.com/sameersbn/docker-squid).
-
-```
-docker run --name squid -d --restart=always \
-  --publish <privateIP>:3128:3128 \
-  --volume /root/proxy/squid.conf:/etc/squid/squid.conf \
-  sameersbn/squid:3.5.27-1
-
-```
-Login to your private VM.
-Set the following environmental variables, replacing <jumpboxPrivateIP> with your jumpbox's private IP:
-
-```
-export http_proxy=http://<jumpboxPrivateIP>:3128
-export https_proxy= http://<jumpboxPrivateIP>:3128
-```
-
-Now try to connect to www.google.com again
-
-```	
-curl https://www.google.com
-```
-
-And this time you should be able to connect.
-
-
-### Bonus 
-It is possible to install and use docker from your private network system.
-
-Log into your "private network only" VM. Make sure you've exported the http_proxy and https_proxy eenvironmental variables, then install docker as you have done before.
-
-Follow the instructions to install docker from part 1.
-
-Once installed, you need to configure docker to use the HTTP proxy with the following steps (see https://docs.docker.com/config/daemon/systemd/#httphttps-proxy for additional details). 
-
-Create a systemd drop-in directory for the docker service
-
-```
-mkdir -p /etc/systemd/system/docker.service.d
-```
-
-Create a file called /etc/systemd/system/docker.service.d/http-proxy.conf that adds the HTTP_PROXY environment variable:
-
-```
-[Service]
-Environment="HTTP_PROXY=http://<jumpboxPrivateIP>:3128"
-```
-
-Create a file called /etc/systemd/system/docker.service.d/https-proxy.conf that adds the HTTPS_PROXY environment variable:
-
-```
-[Service]
-Environment="HTTPS_PROXY=http://<jumpboxPrivateIP>:3128"
-```
-
-Making sure to replace <jumpboxPrivateIP> with the private IP address of your jumpbox.
-Flush changes:
-
-```
-systemctl daemon-reload
-```
-
-And restart Docker:
-
-```
-systemctl restart docker
-```
-
-Now install the nginx image and have it listen on the host's port 80:
-
-```
- docker run --name my-nginx -d -p 80:80 nginx
-```
-
-You may find additional details on proxy configuration for your docker containers at https://docs.docker.com/network/proxy/.
-
-Now exit your private system and return to the jumpbox.
-
-Validate that you can reach your nginx container:
-
-```
-curl http://<privateIPofVM>
-```
-
-And verify you get a response.  Logout of the jumpbox.
-
-The following creates an SSH tunnel from your workstation to your private system via your jumpbox:
-
-```
-ssh -L 8080:<privateIPofVM>:80 root@<pubicIPofJumpbox>
-```
-
-From a local browser, open up http://localhost:8080 and you should see your containers welcome page.
-
-Log out of your ssh session, pressing ctl+c to terminate tunneling.
-
-### Delete all VMs except your jumpbox.
-
-
-
-
