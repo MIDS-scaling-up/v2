@@ -1,122 +1,134 @@
-# Homework 2: The Cloud
+# HW02: The Cloud
 
-## NOTE: Due to abuse of the IBM Cloud credits, you are now responsible for the charges on this account. IBM will no longer cover the difference if you go over the $2000 credits in a month. You will lose access to your account if you go over that amount (unless you want to pay the difference out-of-pocket). 
+We will be using AWS as cloud platform for some of your homeworks and
+Labs. AWS gives all W251 students a promotional credit of
+\$1000/semester. While this will be sufficient to complete your
+homeworks and projects, leaving any unused resources like GPU enabled
+EC2 instances, large datasets on S3 can consume the funds very quickly.
+We strongly encourage you to de-provision unused resources promptly,
+watch your spend/billing reports frequently, create Billing alerts to
+avoid incurring extra costs.
 
-## Add a ssh key to the Cloud Portal
- - Create a ssh key on your local computer, if you don't have one, using the ssh-keygen command
- - Navigate to https://cloud.ibm.com
- - Log in using your credentials or using your IBM ID (if that's how you configured your account)
- - Navigate to IBM Cloud (top left) -> Classic Infrastructure -> Devices -> Manage -> SSH Keys
- - Use the "Add" link to add your public ssh key to the portal
+**Any spend beyond the \$1000 limit will be student's responsibility!**
 
-## Enable VLAN spanning
- - Staying in the "Classic" section, navigate to Network -> IP Management -> VLANs
- - Click on the "Span" tab
- - Turn `VLAN Spanning` On
+# Create and Setup your AWS account
 
-## Create a VSI using the gui (make sure ssh key is used)
- - Staying in the "Classic" section, navigate to Devices -> Device List
- - Select the blue "Order Devices" button at the top right
- - Select "Virtual Server" from the list, then "Public Virtual Server"
- - Accept the default for Quantity (1) and Billing (Hourly)
- - Choose a hostname and domain. You can literally use any domain name you choose, it will not be registered in DNS
- - Choose a location near you
- - Select the Compute C1.1x1 profile (1 CPU, 1GB of RAM)
- - Select your SSH Key from the dropdown list
- - Choose Ubuntu 18.04 Minimal as your Image
- - Accept the rest of the defaults
- - Read and Accept the Service Agreements (if you agree with them) and click the Create button
- - Your Virtual Machine (also called a Virtual Server Instance) will appear in the portal
- - Navigate to https://cloud.ibm.com/classic/devices to monitor your VM creation
+-   Navigate to https://aws.amazon.com
 
-## Harden the VSI, ensure ssh still works with the key
+-   Click on Create an AWS account (top right)
 
-**NOTE: These steps are essential for every server created in IBM Cloud, for all future homeworks and labs**
+-   Follow the prompts to create a new account using your Berkeley
+    student email id (you have to use your personal credit card)
 
- - SSH into the VSI using your SSH Key and the `root` ID
- - Edit /etc/ssh/sshd_config and make the following changes to prevent brute force attacks
+-   Once complete, Login to your account
 
-```
-PermitRootLogin prohibit-password
-PasswordAuthentication no
-```
- - Restart the ssh daemon: `service sshd restart`
- - Ensure that you can only login with a ssh key and that password authentication is properly disabled:
+-   Click on your account id (top right) and chose \"My Account\" -
+    \"Credits\"
 
-```
-ssh admin@localhost
-```
- - It should reject your ssh request
+-   Insert the promotion code shared by your instructor and Redeem. You
+    should see your available credits (\$1000) at the bottom of the page
 
+# Add an IAM user, group and a key pair
 
-## Install IBM Cloud CLI on the VSI
+AWS Best practices deletes Access Key and Secret Key credentials for
+Root user and recommends creating separate IAM users. These are needed
+to enable CLI and API access.
 
-Copy and paste the following command to a terminal of your Linux OS and run it:
+-   Goto Services -- Select IAM
 
-```
-curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
-```
+-   Click on Add User. Follow the prompts for user name etc.,
 
-Log into IBM Cloud using `ibmcloud login`
+    -   Chose to add Groups (select AdminFull Access role) and fill out
+        other details incl. adding new user to the new group you just
+        created
 
-You can get help on the CLI by placing the word `help` at the end of a command. For example:
+    -   Select to have User Access and Secret Key created and download
+        the details to xls
 
-```
-ibmcloud sl vs help
-```
+    -   On your Laptop(Mac or windows), download, install and configure
+        AWS CLI-v2 using the new User credentials you just created.
+        Follow the instructions from the link below.
 
-Test the CLI using the command `ibmcloud sl vs list` to see a list of VSIs in your account
+        <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>
 
+-   Go to Services-EC2-Keypairs
 
-## Create a VSI using the CLI with private network only
+-   Create new keypair and download the .pem file
 
-To see the options for creating a VSI, run
+-   Chmod 400 .pem file
 
-```
-ibmcloud sl vs options
-```
+-   On your workstation
 
-To see the command-line parameters, run
+    -   ssh-add -K "your\_keypair.pem" (This adds the new keypair to you
+        local ssh identities)
 
-```
-ibmcloud sl vs create --help
-```
+    -   ssh-add -L (To see the list of identities)
 
-Create a new ssh key on your VSI using `ssh-keygen`
+# Launch and Test Key AWS Resources
 
-Add the new key to the IBM Cloud portal using the command:
+-   Create Default VPC
 
-```
-ibmcloud sl security sshkey-add MyNewKey --in-file ~/.ssh/id_rsa.pub
-```
+aws ec2 create-default-vpc
 
-Use the following command to retrieve your new SSH Key ID:
+aws ec2 describe-vpcs (find the vpc-id of the one you just created)
 
-```
-ibmcloud sl security sshkey-list
-```
+-   Create Public and Private security groups
 
-Use the following command to create a new VSI in your account, **ensuring to replace the key ID with your SSH Key ID**:
+\#aws ec2 create-security-group \--group-name PublicSG \--description
+\"Bastion Host Security group\" \--vpc-id vpc-XXXXXXXX(vpc-d from above
+command)
 
-```
-ibmcloud sl vs create --hostname=test --private --domain=you.cloud --cpu=2 --memory=2048 --datacenter=ams03 --os=UBUNTU_16_64 --san --disk=100 --key=123456
-```
+\#aws ec2 describe-security-groups (extract PublicSG id)
 
-## Connect to the new VSI using the original VSI as a jumpbox
+\#aws ec2 create-security-group \--group-name PrivateSG \--description
+\"Bastion Host Security group\" \--vpc-id vpc-XXXXXXXX(vpc-d from above
+command)
 
-Use the following command to find the Private IP address of your new VSI:
+\#aws ec2 describe-security-groups (extract PrivateSG id)
 
-```
-ibmcloud sl vs list
-```
+-   Add SSH Ingress rule to Security groups
 
-Connect to the new VSI using ssh 
+\#aws ec2 authorize-security-group-ingress \--group-id sg-xxxxxxxxxx
+\--protocol tcp \--port 22 \--cidr 0.0.0.0/0
 
-Once you have verified that you can connect to the new VSI, you can disconnect and cancel it using the `ibmcloud sl vs cancel` command. You will need to provide an argument to cancel the proper VSI. **DO NOT CANCEL YOUR PRIMARY, ORIGINAL VSI. YOU WILL USE IT TO RUN THE ibmcloud CLI IN FUTURE HOMEWORKS AND LABS**
+\#aws ec2 authorize-security-group-ingress \--group-id sg-xxxxxxxxxx
+\--protocol tcp \--port 22 \--cidr 0.0.0.0/0
 
-Ensure you successfully cancel your second VSI and all VSIs created in the future using the `ibmcloud sl vs list` command. You should keep your original "jumpbox" VSI.
+(You can update only with Bastio Host CIDR if needed)
 
-**To Turn In**: A copy/paste of the output from `ibmcloud sl vs list` before and after you cancel the second VSI
+-   Launch Bastion EC2 Instance(JumpBox) into the public Security Group
+    using Ubuntu AMI on t2.micro instance(free tier) in the default VPC
 
-## Note on cloud usage
-![Soflayer](../../softlayer.png?raw=true "Title")
+\#aws ec2 run-instances \--image-id ami-0bcc094591f354be2
+\--instance-type t2.micro \--security-group-ids sg-xxxxxxxxx
+\--associate-public-ip-address \--key-name "your\_keypair.pem"
+
+\#aws ec2 describe-instances
+
+(grep for the instance name, similar to:
+ec2-54-236-50-196.compute-1.amazonaws.com)
+
+-   Launch Private EC2 instance into Private Security Group using Ubuntu
+    AMI on a t2.micro instance (free tier) in the default VPC
+
+\#aws ec2 run-instances \--image-id ami-0bcc094591f354be2
+\--instance-type t2.micro \--security-group-ids sg-xxxxxxxxxx
+\--key-name "your\_keypair.pem"
+
+\#aws ec2 describe-instances
+
+(grep for the instance name, similar to:
+ec2-54-236-50-196.compute-1.amazonaws.com
+
+-   SSH into Baston Host first and then to Private instance from Bastion
+    Host.
+
+\#ssh -A <ubuntu@ec2-54-236-50-196.compute-1.amazonaws.com> (from your
+work station)
+
+\#ssh -A <ubuntu@ec2-54-236-50-196.compute-1.amazonaws.com> (from
+Bastion host)
+
+-   Delete Private instance but keep rest of the resources incl. Bastion
+    Host for other home works
+
