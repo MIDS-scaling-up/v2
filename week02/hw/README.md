@@ -113,7 +113,7 @@ aws ec2 describe-instances
 ssh -A <ubuntu@ec2-xx-xx-xx-xxx.compute-1.amazonaws.com> 
 (from your work station)
 
-ssh -A <ubuntu@ec2-yy-yy-yy-yyy.compute-1.amazonaws.com> 
+ssh <ubuntu@ec2-yy-yy-yy-yyy.compute-1.amazonaws.com> 
 (from Bastion host)
 ```
 
