@@ -268,7 +268,7 @@ sudo parted --script /dev/nvme0n1 mklabel gpt mkpart primary ext4 0% 100%
 
 git clone https://github.com/jetsonhacks/rootOnNVMe.git
 cd rootOnNVMe/
-./copy-rootfs-ssd.sh
+sudo ./copy-rootfs-ssd.sh
 ./setup-service.sh
 
 # Reboot for the update to take effect
