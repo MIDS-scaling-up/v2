@@ -10,6 +10,7 @@ Internet of Things and Edge Computing—How has it changed in the past few years
 * Raspberry Pi Foundation: https://www.raspberrypi.org/
 * Amazon Lambda: https://aws.amazon.com/lambda/ 
 * Nvidia IoT git repo: https://github.com/NVIDIA-AI-IOT
+* Amazon Alexa: https://developer.amazon.com/en-US/alexa
 
 
 
