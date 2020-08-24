@@ -4,12 +4,12 @@ Internet of Things and Edge Computing—How has it changed in the past few years
 
 ## Reading:
 
-* Fog computing and edge computing: https://www.cisco.com/c/en/us/solutions/enterprise-networks/edge-computing.html
 * Amazon IoT portal: https://aws.amazon.com/iot/
 * AWS Greengrass: https://aws.amazon.com/greengrass/
 * Google Android Things: https://developer.android.com/things/
 * Raspberry Pi Foundation: https://www.raspberrypi.org/
 * Amazon Lambda: https://aws.amazon.com/lambda/ 
+* Nvidia IoT git repo: https://github.com/NVIDIA-AI-IOT
 
 
 
