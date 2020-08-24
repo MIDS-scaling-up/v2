@@ -16,9 +16,9 @@ Introduction to Cloud Computing and Cloud AI—Defining the cloud. How clouds ar
 * OpenStack: https://docs.openstack.org/security-guide/introduction/introduction-to-openstack.html
 
 ### Getting started with SoftLayer/IBM Cloud:
-* https://console.bluemix.net/docs/vsi/vsi_public.html
-* SoftLayer API: https://softlayer.github.io/article/rest/
-* SoftLayer CLI: https://softlayer.github.io/article/understanding-ordering/
+* https://aws.amazon.com/getting-started/
+* AWS API: https://docs.aws.amazon.com/
+* AWS CLI: https://aws.amazon.com/cli/
 
 
 ### Vision as a Service demo:
