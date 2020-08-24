@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+## Welcome to W251 
 
-You can use the [editor on GitHub](https://github.com/MIDS-scaling-up/v2/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This the Deep Learning and Big Data at the Edge and in the Cloud resource github page. Content here is aimed to support what is available at [main repo] (https://github.com/MIDS-scaling-up/v2)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Final Project hall of fame
 
-### Content placeholder
+#### A voice activated automated image captioning system on VizWiz-Captions
+https://github.com/shwethacn/W251-Final-Project 
 
-Content under development
+#### Toward Automated Celestial Navigation with Deep Learning
+https://github.com/travisrmetz/w251-project
 
-```markdown
-Syntax highlighted code block
+#### DE⫶TR: End-to-End Object Detection with Transformers 
+https://github.com/sirakzg/detr
 
-# Header 1
-## Header 2
-### Header 3
+#### Backyard Bird Classification
+https://github.com/wadeholmes-mids/w251_finalproject
 
-- Bulleted
-- List
+#### Text to Sign Language Using a DC-LSTM-CGAN
+https://github.com/RLashofRegas/speach-to-sign-language
 
-1. Numbered
-2. List
+#### Masks project
+https://github.com/azamora2/W251/tree/master/FinalProject
 
-**Bold** and _Italic_ and `Code` text
+#### Virtual TA
+https://github.com/sunh0003/W251_FinalProject 
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/MIDS-scaling-up/v2/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+#### Celestial Navigation
+https://github.com/travisrmetz/w251-project
+ 
+#### Watch the whisper:
+https://github.com/kasri-mids/w251-Final-Project
+ 
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Please contact us back at esarias@berkeley.edu
