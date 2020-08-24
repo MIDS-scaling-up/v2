@@ -3,7 +3,7 @@
 ## Please note that this homework is graded
 
 ## Instructions
-The objective of this homework is to build a lightweight IoT application pipeline with components running both on the edge (your Nvidia Jetson TX2) and the cloud (a VM in Softlayer).  We also request that you pay attention to the architecture: write the application in a modular way, and such that it could be run on pretty much any low power edge device or hub (e.g. Raspberry Pi or Raspberry Pi Zero) and a cheap Cloud VM - or, indeed, another low power edge device connected to some kind of storage instead of a Cloud VM. 
+The objective of this homework is to build a lightweight IoT application pipeline with components running both on the edge (your Nvidia Jetson NX) and the cloud (a VM in AWS).  We also request that you pay attention to the architecture: write the application in a modular way, and such that it could be run on pretty much any low power edge device or hub (e.g. Raspberry Pi or Raspberry Pi Zero) and any cheap Cloud VM - or, indeed, another low power edge device connected to some kind of storage instead of a Cloud VM. 
 
 
 The overall goal of the assignment is to be able to capture faces in a video stream coming from the edge in real time, transmit them to the cloud in real time, and - for now, just save these faces in the cloud for long term storage.
@@ -18,7 +18,7 @@ For the edge face detector component, we ask that you use OpenCV and write an ap
 Because the context of this class is IoT, we request that you use MQTT as the messaging fabric.  So, you will be using an MQTT client to send and receive messages, and MQTT broker as the server component of this architecture.
 
 
-We also ask that you treat the TX2 as an IoT Hub.  Therefore, we ask that you install a local MQTT broker in the TX2, and that your face detector sends its messages to this broker first.  Then, we ask that you write another component that receives these messages from the local broker, and sends them to the cloud [MQTT broker].
+We also ask that you treat the NX as an IoT Hub.  Therefore, we ask that you install a local MQTT broker in the NX, and that your face detector sends its messages to this broker first.  Then, we ask that you write another component that receives these messages from the local broker, and sends them to the cloud [MQTT broker].
 
 In the cloud, you need to provision a lightweight virtual machine (1-2 CPUs and 2-4 G of RAM should suffice) and run an MQTT broker. As discussed above, the faces will need to be sent here as binary messages.  Another component will need to be created here to receive these binary files and save them to SoftLayer's Object storage (note that the Swift-compatible object storage is being deprecated in favor of s3-compatible object storage). 
 
@@ -26,7 +26,7 @@ In the cloud, you need to provision a lightweight virtual machine (1-2 CPUs and 
 Please don't be intimidated by this homework as it is mostly a learning experience on the building blocks. The concept of the Internet of Things deals with a large number of devices that communicate largely through messaging. Here, we have just one device and one sensor- the camera.  But, we could add a bunch more sensors like microphones, GPS, proximity sensors, lidars...
 
 ## Alpine Linux 101
-[Alpine Linux](https://alpinelinux.org/) is a very lightweight Linux distro for IoT.  Its [base docker containers](https://hub.docker.com/_/alpine) are tiny, often measured in single digit megabytes, as opposed to the often bloated Debian-based distros. A TX2 is a powerful device, but there will be times when network connectivity matters, and Alpine will come very handy.
+[Alpine Linux](https://alpinelinux.org/) is a very lightweight Linux distro for IoT.  Its [base docker containers](https://hub.docker.com/_/alpine) are tiny, often measured in single digit megabytes, as opposed to the often bloated Debian-based distros. A NX is a powerful device, but there will be times when network connectivity matters, and Alpine will come very handy.
 
 To see whether the package you need is available on alpine's package manager, apk, check [this link](https://pkgs.alpinelinux.org/packages)
 
@@ -143,7 +143,7 @@ while(True):
     # face detection and other logic goes here
 ``` 
 ## Linking containers
-As you can see from the architecture diagram below, you will need to make multiple docker containers inside your TX2 and you need them to work together.  Please review the [docker networking tutorial](https://docs.docker.com/network/network-tutorial-standalone/#use-user-defined-bridge-networks).  The idea is that you will need to create a local bridge network and then the containers you will create will join it, e.g.
+As you can see from the architecture diagram below, you will need to make multiple docker containers inside your NX and you need them to work together.  Please review the [docker networking tutorial](https://docs.docker.com/network/network-tutorial-standalone/#use-user-defined-bridge-networks).  The idea is that you will need to create a local bridge network and then the containers you will create will join it, e.g.
 ```
 # Create a bridge:
 docker network create --driver bridge hw03
@@ -172,13 +172,13 @@ mosquitto_sub -h mosquitto -t <some topic>
 ## Overall architecture / flow
 Your overall application flow / architecture should be something like ![this](hw03.png).  
 
-On the TX2, you should have a mosquitto broker container, based on Alpine linux.  Also, a container for the face detector that connects to the USB webcam, detects faces, and sends them to your internal Mosquitto broker. You should have another container that fetches face files from the internal broker and sends them to the cloud mosquitto broker.  This container should be based on Alpine linux.  In the cloud, you should have a container with a mosquitto broker running inside.  You should also have a container that connects to the cloud mosquitto broker, gets face messages, and puts them into the object storage.
+On the NX, you should have a mosquitto broker container, based on Alpine linux.  Also, a container for the face detector that connects to the USB webcam, detects faces, and sends them to your internal Mosquitto broker. You should have another container that fetches face files from the internal broker and sends them to the cloud mosquitto broker.  This container should be based on Alpine linux.  In the cloud, you should have a container with a mosquitto broker running inside.  You should also have a container that connects to the cloud mosquitto broker, gets face messages, and puts them into the object storage.
 
 ## Submission
 Please point us to the repository of your code and provide an http link to the location of your faces in the object storage.  Also, explan the naming of the MQTT topics and the QoS that you used.
 
 ## Some hints
-1. See Week 1's lab (https://github.com/MIDS-scaling-up/v2/blob/master/week01/lab/Dockerfile.yolo) for how to install openCV.
+1. See Week 1's lab (https://github.com/MIDS-scaling-up/v2/blob/master/week01/lab/Dockerfile.yolov5) for how to install openCV.
 2. To make storing in Object Store easier, look at https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-configure-bucket.html
 
 
