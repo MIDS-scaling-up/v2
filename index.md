@@ -4,8 +4,7 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 
 ### Final Project hall of fame
 
-#### A voice activated automated image captioning system on VizWiz-Captions
-(https://github.com/shwethacn/W251-Final-Project)
+#### [A voice activated automated image captioning system on VizWiz-Captions](https://github.com/shwethacn/W251-Final-Project)
 
 #### Toward Automated Celestial Navigation with Deep Learning
 (https://github.com/travisrmetz/w251-project)
