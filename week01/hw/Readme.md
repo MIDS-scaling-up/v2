@@ -340,6 +340,7 @@ Let's start this container:
 ```
 # allow remote X connections
 xhost +
+# assuming that r32.4.3 is the latest version
 docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.4.3
 # this should complete successfully. Run this command to verify that you are inside the Docker container
 
@@ -350,9 +351,9 @@ ls
 # Now exit from the container:
 exit
 ```
-More on the use of this beta container is [here](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson)
+More on the use of this container is [here](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson)
 
-Note that our own Docker images for the Jetsons are still available in the [docker hub](https://cloud.docker.com/u/w251/), e.g.  ```w251/cuda:tx2-4.3_b132``` and ```w251/cuda:dev-tx2-4.3_b132```. As the officially supported containers mature, we expect to sunset these; but for now, it looks like we'll be needing them. We keep Dockerfiles for all of our containers [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup) for your reference.
+Note that our own old Docker images for the Jetsons are still available in the [docker hub](https://cloud.docker.com/u/w251/), e.g.  ```w251/cuda:tx2-4.3_b132``` and ```w251/cuda:dev-tx2-4.3_b132```. As the officially supported containers mature, we expect to sunset these; but for now, we'll keep them around just in case. We keep Dockerfiles for all of our containers [here](https://github.com/MIDS-scaling-up/v2/tree/master/backup) for your reference.
 
 We'll cover Docker during the in-class lab in more detail.
 
