@@ -1,11 +1,11 @@
 ## Welcome to W251 
 
-This the Deep Learning and Big Data at the Edge and in the Cloud resource github page. Content here is aimed to support what is available at [main repo](https://github.com/MIDS-scaling-up/v2)
+This the Deep Learning and Big Data at the Edge and in the Cloud resource github page. Content here is aimed to support what is available at [main repo](/https://github.com/MIDS-scaling-up/v2)
 
 ### Final Project hall of fame
 
 #### A voice activated automated image captioning system on VizWiz-Captions
-[repo](https://github.com/shwethacn/W251-Final-Project)
+[](https://github.com/shwethacn/W251-Final-Project)
 
 #### Toward Automated Celestial Navigation with Deep Learning
 [repo](https://github.com/travisrmetz/w251-project)
