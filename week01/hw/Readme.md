@@ -340,7 +340,7 @@ Let's start this container:
 ```
 # allow remote X connections
 xhost +
-# assuming that r32.4.3 is the latest version
+# assuming that r32.4.3 is the latest version; but please check the NGC
 docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.4.3
 # this should complete successfully. Run this command to verify that you are inside the Docker container
 
