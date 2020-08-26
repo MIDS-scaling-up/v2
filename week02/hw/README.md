@@ -185,3 +185,7 @@ aws ce get-cost-and-usage \
     --metrics "BlendedCost" "UnblendedCost"   
 ```
 
+#### Turn in
+Please send a message on the class portal homework submission page indicating that you were able to set up the above instances, and have them terminated.   
+
+
