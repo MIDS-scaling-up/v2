@@ -120,7 +120,7 @@ On your Xavier, open a terminal (or ssh to your Xavier from another computer).
 ```
 mkdir ~/.config/autostart
 ```
-* Now, edit ```~/.config/autostart/vino-server.desktop``` and insert the following:
+* Now, create/open the file ```~/.config/autostart/vino-server.desktop``` and insert the following:
 
 ```
 [Desktop Entry]
@@ -130,7 +130,7 @@ Exec=/usr/lib/vino/vino-server
 NoDisplay=true
 ```
 
-* Disable security:
+* Disable security by running the following from the command line:
 
 ```
 gsettings set org.gnome.Vino prompt-enabled false
@@ -142,12 +142,25 @@ gsettings set org.gnome.Vino require-encryption false
 ```
 # Enabling automatic login
   AutomaticLoginEnable = true
-  AutomaticLogin = nvidia # Ensure that you replace 'nvidia' with your ID
+  AutomaticLogin = nvidia # Ensure that you replace 'nvidia' with the ID you use to login to your Xavier
 ```
 
 
 * Reboot your Xavier
 * Then, launch your remote sharing client, choose VNC as the protocol, type in the IP address of your jetson and port 5900.
+
+**NOTE:**
+To find your IP address, use the following command:
+
+```
+nvidia@xavier:~$ ip addr show | grep inet
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host 
+    inet 192.168.11.103/24 brd 192.168.11.255 scope global dynamic noprefixroute eth0
+    inet6 fe80::4ab0:2dff:fe05:a700/64 scope link noprefixroute 
+nvidia@xavier:~$ 
+```
+The IP address in this example is on the third line: `192.168.11.103`.
 
 Remmina: 
 
