@@ -146,11 +146,11 @@ With Spot Instances, you pay the Spot price that's in effect for the time period
 On demand pricing for all instances can be seen at https://aws.amazon.com/ec2/pricing/on-demand/     
 At time of writing a t2.large instance costs $0.1008 per Hour in Europe(Ireland) or eu-west-1.    
 
-We can check the equivalent spot price for this instance. Please change this region to where your local region - this will show in `aws configure get region` if you have it set. 
+We can check the equivalent spot price for this instance. Please change the region to your local region - this will shown in `aws configure get region` if you have it set. 
 ```
 aws --region=eu-west-1 ec2 describe-spot-price-history --instance-types t2.large --start-time=$(date +%s) --product-descriptions="Linux/UNIX" --query 'SpotPriceHistory[*].{az:AvailabilityZone, price:SpotPrice}'
 ```
-You should see it is cheaper than the on demand rate, bwlow is the examples of one price at time of writing,
+You should see it is cheaper than the on demand rate, below is an example of one price at time of writing, so over 3 times cheaper!!
 ```
     {
         "az": "eu-west-1b",
@@ -158,7 +158,7 @@ You should see it is cheaper than the on demand rate, bwlow is the examples of o
     },
 ```
 
-To provision an instance with spot pricing, create a file in you current directory names `spot-options.json` and place the below inside it, where you configure max price a little above the spot pricing. Spot pricing fluctuates, so leave some buffer. 
+To provision an instance with spot pricing, create a file in your current directory named `spot-options.json` and place the below inside it, where you configure max price a little above the spot pricing. Spot pricing fluctuates, so leave some buffer. 
 ```
 {
   "MarketType": "spot",
@@ -177,7 +177,7 @@ aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro 
 **Remember to terminate the instance at the end.**
 
 #### Monitor your billing
-Please keep an eye on your costing with the below command. Students have run over in the past.    
+Please keep an eye on your costing through the semester with the below command. Students have run over in the past.    
 ```
 aws ce get-cost-and-usage \
     --time-period Start=2020-07-01,End=2020-07-31 \
