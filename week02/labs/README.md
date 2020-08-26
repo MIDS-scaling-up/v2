@@ -25,6 +25,8 @@ aws ec2 create-security-group --group-name MIDS-grp01 --description "Lab 1 Secur
 aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --protocol tcp --port 22 --cidr 0.0.0.0/0
 ```
 #### Launch an EC2 instance using an Ubuntu AMI image
+
+If you would like to launch a cheaper spot instance, or check the pricing of the instance, refer to the last section in hw02.  
 ```
 aws ec2 run-instances --image-id ami-0bcc094591f354be2  --instance-type t2.large --key-name esarias
 aws ec2 describe-instances
