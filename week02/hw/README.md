@@ -176,3 +176,12 @@ aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro 
 
 **Remember to terminate the instance at the end.**
 
+#### Monitor your billing
+Please keep an eye on your costing with the below command. Students have run over in the past.    
+```
+aws ce get-cost-and-usage \
+    --time-period Start=2020-07-01,End=2020-07-31 \
+    --granularity MONTHLY  \
+    --metrics "BlendedCost" "UnblendedCost"   
+```
+
