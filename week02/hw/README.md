@@ -137,6 +137,8 @@ aws ec2  terminate-instances --instance-ids i-0d0fd239ccae129e4
 
 
 By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.
+
+### Pricing
     
 #### Spot pricing
 
@@ -185,7 +187,7 @@ aws ce get-cost-and-usage \
     --metrics "BlendedCost" "UnblendedCost"   
 ```
 
-#### Turn in
+### Turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up the above instances, and have them terminated.   
 
 
