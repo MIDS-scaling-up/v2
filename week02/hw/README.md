@@ -137,3 +137,42 @@ aws ec2  terminate-instances --instance-ids i-0d0fd239ccae129e4
 
 
 By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.
+    
+#### Spot pricing
+
+As we have limited credit for aws instances, it makes sense to use spot instances which are cheaper than on demand instances.  
+With Spot Instances, you pay the Spot price that's in effect for the time period your instances are running. Spot Instance prices are set by Amazon EC2 and adjust gradually based on long-term trends in supply and demand for Spot Instance capacity.   
+   
+On demand pricing for all instances can be seen at https://aws.amazon.com/ec2/pricing/on-demand/     
+At time of writing a t2.large instance costs $0.1008 per Hour in Europe(Ireland) or eu-west-1.    
+
+We can check the equivalent spot price for this instance. Please change this region to where your local region - this will show in `aws configure get region` if you have it set. 
+```
+aws --region=eu-west-1 ec2 describe-spot-price-history --instance-types t2.large --start-time=$(date +%s) --product-descriptions="Linux/UNIX" --query 'SpotPriceHistory[*].{az:AvailabilityZone, price:SpotPrice}'
+```
+You should see it is cheaper than the on demand rate, bwlow is the examples of one price at time of writing,
+```
+    {
+        "az": "eu-west-1b",
+        "price": "0.030200"
+    },
+```
+
+To provision an instance with spot pricing, create a file in you current directory names `spot-options.json` and place the below inside it, where you configure max price a little above the spot pricing. Spot pricing fluctuates, so leave some buffer. 
+```
+{
+  "MarketType": "spot",
+  "SpotOptions": {
+    "MaxPrice": "0.05",
+    "SpotInstanceType": "one-time"
+  }
+}
+```
+
+Now, start the instance with, 
+```
+aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids sg-xxxxxxxx --associate-public-ip-address --instance-market-options file://spot-options.json --key-name "your_keypair.pem"
+```
+
+**Remember to terminate the instance at the end.**
+
