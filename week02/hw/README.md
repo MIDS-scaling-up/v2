@@ -126,4 +126,14 @@ ssh <ubuntu@ec2-yy-yy-yy-yyy.compute-1.amazonaws.com>
 ```
 
 #### Delete Private instance but keep rest of the resources for other homeworks and labs
+   
+```
+aws ec2 describe-instances | grep InstanceId
+```
+A list of ids will appear. You can terminate the ID with,
+```
+aws ec2  terminate-instances --instance-ids i-0d0fd239ccae129e4
+```
 
+
+By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.
