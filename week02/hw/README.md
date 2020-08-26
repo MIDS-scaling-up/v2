@@ -102,6 +102,14 @@ aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro 
 aws ec2 describe-instances
 (grep for the instance name, similar to: ec2-xx-xx-xx-xxx.compute-1.amazonaws.com)
 ```
+    
+If you get a message that the image is not available - `The image id '[ami-0bcc094591f354be2]' does not exist` - it could be that the image is not available in your conifgured region. 
+
+You can pick an image in your region, by running the below, 
+```
+aws ec2 describe-images  --filters  Name=name,Values='ubuntu/images/hvm-ssd/ubuntu-bionic-18.04*' Name=architecture,Values=x86_64   | head -100
+```
+
 #### Launch Private EC2 instance into Private Security Group using Ubuntu
 ```
 aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids sg-xxxxxxxxxx --key-name "your_keypair.pem"
