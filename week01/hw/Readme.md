@@ -273,8 +273,11 @@ To setup the SSD:
 # Wipe the SSD
 sudo wipefs --all --force /dev/nvme0n1
 
-# Format and partition the SSD
+# Partition the SSD 
 sudo parted --script /dev/nvme0n1 mklabel gpt mkpart primary ext4 0% 100%
+
+# Format the newly created partition
+sudo mkfs.ext4 /dev/nvme0n1p1
 
 # We will use the jetsonhacks scripts to move data and enable the SSD as
 # the default disk
