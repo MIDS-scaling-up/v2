@@ -162,17 +162,18 @@ nvidia@xavier:~$
 ```
 The IP address in this example is on the third line: `192.168.11.103`.
 
-Remmina: 
+### Now run a VNC viewer on your computer (not the Xavier):
 
-![remmina](remmina2.png)
-
-VNC Viewer: 
+On any platform, you can download a VNC Viewer (like Real VNC) and use it: 
 
 ![vnc2](vnc2.png)
 and
 
 ![vnc1](vnc1.png)
 
+On Linux, you can use Remmina: 
+
+![remmina](remmina2.png)
 
 * The default resolution is very small. You can change it with this command (required after every reboot):
 
