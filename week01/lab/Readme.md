@@ -23,7 +23,7 @@ docker ps -a
 There should be a container with "hello-world" listed under the "IMAGE" column, based off the hello-world image we just saw. Containers also have IDs as well as names (different from an image's tag) that are randomly generated if not specified.
 
 ### Creating a Docker Image with a Dockerfile
-This Dockerfile downloads YOLO as well as tiny-YOLO, which is a condensed version of YOLO that runs faster but is less accurate. cd into the directory with this Dockerfile, download the Makefile on Github in the week1/lab directory, and place it in here. Build the image:
+This Dockerfile creates a container that will run YOLO-v5. It will download the model based on the `MODEL` environment variable you will create (further down in this lab). Build the image:
 
 ```
 docker build -t yolov5 -f Dockerfile.yolov5 .
@@ -52,6 +52,9 @@ CAM=0
 docker run --privileged --runtime nvidia --rm -v /data:/data -e DISPLAY -v /tmp:/tmp -ti yolov5 python3 detect.py --source $CAM --weights $MODEL --conf 0.4
 ```
 What is the FPS now?
+
+Was one of the models more accurate?
+
 These containers automatically delete themselves after you exit due to the "--rm" flag. Containers tend to pile up if you don't manage them well. If you want to look inside the running container, omit the command that automatically opens YOLO upon running the container and add the flag "-ti" to enter interactive mode:
 
 ```
