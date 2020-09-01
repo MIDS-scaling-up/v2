@@ -14,7 +14,7 @@ This assumes that you have the aws cli installed and have access to your account
 Let us spin up a clean VM.  This will take a few minutes to come up
 #### Create an AWS ssh key
 ```
-aws ec2 create-key-pair --key-name MIDSkeypair --query 'UCBerkeley' --output text > MIDSkeypair.pem
+aws ec2 create-key-pair --key-name MIDSkeypair  --output text > MIDSkeypair.pem
 chmod 400 MIDSkeypair.pem
 ```
 #### Create a default VPC, configure a security group and create an inbound rule to allow SSH access into the virtual machine
