@@ -162,7 +162,7 @@ aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --prot
 aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --protocol tcp --port 8800 --cidr 0.0.0.0/0  <used later>
 ```
 
-Now, let us edit index.html in our current directory and then point our browser to http://ip-of-my-vm:8003  (you could get it from ifconfig)
+Now, let us edit index.html in our current directory and then point our browser to http://ip-of-my-vm:8003  (you could get it from AWS console in the public IP section of the instances console)
 You should be able to see that our http server is running!
 
 #### Using Dockerfiles
