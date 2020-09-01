@@ -28,7 +28,7 @@ aws ec2 authorize-security-group-ingress --group-id  sg-0d9ac24e91a90bb9e --prot
 
 If you would like to launch a cheaper spot instance, or check the pricing of the instance, refer to the last section in [hw02](https://github.com/MIDS-scaling-up/v2/blob/master/week02/hw/README.md).  
 ```
-aws ec2 run-instances --image-id ami-0bcc094591f354be2  --instance-type t2.large --key-name MIDSkeypair
+aws ec2 run-instances --image-id ami-0bcc094591f354be2  --instance-type t2.large --key-name MIDSkeypair (notice that depending on your region some image AMI id-s are different and might not work)
 aws ec2 describe-instances
 grep for the instance name, similar to: ec2-54-236-50-196.compute-1.amazonaws.com  
 ```
