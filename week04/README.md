@@ -4,8 +4,8 @@ In this lecture, we will talk about the basics of DL. The definition: how is it 
 
 ## Reading:
 
-* [Deep learning - Y LeCun, Y Bengio, G Hinton, 2015](https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf)
-* [Visualizing and understanding convolutional networks MD Zeiler, R Fergus, 2014](https://link.springer.com/chapter/10.1007/978-3-319-10590-1_53)
+* Deep learning - Y LeCun, Y Bengio, G Hinton, 2015 [link](https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf)
+* Visualizing and understanding convolutional networks MD Zeiler, R Fergus, 2014 [link](https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf)
 * ImageNet: http://image-net.org/about-overview
 * Microsoft Coco: http://cocodataset.org/#home
 * Pascal VOC: http://host.robots.ox.ac.uk/pascal/VOC/index.html
