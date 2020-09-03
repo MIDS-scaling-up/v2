@@ -95,13 +95,15 @@ aws ec2 authorize-security-group-ingress --group-id sg-xxxxxxxxxx --protocol tcp
 ```
 
 #### Launch Bastion EC2 Instance(JumpBox) into the public Security Group
-Use Ubuntu AMI on t2.micro instance(free tier) in the default VPC
+Use Ubuntu AMI on t2.micro instance(free tier) in the default VPC.  
+
 ```
 aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids sg-xxxxxxxxx --associate-public-ip-address --key-name "your_keypair.pem"
 
 aws ec2 describe-instances
 (grep for the instance name, similar to: ec2-xx-xx-xx-xxx.compute-1.amazonaws.com)
 ```
+If you are having issues with permission file not seen, remove the inverted commas and the `.pem` and ensure the permissions file is in the directory you are running from and you have run the `chmod` step above. For example, my permissions file was called `darraghaws.pem`, and on the above command I entered `...  --key-name darragh`    
     
 If you get a message that the image is not available - `The image id '[ami-0bcc094591f354be2]' does not exist` - it could be that the image is not available in your conifgured region. 
 
