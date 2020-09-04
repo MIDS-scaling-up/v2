@@ -2,6 +2,10 @@
 
 Docker is great for projects since you can place and run everything you need in a container through a easy, reproducible process. We'll use Docker to build and run our very own container with Darknet and YOLO.
 
+This lab is run on the Xavier device using the desktop (via VNC or display).
+
+Ensure that you cloned this github repo and are in the directory for this lab (v2/week01/lab/).
+
 ## Intro to YOLO
 [YOLO v5](https://github.com/ultralytics/YOLOv5) was created by Ultralytics, a U.S.-based particle physics and AI startup with over 6 years of expertise supporting government, academic and business clients. It is the latest version of the You Only Look Once framework.
  
