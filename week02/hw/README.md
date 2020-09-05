@@ -75,15 +75,15 @@ ssh-add -L
 #### Create Default VPC
 ```
 aws ec2 create-default-vpc
-aws ec2 describe-vpcs 
-(find the vpc-id of the one you just created)
+aws ec2 describe-vpcs | grep VpcId
+# find the vpc-id of the one you just created
 ```
 **NOTE: If you receive an UnauthorizedOperation error when creating the default VPC, ensure that you added the AdministratorAccess role to the Group you created above**
 
 #### Create Public and Private security groups
 ```
+# Use the VpcId from the previous step
 aws ec2 create-security-group --group-name PublicSG --description "Bastion Host Security group" --vpc-id vpc-XXXXXXXX
-(use the default vpc-id from above)
 
 # Extract GroupID of the Public security group created in the previous step
 aws ec2 describe-security-groups | grep -A4 PublicSG | grep GroupId 
@@ -91,8 +91,8 @@ aws ec2 describe-security-groups | grep -A4 PublicSG | grep GroupId
 # If you do not see a GroupID, try this:
 aws ec2 describe-security-groups | grep -A20 PublicSG | grep GroupId
 
+# Use the VpcId from the previous step
 aws ec2 create-security-group --group-name PrivateSG --description "Private instances Security group" --vpc-id vpc-XXXXXXXX
-(use the default vpc-id from above)
 
 # Extract GroupID of the Private security group created in the previous step
 aws ec2 describe-security-groups | grep -A4 PrivateSG | grep GroupId
@@ -102,6 +102,7 @@ aws ec2 describe-security-groups | grep -A20 PrivateSG | grep GroupId
 ```
 
 #### Add SSH Ingress rule to Security groups
+Using the Public and Private Security Group IDs from the previous step, authorize ssh ingress to the Security Groups:
 ```
 aws ec2 authorize-security-group-ingress --group-id YOUR_PUBLIC_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
 
