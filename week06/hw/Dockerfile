@@ -1,4 +1,10 @@
 # docker build -t hw6 -f Dockerfile . 
+# docker images
+# docker ps -a
+# docker system prune
+# 
+# docker run -p 8888:8888 --rm -v /data:/data --name jupyter hw6
+
 FROM nvcr.io/nvidia/l4t-ml:r32.4.3-py3
 
 
@@ -14,21 +20,26 @@ RUN pip install requests
 RUN pip install filelock
 RUN pip install packaging
 RUN pip install sacremoses
-RUN git clone https://github.com/huggingface/transformers.git  && \
-    cd transformers && pip3 install . && \
-    cd .. && rm -rf transformers
-#  RUN apt-get update; apt-get install curl
-#  RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y
-#  RUN pip install tokenizers filelock requests tqdm regex 
-#  sacremoses  packaging
-#  RUN git clone https://github.com/huggingface/transformers.git  && \
-    cd transformers && pip3 install . --no-dependencies && cd .. && rm -rf transformers
-
+RUN apt-get update; apt-get install -y curl
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y
+RUN echo rustc --version
+# RUN pip install tokenizers
+RUN git clone https://github.com/huggingface/transformers.git  && cd transformers && pip3 install . --no-dependencies  && cd .. && rm -rf transformers
+#  RUN pip install tokenizers sentencepiece
 
 WORKDIR /root
 
-RUN git clone https://github.com/MIDS-scaling-up/v2
+RUN git clone -b wk06hw https://github.com/MIDS-scaling-up/v2
 WORKDIR /root/v2/week06/hw/data
+
+#Configure container to support easier access
+ARG TOKEN=12345678
+RUN mkdir -p $HOME/.jupyter/
+RUN if [ $TOKEN!=12345678 ]; then echo "c.NotebookApp.token='$TOKEN'" >> $HOME/.jupyter/jupyter_notebook_config.py; fi
 
 EXPOSE 8888
 CMD jupyter notebook  --no-browser --ip=0.0.0.0 --allow-root
+
+
+
+
