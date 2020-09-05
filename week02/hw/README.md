@@ -35,16 +35,21 @@ to enable CLI and API access.
 
 -   Goto Services -- Select IAM
 
--   Click on Add User. Follow the prompts for user name etc.,
+-   Click on Add User
 
-    -   Chose to add Groups (select AdminAccess role) and fill out
-        other details incl. adding new user to the new group you just
-        created
-
+    -   Set the User Name
+    -   Select both Access Types (`Programmatic` and `AWS Management Console`)
+    -   Accept the defaults for the password settings
+    -   Click the "Next" button
+    -   Create a Group
+    -   Give your group a name
+    -   **select `AdministratorAccess` role**)
+    -   Ensure that your new group is selected, then click the "Next" button
+    -   Do not add any Tags
+    -   Click the "Create User" button
     -   Select to have User Access and Secret Key created and download
         the details to xls
-
-    -   On your workstation(Mac or windows), download, install and configure
+    -   On your workstation (Mac or windows), download, install and configure
         AWS CLI-v2 using the new User credentials you just created.
         Follow the instructions from the link below.
 
@@ -52,13 +57,14 @@ to enable CLI and API access.
 
 -  Go to Services-EC2-Keypairs
 
--   Create new keypair and download the .pem file
+-  Create new keypair and download the .pem file
 ```
-Chmod 400 *.pem file 
-(Set read only to owner)
+# Once downloaded, adjust the permissions of the pem file on your workstation
+# Run this command to remove permissions from other users:
+chmod 400 *.pem file 
 ```
 
--   Add the downloaded key pair to SSH identities on your workstation
+-   Add the downloaded key pair to SSH identities on your workstation.
 ```
 ssh-add -K "your_keypair.pem" 
 ssh-add -L
@@ -72,59 +78,71 @@ aws ec2 create-default-vpc
 aws ec2 describe-vpcs 
 (find the vpc-id of the one you just created)
 ```
+**NOTE: If you receive an UnauthorizedOperation error when creating the default VPC, ensure that you added the AdministratorAccess role to the Group you created above**
+
 #### Create Public and Private security groups
 ```
 aws ec2 create-security-group --group-name PublicSG --description "Bastion Host Security group" --vpc-id vpc-XXXXXXXX
 (use the default vpc-id from above)
 
-aws ec2 describe-security-groups 
-(extract Public security group id)
+# Extract GroupID of the Public security group created in the previous step
+aws ec2 describe-security-groups | grep -A4 PublicSG | grep GroupId 
+
+# If you do not see a GroupID, try this:
+aws ec2 describe-security-groups | grep -A20 PublicSG | grep GroupId
 
 aws ec2 create-security-group --group-name PrivateSG --description "Private instances Security group" --vpc-id vpc-XXXXXXXX
 (use the default vpc-id from above)
 
-aws ec2 describe-security-groups 
-(extract PrivateSG id)
+# Extract GroupID of the Private security group created in the previous step
+aws ec2 describe-security-groups | grep -A4 PrivateSG | grep GroupId
+
+# If you do not see a GroupID, try this:
+aws ec2 describe-security-groups | grep -A20 PrivateSG | grep GroupId
 ```
 
 #### Add SSH Ingress rule to Security groups
 ```
-aws ec2 authorize-security-group-ingress --group-id sg-xxxxxxxxxx --protocol tcp --port 22 --cidr 0.0.0.0/0
-aws ec2 authorize-security-group-ingress --group-id sg-xxxxxxxxxx --protocol tcp --port 22 --cidr 0.0.0.0/0
-(You can also update with only Bastion Host CIDR if needed)
+aws ec2 authorize-security-group-ingress --group-id YOUR_PUBLIC_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+aws ec2 authorize-security-group-ingress --group-id YOUR_PRIVATE_GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
 ```
 
 #### Launch Bastion EC2 Instance(JumpBox) into the public Security Group
 Use Ubuntu AMI on t2.micro instance(free tier) in the default VPC.  
+Replace the string `YOUR_KEY_NAME` with the name of your key pair created above. You can find it using the command `aws ec2 describe-key-pairs | grep KeyName`.
 
 ```
-aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids sg-xxxxxxxxx --associate-public-ip-address --key-name "your_keypair.pem"
+# Create the instance
+aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids YOUR_PUBLIC_GROUP_ID --associate-public-ip-address --key-name YOUR_KEY_NAME
 
-aws ec2 describe-instances
-(grep for the instance name, similar to: ec2-xx-xx-xx-xxx.compute-1.amazonaws.com)
+# Retrieve the Public DNS name
+aws ec2 describe-instances | grep PublicDnsName
 ```
-If you are having issues with permission file not seen, remove the inverted commas and the `.pem` and ensure the permissions file is in the directory you are running from and you have run the `chmod` step above. For example, my permissions file was called `darraghaws.pem`, and on the above command I entered `...  --key-name darragh`    
     
 If you get a message that the image is not available - `The image id '[ami-0bcc094591f354be2]' does not exist` - it could be that the image is not available in your conifgured region. 
 
 You can pick an image in your region, by running the below, 
+
 ```
 aws ec2 describe-images  --filters  Name=name,Values='ubuntu/images/hvm-ssd/ubuntu-bionic-18.04*' Name=architecture,Values=x86_64   | head -100
 ```
 
 #### Launch Private EC2 instance into Private Security Group using Ubuntu
 ```
-aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids sg-xxxxxxxxxx --key-name "your_keypair.pem"
-aws ec2 describe-instances
-(grep for the instance name, similar to: ec2-yy-yy-yy-yyy.compute-1.amazonaws.com)
+aws ec2 run-instances --image-id ami-0bcc094591f354be2 --instance-type t2.micro --security-group-ids YOUR_PRIVATE_GROUP_ID --key-name YOUR_KEY_NAME
+
+# Retrieve the PublicDnsName of the new instance
+aws ec2 describe-instances | grep PublicDnsName
+
 ```
 #### SSH into Baston Host first and then to the Private instance
 ```
-ssh -A <ubuntu@ec2-xx-xx-xx-xxx.compute-1.amazonaws.com> 
-(from your work station)
+# From your workstation
+ssh -A ubuntu@YOUR_PUBLIC_EC2_NAME.compute-1.amazonaws.com
 
-ssh <ubuntu@ec2-yy-yy-yy-yyy.compute-1.amazonaws.com> 
-(from Bastion host)
+# Then ssh from the bastion host to the private instance
+ssh ubuntu@YOUR_PRIVATE_EC2_NAME.compute-1.amazonaws.com
 ```
 
 #### Delete Private instance but keep rest of the resources for other homeworks and labs
