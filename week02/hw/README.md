@@ -43,7 +43,7 @@ to enable CLI and API access.
     -   Click the "Next" button
     -   Create a Group
     -   Give your group a name
-    -   **select `AdministratorAccess` role**
+    -   **select `AdministratorAccess` role**)
     -   Ensure that your new group is selected, then click the "Next" button
     -   Do not add any Tags
     -   Click the "Create User" button
