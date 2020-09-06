@@ -41,19 +41,19 @@ aws ec2 authorize-security-group-ingress --group-id  sg-09ceb02f960da25fa  --pro
 ```
 
 We will not use docker here, instead we will use the Deep Learning AMI provided by Amazon. During the following steps you will need to accept the terms and conditions of the Deep Learning AMI you use, you will be provided a link where you can accept this. 
-First let’s find a deep learning AMI in your region. You can replace the region I chose with your own. Please make sure your default region has p3.2xlarge instances available, if not, you may need to change regions.
+First let’s find a deep learning AMI in your region. You can replace the region I chose with your own. Please make sure your default region has `p3.2xlarge` instances available, if not, you may need to change regions.    
 Use this to pick your deep learning AMI id. 
 ```
 aws ec2 describe-images  --filters  Name=name,Values='Deep*Learning*Ubuntu*18.04*32*'
 ```
 For example mine is : `"ImageId": "ami-0f5ebd171c26abc61"` 
 
-Now lets look at the spot pricing on the p3.2xlarge. Spot pricing provide a significant discount over on demand pricing. However as the price fluctuates, we need to set a limit which we are willing to pay. I would recommend approximately 50% over the spot price. You can see the spot pricing using the below command. 
+Now lets look at the spot pricing on the `p3.2xlarge`. Spot pricing provide a significant discount over on demand pricing. However as the price fluctuates, we need to set a limit which we are willing to pay. I would recommend approximately 50% over the spot price. You can see the spot pricing using the below command. 
 ```
 aws --region=eu-west-1 ec2 describe-spot-price-history --instance-types  p3.2xlarge --start-time=$(date +%s) --product-descriptions="Linux/UNIX" --query 'SpotPriceHistory[*].{az:AvailabilityZone, price:SpotPrice}'
 ```
 
-At time of writing, the spot pricing is just under $1 per hour, so I set the limit at $1.50. Similar to week02 homework enter the below in a file called `spot-options.json` in your current directory. 
+At time of writing, the spot pricing is just under $1 per hour, so I set the limit at $1.50. Similar to week02 homework, enter the below in a file called `spot-options.json` in your current directory. 
 ```
 {
   "MarketType": "spot",
