@@ -146,7 +146,7 @@ Sometimes the jupyter session drops, you can leave it permanently up by running 
 nohup jupyter notebook --ip=0.0.0.0 --no-browser &> nohup_log.out &
 ```
 
-If you would like to kill the nohup session later, you can use `lsof | grep nohup_log.out` to find find which pid is using this file. Then kill that pip. 
+If you would like to kill the nohup session later, you can use `lsof | grep nohup_log.out` to find which pid is using this file. Then kill that pid. 
 For example, if your ouput is like below, you should run `kill 16772` and `kill 16820`, 
 ```
 ZMQbg/0   16772 16822          ubuntu    2w      REG              202,1     2231     539934 /home/ubuntu/w251/week06/hw/nohup_log.out
