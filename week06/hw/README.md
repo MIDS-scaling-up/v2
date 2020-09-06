@@ -168,10 +168,10 @@ Pick up the instance ID and terminate it.
 aws ec2  terminate-instances --instance-ids i-07aaaa64804129136
 ```
 
-Also, keep an eye on your costs. 
+Also, keep an eye on your costs, update the below date to the month your are running it. 
 ```
 aws ce get-cost-and-usage \
-    --time-period Start=2020-07-01,End=2020-07-31 \
+    --time-period Start=2020-10-01,End=2020-10-31 \
     --granularity MONTHLY  \
     --metrics "BlendedCost" "UnblendedCost" 
 ```
