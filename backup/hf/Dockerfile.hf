@@ -1,0 +1,49 @@
+# huggingface container for jetson platform
+# docker run --rm --runtime nvidia -ti w251/transformers:r32.4.3-py3 bash 
+
+# if you want to run tests, do
+# docker run --rm --runtime nvidia w251/transformers:r32.4.3-py3 make test
+
+
+FROM nvcr.io/nvidia/l4t-ml:r32.4.3-py3
+
+# let's make sure that python3 is the default python
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+
+
+RUN apt update
+RUN apt install -y curl cmake build-essential pkg-config libgoogle-perftools-dev
+
+############## sentencepiece
+RUN git clone https://github.com/google/sentencepiece 
+RUN cd sentencepiece && mkdir build && cd build && cmake .. && make -j $(nproc) && make install && ldconfig -v && \
+    cd ../python && python3 setup.py bdist_wheel && cd dist && pip3 install sentencepiece-*.whl --verbose
+
+######################## rust
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > r.sh
+RUN chmod 777 ./r.sh && ./r.sh -y
+ENV HOME=/root
+ENV PATH=${HOME}/.cargo/bin:${PATH}
+RUN pip3 install setuptools_rust
+RUN PATH=${HOME}/.cargo/bin:${PATH}
+RUN PYTHONPATH=${HOME}/.cargo/bin:${PYTHONPATH}
+
+
+####################### tokenizers
+# RUN pip3 install tokenizers
+
+###################### transformers
+RUN pip3 install transformers
+
+
+# testing stuff.. comment if necessary
+RUN export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libtcmalloc_minimal.so.4
+
+RUN git clone https://github.com/huggingface/transformers
+WORKDIR /transformers
+RUN pip3 install .
+RUN pip3 install -e ".[testing]"
+# RUN make test
+
