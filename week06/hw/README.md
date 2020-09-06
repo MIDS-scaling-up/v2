@@ -70,12 +70,12 @@ Now lets start the image.
 aws ec2 run-instances --image-id ami-0f5ebd171c26abc61 --instance-type p3.2xlarge --security-group-ids sg-09ceb02f960da25fa  --associate-public-ip-address --instance-market-options file://spot-options.json --key-name darraghaws
 ```
      
-Again, it will take a couple of minutes to create, you can get the server address by using the below. 
+Again, it will take a couple of minutes to create. You can get the server address by using the below. 
 ```
 aws ec2 describe-instances | grep ec2   
 ```
     
-We will also need out public IP later for running Jupyter. `aws ec2 describe-instances | grep PublicIp`
+We will also need our public IP later for running Jupyter. `aws ec2 describe-instances | grep PublicIp`
 My public ip is `54.194.227.21`
 
 
@@ -84,7 +84,7 @@ Now we login,
 ssh -i "darraghaws.pem" ubuntu@ec2-54-194-227-21.eu-west-1.compute.amazonaws.com
 ```
     
-All the following steps are in the VM until you enter the jupyter URL in your borwser.    
+All the following steps are in the VM until you enter the jupyter URL in your browser.    
 You will get a message like below on logging in. 
 ```
 Please use one of the following commands to start the required environment with the framework of your choice:
@@ -106,16 +106,20 @@ for Chainer with Python3 (CUDA 10.0 and Intel iDeep) ___________________________
 for base Python2 (CUDA 10.0) _______________________________________________________________________ source activate python2
 for base Python3 (CUDA 10.0) _______________________________________________________________________ source activate python3
 ```
-We want the pytorch version 1.6 for this exercise. This has the pytorch native version of mixed precision available. Lets activat this. 
+We want the pytorch version 1.6 for this exercise. This has the pytorch native version of mixed precision available. Lets activate this. 
 ```
 source activate pytorch_latest_p36
 ```
-You will need to do this each time you login. 
+**You will need to `source` this, like above, each time you login.** 
 
 Now in the server, lets get the packages we need before starting our homework.
 ```
 pip install transformers
 git clone https://github.com/MIDS-scaling-up/v2 w251
+```
+
+Lets start our Jupyter notebook.   
+```
 cd w251/week06/hw/
 jupyter notebook --ip=0.0.0.0 --no-browser
 ```
@@ -135,6 +139,7 @@ You will get a message like below.
 
 To access the book use the public ip found above along with the URL, like follows : http://54.194.227.21:8888/?token=37b8bba7d420a4073b0a2169a24a995cde3ede8329f5ef9b
 
+Once in here, you will see the `BERT_classifying_toxicity.ipynb` - you can modify this to do the homework.  
 
 Sometimes the jupyter session drops, you can leave it permanently up by running it in background like below. To get the url and token, just `cat nohup_log.out`.   
 ```
