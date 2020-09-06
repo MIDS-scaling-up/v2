@@ -1,10 +1,11 @@
 # Homework 6
 
 **Note this is a graded homework.**
-1. Read the Google Cloud Product Overview on the [TPUs](https://cloud.google.com/tpu/)  
-2. Read the primer on [Bert](https://github.com/google-research/bert)  
-3. Follow the below steps to run BERT in pytorch on the Jigsaw Toxicity classification dataset.  
-4. Read about [amp mixed precision](https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html) introduced with the latest version of `pytorch 1.6.*`.  
+ 
+1. Read the primer on [Bert](https://github.com/google-research/bert)  
+2. Read about [amp mixed precision](https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html) introduced with the latest version of `pytorch 1.6.*`.  
+3. Read the Google Cloud Product Overview on the [TPUs](https://cloud.google.com/tpu/) 
+4. Follow the below steps to run BERT in pytorch on the Jigsaw Toxicity classification dataset.   
   
 ### Instructions 
 You will be training BERT in a jupyter notebook. Please read the below points before starting.    
@@ -14,7 +15,7 @@ You will be training BERT in a jupyter notebook. Please read the below points be
 * You have 8 sections found in the jupyter notebook to complete the training of BERT and answer some questions. The first 5 seem challenging - but there is a script linked in the book which should make help a lot - should be just copy and pasting the correct code chunks.
 * The Huggingface transformers code changed since the original Kaggle kernel was created.  Use the AdamW optimizer.
 * We give a reference kaggle kernel where you can leverage a lot of the code. Native mixed precision was not available when that notebook was written, we would like you to port it to the new native mixed precision. We give some tips inside the book.   
-* Your submission should be your completed notebook (either from the P100 or V100). You can submit either through a HTML or link to a private GitHub repo.   
+* Your submission should be your completed notebook. You can submit either through a HTML or link to a private GitHub repo.   
 * Please let your instructors know if it is taking an excessive amount of time. The scripts do run long on 1M rows ~ a number of hours on the both types of VM's, but the development should not take an excessive amount of time.  
 * The final section in the book shows a number of tasks, you need only complete 1 of them.   
 * **For turning in your work**, please send instructors the link your repo containing your completed notebooks and information on P100 and V100 runtimes etc., alternatively, mail instructors the notebooks in html format along with runtimes. 
