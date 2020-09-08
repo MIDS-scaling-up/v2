@@ -20,7 +20,7 @@ Because the context of this class is IoT, we request that you use MQTT as the me
 
 We also ask that you treat the NX as an IoT Hub.  Therefore, we ask that you install a local MQTT broker in the NX, and that your face detector sends its messages to this broker first.  Then, we ask that you write another component that receives these messages from the local broker, and sends them to the cloud [MQTT broker].
 
-In the cloud, you need to provision a lightweight virtual machine (1-2 CPUs and 2-4 G of RAM should suffice) and run an MQTT broker. As discussed above, the faces will need to be sent here as binary messages.  Another component will need to be created here to receive these binary files and save them to SoftLayer's Object storage (note that the Swift-compatible object storage is being deprecated in favor of s3-compatible object storage). 
+In the cloud, you need to provision a lightweight virtual machine (1-2 CPUs and 2-4 G of RAM should suffice) and run an MQTT broker. As discussed above, the faces will need to be sent here as binary messages.  Another component will need to be created here to receive these binary files and save them to the s3 Object storage. 
 
 
 Please don't be intimidated by this homework as it is mostly a learning experience on the building blocks. The concept of the Internet of Things deals with a large number of devices that communicate largely through messaging. Here, we have just one device and one sensor- the camera.  But, we could add a bunch more sensors like microphones, GPS, proximity sensors, lidars...
