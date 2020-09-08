@@ -102,7 +102,7 @@ local_mqttclient.loop_forever()
 
 ## OpenCV
 [OpenCV](https://opencv.org/) is THE library for computer vision.  At the moment it has fallen behind the Deep Learning curve, but it could catch up at any moment.  For traditional, non-DL image processing, it is unmatched.   
-Some hints for getting started with OpenCV in a container are [here](https://github.com/rdejana/w251/blob/master/hw3/README.md), if you need them.
+Some hints for getting started with OpenCV in a container are [here](https://github.com/rdejana/w251/tree/master/hw3), if you need them.
 
 ### Facial detection with OpenCV 
 We suggest that you use a simple pre-trained frontal face HAAR Cascade Classifier [documented here](https://docs.opencv.org/3.4.1/d7/d8b/tutorial_py_face_detection.html).  There is no need to detect eyes,just the face.  Notice how simple it is to use:
