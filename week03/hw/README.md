@@ -176,7 +176,7 @@ Your overall application flow / architecture should be something like ![this](hw
 On the NX, you should have a mosquitto broker container, based on Alpine linux.  Also, a container for the face detector that connects to the USB webcam, detects faces, and sends them to your internal Mosquitto broker. You should have another container that fetches face files from the internal broker and sends them to the cloud mosquitto broker.  This container should be based on Alpine linux.  In the cloud, you should have a container with a mosquitto broker running inside.  You should also have a container that connects to the cloud mosquitto broker, gets face messages, and puts them into the object storage.
 
 ## Submission
-Please point us to the repository of your code and provide an http link to the location of your faces in the object storage.  Also, explan the naming of the MQTT topics and the QoS that you used.
+Please point us to the repository of your code [private repo please] and provide an http link to the location of your faces in the object storage.  Also, explan the naming of the MQTT topics and the QoS that you used.
 
 ## Some hints
 1. See Week 1's lab (https://github.com/MIDS-scaling-up/v2/blob/master/week01/lab/Dockerfile.yolov5) for how to install openCV.
