@@ -7,4 +7,8 @@ At the end you need to load pretrained embeddings from Stanford's GloVe project.
 there is a step to download these embeddings in the book.
        
 Let's go to the lab at [this link](https://colab.research.google.com/drive/119a6K6r_aRNccyMdIaSInhXTmaLPDD2N?usp=sharing).
+
+#### NX version
+
+You can do most of this on the NX as well for an extra credit.  Just use this container: ```https://ngc.nvidia.com/catalog/containers/nvidia:l4t-ml```
        
