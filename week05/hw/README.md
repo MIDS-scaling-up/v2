@@ -31,8 +31,8 @@ Please read this before attempting the lab:
 
 * We are specifically staying away from jupyter here to give you a sense of what an interactive shel environment is with docker (e.g vs. conda directly on the device)
 * To start an interactive TensorFlow container, run `docker run --rm --runtime=nvidia -p 6006:6006 -ti nvcr.io/nvidia/l4t-ml:r32.4.3-py3 bash`. Note the `--rm`:  when you type `exit`, this container will be removed from your NX.
-* You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as part of the image.
-* In the command above, 6006 is the port number that Tensorboard uses.  Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourNX:6006
+* You  don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as part of the image.
+* In the command above, 6006 is the port number that tensorboard uses.  To launch tensorboard (step 4), you need to do employe a little trick: `python3 /usr/local/lib/python3.6/dist-packages/tensorboard/main.py --logdir tf_files/training_summaries` and then you will be able to connect to the Tensorboard instance by typing http://ipaddressofyourNX:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia no longer provides a TensorFlow distro for python2 as python2 is dead!
 * curl isn't installed in the l4t-ml container by default, so you'll need to, e.g. `apt update && apt install -y curl`
 * Once you are inside the interactive container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections, except the "next steps" section 9.
