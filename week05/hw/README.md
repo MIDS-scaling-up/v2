@@ -29,14 +29,16 @@ In this section, we will generally follow the [Tensorflow for Poets lab](https:/
 
 Please read this before attempting the lab:
 
-* To start an interactive TensorFlow container, run `docker run --privileged --rm -p 6006:6006 -ti w251/tensorflow:dev-tx2-4.3_b132-tf1 bash`. Note the ```--rm```:  when you type `exit`, this container will be removed from your TX2.
-* You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as a result of the Dockerfile instructions.
-* In the command above, 6006 is the port number that Tensorboard uses.  Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourtx2:6006
+* We are specifically staying away from jupyter here to give you a sense of what an interactive shel environment is with docker (e.g vs. conda directly on the device)
+* To start an interactive TensorFlow container, run `docker run --rm --runtime=nvidia -p 6006:6006 -ti nvcr.io/nvidia/l4t-ml:r32.4.3-py3 bash`. Note the `--rm`:  when you type `exit`, this container will be removed from your NX.
+* You obviously don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as part of the image.
+* In the command above, 6006 is the port number that Tensorboard uses.  Once you launch Tensorboard (step 4), you be able to connect to the Tensorboard instance by typing http://ipaddressofyourNX:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia no longer provides a TensorFlow distro for python2 as python2 is dead!
+* curl isn't installed in the l4t-ml container by default, so you'll need to, e.g. `apt update && apt install -y curl`
 * Once you are inside the interactive container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections, except the "next steps" section 9.
-* The Jetson packs a punch; make sure you run training for 4000 steps
-* When you want to make sure the container does *not* see the GPU, run it as `docker run --rm -p 6006:6006 -ti tensorflow bash`, with no privileged flag
-* On x86 based systems, Nvidia provides a tool called "nvidia-smi" to monitor GPU utilization and performance in real time.  On the Jetson, this tool is not yet supported, unfortunately.  But, the Jetpack has another tool, `/usr/bin/tegrastats`.  Its output looks like this:
+* The NX packs a punch; make sure you run training for 4000 steps
+* When you want to make sure the container does *not* see the GPU, run it as `docker run --rm -p 6006:6006 -ti nvcr.io/nvidia/l4t-ml:r32.4.3-py3 bash`, with no `--runtime=nvidia` flag
+* On x86 based systems, Nvidia provides a tool called `nvidia-smi` to monitor GPU utilization and performance in real time.  On the Jetson, this tool is not yet supported, unfortunately.  But, in addition to `jtop` that we covered earlier in class (`pip3 install jetson-stats` if you forgot), the Jetpack has another tool, `/usr/bin/tegrastats`.  Its output looks like this:
 ```
 root@tegra-ubuntu:~# tegrastats
 RAM 2586/7846MB (lfb 1x1MB) CPU [0%@960,0%@499,0%@499,0%@959,0%@960,0%@960] EMC_FREQ 10%@665 GR3D_FREQ 53%@140 APE 150 MTS fg 0% bg 0% BCPU@41C MCPU@41C GPU@39C PLL@41C Tboard@35C Tdiode@37.75C PMIC@100C thermal@40.2C VDD_IN 3177/3177 VDD_CPU 536/536 VDD_GPU 383/383 VDD_SOC 536/536 VDD_WIFI 0/0 VDD_DDR 575/575
