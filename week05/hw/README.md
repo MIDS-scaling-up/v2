@@ -1,15 +1,15 @@
-# PLEASE DO NOT ATTEMPT as we are revising and will update shortly
-## Homework 5: TF2 and TF1
+# Homework 5: TF2 and TF1
 
 ## Introduction to Tensorflow v2
-The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 has just been GA'ed - and it is based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree) is much easier to use. 
+The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 is based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree after reviewing section 2 of this homework) is much easier to use than Tensorflow 1. 
 
-* Start the tf2 container: `docker run --privileged --rm -p 8888:8888 -d w251/keras:dev-tx2-4.3_b132`
-* As we did before, find out associated token - e.g. note the container id and then ussue `docker logs <container_id>` and find the token.  Use it to connect to your tx2 via browser on port 8888
-* Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). Download this notebook from the TF hub and upload it to your TX2 container. Run it to completion.
+* Start the tf2 container: `docker run --privileged --rm -p 8888:8888 -d w251/tensorflow:nx-dp4.4`. Note that our docker image is based on the NGC TF2 image with the addition of jupyter and a few other things.  Take a moment to review and reflect on this [docker file](https://github.com/MIDS-scaling-up/v2/blob/master/backup/tensorflow/Dockerfile.nx-dp4.4).
+* Use the password `nvidia`
+* Glance through the [TF2 beginner lab](https://www.tensorflow.org/tutorials/quickstart/beginner). Download this notebook from the TF hub and upload it to your NX container. Run it to completion.
 * What's the structure of the network that's being used for classification? How good is it? Based on what you learned in homework 4, can you beat it? Hint: use something like [this](https://github.com/dragen1860/TensorFlow-2.x-Tutorials/tree/master/01-TF2.0-Overview) if you need an inspiration.
-* Repeat for the [TF2 Quickstart lab](https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub). Download / upload to TX2 and run to completion.
-* Note: you'll have to make changes to the code and fix the OOM errors.  Hint: what is your batch size?
+* Repeat for the [TF2 Quickstart lab](https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub). Download / upload to NX and run to completion.
+* Remove the pip install instructions, yuo don't need them
+* Note: you'll have to make changes to the code and if you encounter the OOM errors.  Hint: what is your batch size?
 * Can you improve model accuracy? Hint: are your layers frozen?
 
 
@@ -20,7 +20,7 @@ Please try to be patient and familiarize yourself with the code of this *beginne
 
 The other concepts that we hope you will pick up are architectures for image classification as well as transfer learning.  The two go hand in hand: there are many pre-trained models today for image classification which you can further tweak (using transfer learning) on your own data. In this lab, you will see one approach where all the layers of the original model remain fixed.
 
-Note also that we are doing this homework on the TX2. It is powerful enough for real time inference - and even for incremental training.  This will come in handy later in the class as we begin to integrate neural processing into the kinds of pipelines you saw in homework 3.
+Note also that we are also doing this homework on the NX. It is powerful enough for real time inference - and even for incremental training.  This will come in handy later in the class as we begin to integrate neural processing into the kinds of pipelines you saw in homework 3.
 
 
 
@@ -29,10 +29,10 @@ In this section, we will generally follow the [Tensorflow for Poets lab](https:/
 
 Please read this before attempting the lab:
 
-* We are specifically staying away from jupyter here to give you a sense of what an interactive shel environment is with docker (e.g vs. conda directly on the device)
+* We are specifically staying away from jupyter here to give you a sense of what an interactive shell environment is with docker (e.g vs. conda directly on the device)
 * To start an interactive TensorFlow container, run `docker run --rm --runtime=nvidia -p 6006:6006 -ti nvcr.io/nvidia/l4t-ml:r32.4.3-py3 bash`. Note the `--rm`:  when you type `exit`, this container will be removed from your NX.
 * You  don't need to install TensorFlow in the container explicitly (as the lab instructions suggest) ; it's already installed for you as part of the image.
-* In the command above, 6006 is the port number that tensorboard uses.  To launch tensorboard (step 4), you need to do employe a little trick: `python3 /usr/local/lib/python3.6/dist-packages/tensorboard/main.py --logdir tf_files/training_summaries` and then you will be able to connect to the Tensorboard instance by typing http://ipaddressofyourNX:6006
+* In the command above, 6006 is the port number that tensorboard uses.  To launch tensorboard (step 4), you need to do employ a little trick: `python3 /usr/local/lib/python3.6/dist-packages/tensorboard/main.py --logdir tf_files/training_summaries` and then you will be able to connect to the Tensorboard instance by typing http://ipaddressofyourNX:6006
 * Remember to use python3 instead of regular python for all commands, since as we mentioned above, Nvidia no longer provides a TensorFlow distro for python2 as python2 is dead!
 * curl isn't installed in the l4t-ml container by default, so you'll need to, e.g. `apt update && apt install -y curl`
 * Once you are inside the interactive container, proceed to clone the TF for poets repository and proceed with 3+ sections of lab. Make sure you do all of the optional sections, except the "next steps" section 9.
