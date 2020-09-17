@@ -9,7 +9,7 @@ The objective of this homework is to build a lightweight IoT application pipelin
 The overall goal of the assignment is to be able to capture faces in a video stream coming from the edge in real time, transmit them to the cloud in real time, and - for now, just save these faces in the cloud for long term storage.
 
 
-Throughout the assignment, we request that you use Docker to package all components as portable microservices.  On the NX, we request that you use [Alpine Linux](https://alpinelinux.org/) as the base OS for your containers as it is frugal in terms of storage. Please recall that Jetson NX devices and Raspberry Pis are both based on the [ARM v8 architecture](https://en.wikichip.org/wiki/arm/armv8) as opposed to Intel x86/64 architecture.
+Throughout the assignment, we request that you use Docker to package all components as portable microservices.  On the NX, we request that you use [Alpine Linux](https://alpinelinux.org/) as the base OS for your MQTT containers as it is frugal in terms of storage. You will need to use Ubuntu as the base for your OpenCV container. Please recall that Jetson NX devices and Raspberry Pis are both based on the [ARM v8 architecture](https://en.wikichip.org/wiki/arm/armv8) as opposed to Intel x86/64 architecture.
 
 
 For the edge face detector component, we ask that you use OpenCV and write an application that scans the video frames coming from the connected USB camera for faces. When one or more faces are detected in the frame, the application should cut them out of the frame and send via a binary message each.
