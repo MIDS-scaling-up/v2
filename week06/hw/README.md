@@ -20,6 +20,11 @@ You will be training BERT in a jupyter notebook. Please read the below points be
 * The final section in the book shows a number of tasks, you need only complete 1 of them.   
 * **For turning in your work**, please send instructors the link your repo containing your completed notebooks and information on V100 runtimes etc., alternatively, mail instructors the notebooks in html format along with runtimes. 
   
+### AWS Limits
+
+AWS by default do not give access to powerful GPUs by default. You need to request to have your service limit increased and specify the region you want to use.
+This is the same for spot or on demand instance. It usually takes about a day or two for AWS to increase it. Specify you will need access to single `p3.2xlarge` and you will use spot pricing.
+You can check out this : https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html
   
 ### Start your VMs and notebook as below.  
     
