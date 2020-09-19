@@ -43,7 +43,7 @@ My one is `sg-09ceb02f960da25fa`, I shall use this below.
 Now take the security group which we have just created and open the ports for inbound and outbound traffic. 
 ```
 aws ec2 authorize-security-group-ingress --group-id  sg-09ceb02f960da25fa   --protocol tcp --port 22 --cidr 0.0.0.0/0
-aws ec2 authorize-security-group-ingress --group-id  sg-09ceb02f960da25fa  --protocol tcp --port 8888 
+aws ec2 authorize-security-group-ingress --group-id  sg-09ceb02f960da25fa  --protocol tcp --port 8888 --cidr 0.0.0.0/0
 ```
 
 We will not use docker here, instead we will use the Deep Learning AMI provided by Amazon. During the following steps you will need to accept the terms and conditions of the Deep Learning AMI you use, you will be provided a link where you can accept this. 
