@@ -13,3 +13,7 @@ This sequence of simple labs builds upon the beginner TF2 lab:
 This example builds on the [TensorFlow DCGAN](https://www.tensorflow.org/tutorials/generative/dcgan) tutorial
 1. Download the notebook and upload it to your NX
 1. At the top, replace pip with pip3. You will also need to `!apt update && apt install -y git` to get through the software installation step
+1. Kick off the notebook on your NX; change the batch size to 128 and run it for 150 epochs
+1. As it's running, kick the notebook in Colab for 50 epochs
+1. Based on your experiments with the mnist, can you simplify the networks and make them run faster?
+1. A few simple questions: Can you explain the structure of this network? What input does the generator use?
