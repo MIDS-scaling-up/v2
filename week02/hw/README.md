@@ -207,6 +207,11 @@ aws ce get-cost-and-usage \
     --granularity MONTHLY  \
     --metrics "BlendedCost" "UnblendedCost"   
 ```
+#### Set up billing alerts
+To set up alerts for charges to your AWS account, type “Budgets” into the Find Services search bar on the AWS Console. From here you can create a budget with notification if you go over a defined threshold.
+(thanks Chris Weyandt for showing this!i). 
+![](figs/aws_budgets.png)
+   
 
 ### Turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up the above instances, and have them terminated.   
