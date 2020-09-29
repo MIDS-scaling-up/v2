@@ -1,4 +1,4 @@
-# Homework 7 - Neural face detection pipeline
+# Homework 7 - WE ARE CURRENTLY MODIFYING PLEASE DO NOT ATTEMPT!!!! -- Neural face detection pipeline
 
 ### Overview
 The objective of this homework is simple: modify the processing pipeline that you implemented in 
