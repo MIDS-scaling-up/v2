@@ -3,7 +3,7 @@ import numpy as np
 
 import Box2D
 from Box2D.b2 import (edgeShape, circleShape, fixtureDef, polygonShape, revoluteJointDef, contactListener)
-
+# new line
 import gym
 from gym import spaces
 from gym.utils import seeding
@@ -216,6 +216,7 @@ if __name__=="__main__":
     # Run 100 episodes to generate the initial training data
     num_test_episode = 100
 
+    # Create the OpenAI Gym Enironment with LunarLander-v2
     env = gym.make("LunarLander-v2")
 
     # set the numpy random number generatorseeds
@@ -224,6 +225,9 @@ if __name__=="__main__":
 
     # max number of training episodes
     training_episodes = 2000
+
+    # number of test runs with a satisfactory number of good landings
+    high_score = 0
  
     # initialize the Deep-Q Network model
     model = DQN(env)
@@ -255,6 +259,8 @@ if __name__=="__main__":
             reward_for_episode += reward
         rewards_list.append(reward_for_episode)
         print(test_episode, "\t: Episode || Reward: ", reward_for_episode)
+        if reward_for_episode >= 200:
+            high_score += 1
         if test_episode % 10 == 0:
             fname = "/tmp/videos/testing_run"+str(test_episode)+".mp4"
             skvideo.io.vwrite(fname, np.array(frames))
@@ -263,5 +269,6 @@ if __name__=="__main__":
 
     rewards_mean = np.mean(rewards_list[-100:])
     print("Average Reward: ", rewards_mean )
+    print("Total tests above 200: ", high_score)
 
     

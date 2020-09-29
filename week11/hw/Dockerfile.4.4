@@ -12,7 +12,9 @@ RUN python3 setup.py install
 RUN pip3 install scikit-video keras==2.4.1
 RUN pip3 install gym
 
-WORKDIR /
+#WORKDIR /tmp/videos
+
+RUN mkdir /tmp/videos
 
 COPY agent_lunar_lander.py .
 
@@ -20,6 +22,5 @@ COPY agent_lunar_lander.py .
 # ENV NVIDIA_VISIBLE_DEVICES 0
 # ENV CUDA_VISIBLE_DEVICES 0
 
-WORKDIR /tmp/videos
-CMD ["python3", "agent_lunar_lander1.py"]
+CMD ["python3", "agent_lunar_lander.py"]
 
