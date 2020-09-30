@@ -13,7 +13,7 @@ Please follow the code in the book, we give you an example of how to make one fr
 If you get that far you did great!    
 However, we see the faces are choppy. If you have time after class (or are completed early in class!) you can try smoothing the bounding box sequences, like below.   
 ![](figs/smoothed_bboxes.gif)   
-We used pandas rolling mean with a windows size of 12 to acieve this. Feel free to ask your instructor for the solution if you are stuck.    
+We used pandas rolling mean with a windows size of 12 to achieve this. Feel free to ask your instructor for the solution if you are stuck.    
 
-##### Notebook
+#### Notebook
 You can get started in colab [here](https://colab.research.google.com/drive/1Z_laq_NbQc7PZ7RBGiMhDvCjQj8-7E4D?usp=sharing). 
