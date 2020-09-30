@@ -2,7 +2,7 @@
 
 In this lab we will learn,
 1. How to scrape videos from youtube.   
-2. How to store them as frames in python.  
+2. How to store them as frames in numpy arrays.  
 3. How to manipulate the frames and makes an altered video.   
 
 We show you how to render the video from Erykah Badu's excellent, `Bag Lady`, in colab, like below.    
