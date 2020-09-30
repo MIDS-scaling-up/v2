@@ -8,7 +8,7 @@ In this lab we will learn,
 We show you how to render the video from Erykah Badu's excellent, `Bag Lady`, in colab, like below.    
 ![](figs/original.gif)  
 Your task will be to extract the faces from this clip, and render them side by side in a new video like below.   
-Please follow the code in the book, we give you and example of how to make one frame. Your task in this step is to apply the same changes to each frame in the stream.    
+Please follow the code in the book, we give you an example of how to make one frame. Your task in this step is to apply the same changes to each frame in the stream.    
 ![](figs/raw_bboxes.gif)  
 If you get that far you did great!    
 However, we see the faces are choppy. If you have time after class (or are completed early in class!) you can try smoothing the bounding box sequences, like below.   
