@@ -5,7 +5,7 @@ In this lab we will learn,
 2. How to store them as frames in numpy arrays.  
 3. How to manipulate the frames and makes an altered video.   
 
-We show you how to render the video from Erykah Badu's excellent, `Bag Lady`, in colab, like below.    
+We show you how to render the [video](https://www.youtube.com/watch?v=OqN0jsSeqPo&ab_channel=ErykahBaduVEVO) from Erykah Badu's excellent, `Bag Lady`, in colab, like below.    
 ![](figs/original.gif)  
 Your task will be to extract the faces from this clip, and render them side by side in a new video like below.   
 Please follow the code in the book, we give you an example of how to make one frame. Your task in this step is to apply the same changes to each frame in the stream.    
