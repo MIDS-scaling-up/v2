@@ -1,10 +1,45 @@
-# Homework 9: Distributed Training and Neural Machine Translation
+# Homework 9: Distributed Training and Neural Machine Translation (THIS HOMEWORK WOULD BE ADAPTED TO AWS BETWEEN 10/05/2020 - 10/09/2020, please revisit after that date)
 
 ## Please note that this homework is graded
 ### Read up on OpenSeq2Seq
 Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for sequence to sequence tasks such as Automatic Speech Recognition (ASR) and Natural Language Processing (NLP), written in Python and TensorFlow. Many of these tasks take a very long to train, hence the need to train on more than one machine.  In this week's lab, we'll be training a [Transformer-based Machine Translation network](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation/transformer.html) on a small English to German WMT corpus.
 
 ### Get a pair of GPU VMs in Softlayer
+
+### Start your VMs and notebook as below.  
+    
+Use this command to pick out your default vpc, note, it is the vpc with `"IsDefault": true`.
+```
+aws ec2 describe-vpcs | grep VpcId
+```
+My one is `vpc-e4e35381`, I shall use this below. 
+
+Now create a security group which will allow us to login and expose a port for a Jupyter notebook to be run. 
+```
+aws ec2 create-security-group --group-name hw09 --description "HW09" --vpc-id vpc-e4e35381
+sg-0be9d9ccd3efee363
+```
+
+Now lets start the image. 
+
+```
+aws ec2 run-instances --image-id ami-0dc2264cd927ca9eb --instance-type g4dn.2xlarge --security-group-ids sg-0be9d9ccd3efee363  --associate-public-ip-address --key-name eariasn --count 4
+```
+     
+Again, it will take a couple of minutes to create. You can get the server address by using the below. 
+```
+aws ec2 describe-instances | grep ec2   
+```
+    
+We will also need our public IP later for running Jupyter. `aws ec2 describe-instances | grep PublicIp`
+My public ip is `54.194.227.21`
+
+
+Now we login, 
+```
+ssh -i "darraghaws.pem" ubuntu@ec2-54-194-227-21.eu-west-1.compute.amazonaws.com
+```
+
 Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw) to get a pair of 2xP-100 or 2xV-100 VMs in Softlayer (remember that V-100s are about 3x faster than P-100s in mixed training). Please use the AC1_16X120X100 flavor for dual P-100 VMs or AC2_16X120X100 flavor for dual V-100 VMs. Call them, for instance, p100a and p100b.  If you are provisioning from our 2263543  image, docker and nvidia-docker will be already installed.  However, you will still need to log into the [Softlayer Portal](http://control.softlayer.com), find your instances under "devices" and "upgrade" them by adding a second 2 TB SAN drive to each VM, then format the 2TB disk and mount it to /data on each VM as described [here](https://github.com/MIDS-scaling-up/v2/blob/master/week03/hw/digits/README.md) under the "prepare the second disk" section.  Once you are finished with the setup, you will have a micro-cluster consisting of 2 nodes and four P-100 or V-100 GPUs total.
 
 ### Create cloud containers for openseq2seq and distributed training
