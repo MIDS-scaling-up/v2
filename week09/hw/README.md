@@ -1,4 +1,4 @@
-# Homework 9: Distributed Training and Neural Machine Translation (THIS HOMEWORK IS BEING ADAPTED TO AWS BETWEEN 10/05/2020 - 10/09/2020, please revisit after that date)
+# Homework 9: Distributed Training and Neural Machine Translation (THIS HOMEWORK IS REVISED BETWEEN 10/05/2020 - 10/09/2020, please revisit after that date)
 
 ## Please note that this homework is graded
 ### Read up on OpenSeq2Seq
