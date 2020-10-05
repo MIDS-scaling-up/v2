@@ -67,7 +67,7 @@ You will need to create an AWS Elastic File Storage Service (EFS) instance and m
     1. Note that the above command starts 4 total tasks (-n 4), one on each node (-H <vm1 private ip address>:1,<vm2 private ip address>:1,...), asks the script to use horovod for communication, which in turn, uses NCCL, and then forces NCCL to use the internal nics on the VMs for communication (-x NCCL_SOCKET_IFNAME=ens5). Please double check that your VMs use ens5 as the name of the internal NIC (`apt update && apt install -y net-tools` followed by `ifconfig` ) Mpi is only used to set up the cluster. 
     1. Monitor training progress: ``` tail -f nohup.out ```
     1. Start tensorboard on the same machine where you started training, e.g. ```nohup tensorboard --logdir=/data/en-de-transformer``` You should be able to monitor your progress by putting http://public_ip_of_your_vm1:6006 !
-    1. *You will run out of credits unless you kill them after 50,000 steps* (the config file will make the model run for 300,000 steps unless you change the max_steps parameter or kill training by hand)
+    1. Run the training for 50,000 or 100,000 steps (the config file will make the model run for 300,000 steps unless you change the max_steps parameter).  This will cost you about $100-$200 in total as each T4 costs about $0.90 / hour. Please check your tensorboard against the 300,000 step plot below to ensure that it is consistent.
     1. After your training is done, download your best model to your jetson NX.  [Hint: it will be located in /data/en-de-transformer]  Alternatively, you could always cheat and download a checkpoint from Nvidia [here](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)
  
 ### Create the NX container for openseq2seq  (Dima to update this)
