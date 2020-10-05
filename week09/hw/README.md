@@ -1,10 +1,10 @@
-# Homework 9: Distributed Training and Neural Machine Translation (THIS HOMEWORK WOULD BE ADAPTED TO AWS BETWEEN 10/05/2020 - 10/09/2020, please revisit after that date)
+# Homework 9: Distributed Training and Neural Machine Translation (THIS HOMEWORK IS BEING ADAPTED TO AWS BETWEEN 10/05/2020 - 10/09/2020, please revisit after that date)
 
 ## Please note that this homework is graded
 ### Read up on OpenSeq2Seq
-Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for sequence to sequence tasks such as Automatic Speech Recognition (ASR) and Natural Language Processing (NLP), written in Python and TensorFlow. Many of these tasks take a very long to train, hence the need to train on more than one machine.  In this week's lab, we'll be training a [Transformer-based Machine Translation network](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation/transformer.html) on a small English to German WMT corpus.
+Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for sequence to sequence tasks such as Automatic Speech Recognition (ASR) and Natural Language Processing (NLP), written in Python and TensorFlow 1.X. Many of these tasks take a very long to train, hence the need to train on more than one machine.  In this week's lab, we'll be training a [Transformer-based Machine Translation network](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation/transformer.html) on a small English to German WMT corpus.
 
-### Get a pair of GPU VMs in Softlayer
+### Get four T4 GPU VMs in AWS EC2
 
 ### Start your VMs and notebook as below.  
     
@@ -20,7 +20,7 @@ aws ec2 create-security-group --group-name hw09 --description "HW09" --vpc-id vp
 sg-0be9d9ccd3efee363
 ```
 
-Now lets start the image. 
+Now lets start the image. Please use the Nvidia Deep Learning AMI
 
 ```
 aws ec2 run-instances --image-id ami-0dc2264cd927ca9eb --instance-type g4dn.2xlarge --security-group-ids sg-0be9d9ccd3efee363  --associate-public-ip-address --key-name eariasn --count 4
@@ -30,6 +30,8 @@ Again, it will take a couple of minutes to create. You can get the server addres
 ```
 aws ec2 describe-instances | grep ec2   
 ```
+
+In the security group that these instances belong to, we will need to enable all ports (1-65535) - otherwise, mpi will fail.
     
 We will also need our public IP later for running Jupyter. `aws ec2 describe-instances | grep PublicIp`
 My public ip is `54.194.227.21`
@@ -40,29 +42,29 @@ Now we login,
 ssh -i "darraghaws.pem" ubuntu@ec2-54-194-227-21.eu-west-1.compute.amazonaws.com
 ```
 
-Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw) to get a pair of 2xP-100 or 2xV-100 VMs in Softlayer (remember that V-100s are about 3x faster than P-100s in mixed training). Please use the AC1_16X120X100 flavor for dual P-100 VMs or AC2_16X120X100 flavor for dual V-100 VMs. Call them, for instance, p100a and p100b.  If you are provisioning from our 2263543  image, docker and nvidia-docker will be already installed.  However, you will still need to log into the [Softlayer Portal](http://control.softlayer.com), find your instances under "devices" and "upgrade" them by adding a second 2 TB SAN drive to each VM, then format the 2TB disk and mount it to /data on each VM as described [here](https://github.com/MIDS-scaling-up/v2/blob/master/week03/hw/digits/README.md) under the "prepare the second disk" section.  Once you are finished with the setup, you will have a micro-cluster consisting of 2 nodes and four P-100 or V-100 GPUs total.
+You will need to create an AWS Elastic File Storage Service (EFS) instance and mount it on all nodes (e.g. under /data)
+
 
 ### Create cloud containers for openseq2seq and distributed training
 
-1. Create an account at https://ngc.nvidia.com/
-1. Follow [these instructions](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html#generating-api-key) to create an Nvidia Cloud docker registry API Key, unless you already have one.
-1. Login into one of the VMs and use your API key to login into Nvidia Cloud docker registry
-1. Pull the latest tensorflow image with python3: ```docker pull nvcr.io/nvidia/tensorflow:19.05-py3```
+
+
 1. Use the files on [docker directory](docker) to create an openseq2seq image 
 1. Copy the created docker image to the other VM (or repeat the same steps on the other VM) 
 1. Create containers on both VMs: ``` docker run --runtime=nvidia -d --name openseq2seq --net=host -e SSH_PORT=4444 -v /data:/data -p 6006:6006 openseq2seq ```
+1. Notice that it is important to run these containers in the -d mode as inside them we are starting sshd on port 4444 and this port will be used for communication between them
 1. On each VM, create an interactive bash sesion inside the container: ``` docker exec -ti openseq2seq bash ``` and run the following commands in the container shell:
-    1. Test mpi: ``` mpirun -n 2 -H <vm1 private ip address>,<vm2 private ip address> --allow-run-as-root hostname ``` 
-    1. Pull data to be used in neural machine tranlsation training ([more info](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)):  
+    1. Test mpi: ``` mpirun -n 4 -H <vm1 private ip address>,<vm2 private ip address>,<vm3>,<vm4> --allow-run-as-root hostname ``` 
+    1. Assuming that you have mounted your EFS on /data, run this on node1 only. Pull data to be used in neural machine tranlsation training ([more info](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)).  this may take up to 6 hours, depending on your luck and network conditions:  
     ``` 
     cd /opt/OpenSeq2Seq 
     scripts/get_en_de.sh /data/wmt16_de_en
     ```
     1. Copy configuration file to /data directory: ``` cp example_configs/text2text/en-de/transformer-base.py /data ```
     1. Edit /data/transformer-base.py: replace ```[REPLACE THIS TO THE PATH WITH YOUR WMT DATA]``` with ```/data/wmt16_de_en/```,  in base_parms section replace ```"logdir": "nmt-small-en-de",``` with ```"logdir": "/data/en-de-transformer/",```  make "batch_size_per_gpu": 128, and the in eval_params section set "repeat": to True. 
-    1. If you are using V-100 GPUs, modify the config file to use mixed precision per the instructions in the file and set  "batch_size_per_gpu": 256 (yes, you can fit twice as much data in memory if you are using 16-bit precision)
-    1. Start training -- **on the first VM only:** ```nohup mpirun --allow-run-as-root -n 4 -H <vm1 private ip address>:2,<vm2 private ip address>:2 -bind-to none -map-by slot --mca btl_tcp_if_include eth0  -x NCCL_SOCKET_IFNAME=eth0 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH  python run.py --config_file=/data/transformer-base.py --use_horovod=True --mode=train_eval & ```
-    1. Note that the above command starts 4 total tasks (-n 4), two on each node (-H <vm1 private ip address>:2,<vm2 private ip address>:2), asks the script to use horovod for communication, which in turn, uses NCCL, and then forces NCCL to use the internal nics on the VMs for communication (-x NCCL_SOCKET_IFNAME=eth0). Mpi is only used to set up the cluster.
+    1. Even though we are using T4 GPUs, we are not going to use mixed precision here.  Please set  "batch_size_per_gpu": 128 (yes, you can fit twice as much data in memory if you are using 16-bit precision but this particular network will diverge if you try that)
+    1. Start training -- **on the first VM only:** ```nohup mpirun --allow-run-as-root -n 4 -H 172.31.11.0:1,172.31.5.178:1,172.31.9.27:1,172.31.10.0:1 -bind-to none -map-by slot --mca btl_tcp_if_include ens5 -x NCCL_SOCKET_IFNAME=ens5 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH python run.py --config_file=/data/transformer-base.py --use_horovod=True --mode=train_eval & ```
+    1. Note that the above command starts 4 total tasks (-n 4), two on each node (-H <vm1 private ip address>:2,<vm2 private ip address>:2), asks the script to use horovod for communication, which in turn, uses NCCL, and then forces NCCL to use the internal nics on the VMs for communication (-x NCCL_SOCKET_IFNAME=ens5). Please double check that your VMs use ens5 as the name of the internal NIC (`apt update && apt install -y net-tools` followed by `ifconfig` ) Mpi is only used to set up the cluster. 
     1. Monitor training progress: ``` tail -f nohup.out ```
     1. Start tensorboard on the same machine where you started training, e.g. ```nohup tensorboard --logdir=/data/en-de-transformer``` You should be able to monitor your progress by putting http://public_ip_of_your_vm1:6006 !
     1. *You will run out of credits unless you kill them after 50,000 steps* (the config file will make the model run for 300,000 steps unless you change the max_steps parameter or kill training by hand)
