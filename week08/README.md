@@ -32,3 +32,8 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 * Coloring book for adults: https://commaai.blogspot.com/2016/07/comma-coloring-book.html
 * OpenSeq2Seq: https://nvidia.github.io/OpenSeq2Seq/html/index.html
 * Gentle: https://github.com/lowerquality/gentle
+
+### Commercial
+* Snorkel.ai: http://snorkel.ai
+* SageMaker Ground Truth: https://aws.amazon.com/sagemaker/groundtruth/
+* Prodigy: http://prodi.gy
