@@ -1,0 +1,50 @@
+FROM nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf2.2-py3
+
+RUN apt update
+RUN apt install -y git python3-matplotlib
+
+RUN rm /usr/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN ln -s /usr/bin/pip3 /usr/bin/pip
+
+
+RUN mkdir -m 777 /notebooks
+WORKDIR /notebooks
+RUN git clone --recursive https://github.com/tensorflow/tensorrt.git
+WORKDIR /notebooks/tensorrt
+RUN pip install .
+WORKDIR /notebooks/tensorrt/tftrt/examples/object_detection
+RUN pip3 install setuptools
+RUN bash install_dependencies.sh
+WORKDIR /notebooks
+
+RUN apt install -y python3-cffi libzmq3-dev
+RUN pip3 install jupyter jupyterlab --verbose
+
+RUN jupyter lab --generate-config -y
+RUN python3 -c "from notebook.auth.security import set_password; set_password('nvidia', '/root/.jupyter/jupyter_notebook_config.json')"
+
+RUN apt install -y cmake dh-autoreconf wget
+RUN mkdir /protobuf
+WORKDIR /protobuf
+RUN git clone https://github.com/google/protobuf.git . && \
+    ./autogen.sh && \
+    ./configure --prefix=/usr/local 
+
+RUN make -j6 && make install
+RUN ldconfig
+
+WORKDIR /protobuf/python
+RUN python3 setup.py build --cpp_implementation
+RUN python3 setup.py install --cpp_implementation
+RUN rm -fr /protobuf
+RUN pip install wget
+RUN apt install -y protobuf-compiler
+RUN pip install onnx
+
+# RUN cp -r /usr/src/tensorrt/samples/python/yolov3_onnx /notebooks
+ADD yolov3_onnx /notebooks
+
+WORKDIR /notebooks
+
+CMD /bin/bash -c "jupyter lab --ip 0.0.0.0 --port 8888 --allow-root"
