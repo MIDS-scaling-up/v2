@@ -1,4 +1,4 @@
-# Homework: Part 1 - Installing GPFS FPO
+# Homework: Part 1 - Installing GPFS FPO (homework update been processed revisit after 10/31/2020)
 
 ## Overview
 
