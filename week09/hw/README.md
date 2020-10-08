@@ -50,7 +50,7 @@ You will need to create an AWS Elastic File Storage Service (EFS) instance and m
 
 
 1. Use the files on [docker directory](docker) to create an openseq2seq image 
-1. Copy the created docker image to the other VM (or repeat the same steps on the other VM) 
+1. Copy the created docker image to the other VM (or repeat the same steps on the other 4 VMs) 
 1. Create containers on both VMs: ``` docker run --runtime=nvidia -d --name openseq2seq --net=host -e SSH_PORT=4444 -v /data:/data -p 6006:6006 openseq2seq ```
 1. Notice that it is important to run these containers in the -d mode as inside them we are starting sshd on port 4444 and this port will be used for communication between them
 1. On each VM, create an interactive bash sesion inside the container: ``` docker exec -ti openseq2seq bash ``` and run the following commands in the container shell:
