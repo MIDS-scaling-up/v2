@@ -1,6 +1,17 @@
 # Homework 9: Distributed Training and Neural Machine Translation
 
 ## Please note that this homework is graded
+###
+This homework requires the limit of VCPU for your AWS account to be raised to 32, so before starting to work on this create a ticket to request the limit increase, use a Service limit increase type of case and add the following explanation for the description:
+
+Please update the limit for VCPU on my account to be 32, we are currently running a graded homework in our class at UC Berkeley for the Master in Data Science program about training a Transformer-based Machine Translation network on a small English to German WMT corpus and it uses distributed computing across 4 EC2 instances.
+ 
+Without the limit update one of our instructions has the following error:
+An error occurred (VcpuLimitExceeded) when calling the RunInstances operation: You have requested more vCPU capacity than your current vCPU limit of 8 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.
+
+Notice that this request takes at least a couple of days to be processed, so plan accordingly.
+
+
 ### Read up on OpenSeq2Seq
 Nvidia [OpenSeq2Seq](https://github.com/NVIDIA/OpenSeq2Seq/) is a framework for sequence to sequence tasks such as Automatic Speech Recognition (ASR) and Natural Language Processing (NLP), written in Python and TensorFlow 1.X. Many of these tasks take a very long to train, hence the need to train on more than one machine.  In this week's lab, we'll be training a [Transformer-based Machine Translation network](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation/transformer.html) on a small English to German WMT corpus.
 
