@@ -36,6 +36,11 @@ aws ec2 attach-volume --volume-id vol-0ea1a75338378a24b --instance-id i-071a2295
 Notice that volume-id and instance-id would be different on each case.
 ```
 
+Now log in into the ec2 instances to finish the setup:
+```
+ssh -i "darraghaws.pem" ubuntu@ec2-54-194-227-21.eu-west-1.compute.amazonaws.com
+```
+
 
 2 vCPUs, 4G RAM, CENTOS_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
