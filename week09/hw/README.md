@@ -45,7 +45,11 @@ Again, it will take a couple of minutes to create. You can get the server addres
 aws ec2 describe-instances | grep ec2   
 ```
 
-In the security group that these instances belong to, we will need to enable all ports (1-65535) - otherwise, mpi will fail.
+In the security group that these instances belong to, we will need to enable all ports (1-65535) - otherwise, mpi will fail, use this an example change the values of the parameters to your environment.
+
+```
+aws ec2 authorize-security-group-ingress --group-id  sg-0a53b2b5dd9742d84  --protocol tcp --port 1-65535 --cidr 0.0.0.0/0
+```
     
 We will also need our public IP later for running Jupyter. `aws ec2 describe-instances | grep PublicIp`
 My public ip is `54.194.227.21`
