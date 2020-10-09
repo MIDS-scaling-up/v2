@@ -79,12 +79,20 @@ ssh 3.236.224.65  (ip of another virtual server)
 should connect without password.
 ```
 
-Set up the hosts file (/etc/hosts) for your cluster by adding the __PRIVATE__ IP addresses you noted earlier and names for each node in the cluster.  __Also__ you should remove the entry containing the fully qualified node name for your headnode / gpfs1.sftlyr.ws (otherwise it will trip up some of the GPFS tools since it likely does not resolve). For instance, your hosts file might look like this:
+Write down the private IP address of each host (examples):
+```
+ifconfig
+172.31.71.181
+172.31.74.163
+172.31.78.146
+```
+
+Set up the hosts file (/etc/hosts) for your cluster by adding the __PRIVATE__ IP addresses and names for each node in the cluster.  __Also__ you should remove the entry containing the fully qualified node name for your headnode / gpfs1.sftlyr.ws (otherwise it will trip up some of the GPFS tools since it likely does not resolve). For instance, your hosts file might look like this:
 
     127.0.0.1 		localhost.localdomain localhost
-    10.122.6.68		gpfs1
-    10.122.6.70		gpfs2
-    10.122.6.71		gpfs3
+    172.31.71.181  gpfs1
+    172.31.74.163  gpfs2
+    172.31.78.146  gpfs3
 
 Create a nodefile.  Edit /root/nodefile and add the names of your nodes.  This is a very simple example with just one quorum node:
 
