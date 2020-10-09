@@ -63,6 +63,23 @@ ssh -i "darraghaws.pem" ubuntu@ec2-54-194-227-21.eu-west-1.compute.amazonaws.com
 You will need to create an AWS Elastic File Storage Service (EFS) instance and mount it on all nodes (e.g. under /data)
 
 
+### EFS volume and mount target creation
+```
+# aws efs create-file-system --region us-east-1 
+Get the EFS ID: fs-20feafa2
+
+# aws efs create-mount-target --file-system-id fs-20feafa2 --subnet-id subnet-0210c44a6afecc858 --security-group sg-0a53b2b5dd9742d84 --region us-east-01
+172.31.67.44 
+Get the IP address, notice that your EC2 subnet id and security group id would be different, get those from CLI or AWS Consoles.
+```
+### EC2 instance volume mount operation.
+Notice the ip address is going to be different from this example.
+```
+# sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.67.44:/ ~/data
+# sudo chmod go+rw .
+```
+Bonus points, explore to mount the directories permanently with FSTAB.
+
 ### Create cloud containers for openseq2seq and distributed training
 
 
