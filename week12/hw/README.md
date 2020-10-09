@@ -19,6 +19,8 @@ Now create a security group which will allow us to login and expose a port for a
 ```
 aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vpc-e4e35381
 sg-0be9d9ccd3efee363
+
+aws ec2 authorize-security-group-ingress --group-id  sg-0be9d9ccd3efee363  --protocol tcp --port 22 --cidr 0.0.0.0/0
 ```
 Now launch the ec2 instances with Centos 7 installed.
 ```
@@ -38,7 +40,7 @@ Notice that volume-id and instance-id would be different on each case.
 
 Now log in into the ec2 instances to finish the setup:
 ```
-ssh -i "darraghaws.pem" ubuntu@ec2-54-194-227-21.eu-west-1.compute.amazonaws.com
+ssh -i "eariasn.pem" centos@ec2-34-229-132-107.compute-1.amazonaws.com
 ```
 
 
