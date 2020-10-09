@@ -30,6 +30,12 @@ Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives
 aws ec2 create-volume --volume-type gp2 --size 100 --availability-zone us-east-1a
 ```
 
+Attach 1 volume per ec2 instance, so each ec2 instance would end up having two volumes (boot and external 100 GB)
+```
+aws ec2 attach-volume --volume-id vol-0ea1a75338378a24b --instance-id i-071a22957e9bbea7d --device /dev/sdf
+Notice that volume-id and instance-id would be different on each case.
+```
+
 
 2 vCPUs, 4G RAM, CENTOS_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
