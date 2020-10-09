@@ -36,6 +36,9 @@ Now lets start the image. Please use the Nvidia Deep Learning AMI
 ```
 aws ec2 run-instances --image-id ami-0dc2264cd927ca9eb --instance-type g4dn.2xlarge --security-group-ids sg-0be9d9ccd3efee363  --associate-public-ip-address --key-name eariasn --count 4
 ```
+![Nvidia DLI](hw9-1.png)
+![g4dn.2xlarge](hw9-2.png)
+![Launch](hw9-3.png)
      
 Again, it will take a couple of minutes to create. You can get the server address by using the below. 
 ```
