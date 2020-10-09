@@ -7,7 +7,26 @@ These instructions are a subset of the official instructions linked to from here
 
 We will install GPFS FPO with no replication (replication=1) and local write affinity.  This means that if you are on one of the nodes and are writing a file in GPFS, the file will end up on your local node unless your local node is out of space.
 
-A. __Get three virtual servers provisioned__, 2 vCPUs, 4G RAM, CENTOS_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
+A. __Get three virtual servers provisioned__, 
+
+Use this command to pick out your default vpc, note, it is the vpc with `"IsDefault": true`.
+```
+aws ec2 describe-vpcs | grep VpcId
+```
+My one is `vpc-e4e35381`, I shall use this below. 
+
+Now create a security group which will allow us to login and expose a port for a Jupyter notebook to be run. 
+```
+aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vpc-e4e35381
+sg-0be9d9ccd3efee363
+```
+Now launch the ec2 instances with Centos 7 installed.
+```
+aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-060736651d7def831 --associate-public-ip-address --key-name eariasn --count 3
+```
+
+
+2 vCPUs, 4G RAM, CENTOS_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
 B. __Set up each one of your nodes as follows:__
 
