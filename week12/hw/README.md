@@ -52,9 +52,32 @@ Add to /root/.bash\_profile the following line in the end:
 
     export PATH=$PATH:/usr/lpp/mmfs/bin
 
-Make sure the nodes can talk to each other without a password.  When you created the VMs, you specified a keypair.  Copy it to /root/.ssh/id\_rsa (copy paste or scp works).  Set its permissions:
+Make sure the nodes can talk to each other without a password. Let's create ssh keys as centos user and distribute them across the nodes:
+```
+Run on each node as (confirm the defaults)
+# ssh-keygen -t rsa
 
-    chmod 600 /root/.ssh/id_rsa
+```
+Display the contents of the public part of the ssh key
+```
+# cat ~/.ssh/id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOHcLvpsLtQrjPLn5CkwW6h1TAviRhCPI40y/j9/5GMYdG+F5yi65pWeWU5sM6BUKDUQK3mXdd0H7J2wLeUR7goIcpSxEV7CeJaQSdY3zc1J9yJjSBl+wABBnn16Csdp7D733wTM+fIkk9amJb0s+UKFQyUG/C centos@ip-172-31-71-181.ec2.internal
+
+```
+Copy the contents of the above into the authorized_keys files on each of the virtual servers for example:
+```
+vi ~/.ssh/authorized_keys 
+append the values of:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOHcLvpsLtQrjPLn5CkwW6h1TAviRhCPI40y/j9/5GMYdG+F5yi65pWeWU5sM6BUKDUQK3mXdd0H7J2wLeUR7goIcpSxEV7CeJaQSdY3zc1J9yJjSBl+wABBnn16Csdp7D733wTM+fIkk9amJb0s+UKFQyUG/C centos@ip-172-31-71-181.ec2.internal
+```
+Do the same for all the 3 virtual servers so in the end you would have an authorized_keys file with 4 keys, 3 for the hw12 servers and your local key.
+
+Test that ssh connectivity between the hosts work:
+```
+ssh 3.236.224.65  (ip of another virtual server)
+should connect without password.
+```
 
 Set up the hosts file (/etc/hosts) for your cluster by adding the __PRIVATE__ IP addresses you noted earlier and names for each node in the cluster.  __Also__ you should remove the entry containing the fully qualified node name for your headnode / gpfs1.sftlyr.ws (otherwise it will trip up some of the GPFS tools since it likely does not resolve). For instance, your hosts file might look like this:
 
