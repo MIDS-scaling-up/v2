@@ -75,6 +75,12 @@ Now lets start the image.
 ```
 aws ec2 run-instances --image-id ami-0f5ebd171c26abc61 --instance-type p3.2xlarge --security-group-ids sg-09ceb02f960da25fa  --associate-public-ip-address --instance-market-options file://spot-options.json --key-name darraghaws
 ```
+
+If you do not get approval for spot capacity, you can try without spot pricing [do this only if the above `aws ec2 run-instances...` does not work],
+
+```
+aws ec2 run-instances --image-id ami-0f5ebd171c26abc61 --instance-type p3.2xlarge --security-group-ids sg-09ceb02f960da25fa  --associate-public-ip-address --key-name darraghaws
+```
      
 Again, it will take a couple of minutes to create. You can get the server address by using the below. 
 ```
