@@ -89,6 +89,13 @@ Experiment with your own search terms and with the different usage options.
 
 This part currently does not work as Google has changed the format of the search results.  Leaving here in case the tool is ever updated.
 
+As a woraround please install the tool as described bellow and before runing it replace the content of the file:
+/usr/local/lib/python3.8/site-packages/google_images_download/google_images_download.py  (notice that depending on the distribution or OS the location might be different)  
+
+with 
+https://github.com/Joeclinton1/google-images-download/blob/patch-1/google_images_download/google_images_download.py
+
+
 This this part of the lab, you'll be using a tool called google-images-download (https://github.com/hardikvasa/google-images-download) to download images.  This tool allows you to search google and download images to your machine.  Note, the default installation is limited 100 miages per keyword.  See the github repository for details on how to download more and for the command line arguements.
 
 Run a simple example that will search for Polar bears and Brown Bears. 
