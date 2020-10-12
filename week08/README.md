@@ -26,6 +26,7 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 *  [GANs - a form of Data Augmentation](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)
 *  [Albumentations](https://github.com/albumentations-team/albumentations)
 *  [CutMix PyTorch](https://github.com/clovaai/CutMix-PyTorch)
+*  [A Survey on Data Aug for DL](https://link.springer.com/article/10.1186/s40537-019-0197-0)
 
 ### Tools
 * Lazy NLP: https://github.com/chiphuyen/lazynlp
