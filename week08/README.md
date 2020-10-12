@@ -21,9 +21,10 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 * Youtube 8M https://research.google.com/youtube8m/
 
 ### Data Augmentation
-*  https://ai.googleblog.com/2018/06/improving-deep-learning-performance.html
-*  https://arxiv.org/pdf/1708.06020.pdf
-*  https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f
+*  [AutoAugment](https://ai.googleblog.com/2018/06/improving-deep-learning-performance.html)
+*  [Data Augmentation overview] (https://arxiv.org/pdf/1708.06020.pdf)
+*  [GAN Data Augmentation](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)
+*  [Albumentations](https://github.com/albumentations-team/albumentations)
 
 ### Tools
 * Lazy NLP: https://github.com/chiphuyen/lazynlp
