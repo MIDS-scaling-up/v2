@@ -15,4 +15,4 @@ Open up [Yolo v5 Colab notebook](https://colab.research.google.com/github/ultral
 1. Is transfer learning used?
 
 ### 4. Upload your homework dataset
-Upload the dataset you've created in your homework to Google Colab.  Using the provided voc2yolo notebook, convert your dataset to the yolo format.  Using the provided yaml files, try to train Yolo v5 on your data
+Upload the dataset you've created in your homework to Google Colab.  Using the provided [voc2yolo notebook](voc2yolo_hw9.ipynb), convert your dataset to the yolo format.  Using the provided yaml files, try to train Yolo v5 on your data
