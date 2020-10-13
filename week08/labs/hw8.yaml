@@ -1,3 +1,4 @@
+# this goes under ./data
 train: p1-PascalVOC-export/images  
 val: p1-PascalVOC-export/images
 
