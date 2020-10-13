@@ -70,8 +70,8 @@ And change to the new directory:
 ``cd Bulk-Bing-Image-downloader``
 
 Now run a simple example:
-``mkdir -p images/data/bing``
-``./bbid.py -s "Polar Bears" --limit 20 -o images/data/bing``
+``mkdir -p images/data/bing``      
+``./bbid.py -s "Polar Bears" --limit 20 -o images/data/bing``   
 
 - How long did it take to download the roughly 200 images (you may get some errors)?
 - Review the images.  How accurate are they? 
