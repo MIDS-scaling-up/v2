@@ -1,0 +1,8 @@
+train: p1-PascalVOC-export/images  
+val: p1-PascalVOC-export/images
+
+# number of classes
+nc: 2
+
+# class names
+names: ['TIE', 'MF']
