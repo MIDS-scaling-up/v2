@@ -76,6 +76,7 @@ Get the IP address, notice that your EC2 subnet id and security group id would b
 Notice the ip address is going to be different from this example.
 ```
 # sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.67.44:/ ~/data
+# cd ~/data
 # sudo chmod go+rw .
 ```
 Bonus points, explore to mount the directories permanently with FSTAB.
@@ -86,7 +87,7 @@ Bonus points, explore to mount the directories permanently with FSTAB.
 
 1. Use the files on [docker directory](docker) to create an openseq2seq image 
 1. Copy the created docker image to the other VM (or repeat the same steps on the other 4 VMs) 
-1. Create containers on both VMs: ``` docker run --runtime=nvidia -d --name openseq2seq --net=host -e SSH_PORT=4444 -v /data:/data -p 6006:6006 openseq2seq ```
+1. Create containers on both VMs: ``` docker run --runtime=nvidia -d --name openseq2seq --net=host -e SSH_PORT=4444 -v ~/data:/data -p 6006:6006 openseq2seq ```
 1. Notice that it is important to run these containers in the -d mode as inside them we are starting sshd on port 4444 and this port will be used for communication between them
 1. On each VM, create an interactive bash sesion inside the container: ``` docker exec -ti openseq2seq bash ``` and run the following commands in the container shell:
     1. Test mpi: ``` mpirun -n 4 -H <vm1 private ip address>,<vm2 private ip address>,<vm3>,<vm4> --allow-run-as-root hostname ``` 
