@@ -54,6 +54,8 @@ Now, we should be able to run the inference!
 cd /OpenSeq2Seq
 python3 run.py --config_file=example_configs/text2text/en-de/transformer-base.py --mode=infer --infer_output_file=raw.txt --num_gpus=1
 ```
+If you have OOM errors, run our trusty [flush_buffers.sh](https://github.com/MIDS-scaling-up/v2/blob/master/week05/hw/flush_buffers.sh) script (as root)
+
 Note the output of the inference is tokenized, so we must detokenize it:
 ```
 python3 tokenizer_wrapper.py --mode=detokenize --model_prefix=/data/wmt16_de_en/m_common --decoded_output=result.txt --text_input=raw.txt
