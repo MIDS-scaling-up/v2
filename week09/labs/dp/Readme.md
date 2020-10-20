@@ -1,8 +1,8 @@
 # Lab 9: Fun with distributed model training in Pytorch
 
 
-### 1. In AWS, get a VM with two GPUs
-Make sure port 8888 is exposed, ssh into the VM.
+### 1. In AWS, ~~get a VM with two GPUs~~ Use the pre-created jupyter lab URL created by your instructors
+Make sure port 8888 is exposed, ssh your VM.
 
 
 Start the lab09 docker container in interactive mode:
