@@ -3,7 +3,7 @@
 
 ### 1. In AWS, get a VM with two GPUs
 Make sure port 8888 is exposed, ssh into the VM.
-### 2. Distributed Data Parallel
+
 
 Start the lab09 docker container in interactive mode:
 ```
@@ -13,3 +13,7 @@ docker run --rm --gpus all -v /data2:/data -p 8888:8888 --ipc=host -ti w251/lab0
 # Then, start Jupyter as
 jupyter lab --ip=0.0.0.0 --allow-root
 ```
+Note the token that it prints and connect to it via browser at `http://vm_ip:8888`
+
+
+### 2. Distributed Data Parallel
