@@ -2,7 +2,7 @@
 
 ### Inference using a trained Machine Translation model
 
-On your Jetson TX2, start an OpenSeq2Seq docker container in interactive mode:
+On your Jetson NX, start an OpenSeq2Seq docker container in interactive mode:
 ```
 # start your docker image
 # also, assuming your external hard drive is mounted in /data, pass it through using -v
@@ -76,5 +76,5 @@ python3 tokenizer_wrapper.py --mode=detokenize --model_prefix=/data/wmt16_de_en/
 ### Notes
 * This language to language translation model is generic: it does not care which languages are used, or whether in fact these are languages at all.  It just learns to convert between pairs of strings.  It could be used to train a simple chatbot, for instance
 * You can add any other language to the model, just add the data prep instructions and issue a pull request into OpenSeq2Seq
-* Inference time is about 4-5 seconds (batch size 1)  on a TX2
+* Inference time is about 2-3 seconds (batch size 1)  on a NX
 
