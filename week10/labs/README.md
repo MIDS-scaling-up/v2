@@ -29,7 +29,7 @@ Connect into the instance and checkout this docker image:
 ```
 docker pull jaimeps/rl-gym
 docker run -d -p 8888:8888 jaimeps/rl-gym
-docker logs docker-image-id (to get the token for the python notebook)
+docker logs docker-id (to get the token for the python notebook)
 ```
 
 ## Example notebook
