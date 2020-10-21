@@ -17,27 +17,23 @@ should know:
 - `reset(self)`: Reset the environment's state. Returns `observation`.
 - `step(self, action)`: Step the environment by one timestep. Returns `observation`, `reward`, `done`, `info`.
 - `render(self, mode='human')`: Render one frame of the environment. The default mode will do something human friendly, such as pop up a window. 
-Installation
+AWS setup
 ============
+Order an t3a.xlarge instance with the deep learning ami using one security group that would allow you to connect to port 8888 with a public IP address, similar to this (replace values as appropiate)
 
-You can perform a minimal install of ``gym`` with:
+```
+aws ec2 run-instances --image-id ami-01aad86525617098d --instance-type t3a.xlarge --security-group-ids sg-0a53b2b5dd9742d84  --associate-public-ip-address --key-name eariasn --count 1
+```
+Connect into the instance and checkout this docker image:
 
-    git clone https://github.com/openai/gym.git
-    cd gym
-    pip install -e .
-
-Another method:
-
-    pip install gym
-
-You'll be able to run a few environments right away:
-
-- algorithmic
-- toy_text
-- classic_control (you'll need ``pyglet`` to render though)
+```
+docker pull jaimeps/rl-gym
+docker run -d -p 8888:8888 jaimeps/rl-gym
+docker logs docker-image-id (to get the token for the python notebook)
+```
 
 ## Example notebook
 
-Using the Jupyter notebook Docker image from the homework, proceed to open the attached notebook lab1.ipynb and follow along the code with the instructors help.
+Using the Jupyter notebook Docker image, proceed to open the attached notebook lab1.ipynb and follow along the code with the instructors help.
 
 
