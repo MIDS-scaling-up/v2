@@ -62,7 +62,7 @@ sudo usermod -aG docker $USER
 
 # reboot to make the previous step take effect
 
-docker build -t hw11 -f Dockerfile.agent .
+docker build -t hw11 -f Dockerfile.4.4 .
 
 # enable video sharing from the container
 xhost +
@@ -78,7 +78,7 @@ sudo jetson_clocks --restore
 
 When the process starts, you will see the animation of the lunar lander on your screen and the training will start.
 
-Training output looks like this:
+Training output looks like this (ignore any WARNING messages):
 
 ```
 0 	: Episode || Reward:  -355.4552185273774 	|| Average Reward:  -355.4552185273774 	 epsilon:  0.995
@@ -112,7 +112,7 @@ Starting Testing of the trained model...
 Average Reward:  243.09916996497867
 ```
 
-**The assignment**: Modify the parameters with your best (educated) guess to improve the model training. A well tuned model will start landing the module after about 300 iterations and consistently land it after about 400 iterations. If you are feeling creative, you can change other aspects of the model training (like batch size and epsilon value).
+**The assignment**: Modify the parameters in the python file with your best (educated) guess to improve the model training. A well tuned model will start landing the module after about 300 iterations and consistently land it after about 400 iterations. If you are feeling creative, you can change other aspects of the model training (like batch size and epsilon value). You can re-build the Docker image after changing the python file to test your changes. 
 
 **Each training run will take between 150 and 400 minutes**. So it is recommended to kick off the container and come back later to check on it. Try running the training process a few times with different values.
 
@@ -125,10 +125,10 @@ Upload all the videos to Cloud Object Storage and provide links using the instru
 
 Submit a write-up of the tweaks you made to the model and the effect they had on the results. 
 Questions to answer:
-1) What parameters did you change? 
-2) What values did you try?
-3) Did you try any other changes that made things better or worse?
-4) Did they improve or degrade the model? Did you have a test run with 100% of the scores above 200?
+1) What parameters did you change, and what values did you use? 
+2) Whhy did you change these parameters?
+3) Did you try any other changes (like adding layers or changing the epsilon value) that made things better or worse?
+4) Did your changes improve or degrade the model? How close did you get to a test run with 100% of the scores above 200?
 5) Based on what you observed, what conclusions can you draw about the different parameters and their values? 
 6) What is the purpose of the epsilon value?
 7) Describe "Q-Learning".
@@ -144,14 +144,10 @@ Average Reward:  243.09916996497867
 #### Enable http access to Cloud Object Storage
 
 ```
-Here's how to enable http access to the S3 COS:
-1) create a bucket & upload a file, remember the resiliency you pick and the location
-2) Go to Buckets -> Access Policies -> Public Access
-3) click the "Create access policy" button
-4) Go to Endpoint (on the left menu) and select your resiliency to find your endpoint (mine was "Regional" because that's how I created my COS)
-5) Your endpoint is the Public location plus your bucket name plus the file
-
-Example: https://s3.eu-gb.cloud-object-storage.appdomain.cloud/brooklyn-artifacts/IBM_MULTICLOUD_MANAGER_3.1.2_KLUS.tar.gz
-
-In this example, the bucket is "brooklyn-artifacts" and the single Region is eu-gb
+Here's how to enable http access to the S3 COS using the AWS console:
+1) Go to the S3 page (you can use a different region if desired): https://s3.console.aws.amazon.com/s3/home?region=us-east-2#
+2) Click the button to create a bucket. Give it a name. Use the default settings for the "Configure options".
+3) De-select the "block all access" checkbox and acknowledge the risk
+4) Finish the bucket creation
+5) Upload your file. Once uploaded, click on the file and get the Object URL. This is the URL to submit with your homework.
 ```
