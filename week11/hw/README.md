@@ -18,7 +18,7 @@ sudo jtop
 ```
 
 # Assignment
-In this homework, you will be training a Lunar Lander module to land properly **using your Jetson TX2**. There is a video component to this file, so use a display or VNC.
+In this homework, you will be training a Lunar Lander module to land properly **using your Xavier NX**. There is a video component to this file, so use a display or VNC.
 
 First, some background reading: https://www.novatec-gmbh.de/en/blog/introduction-to-q-learning/
 
