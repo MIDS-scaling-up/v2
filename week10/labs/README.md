@@ -17,6 +17,8 @@ should know:
 - `reset(self)`: Reset the environment's state. Returns `observation`.
 - `step(self, action)`: Step the environment by one timestep. Returns `observation`, `reward`, `done`, `info`.
 - `render(self, mode='human')`: Render one frame of the environment. The default mode will do something human friendly, such as pop up a window. 
+
+
 AWS setup
 ============
 Order an t3a.xlarge instance with the deep learning ami using one security group that would allow you to connect to port 8888 with a public IP address, similar to this (replace values as appropiate)
