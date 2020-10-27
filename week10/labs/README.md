@@ -34,7 +34,7 @@ docker logs docker-id (to get the token for the python notebook)
 
 ## Example notebook
 
-Using the Jupyter notebook Docker image, proceed to open the attached notebook lab1.ipynb and follow along the code with the instructors help. Feel free to the second notebook gym.ipynb
+Using the Jupyter notebook Docker image, proceed to open the attached notebook gym.ipynb and follow along the code with the instructors help. Feel free to take a look at the second notebook lab1.ipynb for a shortest path problem.
 
 ## Cancel the instance after you are done.
 
