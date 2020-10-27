@@ -4,7 +4,7 @@
 
 ## Reading:
 
-* DRL book http://incompleteideas.net/book/RLbook2020.pdf
+* Reinforcement Learning: An introduction (an ebook) http://incompleteideas.net/book/RLbook2020.pdf
 
 
 
