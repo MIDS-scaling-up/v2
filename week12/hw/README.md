@@ -15,7 +15,7 @@ aws ec2 describe-vpcs | grep VpcId
 ```
 My one is `vpc-e4e35381`, I shall use this below. 
 
-Now create a security group which will allow us to login and expose a port for a Jupyter notebook to be run. 
+Now create a security group which will allow us to login. 
 ```
 aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vpc-e4e35381
 sg-0be9d9ccd3efee363
@@ -43,8 +43,6 @@ Now log in into the ec2 instances to finish the setup:
 ssh -i "eariasn.pem" centos@ec2-34-229-132-107.compute-1.amazonaws.com
 ```
 
-
-2 vCPUs, 4G RAM, CENTOS_7_64, __two local disks__ 25G and 100G each, in any datacenter. __Make sure__ you attach a keypair.  Pick intuitive names such as gpfs1, gpfs2, gpfs3.  Note their internal (10.x.x.x) ip addresses.
 
 B. __Set up each one of your nodes as follows:__
 
