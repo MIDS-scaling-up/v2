@@ -7,7 +7,7 @@
 
 1. SSH into each node (gpfs1, gpfs2, gpfs3) and proceed to install the requisites for LazyNLP installation
 ```
-  * yum install -y python3 python3-devel git
+  * yum install -y python3 python3-devel git wget
   * git clone https://github.com/chiphuyen/lazynlp.git
   * cd lazynlp
   * pip3 install -r requirements.txt
