@@ -7,7 +7,7 @@
 
 1. SSH into each node (gpfs1, gpfs2, gpfs3) and proceed to install the requisites for LazyNLP installation
 ```
-  * yum install -y python3 python3-devel git wget
+  * yum install -y python3 python3-devel git wget unzip
   * git clone https://github.com/chiphuyen/lazynlp.git
   * cd lazynlp
   * pip3 install -r requirements.txt
@@ -17,7 +17,6 @@
   ```
   * cd /gpfs/gpfsfpo
   * wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip
-  * apt install unzip
   * unzip wikitext-103-v1.zip
   * rm -rf wikitext-103-v1.zip
   ```
