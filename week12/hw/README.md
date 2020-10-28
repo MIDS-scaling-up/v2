@@ -46,6 +46,11 @@ ssh -i "eariasn.pem" centos@ec2-34-229-132-107.compute-1.amazonaws.com
 
 B. __Set up each one of your nodes as follows:__
 
+Switch to root user after you login:
+```
+sudo su
+```
+
 Add to /root/.bash\_profile the following line in the end:
 
     export PATH=$PATH:/usr/lpp/mmfs/bin
@@ -85,18 +90,24 @@ ifconfig
 172.31.78.146
 ```
 
-Set up the hosts file (/etc/hosts) for your cluster by adding the __PRIVATE__ IP addresses and names for each node in the cluster.  __Also__ you should remove the entry containing the fully qualified node name for your headnode / gpfs1.sftlyr.ws (otherwise it will trip up some of the GPFS tools since it likely does not resolve). For instance, your hosts file might look like this:
+Set up the hosts file (/etc/hosts) for your cluster by adding the __PRIVATE__ IP addresses and names for each node in the cluster.). For instance, your hosts file might look like this:
 
     127.0.0.1 		localhost.localdomain localhost
     172.31.71.181  gpfs1
     172.31.74.163  gpfs2
     172.31.78.146  gpfs3
+Try to connect with ssh from each host using the short name we added to the hosts file:
+```
+ssh root@gpfs1
+ssh root@gpfs2
+ssh root@gpfs3
+```
+All should connect without asking for password.
 
 Create a nodefile.  Edit /root/nodefile and add the names of your nodes.  This is a very simple example with just one quorum node:
-
-    gpfs1:quorum:
-    gpfs2::
-    gpfs3::
+gpfs1:quorum:
+gpfs2::
+gpfs3::
 
 C. __Install and configure GPFS FPO on each node:__
 Install pre-requisites
