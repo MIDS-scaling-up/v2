@@ -27,7 +27,7 @@ Now launch the ec2 instances with Centos 7 installed.
 aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-060736651d7def831 --associate-public-ip-address --key-name eariasn --count 3
 ```
 
-Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives.
+Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives. (notice the availability zone of your instances, volumes should be in the same)
 ```
 aws ec2 create-volume --volume-type gp2 --size 100 --availability-zone us-east-1a
 ```
