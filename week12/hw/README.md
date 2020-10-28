@@ -21,7 +21,9 @@ aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vp
 sg-0be9d9ccd3efee363
 
 aws ec2 authorize-security-group-ingress --group-id  sg-0be9d9ccd3efee363  --protocol tcp --port 22 --cidr 0.0.0.0/0
+
 ```
+Using the AWS Console for inbound rules in the security group add a rule for ALL ICMP- IPV4 with a port range ALL and custom source 0.0.0.0/0 .
 Now launch the ec2 instances with Centos 7 installed.
 ```
 aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-060736651d7def831 --associate-public-ip-address --key-name eariasn --count 3
