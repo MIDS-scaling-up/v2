@@ -161,7 +161,7 @@ Now the cluster is installed, let's work the details.
 
 Now, you must accept the license:
 
-    mmchlicense server -N all (this command needs to be run just gpfs1)
+     /usr/lpp/mmfs/bin/mmchlicense sever -N all (this command needs to be run just gpfs1)
     # (say yes)
 
 Now, start GPFS:
