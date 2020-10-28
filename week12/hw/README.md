@@ -185,7 +185,7 @@ Now we need to define our disks. Do this to print the paths and sizes of disks o
 Note the names of your 100G disks. Here's what I see:
 
     [root@gpfs1 ras]# fdisk -l |grep Disk |grep bytes
-    Disk /dev/xvdc: 100 GiB, 107374182400 bytes, 209715200 sectors
+    Disk /dev/xvdf: 107.4 GB, 107374182400 bytes, 209715200 sectors
     Disk /dev/xvdb: 2 GiB, 2147483648 bytes, 4194304 sectors
     Disk /dev/xvda: 25 GiB, 26843701248 bytes, 52429104 sectors
 
@@ -194,7 +194,7 @@ Now inspect the mount location of the root filesystem on your boxes:
     [root@gpfs1 ras]# mount | grep ' \/ '
     /dev/xvda2 on / type ext3 (rw,noatime)
 
-Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdc__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdc` then add these lines to `/root/diskfile.fpo`:
+Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdf__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdf` then add these lines to `/root/diskfile.fpo`:
 
     %pool:
     pool=system
@@ -202,21 +202,21 @@ Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm g
     writeAffinityDepth=1
 
     %nsd:
-    device=/dev/xvdc
+    device=/dev/xvdf
     servers=gpfs1
     usage=dataAndMetadata
     pool=system
     failureGroup=1
 
     %nsd:
-    device=/dev/xvdc
+    device=/dev/xvdf
     servers=gpfs2
     usage=dataAndMetadata
     pool=system
     failureGroup=2
 
     %nsd:
-    device=/dev/xvdc
+    device=/dev/xvdf
     servers=gpfs3
     usage=dataAndMetadata
     pool=system
