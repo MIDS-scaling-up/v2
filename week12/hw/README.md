@@ -61,7 +61,7 @@ aws ec2 attach-volume --volume-id vol-YOUR_VOLUME_ID --instance-id i-YOUR_INSTAN
 
 Now log in into the ec2 instances to finish the setup:
 ```
-ssh -i "eariasn.pem" centos@ec2-34-229-132-107.compute-1.amazonaws.com
+ssh -i "YOUR_KEY.pem" centos@YOUR_PUBLIC_DNS_NAME
 ```
 
 
@@ -69,7 +69,7 @@ B. __Set up each one of your nodes as follows:__
 
 Switch to root user after you login:
 ```
-sudo su
+sudo su -
 ```
 
 Add to /root/.bash\_profile the following line in the end:
