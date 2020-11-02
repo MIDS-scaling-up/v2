@@ -4,11 +4,11 @@ In this lab, we will look at the AWS DeepRacer project. You will design a Reinfo
 First, go to the [DeepRacer portal](https://console.aws.amazon.com/deepracer/home?region=us-east-1).
 
 ## Step 0
-Create account resources (Required / ~5 mins)
+Go to the "Get started" link
 
 You will see a button to create all the required resources:
 
-![](CreateResources.png)
+![](GetStarted.png)
 
 ## Step 1
 Learn the basics of reinforcement learning (Required / ~10 mins)
@@ -26,14 +26,15 @@ Click the "Create Model" button and fill out the details:
 
  - Model name
  - Environment Simulation **Pick the re:Invent 2018 track for this lab**
- - Action Space **Tweak the steering angle, granularity, speed, speed granularity however you please**
+ - Race type: Time trial
+ - Agent: `The Original DeepRacer`
  - Pick a reward function (based on what you learned in the "basics" walkthrough)
  - Use the default Hyperparameters
  - Use the default stop condition of 60 minutes
 
 
 ## Start your training
-Click the button to start the training
+Click the button to `Create Model` which will start the training
  
 ## Check your results
 After the training is complete, run an evaluation of the model. 
