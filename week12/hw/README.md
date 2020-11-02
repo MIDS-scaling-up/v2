@@ -50,8 +50,10 @@ aws ec2 create-volume --volume-type gp2 --size 100 --availability-zone us-east-1
 Attach 1 volume per ec2 instance, so each ec2 instance would end up having two volumes (boot and external 100 GB)
 ```
 aws ec2 attach-volume --volume-id vol-YOUR_VOLUME_ID --instance-id i-YOUR_INSTANCE_ID --device /dev/sdf
-Notice that volume-id and instance-id would be different on each case.
 ```
+
+**Notice that volume-id and instance-id would be different on each case.**
+
 
 Now log in into the ec2 instances to finish the setup:
 ```
