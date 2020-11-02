@@ -74,12 +74,17 @@ sudo su -
 
 Add to /root/.bash\_profile the following line in the end:
 
-    export PATH=$PATH:/usr/lpp/mmfs/bin
+    `export PATH=$PATH:/usr/lpp/mmfs/bin`
 
-Make sure the nodes can talk to each other without a password. Let's create ssh keys as centos user and distribute them across the nodes:
+Make sure the nodes can talk to each other without a password. Let's create ssh keys as centos user and distribute them across the nodes. Ensure that you accept the defaults (and do not set a passphrase):
 ```
-Run on each node as (confirm the defaults)
-# ssh-keygen -t rsa
+[root@ip-172-31-70-9 ~]# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
 
 ```
 Display the contents of the public part of the ssh key
