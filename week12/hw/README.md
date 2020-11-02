@@ -39,7 +39,7 @@ aws ec2 authorize-security-group-ingress --group-id  sg-YOUR_SG_ID  --protocol t
 Using the AWS Console for inbound rules in the security group add a rule for ALL ICMP- IPV4 with a port range ALL and custom source 0.0.0.0/0 .
 Now launch the ec2 instances with Centos 7 installed.
 ```
-aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-YOUR_SG_ID --associate-public-ip-address -block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name eariasn --count 3
+aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-YOUR_SG_ID --associate-public-ip-address --block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name eariasn --count 3
 ```
 
 Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives. (notice the availability zone of your instances, volumes should be in the same)
