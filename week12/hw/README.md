@@ -30,14 +30,13 @@ You should see output similar to this:
 }
 ```
 
-Now allow ingress on port 22:
+Now allow ingress on port 22 and for ping:
 
 ```
 aws ec2 authorize-security-group-ingress --group-id  sg-YOUR_SG_ID  --protocol tcp --port 22 --cidr 0.0.0.0/0
 aws ec2 authorize-security-group-ingress --group-id sg-YOUR_SG_ID --ip-permissions IpProtocol=icmp,FromPort=-1,ToPort=-1,IpRanges=[{CidrIp=0.0.0.0/0}]
 
 ```
-Using the AWS Console for inbound rules in the security group add a rule for ALL ICMP- IPV4 with a port range ALL and custom source 0.0.0.0/0 .
 Now launch the ec2 instances with Centos 7 installed.
 ```
 aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-YOUR_SG_ID --associate-public-ip-address --block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name eariasn --count 3
