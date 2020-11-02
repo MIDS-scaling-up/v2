@@ -33,13 +33,13 @@ You should see output similar to this:
 Now allow ingress on port 22:
 
 ```
-aws ec2 authorize-security-group-ingress --group-id  sg-0be9d9ccd3efee363  --protocol tcp --port 22 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-id  sg-YOUR_SG_ID  --protocol tcp --port 22 --cidr 0.0.0.0/0
 
 ```
 Using the AWS Console for inbound rules in the security group add a rule for ALL ICMP- IPV4 with a port range ALL and custom source 0.0.0.0/0 .
 Now launch the ec2 instances with Centos 7 installed.
 ```
-aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-060736651d7def831 --associate-public-ip-address -block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name eariasn --count 3
+aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-YOUR_SG_ID --associate-public-ip-address -block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name eariasn --count 3
 ```
 
 Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives. (notice the availability zone of your instances, volumes should be in the same)
@@ -49,7 +49,7 @@ aws ec2 create-volume --volume-type gp2 --size 100 --availability-zone us-east-1
 
 Attach 1 volume per ec2 instance, so each ec2 instance would end up having two volumes (boot and external 100 GB)
 ```
-aws ec2 attach-volume --volume-id vol-0ea1a75338378a24b --instance-id i-071a22957e9bbea7d --device /dev/sdf
+aws ec2 attach-volume --volume-id vol-YOUR_VOLUME_ID --instance-id i-YOUR_INSTANCE_ID --device /dev/sdf
 Notice that volume-id and instance-id would be different on each case.
 ```
 
@@ -80,22 +80,23 @@ Display the contents of the public part of the ssh key
 ```
 # cat ~/.ssh/id_rsa.pub
 
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOHcLvpsLtQrjPLn5CkwW6h1TAviRhCPI40y/j9/5GMYdG+F5yi65pWeWU5sM6BUKDUQK3mXdd0H7J2wLeUR7goIcpSxEV7CeJaQSdY3zc1J9yJjSBl+wABBnn16Csdp7D733wTM+fIkk9amJb0s+UKFQyUG/C centos@ip-172-31-71-181.ec2.internal
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOHcLvpsLtQrjPLn5CkwW6h1TAviRhCPI40y/j9/5GMYdG+F5yi65pWeWU5sM6BUKDUQK3mXdd0H7J2wLeUR7goIcpSxEV7CeJaQSdY3zc1J9yJjSBl+wABBnn16Csdp7D733wTM+fIkk9amJb0s+UKFQyUG/C centos@ip-YOUR_IP_ADDRESS.ec2.internal
 
 ```
 Copy the contents of the above into the authorized_keys files on each of the virtual servers for example:
 ```
 vi ~/.ssh/authorized_keys 
 append the values of:
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOHcLvpsLtQrjPLn5CkwW6h1TAviRhCPI40y/j9/5GMYdG+F5yi65pWeWU5sM6BUKDUQK3mXdd0H7J2wLeUR7goIcpSxEV7CeJaQSdY3zc1J9yJjSBl+wABBnn16Csdp7D733wTM+fIkk9amJb0s+UKFQyUG/C centos@ip-172-31-71-181.ec2.internal
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOHcLvpsLtQrjPLn5CkwW6h1TAviRhCPI40y/j9/5GMYdG+F5yi65pWeWU5sM6BUKDUQK3mXdd0H7J2wLeUR7goIcpSxEV7CeJaQSdY3zc1J9yJjSBl+wABBnn16Csdp7D733wTM+fIkk9amJb0s+UKFQyUG/C centos@YOUR_IP_ADDRESS.ec2.internal
 ```
 Do the same for all the 3 virtual servers so in the end you would have an authorized_keys file with 4 keys, 3 for the hw12 servers and your local key.
 
 Test that ssh connectivity between the hosts work:
 ```
-ssh 3.236.224.65  (ip of another virtual server)
-should connect without password.
+ssh IP_ADDRESS_OF_ANOTHER_SERVER
 ```
+It should connect without password.
+
 
 Write down the private IP address of each host (examples):
 ```
