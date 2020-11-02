@@ -34,6 +34,7 @@ Now allow ingress on port 22:
 
 ```
 aws ec2 authorize-security-group-ingress --group-id  sg-YOUR_SG_ID  --protocol tcp --port 22 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-id sg-YOUR_SG_ID --ip-permissions IpProtocol=icmp,FromPort=-1,ToPort=-1,IpRanges=[{CidrIp=0.0.0.0/0}]
 
 ```
 Using the AWS Console for inbound rules in the security group add a rule for ALL ICMP- IPV4 with a port range ALL and custom source 0.0.0.0/0 .
