@@ -74,7 +74,7 @@ sudo su -
 
 Add to /root/.bash\_profile the following line in the end:
 
-    `export PATH=$PATH:/usr/lpp/mmfs/bin`
+    export PATH=$PATH:/usr/lpp/mmfs/bin
 
 Make sure the nodes can talk to each other without a password. Let's create ssh keys as centos user and distribute them across the nodes. Ensure that you accept the defaults (and do not set a passphrase):
 ```
