@@ -44,11 +44,12 @@ aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium
 
 Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives by running the `create-volume` command three times:
 
-**NOTE: The availability zone can be found by running `aws ec2 describe-instances | grep AvailabilityZone`
-
 ```
 aws ec2 create-volume --volume-type gp2 --size 100 --availability-zone us-east-1a
 ```
+**NOTE: The availability zone can be found by running:**
+`aws ec2 describe-instances | grep AvailabilityZone`
+
 
 Attach 1 volume per ec2 instance, so each ec2 instance would end up having two volumes (boot and external 100 GB)
 ```
