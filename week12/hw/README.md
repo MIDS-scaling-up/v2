@@ -11,15 +11,28 @@ A. __Get three virtual servers provisioned__,
 
 Use this command to pick out your default vpc, note, it is the vpc with `"IsDefault": true`.
 ```
-aws ec2 describe-vpcs | grep VpcId
+aws ec2 describe-vpcs | grep -B20 "IsDefault\": true" | grep VpcId
 ```
-My one is `vpc-e4e35381`, I shall use this below. 
+
+If you do not see a VpcId listed, try `aws ec2 describe-vpcs | grep VpcId`
+
+My default VPC is `vpc-e4e35381`, I shall use this below. 
 
 Now create a security group which will allow us to login. 
 ```
 aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vpc-e4e35381
-sg-0be9d9ccd3efee363
+```
 
+You should see output similar to this:
+```
+{
+     "GroupId": "sg-0be9d9ccd3efee363"
+}
+```
+
+Now allow ingress on port 22:
+
+```
 aws ec2 authorize-security-group-ingress --group-id  sg-0be9d9ccd3efee363  --protocol tcp --port 22 --cidr 0.0.0.0/0
 
 ```
