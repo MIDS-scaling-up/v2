@@ -200,19 +200,22 @@ You could get more details on your cluster:
 
 Now we need to define our disks. Do this to print the paths and sizes of disks on your machine:
 
-    fdisk -l #(this command and the rest until the file creation command (touch aa) needs to be run just gpfs1)
+    lsblk #(this command and the rest until the file creation command (touch aa) needs to be run just gpfs1)
 
-Note the names of your 100G disks. Here's what I see:
+Note the names of your 100G disk. Here's what I see:
+```
+[root@ip-172-31-65-131 ~]# lsblk
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   32G  0 disk 
+└─xvda1 202:1    0   32G  0 part /
+xvdf    202:80   0  100G  0 disk 
+```
 
-    [root@gpfs1 ras]# fdisk -l |grep df
-    Disk /dev/xvdf: 107.4 GB, 107374182400 bytes, 209715200 sectors
+Note that the root file system `/` on the example above is `xvda1`
 
-Now inspect the mount location of the root filesystem on your boxes:
+Identify the 100G disk on all three nodes.
 
-    [root@gpfs1 ras]# mount | grep ' \/ '
-    /dev/xvda2 on / type ext3 (rw,noatime)
-
-Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdf__ is my 100gb disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdf` then add these lines to `/root/diskfile.fpo`:
+Disk /dev/xvda (partition 1) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdf__ is my 100G disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your 100G disk is `/dev/xvdf` then add these lines to `/root/diskfile.fpo`:
 
     %pool:
     pool=system
