@@ -20,7 +20,7 @@ My default VPC is `vpc-e4e35381`, I shall use this below.
 
 Now create a security group which will allow us to login. 
 ```
-aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vpc-e4e35381
+aws ec2 create-security-group --group-name hw12 --description "HW12" --vpc-id vpc-YOUR_VPC_ID
 ```
 
 You should see output similar to this:
@@ -39,10 +39,10 @@ aws ec2 authorize-security-group-ingress --group-id sg-YOUR_SG_ID  --protocol tc
 ```
 Now launch the ec2 instances with Centos 7 installed.
 ```
-aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-YOUR_SG_ID --associate-public-ip-address --block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name eariasn --count 3
+aws ec2 run-instances --image-id ami-0affd4508a5d2481b --instance-type t2.medium --security-group-ids sg-YOUR_SG_ID --associate-public-ip-address --block-device-mapping 'DeviceName=/dev/sda1,Ebs={VolumeSize=32}' --key-name YOUR_KEY_NAME --count 3
 ```
 
-Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives by running the `create-volume` command three times:
+Create 3 EBS volumes of 100GB to attach to the ec2 instances as secondary drives by running the `create-volume` command **three times**:
 
 ```
 aws ec2 create-volume --volume-type gp2 --size 100 --availability-zone us-east-1a
@@ -181,40 +181,38 @@ Now the cluster is installed, let's work the details.
 
 Now, you must accept the license:
 
-     /usr/lpp/mmfs/bin/mmchlicense sever -N all #(this command needs to be run just gpfs1)
+     /usr/lpp/mmfs/bin/mmchlicense server -N all #(this command needs to be run just gpfs1)
     # (say yes)
 
 Now, start GPFS:
 
-    mmstartup -a (this command needs to be run just gpfs1)
+    mmstartup -a #(this command needs to be run just gpfs1)
 
 All nodes should be up ("GPFS state" column shows "active"):
 
-    mmgetstate -a (this command needs to be run just gpfs1)
+    mmgetstate -a #(this command needs to be run just gpfs1)
 
 Nodes may reflect "arbitrating" state briefly before "active".  If one or more nodes are down, you will need to go back and see what you might have missed. If some node shows a DOWN state, log into the node and run the command  mmstartup. The main GPFS log file is `/var/adm/ras/mmfs.log.latest`; look for errors there.
 
 You could get more details on your cluster:
 
-    mmlscluster (this command needs to be run just gpfs1)
+    mmlscluster #(this command needs to be run just gpfs1)
 
 Now we need to define our disks. Do this to print the paths and sizes of disks on your machine:
 
-    fdisk -l (this command and the rest until the file creation command (touch aa) needs to be run just gpfs1)
+    fdisk -l #(this command and the rest until the file creation command (touch aa) needs to be run just gpfs1)
 
 Note the names of your 100G disks. Here's what I see:
 
-    [root@gpfs1 ras]# fdisk -l |grep Disk |grep bytes
+    [root@gpfs1 ras]# fdisk -l |grep df
     Disk /dev/xvdf: 107.4 GB, 107374182400 bytes, 209715200 sectors
-    Disk /dev/xvdb: 2 GiB, 2147483648 bytes, 4194304 sectors
-    Disk /dev/xvda: 25 GiB, 26843701248 bytes, 52429104 sectors
 
 Now inspect the mount location of the root filesystem on your boxes:
 
     [root@gpfs1 ras]# mount | grep ' \/ '
     /dev/xvda2 on / type ext3 (rw,noatime)
 
-Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdf__ is my 100 disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdf` then add these lines to `/root/diskfile.fpo`:
+Disk /dev/xvda (partition 2) is where my operating system is installed, so I'm going to leave it alone.  In my case, __xvdf__ is my 100gb disk.  In your case, it could be /dev/xvdb, so __please be careful here__.  Assuming your second disk is `/dev/xvdf` then add these lines to `/root/diskfile.fpo`:
 
     %pool:
     pool=system
