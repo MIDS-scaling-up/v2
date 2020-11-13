@@ -162,6 +162,7 @@ scp Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install gpfs3:~
 
 GPFS installation (node that we are adding nodes using the node names, be sure to update the hosts file on each VM)
 ```
+source /root/.bash_profile
 chmod +x Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install
 ./Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install --silent  #(this command needs to be run on every node)
 /usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs1  #(this command needs to be run just gpfs1)
