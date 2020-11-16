@@ -32,15 +32,17 @@ $ docker/run.sh
 ```
 
 ## Training the model
-We suggest that you generally follow [these instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-plants.md) to train ResNet-34 on the PlantCLEF dataset.  Just a few notes:
+We suggest that you loosely follow [these instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-plants.md) to train Wide ResNet 50-2 on the PlantCLEF dataset.  Just a few notes:
 * Review the [repo](https://github.com/dusty-nv/pytorch-classification) and the [train script](https://github.com/dusty-nv/pytorch-imagenet/blob/master/train.py)
+* Please use [the original pytorch example script](https://github.com/pytorch/examples/blob/master/imagenet/main.py) for training as it is more up to date
 * Once again, please use python3 for all commands
 * Train for 100 epochs 
-* Make sure you're training ResNet-34
-* You are running on the NX, so the training will take [a lot] less time than on the nano (which is what Dusty benchmarked on)
+* Make sure you're training Wide ResNet 50-2 Hint: review the [TorchVision model catalog](https://pytorch.org/docs/stable/torchvision/models.html)
+* Adjust batch size as necessary
+
 
 ## To submit
-Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Could you increase the batch size? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
+Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Whast training parameters you adjusted? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
 
 
 Credit / no credit only
