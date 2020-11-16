@@ -42,7 +42,7 @@ We suggest that you loosely follow [these instructions](https://github.com/dusty
 
 
 ## To submit
-Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Whast training parameters you adjusted? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
+Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Were you able to outperform Dusty's results on ResNet13? What training parameters you adjusted? Why? How long did the training take you? Please save your trained model, we'll use it for the lab.
 
 
 Credit / no credit only
