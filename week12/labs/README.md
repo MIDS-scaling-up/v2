@@ -34,6 +34,9 @@ We will generally follow [OpenSeq2Seq LM training intructions](https://nvidia.gi
 
 A. __Data download:__
 We will discuss the best option to move the data from the LazyNLP / GPFS cluster into IBM Cloud, please refer to the discussed Cloud storage options (async video) and try to come up with ideas about it.
+The instructtions below follow the [Download WikiText-2 word level](https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset) data, which is used by OpenSeq2Seq as the example.
+
+Unzip your files into `/data/wikitext-2`
 
 B. __Edit your config file:__
 ```
