@@ -26,7 +26,7 @@ Pull and launch the latest Nvidia TF container, e.g.
 
 ```
 # replace /data in the command with the location of your large data files so you don't need to copy them into your container
-nvidia-docker run --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -v /data:/data -it --rm nvcr.io/nvidia/tensorflow:19.03-py3
+docker run --gpus all --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -v /data:/data -it --rm nvcr.io/nvidia/tensorflow:19.03-py3
 ```
 
 ## Training an OpenSeq2Seq-based language model
@@ -37,7 +37,7 @@ We will discuss the best option to move the data from the LazyNLP / GPFS cluster
 
 B. __Edit your config file:__
 ```
-cd example_configs/lm
+cd nvidia-examples/OpenSeq2Seq/example_configs/lm
 Edit the file lstm-wkt2-fp32.py and set the data_root variable, e.g.
 # data_root = "/data/wikitext-2"
 # also make sure that horovod is turned off and that you're training on just 1 GPU (see the corresponding variables)
