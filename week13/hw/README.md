@@ -32,17 +32,17 @@ $ docker/run.sh
 ```
 
 ## Training the model
-We suggest that you loosely follow [these instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-plants.md) to train Wide ResNet 50-2 on the PlantCLEF dataset.  Just a few notes:
+We suggest that you loosely follow [these instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-plants.md) to train at least two networks: ResNet13 and Wide ResNet 50-2 on the PlantCLEF dataset.  Just a few notes:
 * Review the [repo](https://github.com/dusty-nv/pytorch-classification) and the [train script](https://github.com/dusty-nv/pytorch-imagenet/blob/master/train.py)
 * Please use [the original pytorch example script](https://github.com/pytorch/examples/blob/master/imagenet/main.py) for training as it is more up to date
 * Once again, please use python3 for all commands
 * Train for 100 epochs 
-* Make sure you're training Wide ResNet 50-2 Hint: review the [TorchVision model catalog](https://pytorch.org/docs/stable/torchvision/models.html)
+* ReeNe t13 / Wide ResNet 50-2 Hint: review the [TorchVision model catalog](https://pytorch.org/docs/stable/torchvision/models.html)
 * Adjust batch size as necessary
 
 
 ## To submit
-Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Were you able to outperform Dusty's results on ResNet13? What training parameters you adjusted? Why? How long did the training take you? Please save your trained model, we'll use it for the lab. Also please review the architecture of the [Wide ResNet 50-2](https://pytorch.org/hub/pytorch_vision_wide_resnet/) network, we will discuss it in class.
+Please submit the time it took you to train the model along with the final accuracy top1/top5 that you were able to achieve. Did you get better results with Wide ResNet50 or ResNet13? What training parameters you adjusted? Why? How long did the training take you? Please save your trained model, we'll use it for the lab. Also please review the architecture of the [Wide ResNet 50-2](https://pytorch.org/hub/pytorch_vision_wide_resnet/) network, we will discuss it in class.
 
 
 Credit / no credit only
