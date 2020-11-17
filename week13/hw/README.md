@@ -37,7 +37,7 @@ We suggest that you loosely follow [these instructions](https://github.com/dusty
 * Please use [the original pytorch example script](https://github.com/pytorch/examples/blob/master/imagenet/main.py) for training as it is more up to date
 * Once again, please use python3 for all commands
 * Train for 100 epochs 
-* ReeNe t13 / Wide ResNet 50-2 Hint: review the [TorchVision model catalog](https://pytorch.org/docs/stable/torchvision/models.html)
+* ResNet13 / Wide ResNet 50-2 Hint: review the [TorchVision model catalog](https://pytorch.org/docs/stable/torchvision/models.html)
 * Adjust batch size as necessary
 
 
