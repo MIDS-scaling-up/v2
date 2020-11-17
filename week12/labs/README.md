@@ -17,9 +17,9 @@ fast, simple-to-use, Horovod-based distributed training and data parallelism, su
 
 
 ## Setup: get a GPU VM in Softlayer
-Follow instructions in [Homework 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/hw) to get an image-based P100 VM in Softlayer, e.g.:
+Follow instructions in [Homework 9](https://github.com/MIDS-scaling-up/v2/tree/master/week09/hw) to get a T4 GPU VM in AWS, e.g.:
 ```
-ibmcloud sl vs create --datacenter=lon06 --hostname=p100a --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
+aws ec2 run-instances --image-id ami-0dc2264cd927ca9eb --instance-type g4dn.2xlarge --security-group-ids your_security_group --associate-public-ip-address --key-name yourkey_group
 ```
 
 Pull and launch the latest Nvidia TF container, e.g.
