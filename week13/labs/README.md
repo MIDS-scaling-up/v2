@@ -17,12 +17,12 @@ Grab the container:
 ```
 docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-l4t:5.0.1-20.09-samples
 ```
-Run the 12-camera example:
+Run the 30-camera example:
 ```
 cd samples
-deepstream-app -c configs/deepstream-app/source12_1080p_dec_infer-resnet_tracker_tiled_display_fp16_tx2.txt
+deepstream-app -c configs/deepstream-app/source30_1080p_dec_infer-resnet_tiled_display_int8.txt
 ```
-You shoud see 12 screens tracking objects simultaneously.
+You shoud see 30 screens tracking objects simultaneously.
 
 Now run the people detection demo:
 ```
