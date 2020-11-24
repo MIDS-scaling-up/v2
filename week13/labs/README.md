@@ -19,10 +19,15 @@ docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X1
 ```
 Run the 12-camera example:
 ```
-cd deepstream_sdk_v4.0.2_jetson/samples
+cd samples
 deepstream-app -c configs/deepstream-app/source12_1080p_dec_infer-resnet_tracker_tiled_display_fp16_tx2.txt
 ```
 You shoud see 12 screens tracking objects simultaneously.
+
+Now run the people detection demo:
+```
+docker run -it --rm --net=host --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/deepstream-peopledetection:r32.4.2  deepstream-test5-app -c deepstream-5.0/samples/configs/deepstream-app/sourceX_1080p_dec_infer-resnet_tracker_tiled_display_int8_hq_dla_nx.txt
+```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
 Let's just prepare the codebase on the Jetson directly:
