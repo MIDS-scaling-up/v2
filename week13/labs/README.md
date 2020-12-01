@@ -1,6 +1,15 @@
 # Labs 13: Running Deep Learning applications end to end
 Even though we are at the end of 2020, it's impossible not to observe that running end to end DL applications remains suprisingly complex. Perhaps the rapid rate at which new frameworks are being developed is to blame.  Another aspect could be that a lot of time the focus is on the data science aspects only - e.g. on the development of new models, but not on the development of end to end applications. 
 
+### Pre-work
+Download the container images:
+
+```
+docker pull nvcr.io/nvidia/deepstream-l4t:5.0.1-20.09-samples
+docker pull nvcr.io/nvidia/deepstream-peopledetection:r32.4.2
+```
+
+### Background
 In this session, we will review:
 * Nvidia Digits - a slightly dated but still, a ridiculously easy to use tool for training and inference.  Note that the [Nvidia Jarvis](https://developer.nvidia.com/nvidia-jarvis) project is supposed to be the successor to [DIGITS](https://developer.nvidia.com/digits).
 * The DeepStream SDK, a bleeding edge yet not-so-easy-to use tool for processing multiple video streams in real time, 
