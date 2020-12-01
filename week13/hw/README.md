@@ -3,7 +3,8 @@
 We find that Dusty's repo has been one of the best places to find cool examples and cool code for doing something practical, so hopefully you'll enjoy it as well.  In this homework, you'll be using transfer learning to create a model that classifies plants, directly on your Jetson!
 
 ## Set up your default Docker runtime to Nvidia
-``` json
+Edit /etc/docker/daemon.json and add `"default-runtime": "nvidia"`
+```
 {
     "runtimes": {
         "nvidia": {
