@@ -21,6 +21,8 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 #### [Celestial Navigation](https://github.com/travisrmetz/w251-project)
  
 #### [Watch the whisper](https://github.com/kasri-mids/w251-Final-Project)
+
+#### [Homemade Pentago a Q learning history](https://github.com/jgaustad/w251_pentago)
  
 *.In case the repo is private please contact the owner requesting access based on current enrollment.
 ### Support or Contact
