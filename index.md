@@ -23,6 +23,8 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 #### [Watch the whisper](https://github.com/kasri-mids/w251-Final-Project)
 
 #### [Homemade Pentago a Q learning history](https://github.com/jgaustad/w251_pentago)
+
+#### [Toy locator](https://github.com/toylocator/toylocator/tree/w251_final)
  
 *.In case the repo is private please contact the owner requesting access based on current enrollment.
 ### Support or Contact
