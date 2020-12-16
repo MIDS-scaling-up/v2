@@ -15,7 +15,7 @@ For details on set up see [homework 1](week01/hw):
  4. NVMe M.2 SSD (256GB minimum size) **NOTE: SATA M.2 SSDs will not work**
  5. Size 0 Philips head screwdriver
  6. Micro USB to USB cable
- 7. USB Webcam
+ 7. USB Webcam   
  Homework, final project and lab exercises in the course rely on working with the NVIDIA Jetson NX module for AI Edge devices.
 
 ### Homeworks:
