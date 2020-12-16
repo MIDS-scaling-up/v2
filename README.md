@@ -16,6 +16,7 @@ For details on set up see [homework 1](week01/hw):
  5. Size 0 Philips head screwdriver
  6. Micro USB to USB cable
  7. USB Webcam
+ Homework, final project and lab exercises in the course rely on working with the NVIDIA Jetson NX module for AI Edge devices.
 
 ### Homeworks:
 A homework is due before each class.  There are two types of homeworks: graded and credit only. Here is the link to [class 1](week01) - be sure to complete the setup of your Xavier as described in [homework 1](week01/hw)
