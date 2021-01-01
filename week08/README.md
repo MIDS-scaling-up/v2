@@ -19,6 +19,7 @@ Dataset Collection and Preparation.  Image Classification and and the importance
 * Pascal VOC datasets: http://host.robots.ox.ac.uk/pascal/VOC/
 * WikiText: https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/
 * Youtube 8M https://research.google.com/youtube8m/
+* Hypersim dataset https://github.com/apple/ml-hypersim
 
 ### Data Augmentation
 *  [AutoAugment](https://ai.googleblog.com/2018/06/improving-deep-learning-performance.html)
