@@ -1,4 +1,4 @@
-# W251 reloaded (Fall 2020)
+# W251 reloaded (Spring 2021)
 
 The revised class is focused on Deep Learning and Big Data at the Edge and in the Cloud.
 
@@ -6,7 +6,7 @@ To follow the class, you'll a Mac or a PC (Windows or Linux) with an ability to 
 ### Required equipment:
 
 We are working on sourcing discount codes for the Jetson Xavier NX Developer Kit (@$329 in the US) and hope to have them available the week before classes start.   
-**NB** We have an update from Nvidia that we will get the discount codes to distribute early this week (of 17th August 2020), it is recommended to hold on for ordering till you get this code. This may mean the devices are recieved too late to complete the homeworks for the week 01 deadline next week, which is ok - there will be no penalty if you are a few days late due to the discount codes arriving late.    
+**NB** We have an update from Nvidia that we will get the discount codes to distribute some time this week (of 4th January 2021), it is recommended to hold on for ordering till you get this code. This may mean the devices are recieved too late to complete the homeworks for the week 01 deadline next week, which is ok - there will be no penalty if you are a few days late due to the discount codes arriving late.    
 
 For details on set up see [homework 1](week01/hw): 
  1. [Jetson Xavier NX Developer Kit](https://developer.nvidia.com/embedded/jetson-xavier-nx-devkit)
