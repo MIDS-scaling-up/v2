@@ -214,7 +214,9 @@ To set up alerts for charges to your AWS account, type “Budgets” into the Fi
    
 ### Raise usage limits on your account
 Your AWS account has default quotas, formerly referred to as limits, for each AWS service. Unless otherwise noted, each quota is Region-specific. You can request increases for some quotas, and other quotas cannot be increased. Your starting quotas do not include the allowances required for homework 06 and 09, where we will be using more advanced GPU resources. Therefore we need to get the request in early.   
-We will be using a [V100](https://www.nvidia.com/en-us/data-center/v100/) in HW06 which is delivered through a p3.2xlarge instance. Please raise a limit request for using 8 VCPUs which will enable a `p3.2xlarge` instance in the region of your choice (preferably your default region in AWS). You can request an on-demand instance. The `Limits` option can be found in the ec2 dashboard of AWS - it is the fourth option, just below `EC2 dashboard`. 
+We will be using a [V100](https://www.nvidia.com/en-us/data-center/v100/) in HW06 which is delivered through a p3.2xlarge instance. Please raise a limit request for using 8 VCPUs which will enable a `p3.2xlarge` instance in the region of your choice (preferably your default region in AWS). You can request an on-demand instance. The `Limits` option can be found in the ec2 dashboard of AWS - it is the fourth option, just below `EC2 dashboard`.   
+If a quota increase via the service quota console is denied, please try submitting a service quota increase via the support console and provide the reason for the quota increase.   
+An approved request is not a prerequisite for completing this homework 02, but please have the request submitted in the `EC2 dashoard`.   
 
 ### Turn in
 Please send a message on the class portal homework submission page indicating that you were able to set up the above instances, and have them terminated.   
