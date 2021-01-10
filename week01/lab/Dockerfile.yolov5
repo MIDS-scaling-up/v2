@@ -1,5 +1,3 @@
-# FROM nvcr.io/nvidia/l4t-ml:r32.4.2-py3
-# FROM nvcr.io/nvidia/l4t-ml:r32.4.4-py3
 FROM w251/l4t-pytorch:r32.4.4-pth1.7-py3
 
 # tested on Jetson NX
