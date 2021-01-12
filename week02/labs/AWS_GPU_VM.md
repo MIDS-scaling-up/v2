@@ -33,4 +33,5 @@ for GPU use
 2. Find the latest ubuntu container. How big is it?
 3. Pull it into your VM.. How can you tell how big the image is?
 4. Find and pull the alpine image. How big is it?
+5. (Extra credit) Can you find the Kaggle docker image? How big is it?
 5. Please remove your VM(s) once you are done
