@@ -26,3 +26,11 @@ In section 4, Storage, make sure that the root fs is increased to 100 GB.
 3. Using instructions [here](https://github.com/NVIDIA/nvidia-docker) install all of the pre-requisites (the driver, docker, and eventually, nvidia-docker)
 4. The end result should be identical to [2] - e.g. `docker ps` should work. Note that while a bit complex, these steps are the "official" way to configure your machine
 for GPU use
+
+
+### Docker hub = nanolab part 5
+1. Examine the [Docker hub](http://hub.docker.com) page
+2. Find the latest ubuntu container. How big is it?
+3. Pull it into your VM.. How can you tell how big the image is?
+4. Find and pull the alpine image. How big is it?
+5. Please remove your VM(s) once you are done
