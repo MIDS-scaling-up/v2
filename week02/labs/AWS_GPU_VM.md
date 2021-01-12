@@ -18,6 +18,7 @@ In section 4, Storage, make sure that the root fs is increased to 100 GB.
 2. Under "containers", find the latest pytorch container. docker pull it
 3. Can you launch this container on your GPU AWS instance and make sure that it sees the GPU inside it (hint: make sure you pass the gpu to your container)
 4. (Extra credit) Can you modify the docker configuration so that the GPU is passed in by default?
+5. Can you find jetson containers? What are they?
 
 ### AWS - nanolab part 4
 1. Let's remove the VM that we provisioned in part 2
