@@ -28,7 +28,7 @@ In section 4, Storage, make sure that the root fs is increased to 100 GB.
 for GPU use
 
 
-### Docker hub = nanolab part 5
+### Docker hub - nanolab part 5
 1. Examine the [Docker hub](http://hub.docker.com) page
 2. Find the latest ubuntu container. How big is it?
 3. Pull it into your VM.. How can you tell how big the image is?
