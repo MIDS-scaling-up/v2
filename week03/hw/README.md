@@ -123,7 +123,7 @@ for (x,y,w,h) in faces:
 ```
 
 ```
-Note, you can find the OpenCV cascade files on the tx2 in the directory /usr/share/opencv4/haarcascades
+Note, you can find the OpenCV cascade files on the nx in the directory /usr/share/opencv4/haarcascades
 ```
 
 ### Reading video from a USB webcam
