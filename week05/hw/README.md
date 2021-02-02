@@ -1,4 +1,4 @@
-# Homework 5: TF2 and TF1
+# Homework 5: TF2
 
 ## Introduction to Tensorflow v2
 The idea of this homework is to serve as an introduction to [TensorFlow](https://www.tensorflow.org/).  TensorFlow 2 is based on [Keras](https://keras.io/), which you encountered in Session 4 and (hope you agree after reviewing section 2 of this homework) is much easier to use than Tensorflow 1. 
