@@ -186,3 +186,11 @@ aws ce get-cost-and-usage \
     --granularity MONTHLY  \
     --metrics "BlendedCost" "UnblendedCost" 
 ```
+### Raise usage limits on your account
+We will be using a [V100](https://www.nvidia.com/en-us/data-center/v100/) in HW09 which is delivered through a p3.2xlarge instance. Please raise a limit request for using 32 VCPUs which will enable a `p3.2xlarge` instance in the region of your choice (preferably your default region in AWS). You can request an on-demand instance. The `Limits` option can be found in the ec2 dashboard of AWS - it is the fourth option, just below `EC2 dashboard`.   
+If a quota increase via the service quota console is denied, please try submitting a service quota increase via the support console and provide the reason for the quota increase.   
+An approved request is not a prerequisite for completing this homework 09, but please have the request submitted in the `EC2 dashoard`.   
+A sample message for request increase below:
+```
+Please update the limit for VCPU on my account to be 32 for the g4dn.2xlarge instance type. We are currently running a graded homework in our class at UC Berkeley for the Master in Data Science program about training a Transformer-based Machine Translation network on a small English to German WMT corpus and it uses distributed computing across 4 EC2 instances.
+```
