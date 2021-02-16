@@ -187,7 +187,7 @@ aws ce get-cost-and-usage \
     --metrics "BlendedCost" "UnblendedCost" 
 ```
 ### Raise usage limits on your account
-We will be using 4 [T4](https://www.nvidia.com/en-us/data-center/tesla-t4/)'s in HW09 which is delivered through a g4dn.2xlarge instance. Please raise a limit request for using 32 VCPUs which will enable a `p3.2xlarge` instance in the region of your choice (preferably your default region in AWS). You can request an on-demand instance. The `Limits` option can be found in the ec2 dashboard of AWS - it is the fourth option, just below `EC2 dashboard`.   
+We will be using 4 [T4](https://www.nvidia.com/en-us/data-center/tesla-t4/)'s in HW09 which is delivered through a g4dn.2xlarge instance. Please raise a limit request for using 32 VCPUs which will enable a `g4dn.2xlarge` instance in the region of your choice (preferably your default region in AWS). You can request an on-demand instance. The `Limits` option can be found in the ec2 dashboard of AWS - it is the fourth option, just below `EC2 dashboard`.   
 If a quota increase via the service quota console is denied, please try submitting a service quota increase via the support console and provide the reason for the quota increase.   
 An approved request is not a prerequisite for completing this homework 09, but please have the request submitted in the `EC2 dashoard`.   
 A sample message for request increase below:
