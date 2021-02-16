@@ -14,3 +14,6 @@ RUN pip3 install facenet-pytorch
 RUN git clone https://github.com/timesler/facenet-pytorch.git facenet_pytorch
 ADD facedetect.ipynb /facenet_pytorch/examples/
 ADD facedetect_cv2.ipynb /facenet_pytorch/examples/
+
+# fix the latest jupyter password issues
+RUN rm /root/.jupyter/*
