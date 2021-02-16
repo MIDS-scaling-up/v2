@@ -1,6 +1,9 @@
 # Face detection using OpenCV and FaceNet PyTorch
 
 ### Face Detection
+
+This lab runs on the Xavier device.
+
 In this lab, we will briefly experiment with and compare face detection capabilities of [FaceNet PyTorch](https://github.com/timesler/facenet-pytorch) 
 and [OpenCV](https://opencv.org/).
 
