@@ -4,7 +4,7 @@
 The objective of this homework is simple: modify the processing pipeline that you implemented in 
 [homework 3](https://github.com/MIDS-scaling-up/v2/blob/master/week03/hw/README.md) and replace the OpenCV-based face detector with 
 a Deep Learning-based one. You could, for instance, use the materials from 
-[TensorRT lab 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/labs/facenet-lab)
+[FaceNet lab 6](https://github.com/MIDS-scaling-up/v2/tree/master/week06/labs/facenet-lab)
 
 
 ### Hints
