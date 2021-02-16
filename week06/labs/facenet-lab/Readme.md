@@ -15,7 +15,7 @@ Then start the container:
 ```
 docker run --rm --runtime nvidia -p 8888:8888 -ti facenet
 ```
-Open your browser and point it to port 8888.  When prompted for password, enter `nvidia`
+Open your browser and point it to port 8888.  When prompted for password, enter the token from `docker logs`
 
 Navigate to `facenet_pytorch/examples` ; examine and run `facedetect_cv2.ipynb` . You should already be familiar with this functionality from homework 3.
 For now, just observe the accuracy and execution time of this script.
