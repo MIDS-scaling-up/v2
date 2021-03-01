@@ -96,6 +96,25 @@ Bonus points, explore to mount the directories permanently with FSTAB.
 1. Notice that it is important to run these containers in the -d mode as inside them we are starting sshd on port 4444 and this port will be used for communication between them
 1. On each VM, create an interactive bash sesion inside the container: ``` docker exec -ti openseq2seq bash ``` and run the following commands in the container shell:
     1. Test mpi: ``` mpirun -n 4 -H <vm1 private ip address>,<vm2 private ip address>,<vm3>,<vm4> --allow-run-as-root hostname ``` 
+    1. Make a change in scripts/get_en_de.sh -   
+        From:
+       ```
+       echo "Downloading Europarl v7. This may take a while..."
+       curl -o ${OUTPUT_DIR_DATA}/europarl-v7-de-en.tgz \
+       http://www.statmt.org/europarl/v7/de-en.tgz
+       echo "Downloading Common Crawl corpus. This may take a while..."
+       curl -o ${OUTPUT_DIR_DATA}/common-crawl.tgz \
+       http://www.statmt.org/wmt13/training-parallel-commoncrawl.tgz 
+       ```
+       To:
+       ``` 
+       echo "Downloading Europarl v7. This may take a while..."
+       curl -o ${OUTPUT_DIR_DATA}/europarl-v7-de-en.tgz \
+       https://www.statmt.org/europarl/v7/de-en.tgz
+       echo "Downloading Common Crawl corpus. This may take a while..."
+       curl -o ${OUTPUT_DIR_DATA}/common-crawl.tgz \
+       https://www.statmt.org/wmt13/training-parallel-commoncrawl.tgz 
+       ```
     1. Assuming that you have mounted your EFS on /data, run this on node1 only. Pull data to be used in neural machine tranlsation training ([more info](https://nvidia.github.io/OpenSeq2Seq/html/machine-translation.html)).  this may take up to 6 hours, depending on your luck and network conditions:  
     ``` 
     cd /opt/OpenSeq2Seq 
