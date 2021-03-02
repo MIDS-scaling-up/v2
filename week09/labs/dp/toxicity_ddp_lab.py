@@ -149,7 +149,7 @@ def ddp_train(rank, world_size, model, train_loader, optimizer, accumulation_ste
 
 
 def main():
-    DATA_DIR = '../data'
+    DATA_DIR = './data'
     EPOCHS = 2
 
     # these come from MPI
