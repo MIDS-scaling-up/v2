@@ -24,9 +24,17 @@ Upload [the python notebook](https://github.com/MIDS-scaling-up/v2/blob/master/w
 1. Run through the training code. How long does it take now?
 1. Same for the inference code.  What is the speedup?
 
-### 3. Distributed Data Parallel
+### 3a. Distributed Data Parallel - single node
 Upload the [python file](https://github.com/MIDS-scaling-up/v2/blob/master/week09/labs/dp/toxicity_ddp_lab.py) to your VM.
 1. Review it and make sure you still recognize it. It's the same logic, slightly repackaged
 1. Remind yourself, how do you properly run distributed workloads? What do you use for coordination?
 1. Run through it - as it it should run on just one GPU.  How do you properly run it ?  how long does the training take?
 1. Now, use [Pytorch DDP](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) to (a) create a distributed data sampler and (b) do distributed training. How long does it take now?
+
+### 3b. Distributed Data Parallel - multi node
+This is a more advanced lab that will require additional preparation.
+1. We will need a pair of GPU VMs - we recommend g4dn.xlarge as they are the cheapest
+2. When you provision them, make sure they are in the same VPC, and follow the same general instructions in homework 9 - e.g. make sure that between these VMs, all ports are open. This is needed for communication between them
+3. Launch the containers just like we did in homework 9, e.g. docker run --gpus all -d --name group --net=host -e SSH_PORT=4444 w251/lab09:mn
+4. Now, create an interactive shell inside each container, e.g. docker exec -ti group bash
+5. In each container, download the data, e.g. `cd /workspace/v2/week09/labs/dp && sh data.sh`
