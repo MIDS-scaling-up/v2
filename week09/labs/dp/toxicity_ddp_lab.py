@@ -149,21 +149,30 @@ def ddp_train(rank, world_size, model, train_loader, optimizer, accumulation_ste
 
 
 def main():
-    DATA_DIR = '../data'
+    DATA_DIR = './data'
     EPOCHS = 2
 
     # these come from MPI
-    rank = int(os.environ['OMPI_COMM_WORLD_RANK'])
-    world_size = int(os.environ['OMPI_COMM_WORLD_SIZE'])
+    if 'OMPI_COMM_WORLD_RANK' in os.environ:
+      rank = int(os.environ['OMPI_COMM_WORLD_RANK'])
+    else:
+      rank = 0
+    if 'OMPI_COMM_WORLD_SIZE' in os.environ:
+      world_size = int(os.environ['OMPI_COMM_WORLD_SIZE'])
+    else:
+      world_size = 1
 
     # these are needed for pytorch distributed
-    os.environ['WORLD_SIZE'] = os.environ['OMPI_COMM_WORLD_SIZE']
-    os.environ['RANK'] = os.environ['OMPI_COMM_WORLD_RANK']
+    os.environ['WORLD_SIZE'] = str(world_size)
+    os.environ['RANK'] = str(rank)
     # we only have one node, so...
 #     os.environ['LOCAL_RANK'] = rank
-    # these are somewhat arbitrary..
-    os.environ['MASTER_ADDR'] = 'localhost'
-    os.environ['MASTER_PORT'] = '12345'
+   
+    if 'MASTER_ADDR' not in os.environ:
+      os.environ['MASTER_ADDR'] = 'localhost'
+    
+    if 'MASTER_PORT' not in os.environ:
+      os.environ['MASTER_PORT'] = '12345'
 
     # Setup logging
     logging.basicConfig(
@@ -171,7 +180,7 @@ def main():
         datefmt="%m/%d/%Y %H:%M:%S",
         level=logging.INFO if rank in [-1, 0] else logging.WARN,
     )
-    world_size = int(os.environ['OMPI_COMM_WORLD_SIZE'])
+    world_size = int(world_size)
     logger.info("starting rank: %i, world size: %i", rank, world_size)         
 
 #    dist.init_process_group(backend='nccl', init_method='env://', world_size=world_size, rank=rank)
