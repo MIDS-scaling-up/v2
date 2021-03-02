@@ -1,8 +1,10 @@
 FROM nvcr.io/nvidia/pytorch:20.09-py3
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends sudo openssh-server \
+ && apt-get install -y --no-install-recommends sudo openssh-server net-tools \
  && rm -rf /var/lib/apt/lists/*
+
+RUN pip install transformers
 
 RUN mkdir /var/run/sshd 
 
