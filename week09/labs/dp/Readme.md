@@ -38,3 +38,9 @@ This is a more advanced lab that will require additional preparation.
 3. Launch the containers just like we did in homework 9, e.g. docker run --gpus all -d --name group --net=host -e SSH_PORT=4444 w251/lab09:mn
 4. Now, create an interactive shell inside each container, e.g. docker exec -ti group bash
 5. In each container, download the data, e.g. `cd /workspace/v2/week09/labs/dp && sh data.sh`
+6. You will need to make further changes to the python script now.  You will need to make sure that the MASTER_ADDR environment variable is passed through.  You will need to make sure that the model is always placed on GPU 0 (since you have only one GPU in the system now). 
+7. Run the script. For instance:
+
+```
+mpirun --allow-run-as-root -n 2 -H 172.31.11.31:1,172.31.5.11:1 -bind-to none -map-by slot --mca btl_tcp_if_include ens5 -x NCCL_SOCKET_IFNAME=ens5 -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH -x MASTER_ADDR=172.31.11.31 /opt/conda/bin/python /workspace/v2/week09/labs/dp/toxicity_ddp.py
+```
