@@ -30,7 +30,7 @@ Click the "Create Model" button and fill out the details:
  - Agent: `The Original DeepRacer`
  - Pick a reward function (based on what you learned in the "basics" walkthrough)
  - Use the default Hyperparameters
- - Use the default stop condition of 60 minutes
+ - Change the stop condition to 45 minutes
 
 
 ## Start your training
