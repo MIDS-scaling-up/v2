@@ -1,4 +1,4 @@
-# Homework: Part 1 - Installing GPFS FPO (THIS HOMEWORK IS BEEN UPDATED, PLEASE COME BACK 03/26/2021 TO FINISH THE SETUP)
+# Homework: Part 1 - Installing GPFS FPO
 
 ## Overview
 
@@ -152,7 +152,11 @@ Access Key ID:
 A1XGdUexhlIdyusn16Jh
 Secret Access Key:
 vImKKsEPfYQuzovEuPZjabeAViRhdQ9P85RQJEt1
-/usr/local/bin/aws --endpoint-url=https://s3-api.us-geo.objectstorage.softlayer.net  s3 cp s3://homework12/Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install
+
+Download the following file:
+https://ucberkeley-gpfs.s3.us-east-1.amazonaws.com/Spectrum_Scale_Advanced-5.0.5.6-x86_64-Linux-install?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJR5BICTNFAFVWSQA%2F20210326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210326T161033Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=42895419eb7732748d5201b7762c2433d24f03f3ac65fd87242a457f43a4bf48
+
+
 
 # copy the file to the other nodes
 scp Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install gpfs2:~
