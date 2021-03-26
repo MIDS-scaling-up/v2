@@ -144,19 +144,8 @@ yum install -y ksh perl libaio m4 net-tools unzip
 Then install S3 API client on `gpfs1` and download the GPFS install package (ensure that you use the shared Access Key and not your own credentials):
 
 ```
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip awscli-bundle.zip
-sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-/usr/local/bin/aws configure
-Access Key ID:
-A1XGdUexhlIdyusn16Jh
-Secret Access Key:
-vImKKsEPfYQuzovEuPZjabeAViRhdQ9P85RQJEt1
-
 Download the following file:
-https://ucberkeley-gpfs.s3.us-east-1.amazonaws.com/Spectrum_Scale_Advanced-5.0.5.6-x86_64-Linux-install?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJR5BICTNFAFVWSQA%2F20210326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210326T161033Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=42895419eb7732748d5201b7762c2433d24f03f3ac65fd87242a457f43a4bf48
-
-
+wget https://ucberkeley-gpfs.s3.amazonaws.com/Spectrum_Scale_Advanced-5.0.5.6-x86_64-Linux-install
 
 # copy the file to the other nodes
 scp Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install gpfs2:~
