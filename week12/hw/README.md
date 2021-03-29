@@ -1,4 +1,4 @@
-# Homework: Part 1 - Installing GPFS FPO
+# Homework: Part 1 - Installing GPFS FPO (this homework is been revised, will be reviewed during the live session as a lab)
 
 ## Overview
 
