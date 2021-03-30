@@ -16,7 +16,7 @@ support for mixed-precision training, that utilizes Tensor Cores introduced in N
 fast, simple-to-use, Horovod-based distributed training and data parallelism, supporting both multi-GPU and multi-node
 
 
-## Setup: get a GPU VM in Softlayer
+## Setup: get a GPU VM in AWS
 Follow instructions in [Homework 9](https://github.com/MIDS-scaling-up/v2/tree/master/week09/hw) to get a T4 GPU VM in AWS, e.g.:
 ```
 aws ec2 run-instances --image-id ami-0dc2264cd927ca9eb --instance-type g4dn.2xlarge --security-group-ids your_security_group --associate-public-ip-address --key-name yourkey_group
