@@ -40,6 +40,7 @@ We suggest that you loosely follow [these instructions](https://github.com/dusty
 * Train for 100 epochs 
 * ResNet13 / Wide ResNet 50-2 Hint: review the [TorchVision model catalog](https://pytorch.org/vision/stable/models.html)
 * Adjust batch size as necessary
+* Have you trounced Dusty's results? if not, check your work!
 
 
 ## To submit
