@@ -40,35 +40,16 @@ docker run -it --rm --net=host --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11
 ```
 
 ### Deep Learning SDK (the unofficial one, by Dustin Franklin)
-Let's just prepare the codebase on the Jetson directly:
-```
-# borrowing from https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo.md
-
-# in case you don't have these.. 
-sudo apt-get install git cmake libpython3-dev python3-numpy 
-# go to the directory of your choosing
-cd 
-# clone the repo
-git clone https://github.com/dusty-nv/jetson-inference.git
-cd jetson-inference
-git submodule update --init
-mkdir build
-cd build
-sudo cmake ../
-sudo make -j6
-sudo make install
-```
+Let us follow Dusty's [docker container instructions](https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md) while they still work!
 
 
 #### Notes
 * As you are exploring, just download all networks for image classification, object detection, segmentation when prompted.
-* On the nx, your camera will be flipped until you follow [these instructions](https://devtalk.nvidia.com/default/topic/1023180/jetson-tx2/imagenet-camera-gets-reverse-orientation-image-on-tx2-with-tr2-1/2) to flip it.
 * Check out the [models](https://github.com/dusty-nv/jetson-inference#pre-trained-models) that Dusty's framework supports. The model downloader tool could be used at any time to download more!
-* It possible to switch between the on-board (Argus) and external USB (v4l2) camera using the flags such as --camera=/dev/video1 --width=640 --height=480 --network=resnet-18 
 * There is a lot of information in this repo, take some time to go through it!
 
 #### Running
-* Run the camera demo, e.g. ```./camera-viewer``` . See the notes section if your view is flipped. Close the window to exit the program.
+* Run the camera demo, e.g. ```./video-viewer``` . See the notes section if your view is flipped. Close the window to exit the program.
 * Run the frame classification demo, e.g. ```./imagenet-camera```.  Be patient if you see a lot of debug output, as it's converting the weights to the TensorRT format.  What is the framerate you are getting? Try [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-camera.md)
 * Run the object detection demo, e.g. ```./detectnet-camera```. What is the framerate now?  Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-camera-2.md)
 * Try to image segmentation demo as well: ```./segnet-camera``` Experiment with [other networks](https://github.com/dusty-nv/jetson-inference/blob/master/docs/segnet-console.md)
