@@ -6,7 +6,7 @@ Introduction to Cloud Computing and Cloud AI—Defining the cloud. How clouds ar
 
 * What is cloud computing?:  http://www.ibm.com/cloud-computing/us/en/what-is-cloud-computing.html
 * Linux as a hypervisor: http://www.linuxplanet.com/linuxplanet/reports/6503/1
-* Types of clouds: https://www.globaldots.com/cloud-computing-types-of-cloud/
+* Types of clouds: https://www.globaldots.com/resources/blog/cloud-computing-types-of-cloud/
 * Cloud service types: https://www.fingent.com/blog/cloud-service-models-saas-iaas-paas-choose-the-right-one-for-your-business
 
 
