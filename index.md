@@ -29,6 +29,8 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 #### [Wild animal tracker](https://github.com/eddie-a-salinas/WildTrackMobile)
 
 #### [Commercial barcode scanner](https://github.com/ericlundy87/w251_project_barcode_scanner)
+
+#### [DRL Chess project](https://github.com/pnarsina/w251_chess_objectid_n_rl)
  
 *.In case the repo is private please contact the owner requesting access based on current enrollment.
 ### Support or Contact
