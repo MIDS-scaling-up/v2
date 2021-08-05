@@ -27,8 +27,10 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 #### [Toy locator](https://github.com/toylocator/toylocator/tree/w251_final)
 
 #### [Wild animal tracker](https://github.com/eddie-a-salinas/WildTrackMobile)
+
+#### [Commercial barcode scanner](https://github.com/ericlundy87/w251_project_barcode_scanner)
  
 *.In case the repo is private please contact the owner requesting access based on current enrollment.
 ### Support or Contact
 
-Please contact us back at esarias@berkeley.edu
+Please contact us back at eariasn@us.ibm.com
