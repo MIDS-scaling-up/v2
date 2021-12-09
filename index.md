@@ -35,6 +35,16 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 #### [Sign letters prediction](https://github.com/dom-dillingham/w251-final-project)
 
 #### [Wild life detector project](https://github.com/superli3/wildlife-ai-detector)
+
+### [Skin Cancer detection](https://github.com/abajaj25/MNIST-Skin-Cancer-with-Jetson)
+
+### [Live stalk Cow tracking with Drones](https://github.com/rjenez/w251-final-project-livestalk)
+
+### [Masked face recognition](https://github.com/UC-Berkeley-I-School/masked-face-recognition)
+
+### [GAN to Generate Unique Tattoos and Overlays them on the User in Real Time](https://github.com/bmontufar/w251finalproject)
+
+### [Intelligent Driver assistance](https://www.ipylot.com/)
  
 *.In case the repo is private please contact the owner requesting access based on current enrollment.
 ### Support or Contact
