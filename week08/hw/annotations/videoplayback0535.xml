@@ -1,0 +1,38 @@
+<annotation>
+	<folder>images</folder>
+	<filename>videoplayback0535.jpg</filename>
+	<path>/Users/sai.ravuru/Documents/UCB/W251/v2/week08/hw/MIDS_HW8/images/videoplayback0535.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1000</width>
+		<height>563</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>TIE fighter</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>110</xmin>
+			<ymin>79</ymin>
+			<xmax>231</xmax>
+			<ymax>216</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>TIE fighter</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>205</xmin>
+			<ymin>246</ymin>
+			<xmax>231</xmax>
+			<ymax>268</ymax>
+		</bndbox>
+	</object>
+</annotation>

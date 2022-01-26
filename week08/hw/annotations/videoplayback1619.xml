@@ -1,0 +1,50 @@
+<annotation>
+	<folder>images</folder>
+	<filename>videoplayback1619.jpg</filename>
+	<path>/Users/sai.ravuru/Documents/UCB/W251/v2/week08/hw/MIDS_HW8/images/videoplayback1619.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1000</width>
+		<height>563</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>TIE fighter</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>859</xmin>
+			<ymin>197</ymin>
+			<xmax>957</xmax>
+			<ymax>277</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>TIE fighter</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>719</xmin>
+			<ymin>248</ymin>
+			<xmax>763</xmax>
+			<ymax>293</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Millennium Falcon</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>263</xmin>
+			<ymin>297</ymin>
+			<xmax>857</xmax>
+			<ymax>451</ymax>
+		</bndbox>
+	</object>
+</annotation>

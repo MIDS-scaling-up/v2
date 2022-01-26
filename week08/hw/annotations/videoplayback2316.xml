@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>videoplayback2316.jpg</filename>
+	<path>/Users/sai.ravuru/Documents/UCB/W251/v2/week08/hw/MIDS_HW8/images/videoplayback2316.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1000</width>
+		<height>563</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Millennium Falcon</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>313</xmin>
+			<ymin>189</ymin>
+			<xmax>406</xmax>
+			<ymax>236</ymax>
+		</bndbox>
+	</object>
+</annotation>
