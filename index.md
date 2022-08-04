@@ -45,6 +45,10 @@ This the Deep Learning and Big Data at the Edge and in the Cloud resource github
 ### [GAN to Generate Unique Tattoos and Overlays them on the User in Real Time](https://github.com/bmontufar/w251finalproject)
 
 ### [Intelligent Driver assistance](https://www.ipylot.com/)
+
+### [Smarter Chef](https://github.com/jmiller558/w251finalproject)
+
+### [Image colorization](https://github.com/jdunns/w251_final_project)
  
 *.In case the repo is private please contact the owner requesting access based on current enrollment.
 ### Support or Contact
